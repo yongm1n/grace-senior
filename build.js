@@ -11,13 +11,18 @@ const path = require('path');
 const root = __dirname;
 const src = fs.readFileSync(path.join(root, 'src', 'site.html'), 'utf8');
 const title = (src.match(/<title>(.*?)<\/title>/) || [, 'Site'])[1];
+// favicon/apple-touch-icon <link> 는 <body> 안에 두면 브라우저가 head 로 재배치하지 않으므로
+// (HTML5 파싱 스펙: body 시작 후의 메타데이터 태그는 body 에 그대로 남음) 명시적으로 head 에 넣는다.
+const iconLinkRe = /\s*<link\b[^>]*\brel="(?:icon|apple-touch-icon)"[^>]*>/g;
+const headLinks = (src.match(iconLinkRe) || []).map(s => s.trim()).join('');
 const wrap = body =>
   '<!doctype html><html lang="ko"><head><meta charset="utf-8">' +
   '<meta name="viewport" content="width=device-width,initial-scale=1">' +
-  '<title>' + title + '</title></head><body>' + body + '</body></html>';
+  '<title>' + title + '</title>' + headLinks + '</head><body>' + body + '</body></html>';
 
-// ---- Pages 빌드: assets/ 상대경로 ----
+// ---- Pages 빌드: assets/ 상대경로 ---- (favicon link 는 head 로 옮겼으니 body 에서는 제거)
 const pages = src
+  .replace(iconLinkRe, '')
   .replace(/__IMG_([A-Z0-9]+)__/g, (_, k) => 'assets/' + k.toLowerCase() + '.jpg')
   .replace(/__PNG_([A-Z0-9]+)__/g, (_, k) => 'assets/' + k.toLowerCase() + '.png');
 fs.writeFileSync(path.join(root, 'index.html'), wrap(pages));
