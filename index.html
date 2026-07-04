@@ -1,5 +1,16 @@
-<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>더 그레이스 시니어 주간보호센터 · THE GRACE Senior Day Care</title><link rel="icon" type="image/x-icon" href="assets/favicon.ico"><link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png"><link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png"><link rel="apple-touch-icon" sizes="180x180" href="assets/favicon-180.png"></head><body><title>더 그레이스 시니어 주간보호센터 · THE GRACE Senior Day Care</title>
-<meta name="description" content="부산 해운대 더 그레이스 시니어 주간보호센터 — 간호사 출신 대표의 의료 경험에 기반한 전문 케어. 존중과 안전 속에서 어르신의 행복한 하루를 함께합니다.">
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>더 그레이스 시니어 주간보호센터 | 부산 해운대 데이케어</title><link rel="icon" type="image/x-icon" href="assets/favicon.ico"><link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png"><link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png"><link rel="apple-touch-icon" sizes="180x180" href="assets/favicon-180.png"><meta name="description" content="부산 해운대 더 그레이스 시니어 주간보호센터 — 간호사 출신 대표의 의료 경험에 기반한 주간보호(데이케어). 장기요양보험으로 존중과 안전 속에서 어르신의 행복한 하루를 함께합니다.">
+<link rel="canonical" href="https://gracedaycare.co.kr/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="더 그레이스 시니어 주간보호센터">
+<meta property="og:title" content="더 그레이스 시니어 주간보호센터 | 부산 해운대 데이케어">
+<meta property="og:description" content="부산 해운대 더 그레이스 시니어 주간보호센터 — 간호사 출신 대표의 의료 경험에 기반한 주간보호(데이케어). 장기요양보험으로 존중과 안전 속에서 어르신의 행복한 하루를 함께합니다.">
+<meta property="og:url" content="https://gracedaycare.co.kr/">
+<meta property="og:image" content="https://gracedaycare.co.kr/assets/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"LocalBusiness","name":"더 그레이스 시니어 주간보호센터","alternateName":"THE GRACE Senior Day Care","url":"https://gracedaycare.co.kr/","telephone":"+82-51-791-1797","image":"https://gracedaycare.co.kr/assets/og.jpg","address":{"@type":"PostalAddress","addressCountry":"KR","addressRegion":"부산광역시","addressLocality":"해운대구","streetAddress":"좌동순환로 78 5층"},"openingHoursSpecification":{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"08:00","closes":"18:00"},"sameAs":["https://www.instagram.com/thegrace_daycare/","https://blog.naver.com/the_grace_daycare"]}</script></head><body>
 <style>
   :root{
     --ink:#0A2032; --ink-2:#0E2B42; --ink-3:#163C57;
@@ -19,6 +30,7 @@
     background:var(--ink); color:var(--paper);
     font-family:var(--body); -webkit-font-smoothing:antialiased;
     text-rendering:optimizeLegibility; overflow-x:hidden;
+    word-break:keep-all; overflow-wrap:break-word;
   }
   ::selection{background:var(--amber);color:#0A1622}
 
@@ -39,15 +51,6 @@
   .scanlines{position:fixed;inset:0;z-index:3;pointer-events:none;opacity:.35;mix-blend-mode:soft-light;
     background:repeating-linear-gradient(180deg,rgba(0,0,0,0) 0,rgba(0,0,0,0) 2px,rgba(0,0,0,.5) 3px)}
 
-  /* ---------- custom cursor ---------- */
-  html.cur, html.cur a, html.cur button{cursor:none}
-  .cur-ring,.cur-dot{position:fixed;top:0;left:0;z-index:60;pointer-events:none;border-radius:50%;will-change:transform;display:none}
-  html.cur .cur-ring,html.cur .cur-dot{display:block}
-  .cur-ring{width:36px;height:36px;border:1px solid rgba(255,192,119,.85);
-    transform:translate(-50%,-50%);transition:width .22s,height .22s,background .22s,border-color .22s}
-  .cur-dot{width:5px;height:5px;background:var(--glow);transform:translate(-50%,-50%);box-shadow:0 0 10px rgba(255,192,119,.9)}
-  html.cur.hot .cur-ring{width:62px;height:62px;background:rgba(255,138,61,.10);border-color:rgba(255,192,119,1)}
-
   /* ---------- top progress + nav ---------- */
   .prog{position:fixed;top:0;left:0;height:2px;width:0;z-index:40;background:linear-gradient(90deg,var(--amber-deep),var(--glow));box-shadow:0 0 12px rgba(255,138,61,.6)}
   .nav{
@@ -56,6 +59,13 @@
     padding:18px var(--gutter);
     background:linear-gradient(180deg,rgba(8,18,28,.46),rgba(8,18,28,0));
     -webkit-backdrop-filter:blur(7px) saturate(120%);backdrop-filter:blur(7px) saturate(120%);
+    transition:background .4s ease,box-shadow .4s ease,padding .4s ease;
+  }
+  .nav.scrolled{
+    background:linear-gradient(180deg,rgba(8,18,28,.82),rgba(8,18,28,.66));
+    -webkit-backdrop-filter:blur(15px) saturate(135%);backdrop-filter:blur(15px) saturate(135%);
+    box-shadow:0 12px 34px -22px rgba(0,0,0,.85);
+    border-bottom:1px solid var(--line);
   }
   .brand{display:flex;align-items:center;gap:13px;text-decoration:none;color:var(--paper)}
   .brand .mark{width:44px;height:44px;flex:none;border-radius:10px;background:#FCFBF7 url(assets/logo.png) center/contain no-repeat;box-shadow:0 3px 12px rgba(0,0,0,.32);border:1px solid rgba(255,255,255,.45)}
@@ -65,11 +75,22 @@
   .menu a{font-size:13px;letter-spacing:.05em;color:var(--paper-dim);text-decoration:none;transition:color .25s}
   .menu a:hover{color:var(--paper)}
   .menu .cta{
-    font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
-    color:var(--paper);border:1px solid var(--line);padding:9px 16px;border-radius:2px;transition:all .25s;
+    font-family:var(--mono);font-weight:700;font-size:12px;letter-spacing:.12em;text-transform:uppercase;
+    display:inline-flex;align-items:center;gap:8px;height:42px;padding:0 20px;border-radius:999px;
+    color:var(--ink);background:var(--amber);border:1px solid var(--amber-deep);
+    box-shadow:0 5px 18px -7px rgba(228,169,62,.7),inset 0 1px 0 rgba(255,255,255,.28);
+    transition:all .25s;
   }
-  .menu .cta:hover{border-color:var(--amber);color:var(--glow);background:rgba(255,138,61,.08)}
-  @media(max-width:760px){.menu a:not(.cta){display:none}.brand .en{display:none}}
+  .menu .cta svg{width:15px;height:15px;fill:var(--ink);flex:none}
+  .menu .cta:hover{background:var(--glow);border-color:var(--glow);color:var(--ink);transform:translateY(-1px);
+    box-shadow:0 8px 22px -7px rgba(251,220,147,.8),inset 0 1px 0 rgba(255,255,255,.4)}
+  .menu .cta-mob{display:none}
+  @media(max-width:760px){
+    .menu a:not(.cta){display:none}.brand .en{display:none}
+    .menu .cta-desk{display:none}
+    .menu .cta-mob{display:inline-flex}
+    .menu .cta{height:44px}
+  }
 
   /* ---------- right rail ---------- */
   .rail{position:fixed;right:clamp(14px,2.4vw,34px);top:50%;transform:translateY(-50%);z-index:30;display:flex;flex-direction:column;gap:20px}
@@ -77,8 +98,8 @@
     appearance:none;background:none;border:0;display:flex;align-items:center;gap:12px;
     flex-direction:row-reverse;color:var(--steel-dim);transition:color .3s;
   }
-  .rail .dot{width:8px;height:8px;border:1px solid var(--steel-dim);border-radius:50%;transition:all .3s;flex:none}
-  .rail .lbl{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;opacity:0;transform:translateX(6px);transition:all .3s;white-space:nowrap}
+  .rail .dot{width:8px;height:8px;border:1px solid var(--steel-dim);border-radius:50%;transition:all .3s;flex:none;box-shadow:0 0 5px 1px rgba(4,14,24,.6),0 1px 2px rgba(4,14,24,.55)}
+  .rail .lbl{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;opacity:0;transform:translateX(6px);transition:all .3s;white-space:nowrap;text-shadow:0 1px 6px rgba(4,14,24,.7)}
   .rail button:hover{color:var(--paper)}
   .rail button:hover .lbl{opacity:1;transform:none}
   .rail button.on{color:var(--paper)}
@@ -139,6 +160,15 @@
     background:radial-gradient(220px 160px at var(--mx,50%) var(--my,0%),rgba(255,170,90,.16),transparent 60%);opacity:0;transition:opacity .3s}
   .stats:hover .glow-edge{opacity:1}
 
+  /* ---------- meal: local scrim over bright food image ---------- */
+  #meal .content{position:relative}
+  #meal .content::before{content:"";position:absolute;inset:-52px -20% -48px -48px;z-index:-1;pointer-events:none;
+    background:radial-gradient(128% 104% at 14% 52%, rgba(6,18,30,.88) 0%, rgba(6,18,30,.62) 40%, rgba(6,18,30,.24) 66%, rgba(6,18,30,0) 84%)}
+  @media(max-width:760px){
+    #meal .content::before{inset:-40px -8% -40px -30px;
+      background:radial-gradient(150% 100% at 32% 50%, rgba(6,18,30,.9) 0%, rgba(6,18,30,.66) 46%, rgba(6,18,30,0) 86%)}
+  }
+
   /* ---------- hero specifics ---------- */
   .hero .content{max-width:1040px}
   .hero .ko-title{font-size:clamp(44px,8.4vw,118px);letter-spacing:.01em;line-height:1.04;padding-top:.06em}
@@ -167,15 +197,19 @@
     font-family:var(--mono);font-weight:700;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--paper);text-shadow:0 1px 8px rgba(4,12,22,.55);text-align:left;transform:translateZ(40px)}
   @media(max-width:760px){.fleet{grid-template-columns:repeat(2,1fr)}}
 
-  footer{width:100%;max-width:1180px;margin:90px auto 0;padding:34px 0 46px;border-top:1px solid var(--line);
+  footer{width:100%;max-width:1180px;margin:90px auto 0;padding:36px clamp(24px,4vw,46px) 40px;
+    border:1px solid var(--glass-line);border-radius:16px;
+    background:rgba(7,20,33,.7);
+    -webkit-backdrop-filter:blur(16px) saturate(130%);backdrop-filter:blur(16px) saturate(130%);
+    box-shadow:0 26px 64px -32px rgba(0,0,0,.72),inset 0 1px 0 rgba(255,255,255,.05);
     display:flex;flex-wrap:wrap;gap:24px 60px;justify-content:space-between;align-items:flex-start;text-align:left}
-  footer .col h4{font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--steel);margin-bottom:10px}
-  footer .col p{font-size:13px;line-height:1.7;color:var(--paper-dim)}
+  footer .col h4{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--steel);margin-bottom:10px}
+  footer .col p{font-size:15px;line-height:1.72;color:var(--paper-dim)}
   footer .big{font-family:var(--display);font-weight:800;font-size:22px;letter-spacing:.12em;color:var(--paper)}
   footer .footlogo{width:150px;height:auto;display:block;margin-bottom:12px;background:#FCFBF7;border-radius:12px;padding:12px 16px}
-  footer .sns a{color:var(--paper-dim);text-decoration:none;border-bottom:1px solid var(--line);transition:color .25s,border-color .25s}
+  footer .sns a{color:var(--paper-dim);text-decoration:none;border-bottom:1px solid var(--glass-line);transition:color .25s,border-color .25s}
   footer .sns a:hover{color:var(--glow);border-color:var(--amber)}
-  footer .note{flex-basis:100%;font-size:11px;color:var(--steel-dim);margin-top:8px}
+  footer .note{flex-basis:100%;font-size:12px;color:var(--paper-dim);margin-top:10px;opacity:.9}
   .callbtn{display:inline-flex;align-items:center;gap:18px;margin-top:38px;
     text-decoration:none;padding:15px 16px 15px 26px;border-radius:999px;
     border:1px solid var(--line);background:linear-gradient(180deg,rgba(244,239,228,.05),rgba(10,32,50,.18));
@@ -204,6 +238,57 @@
     .callbtn .div{display:none}
   }
 
+  /* ---------- footer: map links (1D) + call button (1C) ---------- */
+  .maplinks{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+  .maplink{display:inline-flex;align-items:center;gap:7px;min-height:44px;padding:0 16px;
+    border-radius:999px;text-decoration:none;
+    font-family:var(--mono);font-weight:700;font-size:12px;letter-spacing:.06em;
+    color:var(--paper);border:1px solid var(--glass-line);
+    background:linear-gradient(180deg,rgba(244,239,228,.05),rgba(10,32,50,.18));
+    -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
+    transition:border-color .25s,color .25s,background .25s}
+  .maplink svg{width:15px;height:15px;flex:none;fill:none;stroke:var(--glow);stroke-width:1.5}
+  .maplink:hover{border-color:rgba(228,169,62,.5);color:var(--glow);background:rgba(255,138,61,.08)}
+
+  footer .sns a.footcall{display:inline-flex;align-items:center;gap:10px;min-height:46px;padding:0 22px;margin-top:2px;
+    border-radius:999px;text-decoration:none;border:1px solid var(--amber-deep);
+    font-family:var(--display);font-weight:800;font-size:18px;letter-spacing:.02em;
+    color:var(--ink);background:var(--amber);
+    box-shadow:0 6px 18px -6px rgba(228,169,62,.55),inset 0 1px 0 rgba(255,255,255,.25)}
+  footer .sns a.footcall svg{width:17px;height:17px;fill:var(--ink)}
+  footer .sns a.footcall:hover{background:var(--glow);transform:translateY(-1px);
+    box-shadow:0 9px 24px -6px rgba(251,220,147,.7),inset 0 1px 0 rgba(255,255,255,.4)}
+
+  /* ---------- mobile persistent call bar (≤760px only, 1C) ---------- */
+  .mobilecall{display:none}
+  @media(max-width:760px){
+    .mobilecall{
+      display:grid;grid-template-columns:1.7fr 1fr;gap:10px;
+      position:fixed;left:0;right:0;bottom:0;z-index:36;
+      padding:10px 12px calc(10px + env(safe-area-inset-bottom));
+      background:linear-gradient(180deg,rgba(7,20,33,.66),rgba(6,17,28,.95));
+      -webkit-backdrop-filter:blur(16px) saturate(130%);backdrop-filter:blur(16px) saturate(130%);
+      border-top:1px solid var(--glass-line);
+      box-shadow:0 -14px 34px -20px rgba(0,0,0,.85);
+    }
+    .mc-btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;
+      height:52px;border-radius:999px;text-decoration:none;
+      font-family:var(--mono);font-weight:700;font-size:13px;letter-spacing:.05em}
+    .mc-btn svg{flex:none}
+    .mc-call{background:var(--amber);color:var(--ink);border:1px solid var(--amber-deep);
+      box-shadow:0 6px 18px -6px rgba(228,169,62,.6),inset 0 1px 0 rgba(255,255,255,.28)}
+    .mc-call svg{width:18px;height:18px;fill:var(--ink)}
+    .mc-call b{font-family:var(--display);font-weight:800;font-size:16px;letter-spacing:.02em;margin-left:2px}
+    .mc-map{background:rgba(244,239,228,.07);color:var(--paper);border:1px solid var(--glass-line)}
+    .mc-map svg{width:17px;height:17px;fill:none;stroke:var(--glow);stroke-width:1.6}
+    body{padding-bottom:calc(84px + env(safe-area-inset-bottom))}
+    .scrolltip{bottom:calc(100px + env(safe-area-inset-bottom))}
+  }
+
+  /* Korean typography: let lead sentences flow naturally on mobile
+     (fixed <br> in .lead forces awkward wraps on narrow screens; titles keep theirs) */
+  @media(max-width:760px){ .lead br{display:none} }
+
   @media(prefers-reduced-motion:reduce){
     html{scroll-behavior:auto}
     .reveal{transition-duration:.4s}
@@ -219,7 +304,6 @@
 <div class="grain"></div>
 <div class="scanlines"></div>
 <div class="prog" id="prog"></div>
-<div class="cur-ring"></div><div class="cur-dot"></div>
 
 <nav class="nav">
   <a class="brand" href="#hero">
@@ -231,7 +315,8 @@
     <a href="#intro">센터소개</a>
     <a href="#program">프로그램</a>
     <a href="#health">건강·안전</a>
-    <a class="cta" href="#closing">상담문의</a>
+    <a class="cta cta-desk" href="#closing">상담 문의</a>
+    <a class="cta cta-mob" href="tel:051-791-1797" aria-label="전화 상담 051-791-1797"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.6 15.6 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24 11.4 11.4 0 0 0 3.6.58 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.46.58 3.6a1 1 0 0 1-.25 1z"/></svg>전화 상담</a>
   </div>
 </nav>
 
@@ -242,7 +327,7 @@
   <section class="scene hero in" id="hero" data-key="hero" data-label="더 그레이스">
     <div class="content">
       <h1 class="ko-title split">존중과 안전 속에서<br>행복한 하루를</h1>
-      <p class="lead reveal">어르신을 단순히 모시는 곳이 아닌, 의료 경험으로 곁을 지키는 곳.<br>부산 해운대, 더 그레이스 시니어 주간보호센터.</p>
+      <p class="lead reveal">어르신을 단순히 모시는 곳이 아닌, 의료 경험으로 곁을 지키는 곳. <br>부산 해운대, 더 그레이스 시니어 주간보호센터.</p>
     </div>
     <div class="scrolltip reveal"><span class="line"></span><span>Scroll</span></div>
   </section>
@@ -312,7 +397,7 @@
       <img class="seal reveal" src="assets/logo.png" alt="더 그레이스 시니어 주간보호센터 로고">
       <div class="eyebrow reveal" style="justify-content:center"><span class="bar"></span><span class="cls">The Grace Senior Day Care</span><span class="bar"></span></div>
       <h2 class="ko-title split">어르신의 내일을<br>더 그레이스와</h2>
-      <p class="lead reveal" style="margin-left:auto;margin-right:auto">상담은 언제든 편하게 — 어르신께 가장 잘 맞는 하루를<br>함께 설계해 드리겠습니다.</p>
+      <p class="lead reveal" style="margin-left:auto;margin-right:auto">상담은 언제든 편하게 — 어르신께 가장 잘 맞는 하루를 <br>함께 설계해 드리겠습니다.</p>
       <a class="callbtn reveal" href="tel:051-791-1797" aria-label="전화 상담 051-791-1797">
         <span class="lab">전화 상담</span>
         <span class="div"></span>
@@ -330,16 +415,32 @@
     <footer>
       <div class="col">
         <img class="footlogo" src="assets/logo.png" alt="더 그레이스 시니어 주간보호센터">
-        <p style="color:var(--steel)">THE GRACE SENIOR DAY CARE</p>
+        <p style="color:var(--paper-dim);font-family:var(--mono);font-size:11px;letter-spacing:.16em">THE GRACE SENIOR DAY CARE</p>
       </div>
-      <div class="col"><h4>오시는 길</h4><p>부산광역시 해운대구 좌동순환로 78 5층</p></div>
+      <div class="col"><h4>오시는 길</h4>
+        <p>부산광역시 해운대구 좌동순환로 78 5층</p>
+        <!-- TODO: 스마트플레이스/카카오맵 등록 후 플레이스 상세 링크로 교체 -->
+        <div class="maplinks">
+          <a class="maplink" href="https://map.naver.com/p/search/%EB%B6%80%EC%82%B0%EA%B4%91%EC%97%AD%EC%8B%9C%20%ED%95%B4%EC%9A%B4%EB%8C%80%EA%B5%AC%20%EC%A2%8C%EB%8F%99%EC%88%9C%ED%99%98%EB%A1%9C%2078" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-6.3 7-11a7 7 0 1 0-14 0c0 4.7 7 11 7 11z"/><circle cx="12" cy="10" r="2.6"/></svg>네이버지도</a>
+          <a class="maplink" href="https://map.kakao.com/link/search/%EB%B6%80%EC%82%B0%EA%B4%91%EC%97%AD%EC%8B%9C%20%ED%95%B4%EC%9A%B4%EB%8C%80%EA%B5%AC%20%EC%A2%8C%EB%8F%99%EC%88%9C%ED%99%98%EB%A1%9C%2078" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-6.3 7-11a7 7 0 1 0-14 0c0 4.7 7 11 7 11z"/><circle cx="12" cy="10" r="2.6"/></svg>카카오맵</a>
+        </div>
+      </div>
       <div class="col"><h4>운영 안내</h4><p>평일 08:00 – 18:00<br>장기요양보험 적용 · 등급 상담</p></div>
-      <div class="col sns"><h4>상담 문의</h4><p><a href="tel:051-791-1797">전화 051-791-1797</a><br><a href="https://www.instagram.com/thegrace_daycare/" target="_blank" rel="noopener">instagram @thegrace_daycare</a><br><a href="https://blog.naver.com/the_grace_daycare" target="_blank" rel="noopener">네이버 블로그</a></p></div>
+      <div class="col sns"><h4>상담 문의</h4>
+        <a class="footcall" href="tel:051-791-1797" aria-label="전화 상담 051-791-1797"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.6 15.6 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24 11.4 11.4 0 0 0 3.6.58 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.46.58 3.6a1 1 0 0 1-.25 1z"/></svg>051-791-1797</a>
+        <p style="margin-top:14px"><a href="https://www.instagram.com/thegrace_daycare/" target="_blank" rel="noopener">instagram @thegrace_daycare</a><br><a href="https://blog.naver.com/the_grace_daycare" target="_blank" rel="noopener">네이버 블로그</a></p>
+      </div>
       <p class="note">© 2026 더 그레이스 시니어 주간보호센터 · 부산 해운대</p>
     </footer>
   </section>
 
 </main>
+
+<!-- mobile persistent call bar (≤760px only) — tel + naver 길찾기 -->
+<div class="mobilecall" role="group" aria-label="빠른 연락">
+  <a class="mc-btn mc-call" href="tel:051-791-1797" aria-label="전화 상담 051-791-1797"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.6 15.6 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24 11.4 11.4 0 0 0 3.6.58 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.46.58 3.6a1 1 0 0 1-.25 1z"/></svg><span>전화 <b>051-791-1797</b></span></a>
+  <a class="mc-btn mc-map" href="https://map.naver.com/p/search/%EB%B6%80%EC%82%B0%EA%B4%91%EC%97%AD%EC%8B%9C%20%ED%95%B4%EC%9A%B4%EB%8C%80%EA%B5%AC%20%EC%A2%8C%EB%8F%99%EC%88%9C%ED%99%98%EB%A1%9C%2078" target="_blank" rel="noopener" aria-label="네이버지도 길찾기"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-6.3 7-11a7 7 0 1 0-14 0c0 4.7 7 11 7 11z"/><circle cx="12" cy="10" r="2.6"/></svg><span>길찾기</span></a>
+</div>
 
 <script>
 (function(){
@@ -347,6 +448,7 @@
   var scenes = Array.prototype.slice.call(document.querySelectorAll('.scene'));
   var rail = document.getElementById('rail');
   var prog = document.getElementById('prog');
+  var nav = document.querySelector('.nav');
 
   /* image sources (injected as data URIs) */
   var SRC = {
@@ -411,26 +513,6 @@
     });
   }
 
-  /* ---------- scramble / decode class codes ---------- */
-  function runScramble(scene){
-    if(scene.classList.contains('closing')) return;
-    scene.querySelectorAll('.cls').forEach(function(el){
-      if(el.dataset.scr) return; el.dataset.scr='1';
-      var fin=el.textContent, len=fin.length;
-      if(reduce) return;
-      var chars='ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-/·#', frame=0;
-      var iv=setInterval(function(){
-        frame++; var out='';
-        for(var i=0;i<len;i++){
-          if(fin[i]===' '){ out+=' '; continue; }
-          out += (i < frame-5) ? fin[i] : chars[Math.floor(Math.random()*chars.length)];
-        }
-        el.textContent=out;
-        if(frame-5>=len){ clearInterval(iv); el.textContent=fin; }
-      },45);
-    });
-  }
-
   /* ---------- reveal + rail observer ---------- */
   var ratios={};
   var io=new IntersectionObserver(function(entries){
@@ -443,7 +525,7 @@
   setRail('hero'); runCount(document.getElementById('hero'));
 
   /* ---------- progress bar ---------- */
-  function onScroll(){ var h=document.documentElement, max=h.scrollHeight-h.clientHeight; prog.style.width=(max>0?(h.scrollTop/max*100):0)+'%'; }
+  function onScroll(){ var h=document.documentElement, max=h.scrollHeight-h.clientHeight; prog.style.width=(max>0?(h.scrollTop/max*100):0)+'%'; if(nav) nav.classList.toggle('scrolled',(window.pageYOffset||h.scrollTop)>40); }
   addEventListener('scroll',onScroll,{passive:true}); onScroll();
 
   /* ---------- scene-center timeline ---------- */
@@ -621,20 +703,10 @@
   setTimeout(measure,400); setTimeout(measure,1200);
 
   /* =========================================================
-     Pointer flair: custom cursor + 3D tilt  (desktop only)
+     Pointer flair: 3D tilt + magnetic CTA  (desktop only)
      ========================================================= */
   var fine = matchMedia('(hover:hover) and (pointer:fine)').matches;
   if(fine && !reduce){
-    document.documentElement.classList.add('cur');
-    var ring=document.querySelector('.cur-ring'), dot=document.querySelector('.cur-dot');
-    var mx=innerWidth/2,my=innerHeight/2,rx=mx,ry=my;
-    addEventListener('mousemove',function(e){ mx=e.clientX; my=e.clientY; dot.style.transform='translate('+mx+'px,'+my+'px) translate(-50%,-50%)'; },{passive:true});
-    (function curLoop(){ rx+=(mx-rx)*0.18; ry+=(my-ry)*0.18; ring.style.transform='translate('+rx+'px,'+ry+'px) translate(-50%,-50%)'; requestAnimationFrame(curLoop); })();
-    document.querySelectorAll('a,button').forEach(function(el){
-      el.addEventListener('mouseenter',function(){ document.documentElement.classList.add('hot'); });
-      el.addEventListener('mouseleave',function(){ document.documentElement.classList.remove('hot'); });
-    });
-
     /* glass-panel tilt + glow tracking */
     document.querySelectorAll('.tilt').forEach(function(el){
       var glow=el.querySelector('.glow-edge');
