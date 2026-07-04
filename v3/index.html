@@ -302,7 +302,8 @@
 </style>
 
 <div class="vstage" id="vstage" aria-hidden="true">
-  <div class="vlayer" data-key="hero"><img class="vposter" src="media/hero-poster.jpg" alt=""><video muted loop playsinline preload="auto" poster="media/hero-poster.jpg" src="media/hero.mp4"></video></div>
+  <!-- hero: 고해상도 정지 이미지(2560px) — 720p 비디오는 해상도 문제로 제거 -->
+  <div class="vlayer" data-key="hero"><img class="vposter" src="media/hero-poster.jpg" alt=""></div>
   <div class="vlayer" data-key="intro"><img class="vposter" src="media/intro-poster.jpg" alt=""><video muted loop playsinline preload="none" poster="media/intro-poster.jpg" data-src="media/intro.mp4"></video></div>
   <div class="vlayer" data-key="program"><img class="vposter" src="media/program-poster.jpg" alt=""><video muted loop playsinline preload="none" poster="media/program-poster.jpg" data-src="media/program.mp4"></video></div>
   <div class="vlayer" data-key="health"><img class="vposter" src="media/health-poster.jpg" alt=""><video muted loop playsinline preload="none" poster="media/health-poster.jpg" data-src="media/health.mp4"></video></div>
@@ -539,7 +540,8 @@
   function loadRest(){
     if(loadedRest||reduce) return; loadedRest=true;
     stageLayers.forEach(function(L){
-      var v=L.video, ds=v.getAttribute('data-src');
+      var v=L.video; if(!v) return;
+      var ds=v.getAttribute('data-src');
       if(ds && !v.getAttribute('src')){ v.setAttribute('preload','auto'); v.setAttribute('src',ds); try{ v.load(); }catch(e){} }
     });
   }
@@ -565,7 +567,7 @@
       var lay=stageLayers[k];
       lay.el.style.opacity=ops[k].toFixed(3);
       lay.el.style.transform='scale('+scs[k].toFixed(4)+')';
-      if(!reduce){
+      if(!reduce && lay.video){
         var v=lay.video, wantPlay=ops[k]>0.02;
         if(wantPlay){
           if(v.paused && (v.getAttribute('src')||v.currentSrc)){ var pr=v.play(); if(pr&&pr.catch) pr.catch(function(){}); }
@@ -579,7 +581,7 @@
 
   /* pause everything when the tab is hidden; RAF loop resumes playback on return */
   document.addEventListener('visibilitychange', function(){
-    if(document.hidden){ stageLayers.forEach(function(L){ if(!L.video.paused) L.video.pause(); }); }
+    if(document.hidden){ stageLayers.forEach(function(L){ if(L.video && !L.video.paused) L.video.pause(); }); }
   });
 
   /* ---------- main loop ---------- */
