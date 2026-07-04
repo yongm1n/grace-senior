@@ -17,6 +17,7 @@
 ├── media/                  # 메인 배경 비디오 5편(mp4, 무음) + 포스터 jpg (hero/intro/program/health/meal)
 ├── assets/                 # 로고·파비콘·og.jpg + (v2가 쓰는) 사진 5장
 ├── v2/index.html           # 클래식 v1 백업 스냅샷 (noindex, 동결 — 편집 대상 아님)
+├── v3/                     # 시네마 에디션 (실사 영화 룩, noindex): index.html + media/ 비디오·포스터
 ├── CNAME                   # gracedaycare.co.kr (커스텀 도메인 유지 — 지우지 말 것)
 ├── render.js               # Playwright 검증 (섹션별 스크린샷 + pageerror)
 ├── robots.txt / sitemap.xml
