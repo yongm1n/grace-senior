@@ -1,10 +1,4 @@
-<title>더 그레이스 시니어 주간보호센터 | 부산 해운대 데이케어</title>
-<link rel="icon" type="image/x-icon" href="assets/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
-<link rel="apple-touch-icon" sizes="180x180" href="assets/favicon-180.png">
-<!--HEAD-->
-<meta name="naver-site-verification" content="51eddaffded158034539cb8abde4bea283ca25fb">
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="robots" content="noindex"><meta name="viewport" content="width=device-width,initial-scale=1"><title>더 그레이스 시니어 주간보호센터 | 클래식 버전</title><link rel="icon" type="image/x-icon" href="../assets/favicon.ico"><link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16.png"><link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png"><link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon-180.png"><meta name="naver-site-verification" content="51eddaffded158034539cb8abde4bea283ca25fb">
 <meta name="google-site-verification" content="Hn8WSNjS5erTV3yktRIPckFNGfWItRmFs7pZTH8CGSk">
 <meta name="description" content="부산 해운대 더 그레이스 시니어 주간보호센터 — 간호사 출신 대표의 의료 경험에 기반한 주간보호(데이케어). 장기요양보험으로 존중과 안전 속에서 어르신의 행복한 하루를 함께합니다.">
 <link rel="canonical" href="https://gracedaycare.co.kr/">
@@ -18,8 +12,7 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"LocalBusiness","name":"더 그레이스 시니어 주간보호센터","alternateName":"THE GRACE Senior Day Care","url":"https://gracedaycare.co.kr/","telephone":"+82-51-791-1797","image":"https://gracedaycare.co.kr/assets/og.jpg","address":{"@type":"PostalAddress","addressCountry":"KR","addressRegion":"부산광역시","addressLocality":"해운대구","streetAddress":"좌동순환로 78 5층"},"openingHoursSpecification":{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"08:00","closes":"18:00"},"sameAs":["https://www.instagram.com/thegrace_daycare/","https://blog.naver.com/the_grace_daycare"]}</script>
-<!--/HEAD-->
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"LocalBusiness","name":"더 그레이스 시니어 주간보호센터","alternateName":"THE GRACE Senior Day Care","url":"https://gracedaycare.co.kr/","telephone":"+82-51-791-1797","image":"https://gracedaycare.co.kr/assets/og.jpg","address":{"@type":"PostalAddress","addressCountry":"KR","addressRegion":"부산광역시","addressLocality":"해운대구","streetAddress":"좌동순환로 78 5층"},"openingHoursSpecification":{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"08:00","closes":"18:00"},"sameAs":["https://www.instagram.com/thegrace_daycare/","https://blog.naver.com/the_grace_daycare"]}</script></head><body>
 <style>
   :root{
     --ink:#0A2032; --ink-2:#0E2B42; --ink-3:#163C57;
@@ -43,24 +36,22 @@
   }
   ::selection{background:var(--amber);color:#0A1622}
 
-  /* ---------- cinematic video stage (replaces WebGL) ---------- */
-  .vstage{position:fixed;inset:0;z-index:0;background:var(--ink);overflow:hidden;pointer-events:none}
-  .vlayer{position:absolute;inset:0;opacity:0;transform:scale(1.08);
-    will-change:opacity,transform;backface-visibility:hidden}
-  .vlayer .vposter,.vlayer video{position:absolute;inset:0;width:100%;height:100%;
-    object-fit:cover;display:block}
-  .vlayer .vposter{z-index:0}
-  .vlayer video{z-index:1}
+  /* ---------- WebGL cinematic stage ---------- */
+  #glfallback{position:fixed;inset:0;z-index:0;background:var(--ink) center/cover no-repeat}
+  #gl{position:fixed;inset:0;z-index:0;display:block;width:100%;height:100%}
   .scrim{
     position:fixed;inset:0;z-index:1;pointer-events:none;
     background:
       linear-gradient(180deg, rgba(6,20,32,.52) 0%, rgba(6,20,32,0) 24%, rgba(6,20,32,0) 47%, rgba(6,20,32,.32) 71%, rgba(6,20,32,.92) 100%),
       radial-gradient(120% 80% at 72% 30%, rgba(6,20,32,0) 40%, rgba(6,20,32,.42) 100%);
   }
+  #fx{position:fixed;inset:0;z-index:2;pointer-events:none}
   .grain{
-    position:fixed;inset:0;z-index:2;pointer-events:none;opacity:.028;mix-blend-mode:overlay;
+    position:fixed;inset:0;z-index:3;pointer-events:none;opacity:.045;mix-blend-mode:overlay;
     background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
   }
+  .scanlines{position:fixed;inset:0;z-index:3;pointer-events:none;opacity:.35;mix-blend-mode:soft-light;
+    background:repeating-linear-gradient(180deg,rgba(0,0,0,0) 0,rgba(0,0,0,0) 2px,rgba(0,0,0,.5) 3px)}
 
   /* ---------- top progress + nav ---------- */
   .prog{position:fixed;top:0;left:0;height:2px;width:0;z-index:40;background:linear-gradient(90deg,var(--amber-deep),var(--glow));box-shadow:0 0 12px rgba(255,138,61,.6)}
@@ -79,10 +70,10 @@
     border-bottom:1px solid var(--line);
   }
   .brand{display:flex;align-items:center;gap:13px;text-decoration:none;color:var(--paper)}
-  .brand .mark{width:44px;height:44px;flex:none;border-radius:10px;background:#FCFBF7 url(__PNG_LOGO__) center/contain no-repeat;box-shadow:0 3px 12px rgba(0,0,0,.32);border:1px solid rgba(255,255,255,.45)}
+  .brand .mark{width:44px;height:44px;flex:none;border-radius:10px;background:#FCFBF7 url(../assets/logo.png) center/contain no-repeat;box-shadow:0 3px 12px rgba(0,0,0,.32);border:1px solid rgba(255,255,255,.45)}
   .brand .ko{font-family:var(--display);font-weight:800;font-size:21px;letter-spacing:.14em;line-height:1}
   .brand .en{font-family:var(--mono);font-size:10px;letter-spacing:.28em;color:var(--steel);text-transform:uppercase;align-self:center}
-  .menu{display:flex;gap:26px;align-items:center}
+  .menu{display:flex;gap:30px;align-items:center}
   .menu a{font-size:13px;letter-spacing:.05em;color:var(--paper-dim);text-decoration:none;transition:color .25s}
   .menu a:hover{color:var(--paper)}
   .menu .cta{
@@ -107,7 +98,7 @@
   .rail{position:fixed;right:clamp(14px,2.4vw,34px);top:50%;transform:translateY(-50%);z-index:30;display:flex;flex-direction:column;gap:20px}
   .rail button{
     appearance:none;background:none;border:0;display:flex;align-items:center;gap:12px;
-    flex-direction:row-reverse;color:var(--steel-dim);transition:color .3s;cursor:pointer;
+    flex-direction:row-reverse;color:var(--steel-dim);transition:color .3s;
   }
   .rail .dot{width:8px;height:8px;border:1px solid var(--steel-dim);border-radius:50%;transition:all .3s;flex:none;box-shadow:0 0 5px 1px rgba(4,14,24,.6),0 1px 2px rgba(4,14,24,.55)}
   .rail .lbl{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;opacity:0;transform:translateX(6px);transition:all .3s;white-space:nowrap;text-shadow:0 1px 6px rgba(4,14,24,.7)}
@@ -249,7 +240,7 @@
     .callbtn .div{display:none}
   }
 
-  /* ---------- footer: map links + call button ---------- */
+  /* ---------- footer: map links (1D) + call button (1C) ---------- */
   .maplinks{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
   .maplink{display:inline-flex;align-items:center;gap:7px;min-height:44px;padding:0 16px;
     border-radius:999px;text-decoration:none;
@@ -270,7 +261,7 @@
   footer .sns a.footcall:hover{background:var(--glow);transform:translateY(-1px);
     box-shadow:0 9px 24px -6px rgba(251,220,147,.7),inset 0 1px 0 rgba(255,255,255,.4)}
 
-  /* ---------- mobile persistent call bar (≤760px only) ---------- */
+  /* ---------- mobile persistent call bar (≤760px only, 1C) ---------- */
   .mobilecall{display:none}
   @media(max-width:760px){
     .mobilecall{
@@ -296,7 +287,8 @@
     .scrolltip{bottom:calc(100px + env(safe-area-inset-bottom))}
   }
 
-  /* Korean typography: let lead sentences flow naturally on mobile */
+  /* Korean typography: let lead sentences flow naturally on mobile
+     (fixed <br> in .lead forces awkward wraps on narrow screens; titles keep theirs) */
   @media(max-width:760px){ .lead br{display:none} }
 
   @media(prefers-reduced-motion:reduce){
@@ -304,19 +296,15 @@
     .reveal{transition-duration:.4s}
     .split .ch{transition-duration:.4s}
     .scrolltip .line::after,.brand .mark{animation:none}
-    .vlayer{transition:opacity .5s ease}
   }
 </style>
 
-<div class="vstage" id="vstage" aria-hidden="true">
-  <div class="vlayer" data-key="hero"><img class="vposter" src="media/hero-poster.jpg" alt=""><video muted loop playsinline preload="auto" poster="media/hero-poster.jpg" src="media/hero.mp4"></video></div>
-  <div class="vlayer" data-key="intro"><img class="vposter" src="media/intro-poster.jpg" alt=""><video muted loop playsinline preload="none" poster="media/intro-poster.jpg" data-src="media/intro.mp4"></video></div>
-  <div class="vlayer" data-key="program"><img class="vposter" src="media/program-poster.jpg" alt=""><video muted loop playsinline preload="none" poster="media/program-poster.jpg" data-src="media/program.mp4"></video></div>
-  <div class="vlayer" data-key="health"><img class="vposter" src="media/health-poster.jpg" alt=""><video muted loop playsinline preload="none" poster="media/health-poster.jpg" data-src="media/health.mp4"></video></div>
-  <div class="vlayer" data-key="meal"><img class="vposter" src="media/meal-poster.jpg" alt=""><video muted loop playsinline preload="none" poster="media/meal-poster.jpg" data-src="media/meal.mp4"></video></div>
-</div>
+<div id="glfallback"></div>
+<canvas id="gl"></canvas>
 <div class="scrim"></div>
+<canvas id="fx"></canvas>
 <div class="grain"></div>
+<div class="scanlines"></div>
 <div class="prog" id="prog"></div>
 
 <nav class="nav">
@@ -326,7 +314,7 @@
     <span class="en">Senior Day Care · Haeundae</span>
   </a>
   <div class="menu">
-    <a href="/v2/">클래식 버전</a>
+    <a href="/">메인으로</a>
     <a href="#intro">센터소개</a>
     <a href="#program">프로그램</a>
     <a href="#health">건강·안전</a>
@@ -409,7 +397,7 @@
 
   <section class="scene closing" id="closing" data-key="hero" data-label="상담문의">
     <div class="content" style="max-width:900px">
-      <img class="seal reveal" src="__PNG_LOGO__" alt="더 그레이스 시니어 주간보호센터 로고">
+      <img class="seal reveal" src="../assets/logo.png" alt="더 그레이스 시니어 주간보호센터 로고">
       <div class="eyebrow reveal" style="justify-content:center"><span class="bar"></span><span class="cls">The Grace Senior Day Care</span><span class="bar"></span></div>
       <h2 class="ko-title split">어르신의 내일을<br>더 그레이스와</h2>
       <p class="lead reveal" style="margin-left:auto;margin-right:auto">상담은 언제든 편하게 — 어르신께 가장 잘 맞는 하루를 <br>함께 설계해 드리겠습니다.</p>
@@ -421,15 +409,15 @@
     </div>
 
     <div class="fleet reveal">
-      <a href="#intro" class="tilt3"><div class="ph" style="background-image:url(media/intro-poster.jpg)"></div><div class="tag">센터 소개</div></a>
-      <a href="#program" class="tilt3"><div class="ph" style="background-image:url(media/program-poster.jpg)"></div><div class="tag">프로그램</div></a>
-      <a href="#health" class="tilt3"><div class="ph" style="background-image:url(media/health-poster.jpg)"></div><div class="tag">건강·안전</div></a>
-      <a href="#meal" class="tilt3"><div class="ph" style="background-image:url(media/meal-poster.jpg)"></div><div class="tag">식사·환경</div></a>
+      <a href="#intro" class="tilt3"><div class="ph" style="background-image:url(../assets/intro.jpg)"></div><div class="tag">센터 소개</div></a>
+      <a href="#program" class="tilt3"><div class="ph" style="background-image:url(../assets/program.jpg)"></div><div class="tag">프로그램</div></a>
+      <a href="#health" class="tilt3"><div class="ph" style="background-image:url(../assets/health.jpg)"></div><div class="tag">건강·안전</div></a>
+      <a href="#meal" class="tilt3"><div class="ph" style="background-image:url(../assets/meal.jpg)"></div><div class="tag">식사·환경</div></a>
     </div>
 
     <footer>
       <div class="col">
-        <img class="footlogo" src="__PNG_LOGO__" alt="더 그레이스 시니어 주간보호센터">
+        <img class="footlogo" src="../assets/logo.png" alt="더 그레이스 시니어 주간보호센터">
         <p style="color:var(--paper-dim);font-family:var(--mono);font-size:11px;letter-spacing:.16em">THE GRACE SENIOR DAY CARE</p>
       </div>
       <div class="col"><h4>오시는 길</h4>
@@ -465,7 +453,14 @@
   var prog = document.getElementById('prog');
   var nav = document.querySelector('.nav');
 
-  /* scene index -> layer index (closing reuses hero) */
+  /* image sources (injected as data URIs) */
+  var SRC = {
+    hero:'../assets/hero.jpg', intro:'../assets/intro.jpg', program:'../assets/program.jpg',
+    health:'../assets/health.jpg', meal:'../assets/meal.jpg'
+  };
+  document.getElementById('glfallback').style.backgroundImage = 'url('+SRC.hero+')';
+
+  /* scene index -> texture index (closing reuses hero) */
   var TEXKEY = ['hero','intro','program','health','meal'];
   var sceneTex = scenes.map(function(s){ return TEXKEY.indexOf(s.dataset.key); });
 
@@ -480,7 +475,7 @@
   });
   function setRail(id){ Object.keys(railBtns).forEach(function(k){ railBtns[k].classList.toggle('on', k===id); }); }
 
-  /* inject self-drawing blueprint accent into non-hero/closing scenes */
+  /* inject self-drawing blueprint accent into vessel scenes */
   scenes.forEach(function(s){
     if(s.classList.contains('hero')||s.classList.contains('closing')) return;
     var c=s.querySelector('.content'); if(!c) return;
@@ -506,18 +501,33 @@
     el.innerHTML=out;
   });
 
+  /* ---------- count-up ---------- */
+  function easeOut(t){ return 1-Math.pow(1-t,3); }
+  function runCount(scene){
+    scene.querySelectorAll('.num').forEach(function(num){
+      if(num.dataset.done) return; num.dataset.done='1';
+      var target=parseFloat(num.dataset.target), dec=parseInt(num.dataset.dec||'0',10), prefix=num.dataset.prefix||'';
+      var uEl=num.querySelector('.u'), uHTML=uEl?uEl.outerHTML:'';
+      function fmt(v){ var s = dec? v.toFixed(dec) : Math.round(v).toLocaleString('en-US'); return prefix+s; }
+      if(reduce){ num.innerHTML=fmt(target)+uHTML; return; }
+      var dur=1300,t0=null;
+      function step(ts){ if(!t0)t0=ts; var p=Math.min((ts-t0)/dur,1); num.innerHTML=fmt(target*easeOut(p))+uHTML; if(p<1) requestAnimationFrame(step); }
+      requestAnimationFrame(step);
+    });
+  }
+
   /* ---------- reveal + rail observer ---------- */
   var ratios={};
   var io=new IntersectionObserver(function(entries){
     entries.forEach(function(e){ ratios[e.target.id]=e.intersectionRatio; });
     var bestId=null,best=0;
     scenes.forEach(function(s){ var r=ratios[s.id]||0; if(r>best){best=r;bestId=s.id;} });
-    if(bestId){ var sc=document.getElementById(bestId); setRail(bestId); if(!sc.classList.contains('in')) sc.classList.add('in'); }
+    if(bestId){ var sc=document.getElementById(bestId); setRail(bestId); if(!sc.classList.contains('in')) sc.classList.add('in'); runCount(sc); }
   },{threshold:[0,.15,.3,.5,.7,.9]});
   scenes.forEach(function(s){ io.observe(s); });
-  setRail('hero');
+  setRail('hero'); runCount(document.getElementById('hero'));
 
-  /* ---------- progress bar + nav ---------- */
+  /* ---------- progress bar ---------- */
   function onScroll(){ var h=document.documentElement, max=h.scrollHeight-h.clientHeight; prog.style.width=(max>0?(h.scrollTop/max*100):0)+'%'; if(nav) nav.classList.toggle('scrolled',(window.pageYOffset||h.scrollTop)>40); }
   addEventListener('scroll',onScroll,{passive:true}); onScroll();
 
@@ -534,81 +544,173 @@
   }
 
   /* =========================================================
-     Video stage — crossfade + parallax (transform/opacity only)
+     WebGL scroll-scrub stage
      ========================================================= */
-  var stageLayers = TEXKEY.map(function(key){
-    var el=document.querySelector('.vlayer[data-key="'+key+'"]');
-    return { el:el, video:el.querySelector('video') };
-  });
+  var canvas=document.getElementById('gl');
+  var gl=canvas.getContext('webgl',{antialias:false,premultipliedAlpha:false})||canvas.getContext('experimental-webgl');
+  var glReady=false, textures=[], imgW=2048, imgH=1152, loaded=0;
 
-  /* lazy-load the 4 non-hero clips on first scroll or after 3s idle */
-  var loadedRest=false;
-  function loadRest(){
-    if(loadedRest||reduce) return; loadedRest=true;
-    stageLayers.forEach(function(L){
-      var v=L.video, ds=v.getAttribute('data-src');
-      if(ds && !v.getAttribute('src')){ v.setAttribute('preload','auto'); v.setAttribute('src',ds); try{ v.load(); }catch(e){} }
+  var VS='attribute vec2 p;varying vec2 v;void main(){v=p*0.5+0.5;gl_Position=vec4(p,0.0,1.0);}';
+  var FS=[
+  'precision highp float;',
+  'varying vec2 v;',
+  'uniform sampler2D ta,tb;',
+  'uniform vec2 res,img;',
+  'uniform float prog,zoomA,zoomB,time,grain,vig,reduceM;',
+  'uniform vec2 panA,panB;',
+  'float hash(vec2 q){return fract(sin(dot(q,vec2(12.9898,78.233)))*43758.5453);}',
+  'vec2 cover(vec2 uv,float zoom,vec2 pan){',
+  '  float sa=res.x/res.y, ia=img.x/img.y; vec2 s;',
+  '  if(ia>sa){s=vec2(sa/ia,1.0);}else{s=vec2(1.0,ia/sa);}',
+  '  return (uv-0.5)*s/zoom+0.5+pan;',
+  '}',
+  'vec3 scene(vec2 uv){',
+  '  float bump = reduceM>0.5?0.0:sin(prog*3.14159265);',
+  '  vec2 d=vec2(0.045,0.012)*bump;',
+  '  vec3 a=texture2D(ta,cover(uv+d,zoomA,panA)).rgb;',
+  '  vec3 b=texture2D(tb,cover(uv-d,zoomB,panB)).rgb;',
+  '  return mix(a,b,smoothstep(0.28,0.72,prog));',
+  '}',
+  'void main(){',
+  '  float bump = reduceM>0.5?0.0:sin(prog*3.14159265);',
+  '  vec2 dc=v-0.5; float ca=0.0006+bump*0.0035;',
+  '  vec3 col; col.r=scene(v+dc*ca).r; col.g=scene(v).g; col.b=scene(v-dc*ca).b;',
+  '  float lum=dot(col,vec3(0.299,0.587,0.114));',
+  '  col=mix(col,col*vec3(1.07,1.0,0.90),0.24);',          // sunrise-gold highlights
+  '  col+=vec3(-0.014,0.002,0.028)*(1.0-lum);',            // cool ocean-navy shadows
+  '  float r=distance(v,vec2(0.5)); col*=1.0-vig*smoothstep(0.42,0.95,r);',  // vignette
+  '  float g=hash(v*res+time); col+=(g-0.5)*grain;',       // film grain
+  '  gl_FragColor=vec4(col,1.0);',
+  '}'
+  ].join('\n');
+
+  function sh(type,src){ var s=gl.createShader(type); gl.shaderSource(s,src); gl.compileShader(s); if(!gl.getShaderParameter(s,gl.COMPILE_STATUS)){ console.log('shader',gl.getShaderInfoLog(s)); return null;} return s; }
+  var prgm,loc={};
+  function initGL(){
+    if(!gl) return false;
+    var vs=sh(gl.VERTEX_SHADER,VS), fs=sh(gl.FRAGMENT_SHADER,FS); if(!vs||!fs) return false;
+    prgm=gl.createProgram(); gl.attachShader(prgm,vs); gl.attachShader(prgm,fs); gl.linkProgram(prgm);
+    if(!gl.getProgramParameter(prgm,gl.LINK_STATUS)){ console.log('link',gl.getProgramInfoLog(prgm)); return false; }
+    gl.useProgram(prgm);
+    var buf=gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER,buf);
+    gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,3,-1,-1,3]),gl.STATIC_DRAW);
+    var pl=gl.getAttribLocation(prgm,'p'); gl.enableVertexAttribArray(pl); gl.vertexAttribPointer(pl,2,gl.FLOAT,false,0,0);
+    ['ta','tb','res','img','prog','zoomA','zoomB','panA','panB','time','grain','vig','reduceM'].forEach(function(n){ loc[n]=gl.getUniformLocation(prgm,n); });
+    gl.uniform1i(loc.ta,0); gl.uniform1i(loc.tb,1);
+    gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL,true);
+    return true;
+  }
+  function mkTex(img){
+    var t=gl.createTexture(); gl.bindTexture(gl.TEXTURE_2D,t);
+    gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_S,gl.CLAMP_TO_EDGE);
+    gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_T,gl.CLAMP_TO_EDGE);
+    gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.LINEAR);
+    gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MAG_FILTER,gl.LINEAR);
+    gl.texImage2D(gl.TEXTURE_2D,0,gl.RGB,gl.RGB,gl.UNSIGNED_BYTE,img);
+    return t;
+  }
+  function resize(){
+    var dpr=Math.min(window.devicePixelRatio||1,1.5);
+    var w=Math.floor(innerWidth*dpr), h=Math.floor(innerHeight*dpr);
+    if(canvas.width!==w||canvas.height!==h){ canvas.width=w; canvas.height=h; if(gl) gl.viewport(0,0,w,h); }
+  }
+
+  function startGL(){
+    if(!initGL()){ canvas.style.display='none'; return; }   // fallback div stays visible
+    resize();
+    textures = TEXKEY.map(function(){ return null; });
+    TEXKEY.forEach(function(key,i){
+      var im=new Image();
+      im.onload=function(){ imgW=im.naturalWidth||imgW; imgH=im.naturalHeight||imgH; textures[i]=mkTex(im); loaded++; if(loaded===TEXKEY.length){ glReady=true; document.getElementById('glfallback').style.opacity='0'; } };
+      im.onerror=function(){ loaded++; };
+      im.src=SRC[key];
     });
   }
-  addEventListener('scroll', loadRest, {passive:true, once:true});
-  setTimeout(loadRest, 3000);
+  if(gl) startGL(); else canvas.style.display='none';
 
   function eio(t){ return t<0.5?2*t*t:1-Math.pow(-2*t+2,2)/2; }
-
-  function renderStage(renderT){
+  function drawGL(renderT,time){
+    if(!glReady) return;
     var n=sceneTex.length;
     var i=Math.max(0,Math.min(n-2,Math.floor(renderT)));
     var f=Math.max(0,Math.min(1,renderT-i));
+    var ia=sceneTex[i], ib=sceneTex[i+1];
+    if(textures[ia]==null||textures[ib]==null) return;
+    gl.activeTexture(gl.TEXTURE0); gl.bindTexture(gl.TEXTURE_2D,textures[ia]);
+    gl.activeTexture(gl.TEXTURE1); gl.bindTexture(gl.TEXTURE_2D,textures[ib]);
     var e=eio(f);
-    var outIdx=sceneTex[i], inIdx=sceneTex[i+1];
-    var L=stageLayers.length, ops=new Array(L), scs=new Array(L), k;
-    for(k=0;k<L;k++){ ops[k]=0; scs[k]=1.08; }
-    if(outIdx===inIdx){ ops[outIdx]=1; scs[outIdx]=1.05+0.10*e; }
-    else{
-      ops[outIdx]=1-e; scs[outIdx]=1.05+0.10*e;
-      ops[inIdx]=e;    scs[inIdx]=1.15-0.10*e;
-    }
-    for(k=0;k<L;k++){
-      var lay=stageLayers[k];
-      lay.el.style.opacity=ops[k].toFixed(3);
-      lay.el.style.transform='scale('+scs[k].toFixed(4)+')';
-      if(!reduce){
-        var v=lay.video, wantPlay=ops[k]>0.02;
-        if(wantPlay){
-          if(v.paused && (v.getAttribute('src')||v.currentSrc)){ var pr=v.play(); if(pr&&pr.catch) pr.catch(function(){}); }
-        } else if(!v.paused){ v.pause(); }
-      }
+    gl.uniform2f(loc.res,canvas.width,canvas.height);
+    gl.uniform2f(loc.img,imgW,imgH);
+    gl.uniform1f(loc.prog,f);
+    gl.uniform1f(loc.zoomA,1.05+0.12*e);
+    gl.uniform1f(loc.zoomB,1.17-0.12*e);
+    var drift=reduce?0:Math.sin(time*0.00013)*0.006;
+    gl.uniform2f(loc.panA,drift,-drift*0.5);
+    gl.uniform2f(loc.panB,-drift,drift*0.5);
+    gl.uniform1f(loc.time,reduce?0:time*0.001);
+    gl.uniform1f(loc.grain,reduce?0.0:0.032);
+    gl.uniform1f(loc.vig,0.30);
+    gl.uniform1f(loc.reduceM,reduce?1:0);
+    gl.drawArrays(gl.TRIANGLES,0,3);
+  }
+
+  /* =========================================================
+     Particle embers (2D canvas)
+     ========================================================= */
+  var fx=document.getElementById('fx'), fxc=fx.getContext('2d'), parts=[], fxDpr=1;
+  function fxResize(){ fxDpr=Math.min(window.devicePixelRatio||1,2); fx.width=innerWidth*fxDpr; fx.height=innerHeight*fxDpr; fxc.setTransform(fxDpr,0,0,fxDpr,0,0); }
+  function seedParts(){
+    parts=[]; var N=reduce?0:Math.round(Math.min(40,innerWidth/32));
+    for(var i=0;i<N;i++){
+      parts.push({ x:Math.random()*innerWidth, y:Math.random()*innerHeight,
+        r:0.5+Math.random()*1.5, vy:-(5+Math.random()*12)/60, vx:(Math.random()-0.5)*0.20,
+        a:0.06+Math.random()*0.28, ph:Math.random()*6.28, sp:0.6+Math.random()*1.2, depth:0.4+Math.random()*0.6 });
     }
   }
-  /* avoid a black flash before first frame */
-  stageLayers[0].el.style.opacity='1';
-  stageLayers[0].el.style.transform='scale(1.05)';
-
-  /* pause everything when the tab is hidden; RAF loop resumes playback on return */
-  document.addEventListener('visibilitychange', function(){
-    if(document.hidden){ stageLayers.forEach(function(L){ if(!L.video.paused) L.video.pause(); }); }
-  });
+  var scrollPar=0;
+  function drawFX(time){
+    fxc.clearRect(0,0,innerWidth,innerHeight);
+    if(!parts.length) return;
+    fxc.globalCompositeOperation='lighter';
+    for(var i=0;i<parts.length;i++){
+      var p=parts[i];
+      p.y+=p.vy; p.x+=p.vx+Math.sin(time*0.0006*p.sp+p.ph)*0.12;
+      if(p.y<-10){ p.y=innerHeight+10; p.x=Math.random()*innerWidth; }
+      var yy=p.y - scrollPar*p.depth*0.04;
+      var fl=0.6+0.4*Math.sin(time*0.002*p.sp+p.ph);
+      var g=fxc.createRadialGradient(p.x,yy,0,p.x,yy,p.r*5);
+      g.addColorStop(0,'rgba(255,196,120,'+(p.a*fl).toFixed(3)+')');
+      g.addColorStop(1,'rgba(255,150,70,0)');
+      fxc.fillStyle=g; fxc.beginPath(); fxc.arc(p.x,yy,p.r*5,0,6.2832); fxc.fill();
+    }
+    fxc.globalCompositeOperation='source-over';
+  }
 
   /* ---------- main loop ---------- */
   var renderT=0, targetT=0;
-  function frame(){
+  function frame(time){
     targetT=computeT();
     var k = reduce?1:0.085;
     renderT += (targetT-renderT)*k;
     if(Math.abs(targetT-renderT)<0.0005) renderT=targetT;
-    renderStage(renderT);
+    scrollPar=window.pageYOffset;
+    drawGL(renderT,time);
+    drawFX(time);
     requestAnimationFrame(frame);
   }
-  function boot(){ measure(); requestAnimationFrame(frame); }
+
+  function boot(){ measure(); resize(); fxResize(); seedParts(); requestAnimationFrame(frame); }
   if(document.readyState==='complete') boot(); else addEventListener('load',boot);
-  addEventListener('resize',function(){ measure(); },{passive:true});
+  addEventListener('resize',function(){ measure(); resize(); fxResize(); seedParts(); },{passive:true});
+  // re-measure after late layout shifts
   setTimeout(measure,400); setTimeout(measure,1200);
 
   /* =========================================================
-     Pointer flair: 3D tilt + magnetic CTA (desktop only)
+     Pointer flair: 3D tilt + magnetic CTA  (desktop only)
      ========================================================= */
   var fine = matchMedia('(hover:hover) and (pointer:fine)').matches;
   if(fine && !reduce){
+    /* glass-panel tilt + glow tracking */
     document.querySelectorAll('.tilt').forEach(function(el){
       var glow=el.querySelector('.glow-edge');
       el.addEventListener('mousemove',function(e){
@@ -618,6 +720,7 @@
       });
       el.addEventListener('mouseleave',function(){ el.style.transform=''; });
     });
+    /* fleet card 3D tilt */
     document.querySelectorAll('.tilt3').forEach(function(el){
       el.addEventListener('mousemove',function(e){
         var r=el.getBoundingClientRect(), px=(e.clientX-r.left)/r.width, py=(e.clientY-r.top)/r.height;
@@ -625,6 +728,8 @@
       });
       el.addEventListener('mouseleave',function(){ el.style.transform=''; });
     });
+
+    /* magnetic CTA + rail dots */
     function magnet(el,sx,sy){
       el.addEventListener('mousemove',function(e){ var r=el.getBoundingClientRect(); el.style.transform='translate('+((e.clientX-(r.left+r.width/2))*sx).toFixed(1)+'px,'+((e.clientY-(r.top+r.height/2))*sy).toFixed(1)+'px)'; });
       el.addEventListener('mouseleave',function(){ el.style.transform=''; });
@@ -634,3 +739,4 @@
   }
 })();
 </script>
+</body></html>
