@@ -1,7 +1,7 @@
 # 더 그레이스 시니어 주간보호센터 — 브랜드 사이트
 
 부산 해운대 **더 그레이스 시니어 주간보호센터**(THE GRACE Senior Day Care)의 시네마틱 스크롤 브랜드 사이트.
-**메인(/)은 애니메이티드 에디션** — Higgsfield 생성 애니메이션 비디오 5편(스즈메풍 수채 톤)을 스크롤 크로스페이드로 전환하는 `<video>` 배경 엔진. 이전 사진 기반 버전(v1)은 `/v2/`에 클래식 백업으로 동결.
+**메인(/)은 실사 시네마 에디션** — 실사 촬영 톤의 비디오 5편을 스크롤 크로스페이드로 전환하는 `<video>` 배경 엔진. 애니메이션 룩 버전은 `/v3/`에 애니 에디션으로, 이전 사진 기반 버전(v1)은 `/v2/`에 클래식 백업으로 동결.
 
 ## 라이브
 - **https://gracedaycare.co.kr** (커스텀 도메인, HTTPS / Let's Encrypt)
@@ -12,12 +12,12 @@
 ```
 .
 ├── index.html              # ← GitHub Pages가 서빙 (build.js 생성물, 직접 편집 금지)
-├── src/site.html           # ← 편집하는 소스 (애니메이티드 메인. 1행 title + favicon + <!--HEAD--> 블록 + 본문)
+├── src/site.html           # ← 편집하는 소스 (실사 시네마 메인. 1행 title + favicon + <!--HEAD--> 블록 + 본문)
 ├── build.js                # src/site.html → index.html(+ dist/site.artifact.html). HEAD 블록을 <head>로 승격
-├── media/                  # 메인 배경 비디오 5편(mp4, 무음) + 포스터 jpg (hero/intro/program/health/meal)
+├── media/                  # 메인 배경 비디오 5편(mp4, 무음, 실사) + 포스터 jpg (hero/intro/program/health/meal)
 ├── assets/                 # 로고·파비콘·og.jpg + (v2가 쓰는) 사진 5장
 ├── v2/index.html           # 클래식 v1 백업 스냅샷 (noindex, 동결 — 편집 대상 아님)
-├── v3/                     # 시네마 에디션 (실사 영화 룩, noindex): index.html + media/ 비디오·포스터
+├── v3/                     # 애니 에디션 (애니메이션 룩, noindex): index.html + media/ 비디오·포스터
 ├── CNAME                   # gracedaycare.co.kr (커스텀 도메인 유지 — 지우지 말 것)
 ├── render.js               # Playwright 검증 (섹션별 스크린샷 + pageerror)
 ├── robots.txt / sitemap.xml

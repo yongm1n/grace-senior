@@ -1,4 +1,5 @@
-<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>더 그레이스 시니어 주간보호센터 | 부산 해운대 데이케어</title><link rel="icon" type="image/x-icon" href="assets/favicon.ico"><link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png"><link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png"><link rel="apple-touch-icon" sizes="180x180" href="assets/favicon-180.png"><meta name="naver-site-verification" content="51eddaffded158034539cb8abde4bea283ca25fb">
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>더 그레이스 시니어 주간보호센터 | 부산 해운대 데이케어</title><link rel="icon" type="image/x-icon" href="assets/favicon.ico"><link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png"><link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png"><link rel="apple-touch-icon" sizes="180x180" href="assets/favicon-180.png"><link rel="preload" as="image" fetchpriority="high" href="media/hero-poster.jpg">
+<meta name="naver-site-verification" content="51eddaffded158034539cb8abde4bea283ca25fb">
 <meta name="google-site-verification" content="Hn8WSNjS5erTV3yktRIPckFNGfWItRmFs7pZTH8CGSk">
 <meta name="description" content="부산 해운대 더 그레이스 시니어 주간보호센터 — 간호사 출신 대표의 의료 경험에 기반한 주간보호(데이케어). 장기요양보험으로 존중과 안전 속에서 어르신의 행복한 하루를 함께합니다.">
 <link rel="canonical" href="https://gracedaycare.co.kr/">
@@ -35,6 +36,7 @@
     word-break:keep-all; overflow-wrap:break-word;
   }
   ::selection{background:var(--amber);color:#0A1622}
+  a:focus-visible,button:focus-visible{outline:2px solid var(--glow);outline-offset:2px}
 
   /* ---------- cinematic video stage (replaces WebGL) ---------- */
   .vstage{position:fixed;inset:0;z-index:0;background:var(--ink);overflow:hidden;pointer-events:none}
@@ -117,7 +119,8 @@
   .scene.hero{align-items:center}
 
   .content{max-width:760px}
-  .reveal{opacity:0;transform:translateY(34px);transition:opacity 1s cubic-bezier(.2,.7,.2,1),transform 1s cubic-bezier(.2,.7,.2,1)}
+  .reveal{transition:opacity 1s cubic-bezier(.2,.7,.2,1),transform 1s cubic-bezier(.2,.7,.2,1)}
+  .js .reveal{opacity:0;transform:translateY(34px)}
   .scene.in .reveal{opacity:1;transform:none}
   .scene.in .reveal:nth-child(2){transition-delay:.10s}
   .scene.in .reveal:nth-child(3){transition-delay:.18s}
@@ -201,13 +204,28 @@
     font-family:var(--mono);font-weight:700;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--paper);text-shadow:0 1px 8px rgba(4,12,22,.55);text-align:left;transform:translateZ(40px)}
   @media(max-width:760px){.fleet{grid-template-columns:repeat(2,1fr)}}
 
+  /* ---------- 이용 안내 · FAQ (closing 내부 인페이지 블록) ---------- */
+  .faq{width:100%;max-width:1180px;margin:clamp(72px,10vh,104px) auto 0}
+  .faq-head{display:flex;align-items:center;justify-content:center;gap:16px;margin-bottom:clamp(28px,3.4vw,40px)}
+  .faq-head .bar{height:1px;width:clamp(24px,5vw,54px);background:var(--amber);opacity:.7}
+  .faq-head .cap{font-family:var(--mono);font-size:clamp(12px,1.4vw,14px);letter-spacing:.14em;color:var(--paper-dim);text-shadow:0 1px 10px rgba(4,16,28,.5)}
+  .faqgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(14px,1.6vw,20px)}
+  .faqcard{padding:clamp(24px,2.4vw,32px);border-radius:14px;text-align:left;
+    background:var(--glass);border:1px solid var(--glass-line);
+    -webkit-backdrop-filter:blur(16px) saturate(130%);backdrop-filter:blur(16px) saturate(130%);
+    box-shadow:0 24px 60px -30px rgba(0,0,0,.7),inset 0 1px 0 rgba(255,255,255,.06)}
+  .faqcard h3{display:flex;gap:11px;font-family:var(--display);font-weight:800;font-size:clamp(19px,2vw,22px);line-height:1.3;letter-spacing:-.01em;color:var(--paper);margin-bottom:14px}
+  .faqcard h3::before{content:"Q";flex:none;font-family:var(--mono);font-weight:700;font-size:.82em;line-height:1.5;color:var(--amber)}
+  .faqcard p{font-size:clamp(15px,1.3vw,16px);line-height:1.75;color:#E7EFF5}
+  @media(max-width:760px){.faqgrid{grid-template-columns:1fr;gap:14px}}
+
   footer{width:100%;max-width:1180px;margin:90px auto 0;padding:36px clamp(24px,4vw,46px) 40px;
     border:1px solid var(--glass-line);border-radius:16px;
     background:rgba(7,20,33,.7);
     -webkit-backdrop-filter:blur(16px) saturate(130%);backdrop-filter:blur(16px) saturate(130%);
     box-shadow:0 26px 64px -32px rgba(0,0,0,.72),inset 0 1px 0 rgba(255,255,255,.05);
     display:flex;flex-wrap:wrap;gap:24px 60px;justify-content:space-between;align-items:flex-start;text-align:left}
-  footer .col h4{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--steel);margin-bottom:10px}
+  footer .col h3{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--steel);margin-bottom:10px}
   footer .col p{font-size:15px;line-height:1.72;color:var(--paper-dim)}
   footer .big{font-family:var(--display);font-weight:800;font-size:22px;letter-spacing:.12em;color:var(--paper)}
   footer .footlogo{width:150px;height:auto;display:block;margin-bottom:12px;background:#FCFBF7;border-radius:12px;padding:12px 16px}
@@ -302,6 +320,7 @@
 </style>
 
 <div class="vstage" id="vstage" aria-hidden="true">
+  <!-- hero: 1080p 무한루프 비디오(첫=끝 프레임) + 고해상도 포스터 폴백 -->
   <div class="vlayer" data-key="hero"><img class="vposter" src="media/hero-poster.jpg" alt=""><video muted loop playsinline preload="auto" poster="media/hero-poster.jpg" src="media/hero.mp4"></video></div>
   <div class="vlayer" data-key="intro"><img class="vposter" src="media/intro-poster.jpg" alt=""><video muted loop playsinline preload="none" poster="media/intro-poster.jpg" data-src="media/intro.mp4"></video></div>
   <div class="vlayer" data-key="program"><img class="vposter" src="media/program-poster.jpg" alt=""><video muted loop playsinline preload="none" poster="media/program-poster.jpg" data-src="media/program.mp4"></video></div>
@@ -320,7 +339,7 @@
   </a>
   <div class="menu">
     <a href="/v2/">클래식 버전</a>
-    <a href="/v3/">시네마 에디션</a>
+    <a href="/v3/">애니 에디션</a>
     <a href="#intro">센터소개</a>
     <a href="#program">프로그램</a>
     <a href="#health">건강·안전</a>
@@ -362,7 +381,7 @@
       <h2 class="ko-title split">하루를 채우는<br>프로그램</h2>
       <div class="en-title reveal">A Day Worth Living</div>
       <p class="lead reveal">즐거움이 곧, 가장 좋은 재활입니다.</p>
-      <p class="body reveal">인지 강화 활동부터 미술·음악·원예, 가벼운 신체 활동까지. 어르신의 남은 기능을 지키고 표정을 되살리는 프로그램을 매일 정성껏 운영합니다.</p>
+      <p class="body reveal">인지 강화 활동부터 미술·음악·원예, 가벼운 신체 활동까지. 지금 하실 수 있는 것을 더 오래, 더 즐겁게 이어가는 프로그램을 매일 정성껏 운영합니다.</p>
       <div class="stats reveal tilt"><div class="glow-edge"></div>
         <div class="stat"><div class="kv">인지 강화 활동</div><div class="cap">기억·집중 유지</div></div>
         <div class="stat"><div class="kv">예술·음악·원예</div><div class="cap">정서적 활력</div></div>
@@ -421,12 +440,30 @@
       <a href="#meal" class="tilt3"><div class="ph" style="background-image:url(media/meal-poster.jpg)"></div><div class="tag">식사·환경</div></a>
     </div>
 
+    <section class="faq" aria-label="이용 안내 및 자주 묻는 질문">
+      <div class="faq-head reveal"><span class="bar"></span><span class="cap">이용 안내 · 자주 묻는 질문</span><span class="bar"></span></div>
+      <div class="faqgrid">
+        <div class="faqcard reveal">
+          <h3>누가 이용할 수 있나요?</h3>
+          <p>장기요양 1~5등급은 물론 인지지원등급 어르신까지 이용하실 수 있습니다. 아직 등급이 없으시다면 신청 절차부터 함께 도와드립니다.</p>
+        </div>
+        <div class="faqcard reveal">
+          <h3>비용은 얼마나 드나요?</h3>
+          <p>장기요양보험 적용 시 본인부담은 15% 수준입니다(감경 대상 6~9%, 기초생활수급자 면제 · 식사재료비 등 실비 별도). 정확한 금액은 전화 주시면 바로 계산해 드립니다.</p>
+        </div>
+        <div class="faqcard reveal">
+          <h3>어떻게 시작하나요?</h3>
+          <p>전화 상담 → 방문·견학 → 맞춤 케어 설계 → 적응 이용 시작의 4단계입니다. 견학만 오셔도 좋습니다 — 편하게 둘러보시고 결정하세요.</p>
+        </div>
+      </div>
+    </section>
+
     <footer>
       <div class="col">
         <img class="footlogo" src="assets/logo.png" alt="더 그레이스 시니어 주간보호센터">
         <p style="color:var(--paper-dim);font-family:var(--mono);font-size:11px;letter-spacing:.16em">THE GRACE SENIOR DAY CARE</p>
       </div>
-      <div class="col"><h4>오시는 길</h4>
+      <div class="col"><h3>오시는 길</h3>
         <p>부산광역시 해운대구 좌동순환로 78 5층</p>
         <!-- TODO: 스마트플레이스/카카오맵 등록 후 플레이스 상세 링크로 교체 -->
         <div class="maplinks">
@@ -434,8 +471,8 @@
           <a class="maplink" href="https://map.kakao.com/link/search/%EB%B6%80%EC%82%B0%EA%B4%91%EC%97%AD%EC%8B%9C%20%ED%95%B4%EC%9A%B4%EB%8C%80%EA%B5%AC%20%EC%A2%8C%EB%8F%99%EC%88%9C%ED%99%98%EB%A1%9C%2078" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-6.3 7-11a7 7 0 1 0-14 0c0 4.7 7 11 7 11z"/><circle cx="12" cy="10" r="2.6"/></svg>카카오맵</a>
         </div>
       </div>
-      <div class="col"><h4>운영 안내</h4><p>평일 08:00 – 18:00<br>장기요양보험 적용 · 등급 상담</p></div>
-      <div class="col sns"><h4>상담 문의</h4>
+      <div class="col"><h3>운영 안내</h3><p>평일 08:00 – 18:00<br>장기요양보험 적용 · 등급 상담</p></div>
+      <div class="col sns"><h3>상담 문의</h3>
         <a class="footcall" href="tel:051-791-1797" aria-label="전화 상담 051-791-1797"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.6 15.6 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24 11.4 11.4 0 0 0 3.6.58 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.46.58 3.6a1 1 0 0 1-.25 1z"/></svg>051-791-1797</a>
         <p style="margin-top:14px"><a href="https://www.instagram.com/thegrace_daycare/" target="_blank" rel="noopener">instagram @thegrace_daycare</a><br><a href="https://blog.naver.com/the_grace_daycare" target="_blank" rel="noopener">네이버 블로그</a></p>
       </div>
@@ -452,6 +489,7 @@
 </div>
 
 <script>
+document.documentElement.classList.add('js');
 (function(){
   var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   var scenes = Array.prototype.slice.call(document.querySelectorAll('.scene'));
@@ -472,7 +510,7 @@
     rail.appendChild(b);
     railBtns[s.id]=b;
   });
-  function setRail(id){ Object.keys(railBtns).forEach(function(k){ railBtns[k].classList.toggle('on', k===id); }); }
+  function setRail(id){ Object.keys(railBtns).forEach(function(k){ var on=k===id; railBtns[k].classList.toggle('on', on); if(on){ railBtns[k].setAttribute('aria-current','true'); } else { railBtns[k].removeAttribute('aria-current'); } }); }
 
   /* inject self-drawing blueprint accent into non-hero/closing scenes */
   scenes.forEach(function(s){
@@ -540,7 +578,8 @@
   function loadRest(){
     if(loadedRest||reduce) return; loadedRest=true;
     stageLayers.forEach(function(L){
-      var v=L.video, ds=v.getAttribute('data-src');
+      var v=L.video; if(!v) return;
+      var ds=v.getAttribute('data-src');
       if(ds && !v.getAttribute('src')){ v.setAttribute('preload','auto'); v.setAttribute('src',ds); try{ v.load(); }catch(e){} }
     });
   }
@@ -566,7 +605,7 @@
       var lay=stageLayers[k];
       lay.el.style.opacity=ops[k].toFixed(3);
       lay.el.style.transform='scale('+scs[k].toFixed(4)+')';
-      if(!reduce){
+      if(!reduce && lay.video){
         var v=lay.video, wantPlay=ops[k]>0.02;
         if(wantPlay){
           if(v.paused && (v.getAttribute('src')||v.currentSrc)){ var pr=v.play(); if(pr&&pr.catch) pr.catch(function(){}); }
@@ -580,7 +619,7 @@
 
   /* pause everything when the tab is hidden; RAF loop resumes playback on return */
   document.addEventListener('visibilitychange', function(){
-    if(document.hidden){ stageLayers.forEach(function(L){ if(!L.video.paused) L.video.pause(); }); }
+    if(document.hidden){ stageLayers.forEach(function(L){ if(L.video && !L.video.paused) L.video.pause(); }); }
   });
 
   /* ---------- main loop ---------- */
