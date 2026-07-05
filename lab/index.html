@@ -1,0 +1,806 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>더 그레이스 시니어 주간보호센터 | LAB</title>
+<link rel="canonical" href="https://gracedaycare.co.kr/">
+<meta name="description" content="더 그레이스 시니어 주간보호센터 — three.js 동적 연출 실험실 (비공개).">
+<link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon-180.png">
+<!--
+  더 그레이스 LAB — three.js 실험실 (비공개 쇼케이스)
+  three.js: r0.170.0 (self-hosted / ./three.module.min.js) · CDN 참조 없음
+    ※ r0.171+ 는 build/three.module.min.js 가 three.core.min.js 를 재수출하는
+      분리형이라 파일이 2개가 됨. 파일 2개(모듈+페이지) 원칙 유지를 위해
+      마지막 단일 파일 릴리스인 r0.170.0 사용. gzip 전송 ~171KB.
+  실험 4종: A 햇살 입자 · B 해운대 물결 · C 은행잎 바람 · D 빛으로 쓰는 이름
+  전부 절차적 생성(미디어 파일 없음). 렌더러 1개 재사용, 실험 전환 시 dispose.
+-->
+<style>
+  :root{
+    --ink:#0A2032; --ink-2:#0E2B42;
+    --lab-bg:#0A1420;
+    --steel:#86A6B9; --steel-dim:#5F8195;
+    --paper:#F4EFE4; --paper-dim:#C5D8E2;
+    --amber:#E4A93E; --amber-deep:#C07C24; --glow:#FBDC93;
+    --line:rgba(180,208,224,0.16);
+    --glass:rgba(7,24,40,0.52); --glass-line:rgba(190,216,232,0.20);
+    --display:"Helvetica Neue","Arial Narrow",Pretendard,-apple-system,system-ui,sans-serif;
+    --body:-apple-system,"Apple SD Gothic Neo",Pretendard,"Helvetica Neue",sans-serif;
+    --mono:"SF Mono",ui-monospace,Menlo,"Roboto Mono",monospace;
+    --gutter:clamp(18px,4.4vw,60px);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    background:var(--lab-bg); color:var(--paper);
+    font-family:var(--body); -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility; overflow:hidden;
+    word-break:keep-all; overflow-wrap:break-word;
+    -webkit-tap-highlight-color:transparent;
+  }
+  ::selection{background:var(--amber);color:#0A1622}
+  a:focus-visible,button:focus-visible{outline:2px solid var(--glow);outline-offset:2px}
+
+  /* ---------- stage ---------- */
+  #stage{position:fixed;inset:0;z-index:0;display:block;width:100%;height:100%;touch-action:none}
+  /* WebGL 실패/미지원 시 노출되는 정적 그라디언트 */
+  #fallback{position:fixed;inset:0;z-index:0;display:none;flex-direction:column;
+    align-items:center;justify-content:center;text-align:center;padding:0 var(--gutter);
+    background:
+      radial-gradient(120% 90% at 72% 26%, rgba(228,169,62,.16) 0%, rgba(10,20,32,0) 46%),
+      radial-gradient(140% 120% at 50% 120%, rgba(192,124,36,.20) 0%, rgba(10,20,32,0) 52%),
+      linear-gradient(180deg, #0A1420 0%, #0C1A2A 52%, #08121c 100%);
+  }
+  #fallback .fb-eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--amber);margin-bottom:16px}
+  #fallback h2{font-family:var(--display);font-weight:800;font-size:clamp(24px,4vw,38px);letter-spacing:-.01em;margin-bottom:14px}
+  #fallback p{font-size:15px;line-height:1.7;color:var(--paper-dim);max-width:30em;margin-bottom:26px}
+  #fallback a{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);
+    background:var(--amber);border:1px solid var(--amber-deep);border-radius:999px;padding:12px 22px;text-decoration:none}
+
+  /* cinematic vignette over the canvas */
+  .vignette{position:fixed;inset:0;z-index:1;pointer-events:none;
+    background:radial-gradient(120% 100% at 50% 42%, rgba(6,16,28,0) 52%, rgba(6,16,28,.55) 100%)}
+
+  /* ---------- top nav ---------- */
+  .labnav{position:fixed;top:0;left:0;right:0;z-index:20;
+    display:flex;align-items:center;justify-content:space-between;gap:14px;
+    padding:16px var(--gutter);
+    background:linear-gradient(180deg,rgba(8,18,28,.62),rgba(8,18,28,0));
+    -webkit-backdrop-filter:blur(8px) saturate(120%);backdrop-filter:blur(8px) saturate(120%)}
+  .brand{display:flex;align-items:baseline;gap:11px;text-decoration:none;color:var(--paper);white-space:nowrap}
+  .brand .ko{font-family:var(--display);font-weight:800;font-size:19px;letter-spacing:.10em;line-height:1}
+  .brand .lab{font-family:var(--mono);font-weight:700;font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--amber)}
+  .navright{display:flex;align-items:center;gap:16px}
+  .navright .home{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--paper-dim);text-decoration:none;transition:color .25s;display:inline-flex;align-items:center;gap:7px}
+  .navright .home:hover{color:var(--paper)}
+  .navright .home svg{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:1.6}
+  .fps{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;color:var(--glow);
+    border:1px solid var(--glass-line);border-radius:999px;padding:6px 11px;min-width:74px;text-align:center;
+    background:var(--glass);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);font-variant-numeric:tabular-nums;white-space:nowrap}
+
+  /* reduced-motion badge */
+  .rmbadge{position:fixed;top:70px;left:50%;transform:translateX(-50%);z-index:20;display:none;
+    font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--steel);
+    background:var(--glass);border:1px solid var(--glass-line);border-radius:999px;padding:7px 15px;
+    -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+
+  /* ---------- bottom dock ---------- */
+  .dock{position:fixed;left:0;right:0;bottom:0;z-index:20;
+    display:flex;flex-direction:column;align-items:center;gap:14px;
+    padding:0 12px calc(20px + env(safe-area-inset-bottom)) 12px;pointer-events:none}
+
+  .infocard{pointer-events:auto;max-width:min(560px,92vw);width:max-content;
+    background:var(--glass);border:1px solid var(--glass-line);border-radius:15px;
+    -webkit-backdrop-filter:blur(18px) saturate(135%);backdrop-filter:blur(18px) saturate(135%);
+    box-shadow:0 24px 60px -30px rgba(0,0,0,.8),inset 0 1px 0 rgba(255,255,255,.06);
+    padding:16px 22px;text-align:left;transition:opacity .5s ease,transform .5s ease}
+  .infocard.swap{opacity:0;transform:translateY(8px)}
+  .ic-name{display:flex;align-items:baseline;gap:10px;font-family:var(--display);font-weight:800;
+    font-size:clamp(18px,2.2vw,22px);letter-spacing:-.01em;line-height:1;color:var(--paper)}
+  .ic-name b{font-family:var(--mono);font-weight:700;font-size:12px;letter-spacing:.06em;color:var(--amber);
+    border:1px solid rgba(228,169,62,.5);border-radius:6px;padding:3px 7px;line-height:1}
+  .ic-name .en{font-family:var(--mono);font-weight:400;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--steel)}
+  .ic-desc{font-size:14px;line-height:1.6;color:#E7EFF5;margin-top:10px}
+  .ic-scn{margin-top:11px;padding-top:11px;border-top:1px solid var(--glass-line);
+    font-size:12.5px;line-height:1.55;color:var(--paper-dim)}
+  .ic-scn .lbl{font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--amber);
+    display:block;margin-bottom:3px}
+
+  .pills{pointer-events:auto;display:flex;gap:9px;max-width:100vw;overflow-x:auto;padding:4px 8px 6px;
+    scrollbar-width:none;-ms-overflow-style:none;scroll-snap-type:x proximity}
+  .pills::-webkit-scrollbar{display:none}
+  .pill{scroll-snap-align:center;flex:0 0 auto;display:inline-flex;align-items:center;gap:9px;cursor:pointer;
+    font-family:var(--body);font-size:13px;letter-spacing:.01em;color:var(--paper-dim);white-space:nowrap;
+    background:var(--glass);border:1px solid var(--glass-line);border-radius:999px;padding:10px 17px;
+    -webkit-backdrop-filter:blur(12px) saturate(130%);backdrop-filter:blur(12px) saturate(130%);
+    transition:color .25s,background .3s,border-color .3s,box-shadow .3s,transform .2s}
+  .pill .k{font-family:var(--mono);font-weight:700;font-size:10.5px;letter-spacing:.06em;color:var(--steel);transition:color .25s}
+  .pill:hover{color:var(--paper);transform:translateY(-1px)}
+  .pill[aria-current="true"]{color:var(--ink);background:var(--amber);border-color:var(--amber-deep);
+    box-shadow:0 6px 20px -8px rgba(228,169,62,.75),inset 0 1px 0 rgba(255,255,255,.3)}
+  .pill[aria-current="true"] .k{color:rgba(10,20,32,.62)}
+
+  @media(max-width:760px){
+    .brand .ko{font-size:17px}
+    .navright .home span{display:none}
+    .infocard{padding:13px 17px}
+    .ic-desc{font-size:13px}
+    .pills{justify-content:flex-start;width:100%}
+    .dock{gap:11px}
+  }
+  @media(max-width:400px){ .ic-name .en{display:none} }
+</style>
+</head>
+<body>
+
+<canvas id="stage" aria-hidden="true"></canvas>
+<div id="fallback">
+  <div class="fb-eyebrow">The Grace · LAB</div>
+  <h2>이 실험실은 화면 그래픽(WebGL)이 필요합니다</h2>
+  <p>사용 중인 브라우저·기기에서 실시간 그래픽을 표시할 수 없어, 실험 연출을 재생하지 못했습니다. 메인 사이트에서 더 그레이스를 만나보세요.</p>
+  <a href="../">메인으로 돌아가기</a>
+</div>
+<div class="vignette" aria-hidden="true"></div>
+
+<header class="labnav">
+  <a class="brand" href="../"><span class="ko">더 그레이스</span> <span class="lab">Lab</span></a>
+  <div class="navright">
+    <a class="home" href="../"><svg viewBox="0 0 24 24"><path d="M3 11l9-8 9 8"/><path d="M5 9.5V20h14V9.5"/></svg><span>메인으로</span></a>
+    <span class="fps" id="fps" aria-live="off">— FPS</span>
+  </div>
+</header>
+
+<div class="rmbadge" id="rmbadge">모션 최소화 · 정지 프레임</div>
+
+<div class="dock">
+  <div class="infocard" id="infocard"></div>
+  <nav class="pills" id="pills" aria-label="실험 전환"></nav>
+</div>
+
+<noscript>
+  <div style="position:fixed;inset:0;z-index:50;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 24px;background:linear-gradient(180deg,#0A1420,#08121c);color:#F4EFE4;font-family:-apple-system,'Apple SD Gothic Neo',sans-serif">
+    <p style="font-size:18px;font-weight:700;margin-bottom:14px">이 실험실은 JavaScript가 필요합니다</p>
+    <p style="font-size:14px;color:#C5D8E2;margin-bottom:22px;max-width:26em;line-height:1.6">동적 연출을 재생하려면 JavaScript를 켜 주세요.</p>
+    <a href="../" style="font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:#0A2032;background:#E4A93E;border-radius:999px;padding:12px 22px;text-decoration:none">메인으로</a>
+  </div>
+</noscript>
+
+<script type="module">
+import * as THREE from './three.module.min.js';
+
+/* ============================================================
+   실험 메타데이터 (pill · info card 단일 소스)
+============================================================ */
+const EXP = [
+  { key:'motes', k:'A', ko:'햇살 입자', en:'Light Motes',
+    desc:'창가로 스며든 오후 햇살의 입자들',
+    scn:'메인 히어로 위 은은한 오버레이 (2KB 캔버스 이식 또는 three.js 유지)' },
+  { key:'sea', k:'B', ko:'해운대 물결', en:'Golden Sea',
+    desc:'해 질 녘 해운대 앞바다의 금빛 물결',
+    scn:'클로징 섹션 배경 (영상 대체·경량화)' },
+  { key:'leaves', k:'C', ko:'은행잎 바람', en:'Autumn Drift',
+    desc:'가을 산책길, 손끝으로 바람 일으키기',
+    scn:'계절 이벤트(가을 프로그램 안내) 인터랙션' },
+  { key:'name', k:'D', ko:'빛으로 쓰는 이름', en:'Luminous Name',
+    desc:'빛의 입자로 쓰는 센터의 이름',
+    scn:'특별한 날(개원 기념 등) 인트로 연출' },
+];
+
+const canvas = document.getElementById('stage');
+const fpsEl = document.getElementById('fps');
+const pillsEl = document.getElementById('pills');
+const infoEl = document.getElementById('infocard');
+const rmEl = document.getElementById('rmbadge');
+const fallbackEl = document.getElementById('fallback');
+
+const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const mq = window.matchMedia('(max-width:760px)');
+let isMobile = mq.matches;
+
+/* ---------- 셀프 안내: WebGL 실패 폴백 ---------- */
+function showFallback(){
+  fallbackEl.style.display = 'flex';
+  canvas.style.display = 'none';
+  document.querySelector('.dock').style.display = 'none';
+  fpsEl.style.display = 'none';
+}
+
+/* ---------- 렌더러 ---------- */
+let renderer = null;
+try {
+  renderer = new THREE.WebGLRenderer({ canvas, antialias:!isMobile, alpha:true, powerPreference:'high-performance' });
+} catch(e){ renderer = null; }
+if (!renderer || !renderer.getContext || !renderer.getContext()) { renderer = null; }
+
+if (!renderer) {
+  showFallback();
+} else {
+  main();
+}
+
+/* ============================================================
+   절차적 텍스처 유틸
+============================================================ */
+// 가산합성용 스프라이트: rgb 자체가 중심→가장자리 falloff (알파 아닌 rgb)
+function makeGlowSprite(){
+  const s = 64, c = document.createElement('canvas'); c.width = c.height = s;
+  const g = c.getContext('2d');
+  g.fillStyle = '#000'; g.fillRect(0,0,s,s);
+  const grd = g.createRadialGradient(s/2,s/2,0,s/2,s/2,s/2);
+  grd.addColorStop(0.0,'rgba(255,255,255,1)');
+  grd.addColorStop(0.22,'rgba(255,255,255,0.92)');
+  grd.addColorStop(0.55,'rgba(120,120,120,0.35)');
+  grd.addColorStop(1.0,'rgba(0,0,0,0)');
+  g.fillStyle = grd; g.beginPath(); g.arc(s/2,s/2,s/2,0,Math.PI*2); g.fill();
+  const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; return t;
+}
+
+// 세로 그라디언트 배경 텍스처 (stops: [[t,'#hex'],...])
+function makeVerticalTex(stops){
+  const w = 8, h = 512, c = document.createElement('canvas'); c.width = w; c.height = h;
+  const g = c.getContext('2d'); const grd = g.createLinearGradient(0,0,0,h);
+  for (const [p,col] of stops) grd.addColorStop(p,col);
+  g.fillStyle = grd; g.fillRect(0,0,w,h);
+  const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; return t;
+}
+
+// 방사형 웜 글로우 배경 (딥네이비 + 따뜻한 빛)
+function makeRadialBg(cx, cy, glowCol){
+  const s = 512, c = document.createElement('canvas'); c.width = c.height = s;
+  const g = c.getContext('2d');
+  g.fillStyle = '#08121c'; g.fillRect(0,0,s,s);
+  const grd = g.createRadialGradient(cx*s,cy*s,0, cx*s,cy*s,s*0.85);
+  grd.addColorStop(0, glowCol);
+  grd.addColorStop(0.5,'rgba(14,26,42,0.5)');
+  grd.addColorStop(1,'rgba(8,18,28,0)');
+  g.fillStyle = grd; g.fillRect(0,0,s,s);
+  const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; return t;
+}
+
+// 은행잎(부채꼴) — 알파 채널로 모양, rgb는 흰색(인스턴스 컬러로 틴트)
+function makeLeafTexture(split){
+  const s = 128, c = document.createElement('canvas'); c.width = c.height = s;
+  const g = c.getContext('2d');
+  g.translate(s/2, s/2 + 18); g.scale(1.28,1.28);
+  g.beginPath();
+  g.moveTo(0, 26);                                   // 잎자루 밑
+  g.lineTo(-1.5, 4);
+  g.bezierCurveTo(-26, 2, -38, -26, -20, -38);       // 좌측 부채 상단
+  if (split){ g.lineTo(-6,-30); g.lineTo(0,-40); g.lineTo(6,-30); g.lineTo(20,-38); }
+  else { g.quadraticCurveTo(0,-46, 20,-38); }
+  g.bezierCurveTo(38,-26, 26, 2, 1.5, 4);            // 우측 부채 상단
+  g.closePath();
+  const grd = g.createLinearGradient(0,-40,0,26);
+  grd.addColorStop(0,'rgba(255,255,255,1)');
+  grd.addColorStop(1,'rgba(232,232,232,0.9)');
+  g.fillStyle = grd; g.fill();
+  g.strokeStyle = 'rgba(255,255,255,0.55)'; g.lineWidth = 1.1;
+  g.beginPath(); g.moveTo(0,24); g.lineTo(0,-30); g.stroke();   // 잎맥
+  const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; return t;
+}
+
+/* 포인트용 공유 셰이더 (모트/이름) — 크기 attribute + 색 attribute + 가산합성 */
+function makePointMaterial(sprite){
+  return new THREE.ShaderMaterial({
+    uniforms:{ uMap:{value:sprite}, uPixelRatio:{value:1}, uScale:{value:300} },
+    vertexShader:`
+      attribute float aSize; attribute vec3 aColor;
+      uniform float uPixelRatio, uScale; varying vec3 vColor;
+      void main(){
+        vColor = aColor;
+        vec4 mv = modelViewMatrix * vec4(position,1.0);
+        gl_PointSize = aSize * uPixelRatio * (uScale / max(-mv.z, 0.001));
+        gl_Position = projectionMatrix * mv;
+      }`,
+    fragmentShader:`
+      uniform sampler2D uMap; varying vec3 vColor;
+      void main(){
+        vec3 t = texture2D(uMap, gl_PointCoord).rgb;
+        gl_FragColor = vec4(vColor * t, 1.0);
+      }`,
+    transparent:true, depthWrite:false, depthTest:true, blending:THREE.AdditiveBlending
+  });
+}
+
+function lerp(a,b,t){ return a + (b-a)*t; }
+function mixColor(c1,c2,t){ return [lerp(c1[0],c2[0],t),lerp(c1[1],c2[1],t),lerp(c1[2],c2[2],t)]; }
+
+/* ============================================================
+   실험 A — 햇살 입자 (Light Motes)
+============================================================ */
+function createMotes(){
+  let pts, geo, mat, sprite, bg, count, pos, base, spd, swayA, swayP;
+  return {
+    init(scene, ctx){
+      count = ctx.isMobile ? 1200 : 2500;
+      bg = makeRadialBg(0.72, 0.28, 'rgba(228,169,62,0.30)');
+      scene.background = bg; scene.fog = null;
+      ctx.camera.fov = 55; ctx.camera.position.set(0,0,64); ctx.camera.lookAt(0,0,0);
+      ctx.camera.updateProjectionMatrix();
+
+      sprite = makeGlowSprite();
+      geo = new THREE.BufferGeometry();
+      pos = new Float32Array(count*3);
+      base = new Float32Array(count);          // 기준 x (sway 중심)
+      spd = new Float32Array(count);
+      swayA = new Float32Array(count); swayP = new Float32Array(count);
+      const col = new Float32Array(count*3);
+      const siz = new Float32Array(count);
+      const warm = [1.0,0.96,0.86], amb = [0.95,0.70,0.30], glow = [1.0,0.87,0.56];
+      for (let i=0;i<count;i++){
+        const x = (Math.random()*2-1)*76;
+        const y = (Math.random()*2-1)*46;
+        const z = -42 + Math.random()*58;      // -42 .. 16
+        pos[i*3]=x; pos[i*3+1]=y; pos[i*3+2]=z; base[i]=x;
+        const r = Math.random();
+        const c = r<0.5 ? mixColor(warm,glow,r*2) : mixColor(glow,amb,(r-0.5)*2);
+        const b = 0.55 + Math.random()*0.55;   // 밝기 편차
+        col[i*3]=c[0]*b; col[i*3+1]=c[1]*b; col[i*3+2]=c[2]*b;
+        siz[i] = 2.2 + Math.random()*4.4;      // 오버드로우 절제(소프트웨어 렌더 여유)
+        spd[i] = 0.7 + Math.random()*2.1;      // 상승 속도
+        swayA[i] = 1.2 + Math.random()*3.0; swayP[i] = Math.random()*Math.PI*2;
+      }
+      geo.setAttribute('position', new THREE.BufferAttribute(pos,3).setUsage(THREE.DynamicDrawUsage));
+      geo.setAttribute('aColor', new THREE.BufferAttribute(col,3));
+      geo.setAttribute('aSize', new THREE.BufferAttribute(siz,1));
+      mat = makePointMaterial(sprite);
+      mat.uniforms.uPixelRatio.value = ctx.renderer.getPixelRatio();
+      mat.uniforms.uScale.value = 250;
+      pts = new THREE.Points(geo, mat);
+      scene.add(pts);
+    },
+    update(dt, ctx){
+      const t = ctx.time;
+      for (let i=0;i<count;i++){
+        let y = pos[i*3+1] + spd[i]*dt*2.2;
+        if (y > 47){ y = -47; base[i] = (Math.random()*2-1)*76; }
+        pos[i*3+1] = y;
+        pos[i*3]   = base[i] + Math.sin(t*0.35 + swayP[i]) * swayA[i];
+      }
+      geo.attributes.position.needsUpdate = true;
+      // 포인터 시차 — 카메라 미세 회전
+      ctx.camera.position.x = lerp(ctx.camera.position.x, ctx.pointer.x*7, 0.06);
+      ctx.camera.position.y = lerp(ctx.camera.position.y, ctx.pointer.y*4.5, 0.06);
+      ctx.camera.lookAt(0,0,0);
+    },
+    dispose(scene){ scene.remove(pts); geo.dispose(); mat.dispose(); sprite.dispose(); bg.dispose(); }
+  };
+}
+
+/* ============================================================
+   실험 B — 해운대 물결 (Golden Sea)
+============================================================ */
+function createSea(){
+  let pts, geo, mat, bg;
+  return {
+    init(scene, ctx){
+      const cols = ctx.isMobile ? 110 : 160;
+      const rows = ctx.isMobile ? 62 : 90;
+      bg = makeVerticalTex([
+        [0.00,'#0A1626'],[0.36,'#122238'],[0.50,'#3a3350'],
+        [0.565,'#C9791F'],[0.60,'#E39A34'],[0.645,'#8a4f1e'],
+        [0.73,'#12202f'],[1.00,'#070f18'] ]);
+      scene.background = bg;
+      scene.fog = null;                        // 커스텀 셰이더에서 거리 페이드 처리
+      ctx.camera.fov = 60; ctx.camera.position.set(0,16,120);
+      ctx.camera.lookAt(0,3,-60); ctx.camera.updateProjectionMatrix();
+
+      const width = 340, near = 50, far = -300;
+      const n = cols*rows; const p = new Float32Array(n*3);
+      let o = 0;
+      for (let j=0;j<rows;j++){
+        const z = near + (j/(rows-1))*(far-near);
+        for (let i=0;i<cols;i++){
+          const x = -width/2 + (i/(cols-1))*width;
+          p[o++]=x; p[o++]=0; p[o++]=z;
+        }
+      }
+      geo = new THREE.BufferGeometry();
+      geo.setAttribute('position', new THREE.BufferAttribute(p,3));
+      mat = new THREE.ShaderMaterial({
+        uniforms:{ uTime:{value:0}, uPixelRatio:{value:ctx.renderer.getPixelRatio()},
+                   uSize:{value: ctx.isMobile?4.4:3.6}, uScale:{value:260} },
+        vertexShader:`
+          uniform float uTime, uPixelRatio, uSize, uScale;
+          varying float vH; varying float vDepth;
+          void main(){
+            vec3 p = position;
+            float w = sin(p.x*0.055 + uTime*0.55)*2.4
+                    + sin(p.z*0.075 - uTime*0.80)*1.7
+                    + sin((p.x*0.5 + p.z*0.5)*0.05 + uTime*0.35)*1.2;
+            p.y += w; vH = w;
+            vec4 mv = modelViewMatrix * vec4(p,1.0);
+            vDepth = -mv.z;
+            gl_PointSize = uSize * uPixelRatio * (uScale / max(-mv.z, 0.001));
+            gl_Position = projectionMatrix * mv;
+          }`,
+        fragmentShader:`
+          varying float vH; varying float vDepth;
+          void main(){
+            float d = length(gl_PointCoord - vec2(0.5));
+            if (d > 0.5) discard;
+            float a = smoothstep(0.5, 0.05, d);
+            a *= 1.0 - smoothstep(150.0, 360.0, vDepth);   // 수평선으로 페이드
+            float h = clamp(vH*0.16 + 0.5, 0.0, 1.0);
+            vec3 navy = vec3(0.05,0.13,0.24);
+            vec3 amber = vec3(0.92,0.62,0.20);
+            vec3 gold = vec3(1.0,0.87,0.55);
+            vec3 c = mix(navy, amber, smoothstep(0.35,0.62,h));
+            c = mix(c, gold, smoothstep(0.62,0.95,h));
+            gl_FragColor = vec4(c * a, 1.0);
+          }`,
+        transparent:true, depthWrite:false, depthTest:true, blending:THREE.AdditiveBlending
+      });
+      pts = new THREE.Points(geo, mat);
+      scene.add(pts);
+    },
+    update(dt, ctx){
+      mat.uniforms.uTime.value = ctx.time;
+      // 카메라가 수평선 위를 아주 느리게 부유
+      ctx.camera.position.x = Math.sin(ctx.time*0.05)*12 + ctx.pointer.x*6;
+      ctx.camera.position.y = 16 + Math.sin(ctx.time*0.07)*2.2;
+      ctx.camera.lookAt(0, 3 + ctx.pointer.y*2, -60);
+    },
+    dispose(scene){ scene.remove(pts); geo.dispose(); mat.dispose(); bg.dispose(); }
+  };
+}
+
+/* ============================================================
+   실험 C — 은행잎 바람 (Autumn Drift)
+============================================================ */
+function createLeaves(){
+  const meshes = [], texes = [];
+  let count, dummy, L;   // L: per-leaf state
+  const PAL = [ new THREE.Color(0xE4A93E), new THREE.Color(0xC07C24),
+                new THREE.Color(0xFBDC93), new THREE.Color(0xD79A3A), new THREE.Color(0xEAC26A) ];
+  return {
+    init(scene, ctx){
+      count = ctx.isMobile ? 200 : 400;
+      dummy = new THREE.Object3D();
+      scene.background = makeRadialBg(0.5, 0.42, 'rgba(200,120,40,0.22)');
+      texes.push(scene.background);
+      scene.fog = null;
+      ctx.camera.fov = 55; ctx.camera.position.set(0,0,60); ctx.camera.lookAt(0,0,0);
+      ctx.camera.updateProjectionMatrix();
+
+      const half = Math.ceil(count/2);
+      const counts = [half, count-half];
+      L = [];
+      for (let v=0; v<2; v++){
+        const tex = makeLeafTexture(v===1); texes.push(tex);
+        const geo = new THREE.PlaneGeometry(4.4,4.4);
+        // 불투명 alphaTest 컷아웃 — 블렌딩 오버드로우 제거(소프트웨어 렌더 큰 이득)
+        const mat = new THREE.MeshBasicMaterial({ map:tex, transparent:false, alphaTest:0.5, depthWrite:true, side:THREE.DoubleSide });
+        const mesh = new THREE.InstancedMesh(geo, mat, counts[v]);
+        mesh.instanceMatrix.setUsage(THREE.DynamicDrawUsage);
+        const col = new THREE.Color();
+        for (let i=0;i<counts[v];i++){
+          const s = {
+            x:(Math.random()*2-1)*46, y:(Math.random()*2-1)*38, z:-8+Math.random()*16,
+            ang:Math.random()*Math.PI*2, fall:2.4+Math.random()*2.8,
+            swayA:0.6+Math.random()*1.4, swayP:Math.random()*Math.PI*2,
+            spin:(Math.random()*2-1)*0.7, flP:Math.random()*Math.PI*2, flS:0.6+Math.random()*1.2,
+            scl:0.7+Math.random()*0.8, vx:0, vy:0, vspin:0, mesh, idx:i
+          };
+          L.push(s);
+          col.copy(PAL[(Math.random()*PAL.length)|0]);
+          mesh.setColorAt(i, col);
+        }
+        mesh.instanceColor.needsUpdate = true;
+        scene.add(mesh); meshes.push(mesh);
+      }
+      this._compose();
+    },
+    _compose(){
+      for (const s of L){
+        dummy.position.set(s.x, s.y, s.z);
+        dummy.rotation.set(Math.sin(s.flP)*0.9, Math.cos(s.flP)*0.6, s.ang);
+        dummy.scale.setScalar(s.scl);
+        dummy.updateMatrix();
+        s.mesh.setMatrixAt(s.idx, dummy.matrix);
+      }
+      for (const m of meshes) m.instanceMatrix.needsUpdate = true;
+    },
+    update(dt, ctx){
+      const t = ctx.time;
+      const wx = ctx.pointerXY.x, wy = ctx.pointerXY.y;
+      const windMag = Math.hypot(ctx.wind.x, ctx.wind.y);
+      const R = 22, R2 = R*R;
+      for (const s of L){
+        // 자연 낙하 + 컬 노이즈풍 흔들림
+        s.ang += (s.spin + s.vspin) * dt;
+        s.flP += s.flS * dt;
+        s.y -= (s.fall + s.vy) * dt;
+        s.x += (Math.sin(t*0.5 + s.swayP) * s.swayA + s.vx) * dt * 3.0;
+        // 포인터 바람 임펄스
+        if (windMag > 0.01){
+          const dx = s.x - wx, dy = s.y - wy, d2 = dx*dx + dy*dy;
+          if (d2 < R2){
+            const d = Math.sqrt(d2) + 0.001, fall = (1 - d/R);
+            const push = 18 * fall;
+            s.vx += (dx/d) * push * dt + ctx.wind.x * fall * 0.9;
+            s.vy += (dy/d) * push * 0.5 * dt + ctx.wind.y * fall * 0.9;
+            s.vspin += (Math.random()*2-1) * 6 * fall * dt;
+          }
+        }
+        // 감쇠
+        s.vx *= 0.94; s.vy *= 0.94; s.vspin *= 0.93;
+        // 리스폰 (화면 아래로 벗어나면 위에서 재투입)
+        if (s.y < -34){ s.y = 36; s.x = (Math.random()*2-1)*46; s.vx=0; s.vy=0; }
+        if (s.x > 58) s.x = -58; else if (s.x < -58) s.x = 58;
+      }
+      this._compose();
+    },
+    dispose(scene){
+      for (const m of meshes){ scene.remove(m); m.geometry.dispose(); m.material.dispose(); }
+      for (const t of texes) t.dispose();
+      meshes.length = 0; texes.length = 0; L = null;
+    }
+  };
+}
+
+/* ============================================================
+   실험 D — 빛으로 쓰는 이름 (Luminous Name)
+============================================================ */
+function createName(){
+  let pts, geo, mat, sprite, bg, count, pos, vel, target, phase;
+  return {
+    init(scene, ctx){
+      count = ctx.isMobile ? 3000 : 6000;
+      bg = makeRadialBg(0.5, 0.46, 'rgba(228,169,62,0.16)');
+      scene.background = bg; scene.fog = null;
+      ctx.camera.fov = 55; ctx.camera.position.set(0,0,60); ctx.camera.lookAt(0,0,0);
+      ctx.camera.updateProjectionMatrix();
+
+      // 오프스크린 캔버스에 텍스트 래스터 → 샘플링
+      const cw = 1200, ch = 340;
+      const tc = document.createElement('canvas'); tc.width = cw; tc.height = ch;
+      const g = tc.getContext('2d');
+      g.fillStyle = '#000'; g.fillRect(0,0,cw,ch);
+      let fs = 210;
+      g.textAlign = 'center'; g.textBaseline = 'middle';
+      const setFont = ()=> g.font = '800 '+fs+'px "Helvetica Neue","Apple SD Gothic Neo",Pretendard,sans-serif';
+      setFont();
+      while (g.measureText('더 그레이스').width > cw*0.92 && fs > 60){ fs -= 6; setFont(); }
+      g.fillStyle = '#fff'; g.fillText('더 그레이스', cw/2, ch/2 + 6);
+      const data = g.getImageData(0,0,cw,ch).data;
+      const step = ctx.isMobile ? 4 : 3;
+      const cand = [];
+      for (let y=0;y<ch;y+=step){
+        for (let x=0;x<cw;x+=step){
+          if (data[(y*cw+x)*4] > 130) cand.push(x,y);
+        }
+      }
+      const nc = cand.length/2;
+      const scale = 82/cw;                 // 텍스트 폭 ≈ 82 월드유닛
+
+      pos = new Float32Array(count*3);
+      vel = new Float32Array(count*3);
+      target = new Float32Array(count*3);
+      phase = new Float32Array(count);
+      const col = new Float32Array(count*3);
+      const siz = new Float32Array(count);
+      const amber=[0.90,0.66,0.24], glow=[1.0,0.87,0.56], paper=[0.96,0.94,0.90];
+      for (let i=0;i<count;i++){
+        // 타깃: 후보 픽셀 순환 + 지터 (후보<파티클이면 겹침 → 더 조밀·밝게)
+        const ci = (nc > 0) ? ((i % nc)|0) : 0;
+        const px = cand[ci*2] + (Math.random()*2-1)*step*0.5;
+        const py = cand[ci*2+1] + (Math.random()*2-1)*step*0.5;
+        const tx = (px - cw/2)*scale;
+        const ty = -(py - ch/2)*scale;
+        const tz = (Math.random()*2-1)*1.6;
+        target[i*3]=tx; target[i*3+1]=ty; target[i*3+2]=tz;
+        // 시작: 넓게 흩어진 구
+        const a = Math.random()*Math.PI*2, b = Math.acos(Math.random()*2-1), r = 30+Math.random()*40;
+        pos[i*3]   = Math.sin(b)*Math.cos(a)*r;
+        pos[i*3+1] = Math.cos(b)*r*0.7;
+        pos[i*3+2] = Math.sin(b)*Math.sin(a)*r - 10;
+        phase[i] = Math.random()*Math.PI*2;
+        const tcol = (tx+42)/84;           // 좌(앰버)→우(페이퍼)
+        let c = tcol < 0.5 ? mixColor(amber,glow,tcol*2) : mixColor(glow,paper,(tcol-0.5)*2);
+        const bri = 0.5 + Math.random()*0.4;
+        col[i*3]=c[0]*bri; col[i*3+1]=c[1]*bri; col[i*3+2]=c[2]*bri;
+        siz[i] = 1.1 + Math.random()*1.7;   // 글자 판독을 위해 작고 또렷하게
+      }
+      geo = new THREE.BufferGeometry();
+      geo.setAttribute('position', new THREE.BufferAttribute(pos,3).setUsage(THREE.DynamicDrawUsage));
+      geo.setAttribute('aColor', new THREE.BufferAttribute(col,3));
+      geo.setAttribute('aSize', new THREE.BufferAttribute(siz,1));
+      sprite = makeGlowSprite();
+      mat = makePointMaterial(sprite);
+      mat.uniforms.uPixelRatio.value = ctx.renderer.getPixelRatio();
+      mat.uniforms.uScale.value = 110;      // 작은 포인트로 글자 형태 유지
+      pts = new THREE.Points(geo, mat);
+      scene.add(pts);
+    },
+    update(dt, ctx){
+      const t = ctx.time;
+      const k = 5.5, damp = 3.6;
+      const wx = ctx.pointerXY.x, wy = ctx.pointerXY.y;
+      const R = 12, R2 = R*R;
+      const stepDt = Math.min(dt, 0.033);
+      for (let i=0;i<count;i++){
+        const ix=i*3, iy=i*3+1, iz=i*3+2;
+        // 숨쉬는 일렁임
+        const br = Math.sin(t*1.1 + phase[i]) * 0.35;
+        const txp = target[ix] + Math.cos(phase[i])*br;
+        const typ = target[iy] + Math.sin(phase[i])*br;
+        // 스프링
+        let ax = (txp - pos[ix])*k - vel[ix]*damp;
+        let ay = (typ - pos[iy])*k - vel[iy]*damp;
+        let az = (target[iz] - pos[iz])*k - vel[iz]*damp;
+        // 포인터 국소 흩뜨림
+        const dx = pos[ix]-wx, dy = pos[iy]-wy, d2 = dx*dx+dy*dy;
+        if (d2 < R2){
+          const d = Math.sqrt(d2)+0.001, f = (1 - d/R)*80;
+          ax += (dx/d)*f; ay += (dy/d)*f;
+        }
+        vel[ix]+=ax*stepDt; vel[iy]+=ay*stepDt; vel[iz]+=az*stepDt;
+        pos[ix]+=vel[ix]*stepDt; pos[iy]+=vel[iy]*stepDt; pos[iz]+=vel[iz]*stepDt;
+      }
+      geo.attributes.position.needsUpdate = true;
+    },
+    dispose(scene){ scene.remove(pts); geo.dispose(); mat.dispose(); sprite.dispose(); bg.dispose(); }
+  };
+}
+
+/* ============================================================
+   메인 — 렌더 루프 · 전환 · 입력
+============================================================ */
+function main(){
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio||1, isMobile?1.5:2));
+  renderer.setSize(window.innerWidth, window.innerHeight, false);
+  renderer.outputColorSpace = THREE.SRGBColorSpace;
+  renderer.setClearColor(0x0a1420, 1);
+
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(55, window.innerWidth/window.innerHeight, 0.1, 2000);
+
+  // 포인터 상태
+  let tx=0, ty=0, px=0, py=0;
+  const ctx = {
+    THREE, renderer, scene, camera, isMobile, reduced,
+    time: 0,
+    pointer:{x:0,y:0},
+    pointerXY:{x:0,y:0},           // z=0 평면상의 월드 좌표
+    wind:{x:0,y:0}
+  };
+
+  function onPointer(cx, cy){
+    tx = (cx/window.innerWidth)*2 - 1;
+    ty = -((cy/window.innerHeight)*2 - 1);
+  }
+  window.addEventListener('pointermove', e=>onPointer(e.clientX,e.clientY), {passive:true});
+  window.addEventListener('touchmove', e=>{ if(e.touches[0]) onPointer(e.touches[0].clientX,e.touches[0].clientY); }, {passive:true});
+
+  // 실험 레지스트리
+  const factories = { motes:createMotes, sea:createSea, leaves:createLeaves, name:createName };
+  let active = null, activeKey = null;
+
+  // pill / info UI 구성
+  EXP.forEach((e, i)=>{
+    const b = document.createElement('button');
+    b.className = 'pill'; b.type='button'; b.dataset.key = e.key;
+    b.innerHTML = '<span class="k">'+e.k+'</span>'+e.ko;
+    b.addEventListener('click', ()=>{ if(e.key!==activeKey) switchTo(e.key); });
+    pillsEl.appendChild(b);
+  });
+  function paintInfo(e){
+    infoEl.classList.add('swap');
+    setTimeout(()=>{
+      infoEl.innerHTML =
+        '<div class="ic-name"><b>'+e.k+'</b>'+e.ko+' <span class="en">'+e.en+'</span></div>'+
+        '<p class="ic-desc">'+e.desc+'</p>'+
+        '<div class="ic-scn"><span class="lbl">메인 채택 시나리오</span>'+e.scn+'</div>';
+      infoEl.classList.remove('swap');
+    }, 180);
+  }
+  function setPill(key){
+    for (const b of pillsEl.children){
+      const on = b.dataset.key===key;
+      if (on) b.setAttribute('aria-current','true'); else b.removeAttribute('aria-current');
+    }
+  }
+
+  function switchTo(key){
+    if (active) active.dispose(scene);
+    scene.background = null; scene.fog = null;
+    // 포인터 리셋(전환 튐 방지) — 리듀스 모드는 중앙 고정
+    if (reduced){ tx=ty=px=py=0; ctx.pointer.x=ctx.pointer.y=0; ctx.pointerXY.x=ctx.pointerXY.y=0; ctx.wind.x=ctx.wind.y=0; }
+    active = factories[key]();
+    activeKey = key;
+    active.init(scene, ctx);
+    setPill(key);
+    paintInfo(EXP.find(e=>e.key===key));
+    if (reduced){ settle(180); renderer.render(scene, camera); }
+    else if (!running){ startLoop(); }
+  }
+
+  // 리듀스 모드: 정지 프레임 도달까지 시뮬레이션을 선진행
+  function settle(steps){
+    const fixed = 1/60;
+    for (let i=0;i<steps;i++){ ctx.time += fixed; active.update(fixed, ctx); }
+  }
+
+  // 포인터 스무딩 + 월드 좌표/바람 산출
+  function updatePointer(){
+    px += (tx-px)*0.09; py += (ty-py)*0.09;
+    ctx.pointer.x = px; ctx.pointer.y = py;
+    const halfH = Math.tan(camera.fov*Math.PI/360) * 60;
+    const halfW = halfH * camera.aspect;
+    const cwx = px*halfW, cwy = py*halfH;
+    ctx.wind.x = cwx - ctx.pointerXY.x;
+    ctx.wind.y = cwy - ctx.pointerXY.y;
+    ctx.pointerXY.x = cwx; ctx.pointerXY.y = cwy;
+  }
+
+  // FPS 측정
+  let fpsAccum=0, fpsFrames=0, fpsLast=performance.now();
+  function tickFps(now){
+    fpsFrames++; fpsAccum += now - fpsLast; fpsLast = now;
+    if (fpsAccum >= 500){
+      const fps = Math.round(fpsFrames*1000/fpsAccum);
+      fpsEl.textContent = fps + ' FPS';
+      fpsAccum = 0; fpsFrames = 0;
+    }
+  }
+
+  let running=false, raf=null, last=performance.now();
+  function frame(now){
+    raf = null;
+    const dt = Math.min((now-last)/1000, 0.05); last = now;
+    updatePointer();
+    ctx.time += dt;
+    if (active) active.update(dt, ctx);
+    renderer.render(scene, camera);
+    tickFps(now);
+    if (!document.hidden && running) raf = requestAnimationFrame(frame);
+    else running = false;
+  }
+  function startLoop(){
+    if (running || reduced) return;
+    running = true; last = performance.now(); fpsLast = last;
+    raf = requestAnimationFrame(frame);
+  }
+
+  // 리사이즈
+  let rzT=null;
+  function onResize(){
+    const w = window.innerWidth, h = window.innerHeight;
+    const nowMobile = mq.matches;
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio||1, nowMobile?1.5:2));
+    renderer.setSize(w, h, false);
+    camera.aspect = w/h; camera.updateProjectionMatrix();
+    if (nowMobile !== isMobile){        // 브레이크포인트 교차 → 파티클 수 재설정
+      isMobile = nowMobile; ctx.isMobile = nowMobile;
+      if (activeKey) switchTo(activeKey);
+    } else if (reduced){
+      renderer.render(scene, camera);
+    }
+  }
+  window.addEventListener('resize', ()=>{ clearTimeout(rzT); rzT=setTimeout(onResize,180); });
+
+  // 탭 비가시 → RAF 중지
+  document.addEventListener('visibilitychange', ()=>{
+    if (document.hidden){ if (raf) cancelAnimationFrame(raf); raf=null; running=false; }
+    else if (!reduced){ startLoop(); }
+  });
+
+  // WebGL 컨텍스트 유실 대비
+  canvas.addEventListener('webglcontextlost', (e)=>{ e.preventDefault(); if(raf) cancelAnimationFrame(raf); running=false; });
+
+  // reduced-motion 안내 배지
+  if (reduced){ rmEl.style.display='block'; fpsEl.textContent='MOTION OFF'; }
+
+  // 첫 실험 로드
+  switchTo('motes');
+}
+</script>
+</body>
+</html>
