@@ -309,6 +309,7 @@
 </style>
 
 <div class="vstage" id="vstage" aria-hidden="true">
+  <!-- hero: 1080p 무한루프 비디오(첫=끝 프레임) + 고해상도 포스터 폴백 -->
   <div class="vlayer" data-key="hero"><img class="vposter" src="media/hero-poster.jpg" alt=""><video muted loop playsinline preload="auto" poster="media/hero-poster.jpg" src="media/hero.mp4"></video></div>
   <div class="vlayer" data-key="intro"><img class="vposter" src="media/intro-poster.jpg" alt=""><video muted loop playsinline preload="none" poster="media/intro-poster.jpg" data-src="media/intro.mp4"></video></div>
   <div class="vlayer" data-key="program"><img class="vposter" src="media/program-poster.jpg" alt=""><video muted loop playsinline preload="none" poster="media/program-poster.jpg" data-src="media/program.mp4"></video></div>
@@ -327,7 +328,7 @@
   </a>
   <div class="menu">
     <a href="/v2/">클래식 버전</a>
-    <a href="/v3/">시네마 에디션</a>
+    <a href="/v3/">애니 에디션</a>
     <a href="#intro">센터소개</a>
     <a href="#program">프로그램</a>
     <a href="#health">건강·안전</a>
@@ -547,7 +548,8 @@
   function loadRest(){
     if(loadedRest||reduce) return; loadedRest=true;
     stageLayers.forEach(function(L){
-      var v=L.video, ds=v.getAttribute('data-src');
+      var v=L.video; if(!v) return;
+      var ds=v.getAttribute('data-src');
       if(ds && !v.getAttribute('src')){ v.setAttribute('preload','auto'); v.setAttribute('src',ds); try{ v.load(); }catch(e){} }
     });
   }
@@ -573,7 +575,7 @@
       var lay=stageLayers[k];
       lay.el.style.opacity=ops[k].toFixed(3);
       lay.el.style.transform='scale('+scs[k].toFixed(4)+')';
-      if(!reduce){
+      if(!reduce && lay.video){
         var v=lay.video, wantPlay=ops[k]>0.02;
         if(wantPlay){
           if(v.paused && (v.getAttribute('src')||v.currentSrc)){ var pr=v.play(); if(pr&&pr.catch) pr.catch(function(){}); }
@@ -587,7 +589,7 @@
 
   /* pause everything when the tab is hidden; RAF loop resumes playback on return */
   document.addEventListener('visibilitychange', function(){
-    if(document.hidden){ stageLayers.forEach(function(L){ if(!L.video.paused) L.video.pause(); }); }
+    if(document.hidden){ stageLayers.forEach(function(L){ if(L.video && !L.video.paused) L.video.pause(); }); }
   });
 
   /* ---------- main loop ---------- */
