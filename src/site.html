@@ -225,6 +225,14 @@
   .faqcard h3::before{content:"Q";flex:none;font-family:var(--mono);font-weight:700;font-size:.82em;line-height:1.5;color:var(--amber)}
   .faqcard p{font-size:clamp(15px,1.3vw,16px);line-height:1.75;color:#E7EFF5}
   @media(max-width:760px){.faqgrid{grid-template-columns:1fr;gap:14px}}
+  .faqmore{display:flex;justify-content:center;margin-top:clamp(22px,2.6vw,32px)}
+  .faqmore a{display:inline-flex;align-items:center;gap:9px;min-height:48px;padding:0 22px;border-radius:999px;
+    font-family:var(--mono);font-weight:700;font-size:13px;letter-spacing:.08em;text-decoration:none;
+    color:var(--glow);border:1px solid rgba(228,169,62,.4);background:rgba(228,169,62,.06);
+    -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);transition:border-color .25s,background .25s,color .25s}
+  .faqmore a svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.7;flex:none}
+  .faqmore a:hover{color:var(--ink);background:var(--amber);border-color:var(--amber-deep)}
+  .faqmore a:hover svg{stroke:var(--ink)}
 
   footer{width:100%;max-width:1180px;margin:90px auto 0;padding:36px clamp(24px,4vw,46px) 40px;
     border:1px solid var(--glass-line);border-radius:16px;
@@ -462,6 +470,9 @@
           <h3>어떻게 시작하나요?</h3>
           <p>전화 상담 → 방문·견학 → 맞춤 케어 설계 → 적응 이용 시작의 4단계입니다. 견학만 오셔도 좋습니다 — 편하게 둘러보시고 결정하세요.</p>
         </div>
+      </div>
+      <div class="faqmore reveal">
+        <a href="/guide.html">비용·등급·절차 자세히 보기<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></a>
       </div>
     </section>
 
