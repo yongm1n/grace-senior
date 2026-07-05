@@ -135,6 +135,68 @@
     .dock{gap:11px}
   }
   @media(max-width:400px){ .ic-name .en{display:none} }
+
+  /* ---------- 프리뷰 모드 (실제 페이지에 얹어 보기) ---------- */
+  /* infocard 안 "얹어 보기" 버튼 — 절제된 앰버 아웃라인 */
+  .ic-try{margin-top:14px;display:inline-flex;align-items:center;gap:8px;cursor:pointer;
+    font-family:var(--mono);font-size:10.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--glow);
+    background:linear-gradient(180deg,rgba(228,169,62,.16),rgba(228,169,62,.04));
+    border:1px solid rgba(228,169,62,.5);border-radius:999px;padding:9px 15px;line-height:1;
+    transition:color .25s,background .3s,border-color .3s,transform .2s,box-shadow .3s}
+  .ic-try:hover{color:var(--ink);background:var(--amber);border-color:var(--amber-deep);transform:translateY(-1px);
+    box-shadow:0 8px 22px -10px rgba(228,169,62,.75)}
+  .ic-try svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.7}
+
+  /* 풀뷰포트 iframe */
+  #pvframe{position:fixed;inset:0;z-index:5;width:100%;height:100%;border:0;display:block;background:var(--ink)}
+
+  /* 프리뷰 진입 시 랩 크롬 숨김 */
+  body.preview-on #stage,body.preview-on .vignette,body.preview-on .labnav,
+  body.preview-on .dock,body.preview-on .rmbadge{display:none!important}
+
+  /* 우상단 플로팅 글래스 바 */
+  .pvbar{position:fixed;top:calc(15px + env(safe-area-inset-top));right:var(--gutter);z-index:30;
+    display:flex;align-items:center;gap:9px;padding:8px 10px 8px 11px;
+    background:var(--glass);border:1px solid var(--glass-line);border-radius:999px;
+    -webkit-backdrop-filter:blur(20px) saturate(140%);backdrop-filter:blur(20px) saturate(140%);
+    box-shadow:0 22px 54px -26px rgba(0,0,0,.85),inset 0 1px 0 rgba(255,255,255,.07)}
+  .pvbar[hidden]{display:none}
+  .pvpills{display:flex;gap:5px}
+  .pvpill{display:inline-flex;align-items:center;gap:7px;cursor:pointer;
+    font-family:var(--body);font-size:12.5px;letter-spacing:.01em;color:var(--paper-dim);white-space:nowrap;
+    background:transparent;border:1px solid transparent;border-radius:999px;padding:7px 13px;line-height:1;
+    transition:color .25s,background .3s,border-color .3s}
+  .pvpill .k{font-family:var(--mono);font-weight:700;font-size:10px;letter-spacing:.06em;color:var(--steel);transition:color .25s}
+  .pvpill:hover{color:var(--paper)}
+  .pvpill[aria-current="true"]{color:var(--ink);background:var(--amber);border-color:var(--amber-deep);
+    box-shadow:0 5px 16px -7px rgba(228,169,62,.7),inset 0 1px 0 rgba(255,255,255,.3)}
+  .pvpill[aria-current="true"] .k{color:rgba(10,20,32,.6)}
+  .pvsep{width:1px;height:22px;background:var(--glass-line);flex:0 0 auto}
+  .pvfps{font-family:var(--mono);font-size:10px;letter-spacing:.1em;color:var(--glow);
+    padding:0 3px;min-width:58px;text-align:center;font-variant-numeric:tabular-nums;white-space:nowrap}
+  .pvback{display:inline-flex;align-items:center;gap:7px;cursor:pointer;
+    font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--paper-dim);
+    background:transparent;border:1px solid var(--glass-line);border-radius:999px;padding:8px 13px;line-height:1;
+    transition:color .25s,border-color .3s}
+  .pvback:hover{color:var(--paper);border-color:var(--steel)}
+  .pvback svg{width:12px;height:12px;fill:none;stroke:currentColor;stroke-width:1.8}
+
+  /* 안내 한 줄 (4초 후 페이드아웃) */
+  .pvhint{position:fixed;left:50%;bottom:calc(28px + env(safe-area-inset-bottom));transform:translateX(-50%);z-index:30;
+    font-family:var(--body);font-size:13px;letter-spacing:.01em;color:var(--paper);white-space:nowrap;
+    background:var(--glass);border:1px solid var(--glass-line);border-radius:999px;padding:11px 21px;
+    -webkit-backdrop-filter:blur(16px) saturate(130%);backdrop-filter:blur(16px) saturate(130%);
+    box-shadow:0 18px 44px -24px rgba(0,0,0,.8);
+    opacity:0;transition:opacity .6s ease;pointer-events:none}
+  .pvhint.show{opacity:1}
+  .pvhint[hidden]{display:none}
+
+  @media(max-width:760px){
+    .pvbar{right:10px;left:10px;top:calc(10px + env(safe-area-inset-top));justify-content:center;flex-wrap:wrap;gap:7px}
+    .pvpill{font-size:12px;padding:7px 11px}
+    .pvback span{display:inline}
+    .pvhint{font-size:12px;white-space:normal;max-width:88vw;text-align:center;line-height:1.5}
+  }
 </style>
 </head>
 <body>
@@ -162,6 +224,19 @@
   <div class="infocard" id="infocard"></div>
   <nav class="pills" id="pills" aria-label="실험 전환"></nav>
 </div>
+
+<!-- 프리뷰 모드: 우상단 플로팅 바 + 안내 (실제 메인 페이지 위 효과) -->
+<div class="pvbar" id="pvbar" hidden aria-label="프리뷰 컨트롤">
+  <div class="pvpills" id="pvpills">
+    <button class="pvpill" type="button" data-key="motes"><span class="k">A</span>햇살 입자</button>
+    <button class="pvpill" type="button" data-key="leaves"><span class="k">C</span>은행잎 바람</button>
+  </div>
+  <span class="pvsep"></span>
+  <span class="pvfps" id="pvfps" aria-live="off">— FPS</span>
+  <span class="pvsep"></span>
+  <button class="pvback" id="pvback" type="button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg><span>실험실로 돌아가기</span></button>
+</div>
+<div class="pvhint" id="pvhint" hidden>실제 메인 페이지입니다 — 스크롤하며 확인하세요</div>
 
 <noscript>
   <div style="position:fixed;inset:0;z-index:50;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 24px;background:linear-gradient(180deg,#0A1420,#08121c);color:#F4EFE4;font-family:-apple-system,'Apple SD Gothic Neo',sans-serif">
@@ -302,7 +377,10 @@ function makePointMaterial(sprite){
       uniform sampler2D uMap; varying vec3 vColor;
       void main(){
         vec3 t = texture2D(uMap, gl_PointCoord).rgb;
-        gl_FragColor = vec4(vColor * t, 1.0);
+        // 알파 = 스프라이트 커버리지(중심→가장자리 falloff). 프리뷰(투명 캔버스) 위
+        // 가산합성 시 어두운 사각형이 생기지 않도록. 랩(불투명 배경)에선 무영향.
+        float a = max(max(t.r, t.g), t.b);
+        gl_FragColor = vec4(vColor * t, a);
       }`,
     transparent:true, depthWrite:false, depthTest:true, blending:THREE.AdditiveBlending
   });
@@ -319,8 +397,9 @@ function createMotes(){
   return {
     init(scene, ctx){
       count = ctx.isMobile ? 1200 : 2500;
-      bg = makeRadialBg(0.72, 0.28, 'rgba(228,169,62,0.30)');
-      scene.background = bg; scene.fog = null;
+      // 프리뷰(실제 페이지 위)에서는 배경 없이 투명 — 영상이 비쳐 보이도록
+      if (!ctx.preview){ bg = makeRadialBg(0.72, 0.28, 'rgba(228,169,62,0.30)'); scene.background = bg; }
+      scene.fog = null;
       ctx.camera.fov = 55; ctx.camera.position.set(0,0,64); ctx.camera.lookAt(0,0,0);
       ctx.camera.updateProjectionMatrix();
 
@@ -369,7 +448,7 @@ function createMotes(){
       ctx.camera.position.y = lerp(ctx.camera.position.y, ctx.pointer.y*4.5, 0.06);
       ctx.camera.lookAt(0,0,0);
     },
-    dispose(scene){ scene.remove(pts); geo.dispose(); mat.dispose(); sprite.dispose(); bg.dispose(); }
+    dispose(scene){ scene.remove(pts); geo.dispose(); mat.dispose(); sprite.dispose(); if (bg) bg.dispose(); }
   };
 }
 
@@ -461,10 +540,11 @@ function createLeaves(){
                 new THREE.Color(0xFBDC93), new THREE.Color(0xD79A3A), new THREE.Color(0xEAC26A) ];
   return {
     init(scene, ctx){
-      count = ctx.isMobile ? 200 : 400;
+      // 프리뷰(실제 페이지 위)는 계절 장식 밀도로 — 본문 가독성 우선. 랩 스테이지는 쇼케이스 밀도 유지
+      count = ctx.preview ? (ctx.isMobile ? 36 : 70) : (ctx.isMobile ? 200 : 400);
       dummy = new THREE.Object3D();
-      scene.background = makeRadialBg(0.5, 0.42, 'rgba(200,120,40,0.22)');
-      texes.push(scene.background);
+      // 프리뷰에서는 투명 — 본문 위 장식 오버레이로만 얹힘
+      if (!ctx.preview){ const lbg = makeRadialBg(0.5, 0.42, 'rgba(200,120,40,0.22)'); scene.background = lbg; texes.push(lbg); }
       scene.fog = null;
       ctx.camera.fov = 55; ctx.camera.position.set(0,0,60); ctx.camera.lookAt(0,0,0);
       ctx.camera.updateProjectionMatrix();
@@ -486,7 +566,7 @@ function createLeaves(){
             ang:Math.random()*Math.PI*2, fall:2.4+Math.random()*2.8,
             swayA:0.6+Math.random()*1.4, swayP:Math.random()*Math.PI*2,
             spin:(Math.random()*2-1)*0.7, flP:Math.random()*Math.PI*2, flS:0.6+Math.random()*1.2,
-            scl:0.7+Math.random()*0.8, vx:0, vy:0, vspin:0, mesh, idx:i
+            scl:(0.7+Math.random()*0.8)*(ctx.preview?0.8:1), vx:0, vy:0, vspin:0, mesh, idx:i
           };
           L.push(s);
           col.copy(PAL[(Math.random()*PAL.length)|0]);
@@ -694,10 +774,19 @@ function main(){
   function paintInfo(e){
     infoEl.classList.add('swap');
     setTimeout(()=>{
-      infoEl.innerHTML =
+      let html =
         '<div class="ic-name"><b>'+e.k+'</b>'+e.ko+' <span class="en">'+e.en+'</span></div>'+
         '<p class="ic-desc">'+e.desc+'</p>'+
         '<div class="ic-scn"><span class="lbl">메인 채택 시나리오</span>'+e.scn+'</div>';
+      // A·C 만 실제 페이지 프리뷰 지원
+      if (PREVIEW_KEYS[e.key]){
+        html += '<button class="ic-try" type="button" data-key="'+e.key+'">'+
+          '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4.5" width="18" height="12" rx="1.4"/><path d="M8 20h8"/><path d="M10 9.5l4 2.3-4 2.3z" fill="currentColor" stroke="none"/></svg>'+
+          '실제 페이지에 얹어 보기</button>';
+      }
+      infoEl.innerHTML = html;
+      const tb = infoEl.querySelector('.ic-try');
+      if (tb) tb.addEventListener('click', ()=> enterPreview(tb.dataset.key));
       infoEl.classList.remove('swap');
     }, 180);
   }
@@ -772,6 +861,10 @@ function main(){
   // 리사이즈
   let rzT=null;
   function onResize(){
+    if (pv.on){                          // 프리뷰 중엔 프리뷰 렌더러만 갱신
+      isMobile = mq.matches; ctx.isMobile = isMobile;
+      pvResize(); return;
+    }
     const w = window.innerWidth, h = window.innerHeight;
     const nowMobile = mq.matches;
     renderer.setPixelRatio(Math.min(window.devicePixelRatio||1, nowMobile?1.5:2));
@@ -786,10 +879,14 @@ function main(){
   }
   window.addEventListener('resize', ()=>{ clearTimeout(rzT); rzT=setTimeout(onResize,180); });
 
-  // 탭 비가시 → RAF 중지
+  // 탭 비가시 → RAF 중지 (랩·프리뷰 양쪽)
   document.addEventListener('visibilitychange', ()=>{
-    if (document.hidden){ if (raf) cancelAnimationFrame(raf); raf=null; running=false; }
-    else if (!reduced){ startLoop(); }
+    if (document.hidden){
+      if (raf) cancelAnimationFrame(raf); raf=null; running=false;
+      if (pv.raf) cancelAnimationFrame(pv.raf); pv.raf=null; pv.running=false;
+    } else if (pv.on){
+      if (!reduced) startPreviewLoop();
+    } else if (!reduced){ startLoop(); }
   });
 
   // WebGL 컨텍스트 유실 대비
@@ -797,6 +894,271 @@ function main(){
 
   // reduced-motion 안내 배지
   if (reduced){ rmEl.style.display='block'; fpsEl.textContent='MOTION OFF'; }
+
+  /* ============================================================
+     프리뷰 모드 — 실제 메인 페이지(same-origin iframe) 위에 효과 얹기
+     A(motes)·C(leaves)만 지원. iframe.contentDocument 에 캔버스를 주입하고
+     부모 three.js 렌더러가 그 캔버스로 렌더한다. 스테이지는 dispose 후 복귀.
+  ============================================================ */
+  const PREVIEW_KEYS = { motes:true, leaves:true };
+  const bodyEl  = document.body;
+  const pvbar   = document.getElementById('pvbar');
+  const pvpills = document.getElementById('pvpills');
+  const pvback  = document.getElementById('pvback');
+  const pvfps   = document.getElementById('pvfps');
+  const pvhint  = document.getElementById('pvhint');
+  const HINT_DEFAULT = pvhint.textContent;
+
+  const pv = {
+    on:false, key:null, iframe:null, doc:null, win:null,
+    canvas:null, renderer:null, scene:null, camera:null, pctx:null, exp:null,
+    raf:null, running:false, last:0,
+    tx:0, ty:0, px:0, py:0,
+    onMove:null, onTouch:null, loadHandler:null, hintTimer:null, failTimer:null,
+    fpsAccum:0, fpsFrames:0, fpsLast:0, zinfo:null
+  };
+
+  function setPvPill(key){
+    for (const b of pvpills.children){
+      if (b.dataset.key===key) b.setAttribute('aria-current','true');
+      else b.removeAttribute('aria-current');
+    }
+  }
+
+  // ---- 진입: 스테이지 dispose → 풀뷰포트 iframe ----
+  function enterPreview(key){
+    if (pv.on){ switchPreview(key); return; }
+    try { window.__pv = pv; } catch(e){}   // 검증용 상태 노출 (비공개 랩)
+    pv.on = true; pv.key = key;
+    // 랩 루프 정지 + 활성 실험 dispose (GPU 메모리 해제)
+    if (raf){ cancelAnimationFrame(raf); raf=null; }
+    running = false;
+    if (active){ active.dispose(scene); active = null; activeKey = null; }
+    scene.background = null; scene.fog = null;
+    bodyEl.classList.add('preview-on');
+    setPvPill(key);
+    pvbar.hidden = false;
+    // iframe 생성 (실패 시 폴백 타이머)
+    const f = document.createElement('iframe');
+    f.id = 'pvframe';
+    f.setAttribute('title','더 그레이스 메인 페이지 미리보기');
+    f.setAttribute('loading','eager');
+    pv.iframe = f;
+    pv.loadHandler = onPreviewLoad;
+    f.addEventListener('load', pv.loadHandler);
+    bodyEl.appendChild(f);
+    pv.failTimer = setTimeout(()=>{ if(!pv.doc) previewLoadFailed(); }, 8000);
+    f.src = '/';
+    showHint(HINT_DEFAULT, true);
+  }
+
+  function showHint(text, autoHide){
+    clearTimeout(pv.hintTimer);
+    pvhint.textContent = text;
+    pvhint.hidden = false;
+    requestAnimationFrame(()=> pvhint.classList.add('show'));
+    if (autoHide){
+      pv.hintTimer = setTimeout(()=>{
+        pvhint.classList.remove('show');
+        setTimeout(()=>{ if(!pvhint.classList.contains('show')) pvhint.hidden = true; }, 700);
+      }, 4000);
+    }
+  }
+
+  // ---- iframe load (최초 + 내부 링크 이동마다) ----
+  function onPreviewLoad(){
+    clearTimeout(pv.failTimer);
+    let doc=null, win=null;
+    try { doc = pv.iframe.contentDocument; win = pv.iframe.contentWindow; } catch(e){ doc=null; }
+    if (!doc || !doc.body){ previewLoadFailed(); return; }
+    unmountPreviewGL();            // 이전 문서 GL 정리 (재-네비게이션 대응)
+    pv.doc = doc; pv.win = win;
+    try { mountPreviewGL(pv.key); }
+    catch(e){ try{ console.error('[preview mount]', e); }catch(_){}; }  // 크래시 금지
+  }
+
+  function previewLoadFailed(){
+    showHint('메인 페이지를 불러오지 못했습니다 — 실험실로 돌아갑니다', false);
+    setTimeout(()=> exitPreview(), 1700);
+  }
+
+  // ---- z-index 실측 ----
+  function readZ(doc, sel){
+    const el = doc.querySelector(sel);
+    if (!el) return { el:null, z:NaN };
+    const z = parseInt(getComputedStyle(el).zIndex, 10);
+    return { el, z: isNaN(z) ? 0 : z };
+  }
+
+  // ---- iframe 문서에 캔버스 주입 + 프리뷰 렌더러 마운트 ----
+  function mountPreviewGL(key){
+    const doc = pv.doc, win = pv.win;
+    if (!doc || !win || !doc.body) return;
+
+    const vstage  = readZ(doc, '.vstage');
+    const scrim   = readZ(doc, '.scrim');
+    const content = readZ(doc, '.scroll');
+    const nav     = readZ(doc, '.nav');
+
+    const cv = doc.createElement('canvas');
+    cv.setAttribute('aria-hidden','true');
+    cv.className = 'gracelab-fx';
+    cv.style.cssText = 'position:fixed;inset:0;width:100%;height:100%;pointer-events:none;display:block';
+
+    let chosenZ, placement;
+    if (key==='motes'){
+      // 배경 영상 스테이지 직후 형제 — vstage보다 위, scrim/본문보다 아래.
+      // vstage(0)와 scrim(1) 사이 정수 없음 → 같은 z(vstage)로 두고 DOM 순서(직후)로 위에 얹음.
+      const anchor = vstage.el
+        || doc.querySelector('#gl') || doc.querySelector('#glfallback');   // v2 등 폴백
+      chosenZ = isNaN(vstage.z) ? 0 : vstage.z;
+      cv.style.zIndex = String(chosenZ);
+      if (anchor && anchor.parentNode){ anchor.parentNode.insertBefore(cv, anchor.nextSibling); placement='after '+(vstage.el?'.vstage':'bg'); }
+      else { doc.body.appendChild(cv); placement='body'; }
+    } else {
+      // 은행잎: 본문 위·nav 아래 (장식 오버레이)
+      const cz = isNaN(content.z) ? 4 : content.z;
+      const nz = isNaN(nav.z) ? 30 : nav.z;
+      chosenZ = Math.max(cz+1, Math.min(nz-1, Math.round((cz+nz)/2)));
+      cv.style.zIndex = String(chosenZ);
+      doc.body.appendChild(cv); placement='body(over content)';
+    }
+    pv.canvas = cv;
+    pv.zinfo = { key, vstage:vstage.z, scrim:scrim.z, content:content.z, nav:nav.z, chosen:chosenZ, placement };
+    try { window.__pvZ = pv.zinfo; console.log('[preview z]', JSON.stringify(pv.zinfo)); } catch(e){}
+
+    // 프리뷰 전용 렌더러 (iframe 캔버스로 렌더 · 투명)
+    const pr = new THREE.WebGLRenderer({ canvas:cv, antialias:!isMobile, alpha:true, premultipliedAlpha:true, powerPreference:'high-performance' });
+    const W = win.innerWidth || window.innerWidth, H = win.innerHeight || window.innerHeight;
+    pr.setPixelRatio(Math.min(win.devicePixelRatio||1, isMobile?1.5:2));
+    pr.setSize(W, H, false);
+    pr.outputColorSpace = THREE.SRGBColorSpace;
+    pr.setClearColor(0x000000, 0);          // 투명 — 실제 페이지가 비쳐 보이도록
+    pv.renderer = pr;
+    pv.scene = new THREE.Scene();
+    pv.camera = new THREE.PerspectiveCamera(55, W/H, 0.1, 2000);
+    pv.pctx = {
+      THREE, renderer:pr, scene:pv.scene, camera:pv.camera,
+      isMobile, reduced, preview:true, time:0,
+      pointer:{x:0,y:0}, pointerXY:{x:0,y:0}, wind:{x:0,y:0}
+    };
+    pv.tx=pv.ty=pv.px=pv.py=0;
+    pv.exp = factories[key]();
+    pv.exp.init(pv.scene, pv.pctx);
+
+    // 포인터/바람 — iframe 문서 좌표 사용
+    pv.onMove = (e)=>{
+      const w = win.innerWidth, h = win.innerHeight;
+      pv.tx = (e.clientX/w)*2 - 1;
+      pv.ty = -((e.clientY/h)*2 - 1);
+    };
+    pv.onTouch = (e)=>{ if (e.touches && e.touches[0]) pv.onMove(e.touches[0]); };
+    doc.addEventListener('pointermove', pv.onMove, {passive:true});
+    doc.addEventListener('touchmove', pv.onTouch, {passive:true});
+
+    if (reduced){
+      pvSettle(180);
+      pr.render(pv.scene, pv.camera);
+      pvfps.textContent = 'MOTION OFF';
+    } else {
+      startPreviewLoop();
+    }
+  }
+
+  function updatePreviewPointer(){
+    pv.px += (pv.tx-pv.px)*0.09; pv.py += (pv.ty-pv.py)*0.09;
+    const c = pv.pctx; c.pointer.x = pv.px; c.pointer.y = pv.py;
+    const halfH = Math.tan(pv.camera.fov*Math.PI/360) * 60;
+    const halfW = halfH * pv.camera.aspect;
+    const cwx = pv.px*halfW, cwy = pv.py*halfH;
+    c.wind.x = cwx - c.pointerXY.x; c.wind.y = cwy - c.pointerXY.y;
+    c.pointerXY.x = cwx; c.pointerXY.y = cwy;
+  }
+  function pvSettle(steps){
+    const fixed = 1/60;
+    for (let i=0;i<steps;i++){ pv.pctx.time += fixed; pv.exp.update(fixed, pv.pctx); }
+  }
+  function pvTickFps(now){
+    pv.fpsFrames++; pv.fpsAccum += now - pv.fpsLast; pv.fpsLast = now;
+    if (pv.fpsAccum >= 500){
+      pvfps.textContent = Math.round(pv.fpsFrames*1000/pv.fpsAccum) + ' FPS';
+      pv.fpsAccum = 0; pv.fpsFrames = 0;
+    }
+  }
+  function pvFrame(now){
+    pv.raf = null;
+    const dt = Math.min((now-pv.last)/1000, 0.05); pv.last = now;
+    updatePreviewPointer();
+    pv.pctx.time += dt;
+    if (pv.exp) pv.exp.update(dt, pv.pctx);
+    if (pv.renderer) pv.renderer.render(pv.scene, pv.camera);
+    pvTickFps(now);
+    if (!document.hidden && pv.running) pv.raf = requestAnimationFrame(pvFrame);
+    else pv.running = false;
+  }
+  function startPreviewLoop(){
+    if (pv.running || reduced || !pv.renderer) return;
+    pv.running = true; pv.last = performance.now(); pv.fpsLast = pv.last;
+    pv.raf = requestAnimationFrame(pvFrame);
+  }
+  function pvResize(){
+    if (!pv.renderer || !pv.win) return;
+    const W = pv.win.innerWidth, H = pv.win.innerHeight;
+    pv.renderer.setPixelRatio(Math.min(pv.win.devicePixelRatio||1, isMobile?1.5:2));
+    pv.renderer.setSize(W, H, false);
+    pv.camera.aspect = W/H; pv.camera.updateProjectionMatrix();
+    if (reduced) pv.renderer.render(pv.scene, pv.camera);
+  }
+
+  // ---- 프리뷰 GL 해제 (문서 이동/전환/종료 시) ----
+  function unmountPreviewGL(){
+    if (pv.raf){ cancelAnimationFrame(pv.raf); pv.raf=null; }
+    pv.running = false;
+    if (pv.doc && pv.onMove){
+      try { pv.doc.removeEventListener('pointermove', pv.onMove); } catch(e){}
+      try { pv.doc.removeEventListener('touchmove', pv.onTouch); } catch(e){}
+    }
+    pv.onMove = null; pv.onTouch = null;
+    if (pv.exp && pv.scene){ try { pv.exp.dispose(pv.scene); } catch(e){} }
+    pv.exp = null;
+    if (pv.renderer){ try { pv.renderer.dispose(); pv.renderer.forceContextLoss(); } catch(e){} }
+    pv.renderer = null;
+    if (pv.canvas && pv.canvas.parentNode){ try { pv.canvas.parentNode.removeChild(pv.canvas); } catch(e){} }
+    pv.canvas = null; pv.scene = null; pv.camera = null; pv.pctx = null;
+  }
+
+  // ---- A ↔ C 전환 (iframe 재로드 없이 현재 문서에서) ----
+  function switchPreview(key){
+    if (!pv.on) return;
+    if (key===pv.key && pv.exp) return;
+    pv.key = key; setPvPill(key);
+    unmountPreviewGL();
+    if (pv.doc && pv.doc.body) mountPreviewGL(key);
+  }
+
+  // ---- 종료: 스테이지 복귀 ----
+  function exitPreview(){
+    if (!pv.on) return;
+    clearTimeout(pv.hintTimer); clearTimeout(pv.failTimer);
+    unmountPreviewGL();
+    const back = pv.key || 'motes';
+    if (pv.iframe){
+      if (pv.loadHandler) pv.iframe.removeEventListener('load', pv.loadHandler);
+      if (pv.iframe.parentNode) pv.iframe.parentNode.removeChild(pv.iframe);
+    }
+    pv.iframe=null; pv.doc=null; pv.win=null; pv.loadHandler=null; pv.key=null;
+    pvbar.hidden = true;
+    pvhint.classList.remove('show'); pvhint.hidden = true; pvhint.textContent = HINT_DEFAULT;
+    bodyEl.classList.remove('preview-on');
+    pv.on = false;
+    // 프리뷰 중 창 크기가 바뀌었을 수 있으니 랩 렌더러 크기 동기화 후 복귀
+    const w = window.innerWidth, h = window.innerHeight;
+    renderer.setSize(w, h, false); camera.aspect = w/h; camera.updateProjectionMatrix();
+    switchTo(back);                 // 랩 스테이지 재-init + 루프 재개
+  }
+
+  for (const b of pvpills.children){ b.addEventListener('click', ()=> switchPreview(b.dataset.key)); }
+  pvback.addEventListener('click', exitPreview);
 
   // 첫 실험 로드
   switchTo('motes');
