@@ -302,8 +302,8 @@
 </style>
 
 <div class="vstage" id="vstage" aria-hidden="true">
-  <!-- hero: 고해상도 정지 이미지(2560px) — 720p 비디오는 해상도 문제로 제거 -->
-  <div class="vlayer" data-key="hero"><img class="vposter" src="media/hero-poster.jpg" alt=""></div>
+  <!-- hero: 1080p 무한루프 비디오(첫=끝 프레임) + 고해상도 포스터 폴백 -->
+  <div class="vlayer" data-key="hero"><img class="vposter" src="media/hero-poster.jpg" alt=""><video muted loop playsinline preload="auto" poster="media/hero-poster.jpg" src="media/hero.mp4"></video></div>
   <div class="vlayer" data-key="intro"><img class="vposter" src="media/intro-poster.jpg" alt=""><video muted loop playsinline preload="none" poster="media/intro-poster.jpg" data-src="media/intro.mp4"></video></div>
   <div class="vlayer" data-key="program"><img class="vposter" src="media/program-poster.jpg" alt=""><video muted loop playsinline preload="none" poster="media/program-poster.jpg" data-src="media/program.mp4"></video></div>
   <div class="vlayer" data-key="health"><img class="vposter" src="media/health-poster.jpg" alt=""><video muted loop playsinline preload="none" poster="media/health-poster.jpg" data-src="media/health.mp4"></video></div>
