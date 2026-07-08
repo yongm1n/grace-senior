@@ -8,3 +8,7 @@
 - 편집 소스는 **`src/site.html`** 뿐. `index.html`/`dist/`는 빌드 산출물 — 직접 편집 금지.
 - 빌드: `node build.js` · 검증: `NODE_PATH=/Users/yongmin/node_modules node render.js`
 - 배포: `git push origin main` → 1~2분 후 https://gracedaycare.co.kr (GitHub Pages, CNAME 유지 필수).
+
+## 에디션 전환 (상세는 README.md "에디션 전환")
+- 루트 `index.html` = `edition.json`(main|classic|anime)이 가리키는 에디션의 산출물. 전환은 `/admin/` 또는 `edition.json` 수정 → push(Actions 자동 반영), 로컬은 `node switch-edition.js`.
+- `node build.js` 는 edition.json 이 main 이 아니면 끝에서 `switch-edition.js` 를 자동 재실행해 선택 에디션을 보존한다. `v1/index.html` 도 빌드 산출물 — 직접 편집 금지.

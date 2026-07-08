@@ -1,0 +1,61 @@
+# switch-edition — edition.json 변경 시 선택 에디션을 루트 index.html 로 반영해 커밋.
+#
+# 무한루프 없음: 이 워크플로의 봇 커밋은 index.html/v1 산출물만 변경하고
+# edition.json 은 절대 건드리지 않으므로 paths: ['edition.json'] 필터에 다시 걸리지 않는다.
+# (dist/ 는 .gitignore 대상이라 커밋하지 않는다)
+name: switch-edition
+
+on:
+  push:
+    branches: [main]
+    paths: ['edition.json']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: switch-edition
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # 검증 실패(깨진 참조·마커/SEO 누락 등)면 여기서 exit 1 → 커밋 없이 중단 = 기존 배포 유지
+      - name: 에디션 적용 + 사후 검증
+        run: node switch-edition.js
+
+      # push 실패(원격이 앞서감 — 연속 전환·사람 커밋 레이스) 시 rebase 는 쓰지 않는다:
+      # 에디션별 index.html 은 전체 재작성 산출물이라 봇 커밋끼리 3-way 충돌이 사실상 확정이고,
+      # stale 체크아웃(자기 트리거 SHA) 기준 산출물을 그대로 올리는 것도 틀리다.
+      # 대신 원격 최신 팁으로 리셋한 뒤 최신 edition.json 기준으로 산출물을 재생성해 다시 커밋한다.
+      - name: 산출물 커밋·푸시
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          stage() {  # v1/index.html 은 classic/anime 전환 시 재생성되지 않으므로 있을 때만 add (pathspec 오류 방지)
+            git add index.html
+            if [ -f v1/index.html ]; then git add v1/index.html; fi
+          }
+          stage
+          if git diff --cached --quiet; then
+            echo "no changes"
+          else
+            ED=$(node -p 'require("./edition.json").edition')
+            git commit -m "에디션 반영: ${ED} (auto)"
+            if ! git push; then
+              git fetch origin main
+              git reset --hard FETCH_HEAD
+              node switch-edition.js
+              stage
+              if git diff --cached --quiet; then
+                echo "retry: no changes (원격 최신이 이미 선택 에디션 반영)"
+              else
+                ED=$(node -p 'require("./edition.json").edition')
+                git commit -m "에디션 반영: ${ED} (auto, retry)"
+                git push
+              fi
+            fi
+          fi
