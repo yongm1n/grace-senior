@@ -63,7 +63,7 @@ const errors = [];
 
 // 상대참조 전수 추출: " ' ( = 바로 뒤의 assets/media/v1/v2/v3 경로만 (절대 URL 의
 // https://…/assets/… 는 앞 글자가 '/' 라 매치되지 않음 — 치환/검증 대상 아님)
-const refRe = /(["'(=])((?:\.\.\/)*(?:assets|media|v1|v2|v3)\/[A-Za-z0-9._/-]+)/g;
+const refRe = /(["'(=])((?:\.\.\/)*(?:assets|media|v1|v2|v3)\/[\p{L}\p{N}._/-]+)/gu;
 const refs = new Set();
 let m;
 while ((m = refRe.exec(out)) !== null) refs.add(m[2]);

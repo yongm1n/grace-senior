@@ -13,7 +13,7 @@
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preload" as="image" fetchpriority="high" href="v3/media/hero-poster.jpg">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"LocalBusiness","name":"더 그레이스 시니어 주간보호센터","alternateName":"THE GRACE Senior Day Care","url":"https://gracedaycare.co.kr/","telephone":"+82-51-791-1797","image":"https://gracedaycare.co.kr/assets/og.jpg","address":{"@type":"PostalAddress","addressCountry":"KR","addressRegion":"부산광역시","addressLocality":"해운대구","streetAddress":"좌동순환로 78 5층"},"openingHoursSpecification":{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"08:00","closes":"18:00"},"sameAs":["https://www.instagram.com/thegrace_daycare/","https://blog.naver.com/the_grace_daycare"]}</script></head><body>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"LocalBusiness","name":"더 그레이스 시니어 주간보호센터","alternateName":"THE GRACE Senior Day Care","url":"https://gracedaycare.co.kr/","telephone":"+82-51-791-1797","image":"https://gracedaycare.co.kr/assets/og.jpg","address":{"@type":"PostalAddress","addressCountry":"KR","addressRegion":"부산광역시","addressLocality":"해운대구","streetAddress":"좌동순환로 78 건우빌딩 5층"},"openingHoursSpecification":{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"opens":"08:30","closes":"17:30"},"sameAs":["https://www.instagram.com/thegrace_daycare/","https://blog.naver.com/the_grace_daycare"]}</script></head><body>
 <style>
   :root{
     --ink:#0A2032; --ink-2:#0E2B42; --ink-3:#163C57;
@@ -28,7 +28,7 @@
     --gutter:clamp(20px,5vw,84px);
   }
   *{margin:0;padding:0;box-sizing:border-box}
-  html{scroll-behavior:smooth}
+  html{scroll-behavior:smooth;overflow-x:hidden}
   body{
     background:var(--ink); color:var(--paper);
     font-family:var(--body); -webkit-font-smoothing:antialiased;
@@ -58,9 +58,9 @@
   }
 
   /* ---------- top progress + nav ---------- */
-  .prog{position:fixed;top:0;left:0;height:2px;width:0;z-index:40;background:linear-gradient(90deg,var(--amber-deep),var(--glow));box-shadow:0 0 12px rgba(255,138,61,.6)}
+  .prog{position:fixed;top:0;left:0;height:2px;width:0;z-index:50;background:linear-gradient(90deg,var(--amber-deep),var(--glow));box-shadow:0 0 12px rgba(255,138,61,.6)}
   .nav{
-    position:fixed;top:0;left:0;right:0;z-index:30;
+    position:fixed;top:0;left:0;right:0;z-index:40;
     display:flex;align-items:center;justify-content:space-between;
     padding:18px var(--gutter);
     background:linear-gradient(180deg,rgba(8,18,28,.46),rgba(8,18,28,0));
@@ -111,7 +111,7 @@
   .rail button.on{color:var(--paper)}
   .rail button.on .dot{border-color:var(--amber);background:var(--amber);box-shadow:0 0 12px rgba(255,138,61,.8);transform:scale(1.15)}
   .rail button.on .lbl{opacity:1;transform:none;color:var(--glow)}
-  @media(max-width:760px){.rail .lbl{display:none}}
+  @media(max-width:760px){.rail{display:none}}
 
   /* ---------- scroll content ---------- */
   .scroll{position:relative;z-index:4}
@@ -191,18 +191,59 @@
   .closing .seal{width:clamp(150px,18vw,196px);height:auto;display:block;margin:0 auto 26px;background:#FCFBF7;border-radius:18px;padding:18px 22px;box-shadow:0 16px 40px -10px rgba(0,0,0,.5)}
   .closing .content{position:relative}
   .closing .content::before{content:"";position:absolute;inset:-54px -12% -40px;z-index:-1;pointer-events:none;border-radius:50%;background:radial-gradient(68% 82% at 50% 46%, rgba(22,14,7,.64) 0%, rgba(22,14,7,.40) 50%, rgba(22,14,7,0) 78%)}
-  .fleet{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;width:100%;max-width:1180px;margin-top:64px;perspective:1000px}
-  .fleet a{position:relative;aspect-ratio:4/3;border-radius:12px;overflow:hidden;text-decoration:none;
-    border:1px solid var(--glass-line);transform-style:preserve-3d;transition:transform .3s cubic-bezier(.2,.7,.2,1),box-shadow .3s;
-    box-shadow:0 18px 44px -26px rgba(0,0,0,.8)}
-  .fleet a:hover{box-shadow:0 30px 60px -24px rgba(0,0,0,.9)}
-  .fleet .ph{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform .8s cubic-bezier(.2,.7,.2,1);filter:saturate(.97)}
-  .fleet a:hover .ph{transform:scale(1.10)}
-  .fleet .tag{position:absolute;inset:auto 8px 8px 8px;padding:18px 14px 12px;border-radius:9px;
-    background:rgba(8,16,26,.52);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
-    border:1px solid rgba(255,255,255,.08);
-    font-family:var(--mono);font-weight:700;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--paper);text-shadow:0 1px 8px rgba(4,12,22,.55);text-align:left;transform:translateZ(40px)}
-  @media(max-width:760px){.fleet{grid-template-columns:repeat(2,1fr)}}
+  /* ---------- 실제 시설 사진 ---------- */
+  .facility-proof{position:relative;z-index:31;overflow:hidden;scroll-margin-top:82px;background:var(--paper);color:var(--ink);padding:clamp(88px,11vw,148px) var(--gutter)}
+  .facility-wrap{width:min(1240px,100%);margin:0 auto}
+  .facility-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,.72fr);gap:clamp(28px,6vw,92px);align-items:end;margin-bottom:clamp(34px,5vw,58px)}
+  .facility-kicker{display:flex;align-items:center;gap:13px;margin-bottom:18px;font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--amber-deep)}
+  .facility-kicker::before{content:"";width:46px;height:1px;background:currentColor}
+  .facility-head h2{font-family:var(--display);font-size:clamp(38px,5.4vw,72px);font-weight:800;line-height:1.05;letter-spacing:-.035em;text-wrap:balance}
+  .facility-head p{font-size:clamp(16px,1.5vw,18px);line-height:1.75;color:#3F5667}
+  .facility-mosaic{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));grid-template-rows:repeat(3,clamp(184px,17vw,230px));gap:14px}
+  .facility-card{position:relative;display:block;width:100%;height:100%;padding:0;border:0;border-radius:16px;overflow:hidden;cursor:zoom-in;background:#D8D3C7;box-shadow:0 18px 42px -28px rgba(8,31,48,.45);isolation:isolate;text-align:left;transition:transform .1s ease}
+  .facility-card img{width:100%;height:100%;display:block;object-fit:cover;transition:transform .65s cubic-bezier(.2,.7,.2,1)}
+  .facility-card::after{content:"";position:absolute;inset:42% 0 0;background:linear-gradient(transparent,rgba(6,21,32,.73));pointer-events:none}
+  .facility-card:hover img{transform:scale(1.035)}
+  .facility-card:active{transform:scale(.988)}
+  .facility-card span{position:absolute;z-index:2;left:18px;bottom:16px;font-family:var(--display);font-size:clamp(16px,1.5vw,20px);font-weight:800;letter-spacing:-.015em;color:#FFFDF7;text-shadow:0 2px 12px rgba(0,0,0,.55)}
+  .facility-card:nth-child(1){grid-column:1/7;grid-row:1/3}
+  .facility-card:nth-child(2){grid-column:7/10;grid-row:1}
+  .facility-card:nth-child(3){grid-column:10/13;grid-row:1}
+  .facility-card:nth-child(4){grid-column:7/10;grid-row:2}
+  .facility-card:nth-child(5){grid-column:10/13;grid-row:2}
+  .facility-card:nth-child(6){grid-column:1/5;grid-row:3}
+  .facility-card:nth-child(7){grid-column:5/9;grid-row:3}
+  .facility-card:nth-child(8){grid-column:9/13;grid-row:3}
+  .facility-actions{display:flex;justify-content:center;margin-top:clamp(30px,4vw,48px)}
+  .facility-more{display:inline-flex;align-items:center;justify-content:center;gap:13px;min-height:52px;padding:0 25px;border:1px solid rgba(10,32,50,.22);border-radius:999px;color:var(--ink);font-family:var(--mono);font-size:13px;font-weight:700;letter-spacing:.07em;text-decoration:none;transition:background .25s,border-color .25s,color .25s,transform .25s}
+  .facility-more svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.8}
+  .facility-more:hover{background:var(--ink);border-color:var(--ink);color:var(--paper);transform:translateY(-2px)}
+  html.lightbox-open,html.lightbox-open body{overflow:hidden}
+  html.lightbox-open body{padding-right:var(--lightbox-scrollbar-gap,0px)}
+  .photo-dialog{position:fixed;inset:0;width:min(92vw,1240px);max-width:none;max-height:min(88vh,calc(100dvh - env(safe-area-inset-top) - env(safe-area-inset-bottom) - 20px));margin:auto;padding:0;border:0;border-radius:18px;overflow:visible;background:#071B2B;color:var(--paper);box-shadow:0 34px 100px rgba(0,0,0,.58)}
+  .photo-dialog::backdrop{background:rgba(2,10,17,.84);-webkit-backdrop-filter:blur(9px) saturate(112%);backdrop-filter:blur(9px) saturate(112%);animation:photo-dim-in .32s cubic-bezier(.22,1,.36,1) both}
+  .photo-dialog.is-closing::backdrop{animation:photo-dim-out .3s cubic-bezier(.22,1,.36,1) both}
+  .photo-dialog.is-preparing,.photo-dialog.is-closing{background:transparent;box-shadow:none}
+  .photo-dialog figure{display:flex;flex-direction:column;align-items:stretch;margin:0;padding-top:14px}
+  .photo-dialog figure>img{display:block;width:auto;height:auto;max-width:100%;max-height:calc(88vh - 76px);margin:auto;object-fit:contain;background:#06131F;border-radius:0}
+  .photo-dialog figcaption{padding:16px 70px 18px 20px;font-family:var(--display);font-size:17px;font-weight:700}
+  .photo-close{position:absolute;right:10px;bottom:9px;display:grid;place-items:center;width:46px;height:46px;border:1px solid rgba(255,255,255,.18);border-radius:50%;background:rgba(255,255,255,.08);color:white;font-size:25px;line-height:1;cursor:pointer;transition:background .2s ease}
+  .photo-close:hover{background:rgba(255,255,255,.16)}
+  .photo-dialog.is-preparing figure,.photo-dialog.is-preparing .photo-close,.photo-dialog.is-closing figure,.photo-dialog.is-closing .photo-close{opacity:0}
+  .photo-flight{position:fixed;z-index:3;display:block;max-width:none!important;max-height:none!important;margin:0!important;object-fit:cover;pointer-events:none;will-change:transform,opacity;border-radius:0;box-shadow:0 24px 72px rgba(0,0,0,.42)}
+  @keyframes photo-dim-in{from{background:rgba(2,10,17,0);-webkit-backdrop-filter:blur(0);backdrop-filter:blur(0)}to{background:rgba(2,10,17,.84);-webkit-backdrop-filter:blur(9px) saturate(112%);backdrop-filter:blur(9px) saturate(112%)}}
+  @keyframes photo-dim-out{from{background:rgba(2,10,17,.84);-webkit-backdrop-filter:blur(9px) saturate(112%);backdrop-filter:blur(9px) saturate(112%)}to{background:rgba(2,10,17,0);-webkit-backdrop-filter:blur(0);backdrop-filter:blur(0)}}
+  @media(max-width:760px){
+    .facility-proof{padding-inline:var(--gutter)}
+    .facility-head{grid-template-columns:1fr;gap:18px}
+    .facility-head p{max-width:33em}
+    .facility-mosaic{display:flex;gap:12px;grid-template:none;height:auto;max-width:100%;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;scroll-padding-left:0;padding:3px 0 15px;overscroll-behavior-inline:contain;scrollbar-width:none}
+    .facility-mosaic::-webkit-scrollbar{display:none}
+    .facility-card,.facility-card:nth-child(n){flex:0 0 82vw;height:auto;aspect-ratio:4/3;grid-area:auto;scroll-snap-align:start;border-radius:14px}
+    .facility-card span{left:16px;bottom:14px;font-size:18px}
+    .photo-dialog{width:calc(100vw - 20px);max-height:calc(100dvh - env(safe-area-inset-top) - env(safe-area-inset-bottom) - 20px)}
+    .photo-dialog figure>img{max-height:calc(100dvh - env(safe-area-inset-top) - env(safe-area-inset-bottom) - 96px)}
+  }
 
   /* ---------- 이용 안내 · FAQ (closing 내부 인페이지 블록) ---------- */
   .faq{width:100%;max-width:1180px;margin:clamp(72px,10vh,104px) auto 0}
@@ -324,6 +365,13 @@
     .split .ch{transition-duration:.4s}
     .scrolltip .line::after,.brand .mark{animation:none}
     .vlayer{transition:opacity .5s ease}
+    .facility-card img,.facility-more{transition:none}
+    .facility-card:active{transform:none}
+    .photo-dialog::backdrop{animation-duration:.18s}
+    .photo-dialog figure,.photo-close{transition:opacity .18s ease}
+  }
+  @media(prefers-reduced-transparency:reduce){
+    .photo-dialog::backdrop{background:rgba(2,10,17,.95);-webkit-backdrop-filter:none;backdrop-filter:none}
   }
 </style>
 
@@ -350,6 +398,7 @@
     <a href="#intro">센터소개</a>
     <a href="#program">프로그램</a>
     <a href="#health">건강·안전</a>
+    <a href="#facilities">시설</a>
     <a class="cta cta-desk" href="#closing">상담 문의</a>
     <a class="cta cta-mob" href="tel:051-791-1797" aria-label="전화 상담 051-791-1797"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.6 15.6 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24 11.4 11.4 0 0 0 3.6.58 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.46.58 3.6a1 1 0 0 1-.25 1z"/></svg>전화 상담</a>
   </div>
@@ -362,7 +411,7 @@
   <section class="scene hero in" id="hero" data-key="hero" data-label="더 그레이스">
     <div class="content">
       <h1 class="ko-title split">존중과 안전 속에서<br>행복한 하루를</h1>
-      <p class="lead reveal">어르신을 단순히 모시는 곳이 아닌, 의료 경험으로 곁을 지키는 곳. <br>부산 해운대, 더 그레이스 시니어 주간보호센터.</p>
+      <p class="lead reveal">어르신은 편안하게, 보호자는 안심할 수 있도록. <br>의료 경험으로 곁을 지키는 부산 해운대 주간보호센터입니다.</p>
     </div>
     <div class="scrolltip reveal"><span class="line"></span><span>Scroll</span></div>
   </section>
@@ -387,8 +436,8 @@
       <div class="eyebrow reveal"><span class="idx">02</span><span class="bar"></span><span class="cls">Daily Programs</span></div>
       <h2 class="ko-title split">하루를 채우는<br>프로그램</h2>
       <div class="en-title reveal">A Day Worth Living</div>
-      <p class="lead reveal">즐거움이 곧, 가장 좋은 재활입니다.</p>
-      <p class="body reveal">인지 강화 활동부터 미술·음악·원예, 가벼운 신체 활동까지. 지금 하실 수 있는 것을 더 오래, 더 즐겁게 이어가는 프로그램을 매일 정성껏 운영합니다.</p>
+      <p class="lead reveal">즐거운 활동이, 하루에 활력을 더합니다.</p>
+      <p class="body reveal">인지 강화 활동부터 미술·음악·원예와 가벼운 체조까지, 인지·신체 프로그램을 매일 정성껏 운영합니다. 지금 하실 수 있는 것을 더 오래, 더 즐겁게 이어가도록 돕습니다.</p>
       <div class="stats reveal tilt"><div class="glow-edge"></div>
         <div class="stat"><div class="kv">인지 강화 활동</div><div class="cap">기억·집중 유지</div></div>
         <div class="stat"><div class="kv">예술·음악·원예</div><div class="cap">정서적 활력</div></div>
@@ -403,11 +452,11 @@
       <h2 class="ko-title split">건강과 안전을<br>가장 먼저</h2>
       <div class="en-title reveal">Cared For, Safely</div>
       <p class="lead reveal">안심이 곧, 가족을 위한 배려입니다.</p>
-      <p class="body reveal">간호 전문 인력이 매일의 건강 상태와 복약을 살피고, 응급 상황에는 의료 경험을 바탕으로 신속하게 대응합니다. 전문 재활·물리치료와 댁 앞까지 안전한 차량 운행으로 어르신과 가족 모두가 마음 놓으실 수 있습니다.</p>
+      <p class="body reveal">간호 전문 인력이 매일의 건강 상태와 약 복용 관리를 살피고, 응급 상황에는 의료 경험을 바탕으로 신속하게 대응합니다. 안전한 송영 서비스까지 세심하게 운영해 어르신과 가족 모두가 마음 놓으실 수 있도록 돕습니다.</p>
       <div class="stats reveal tilt"><div class="glow-edge"></div>
-        <div class="stat"><div class="kv">간호·건강관리</div><div class="cap">복약·상태 점검</div></div>
-        <div class="stat"><div class="kv">재활·물리치료</div><div class="cap">전문 프로그램</div></div>
-        <div class="stat"><div class="kv">안전 차량 운행</div><div class="cap">댁 앞까지</div></div>
+        <div class="stat"><div class="kv">간호·건강관리</div><div class="cap">약 복용·상태 점검</div></div>
+        <div class="stat"><div class="kv">안전 대응</div><div class="cap">의료 경험 기반</div></div>
+        <div class="stat"><div class="kv">송영 서비스</div><div class="cap">안전한 차량 운행</div></div>
       </div>
     </div>
   </section>
@@ -418,12 +467,35 @@
       <h2 class="ko-title split">정성 담은<br>식사와 공간</h2>
       <div class="en-title reveal">Warmth You Can Taste</div>
       <p class="lead reveal">한 끼가 곧, 하루의 건강입니다.</p>
-      <p class="body reveal">영양 균형을 맞춘 식단과 어르신 맞춤 식사를 매일 따뜻하게 준비합니다. 햇살 드는 청결한 공간에서, 집처럼 편안한 하루를 보내실 수 있습니다.</p>
+      <p class="body reveal">영양 균형을 맞춘 식단과 어르신 맞춤 식사 관리로 매일 따뜻한 한 끼를 준비합니다. 햇살 드는 청결한 공간에서 집처럼 편안한 하루를 보내실 수 있습니다.</p>
       <div class="stats reveal tilt"><div class="glow-edge"></div>
         <div class="stat"><div class="kv">영양 균형 식단</div><div class="cap">어르신 맞춤 조리</div></div>
         <div class="stat"><div class="kv">위생·청결 관리</div><div class="cap">안심 환경</div></div>
         <div class="stat"><div class="kv">햇살 드는 시설</div><div class="cap">쾌적한 공간</div></div>
       </div>
+    </div>
+  </section>
+
+  <section class="facility-proof" id="facilities" aria-labelledby="facility-title">
+    <div class="facility-wrap">
+      <header class="facility-head">
+        <div>
+          <div class="facility-kicker">Our Space</div>
+          <h2 id="facility-title">머무는 시간이<br>편안한 공간</h2>
+        </div>
+        <p>더 그레이스 센터에서 직접 촬영한 실제 공간입니다. 생활과 휴식, 위생을 위한 공간을 차분하고 안전하게 마련했습니다.</p>
+      </header>
+      <div class="facility-mosaic" aria-label="센터 시설 사진">
+        <button class="facility-card" type="button" data-lightbox data-full="assets/facilities/공용생활실_04-1440.webp" data-caption="공용생활실" aria-label="공용생활실 사진 크게 보기"><img src="assets/facilities/공용생활실_04-900.webp" srcset="assets/facilities/공용생활실_04-900.webp 900w, assets/facilities/공용생활실_04-1440.webp 1440w" sizes="(max-width:760px) 82vw, 50vw" width="1448" height="1086" loading="eager" fetchpriority="high" decoding="async" alt="테이블과 의자가 놓인 공용생활실"><span>공용생활실</span></button>
+        <button class="facility-card" type="button" data-lightbox data-full="assets/facilities/1번생활실_01-1440.webp" data-caption="1번생활실" aria-label="1번생활실 사진 크게 보기"><img src="assets/facilities/1번생활실_01-900.webp" srcset="assets/facilities/1번생활실_01-900.webp 900w, assets/facilities/1번생활실_01-1440.webp 1440w" sizes="(max-width:760px) 82vw, 25vw" width="1448" height="1086" loading="lazy" decoding="async" alt="창가와 좌석이 보이는 1번생활실"><span>1번생활실</span></button>
+        <button class="facility-card" type="button" data-lightbox data-full="assets/facilities/2번생활실_04-1440.webp" data-caption="2번생활실" aria-label="2번생활실 사진 크게 보기"><img src="assets/facilities/2번생활실_04-900.webp" srcset="assets/facilities/2번생활실_04-900.webp 900w, assets/facilities/2번생활실_04-1440.webp 1440w" sizes="(max-width:760px) 82vw, 25vw" width="1448" height="1086" loading="lazy" decoding="async" alt="테이블과 의자가 정돈된 2번생활실"><span>2번생활실</span></button>
+        <button class="facility-card" type="button" data-lightbox data-full="assets/facilities/여성수면실_01-1440.webp" data-caption="여성수면실" aria-label="여성수면실 사진 크게 보기"><img src="assets/facilities/여성수면실_01-900.webp" srcset="assets/facilities/여성수면실_01-900.webp 900w, assets/facilities/여성수면실_01-1440.webp 1440w" sizes="(max-width:760px) 82vw, 25vw" width="1448" height="1086" loading="lazy" decoding="async" alt="침상이 마련된 여성수면실"><span>여성수면실</span></button>
+        <button class="facility-card" type="button" data-lightbox data-full="assets/facilities/남성수면실_03-1440.webp" data-caption="남성수면실" aria-label="남성수면실 사진 크게 보기"><img src="assets/facilities/남성수면실_03-900.webp" srcset="assets/facilities/남성수면실_03-900.webp 900w, assets/facilities/남성수면실_03-1440.webp 1440w" sizes="(max-width:760px) 82vw, 25vw" width="1448" height="1086" loading="lazy" decoding="async" alt="침상이 마련된 남성수면실"><span>남성수면실</span></button>
+        <button class="facility-card" type="button" data-lightbox data-full="assets/facilities/샤워실화장실_03-1440.webp" data-caption="안전 화장실" aria-label="안전 화장실 사진 크게 보기"><img src="assets/facilities/샤워실화장실_03-900.webp" srcset="assets/facilities/샤워실화장실_03-900.webp 900w, assets/facilities/샤워실화장실_03-1440.webp 1440w" sizes="(max-width:760px) 82vw, 33vw" width="1448" height="1086" loading="lazy" decoding="async" alt="안전 손잡이가 설치된 화장실"><span>안전 화장실</span></button>
+        <button class="facility-card" type="button" data-lightbox data-full="assets/facilities/기타_05-1440.webp" data-caption="공용 세면 공간" aria-label="공용 세면 공간 사진 크게 보기"><img src="assets/facilities/기타_05-900.webp" srcset="assets/facilities/기타_05-900.webp 900w, assets/facilities/기타_05-1440.webp 1440w" sizes="(max-width:760px) 82vw, 33vw" width="1448" height="1086" loading="lazy" decoding="async" alt="여러 대의 세면대가 마련된 공용 세면 공간"><span>공용 세면 공간</span></button>
+        <button class="facility-card" type="button" data-lightbox data-full="assets/facilities/기타_14-1440.webp" data-caption="기타 공간" aria-label="기타 공간 사진 크게 보기"><img src="assets/facilities/기타_14-900.webp" srcset="assets/facilities/기타_14-900.webp 900w, assets/facilities/기타_14-1440.webp 1440w" sizes="(max-width:760px) 82vw, 33vw" width="1448" height="1086" loading="lazy" decoding="async" alt="센터 내부의 기타 공간"><span>기타 공간</span></button>
+      </div>
+      <div class="facility-actions"><a class="facility-more" href="/facilities.html">시설 전체 보기<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
     </div>
   </section>
 
@@ -440,27 +512,20 @@
       </a>
     </div>
 
-    <div class="fleet reveal">
-      <a href="#intro" class="tilt3"><div class="ph" style="background-image:url(v3/media/intro-poster.jpg)"></div><div class="tag">센터 소개</div></a>
-      <a href="#program" class="tilt3"><div class="ph" style="background-image:url(v3/media/program-poster.jpg)"></div><div class="tag">프로그램</div></a>
-      <a href="#health" class="tilt3"><div class="ph" style="background-image:url(v3/media/health-poster.jpg)"></div><div class="tag">건강·안전</div></a>
-      <a href="#meal" class="tilt3"><div class="ph" style="background-image:url(v3/media/meal-poster.jpg)"></div><div class="tag">식사·환경</div></a>
-    </div>
-
     <section class="faq" aria-label="이용 안내 및 자주 묻는 질문">
       <div class="faq-head reveal"><span class="bar"></span><span class="cap">이용 안내 · 자주 묻는 질문</span><span class="bar"></span></div>
       <div class="faqgrid">
         <div class="faqcard reveal">
-          <h3>누가 이용할 수 있나요?</h3>
-          <p>장기요양 1~5등급은 물론 인지지원등급 어르신까지 이용하실 수 있습니다. 아직 등급이 없으시다면 신청 절차부터 함께 도와드립니다.</p>
+          <h3>등급이 없어도 상담할 수 있나요?</h3>
+          <p>언제든 상담하실 수 있습니다. 등급 신청 절차를 안내해 드리며, 등급 없이 일반 이용도 가능합니다. 비용은 장기요양급여 대상 여부에 따라 달라집니다.</p>
         </div>
         <div class="faqcard reveal">
-          <h3>비용은 얼마나 드나요?</h3>
-          <p>장기요양보험 적용 시 본인부담은 15% 수준입니다(감경 대상 6~9%, 기초생활수급자 면제 · 식사재료비 등 실비 별도). 정확한 금액은 전화 주시면 바로 계산해 드립니다.</p>
+          <h3>식사비 등 추가 비용이 있나요?</h3>
+          <p>본인부담금 외 식사는 1식 5,000원, 간식은 1,000원입니다. 송영은 장기요양 급여 범위 내에서 제공되며 이용 유형에 따라 비용 차이가 있을 수 있습니다.</p>
         </div>
         <div class="faqcard reveal">
-          <h3>어떻게 시작하나요?</h3>
-          <p>전화 상담 → 방문·견학 → 맞춤 케어 설계 → 적응 이용 시작의 4단계입니다. 견학만 오셔도 좋습니다 — 편하게 둘러보시고 결정하세요.</p>
+          <h3>시설을 미리 둘러볼 수 있나요?</h3>
+          <p>사전 예약 후 시설 방문과 상담이 가능합니다. 센터를 직접 둘러보실 수 있으며, 단기 체험 이용도 상담을 통해 안내해 드립니다.</p>
         </div>
       </div>
       <div class="faqmore reveal">
@@ -474,14 +539,14 @@
         <p style="color:var(--paper-dim);font-family:var(--mono);font-size:11px;letter-spacing:.16em">THE GRACE SENIOR DAY CARE</p>
       </div>
       <div class="col"><h3>오시는 길</h3>
-        <p>부산광역시 해운대구 좌동순환로 78 5층</p>
+        <p>부산광역시 해운대구 좌동순환로 78 건우빌딩 5층</p>
         <!-- TODO: 스마트플레이스/카카오맵 등록 후 플레이스 상세 링크로 교체 -->
         <div class="maplinks">
           <a class="maplink" href="https://map.naver.com/p/entry/place/2028121432" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-6.3 7-11a7 7 0 1 0-14 0c0 4.7 7 11 7 11z"/><circle cx="12" cy="10" r="2.6"/></svg>네이버지도</a>
-          <a class="maplink" href="https://map.kakao.com/link/search/%EB%B6%80%EC%82%B0%EA%B4%91%EC%97%AD%EC%8B%9C%20%ED%95%B4%EC%9A%B4%EB%8C%80%EA%B5%AC%20%EC%A2%8C%EB%8F%99%EC%88%9C%ED%99%98%EB%A1%9C%2078" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-6.3 7-11a7 7 0 1 0-14 0c0 4.7 7 11 7 11z"/><circle cx="12" cy="10" r="2.6"/></svg>카카오맵</a>
+          <a class="maplink" href="https://map.kakao.com/link/search/%EB%B6%80%EC%82%B0%EA%B4%91%EC%97%AD%EC%8B%9C%20%ED%95%B4%EC%9A%B4%EB%8C%80%EA%B5%AC%20%EC%A2%8C%EB%8F%99%EC%88%9C%ED%99%98%EB%A1%9C%2078%20%EA%B1%B4%EC%9A%B0%EB%B9%8C%EB%94%A9%205%EC%B8%B5" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-6.3 7-11a7 7 0 1 0-14 0c0 4.7 7 11 7 11z"/><circle cx="12" cy="10" r="2.6"/></svg>카카오맵</a>
         </div>
       </div>
-      <div class="col"><h3>운영 안내</h3><p>평일 08:00 – 18:00<br>장기요양보험 적용 · 등급 상담</p></div>
+      <div class="col"><h3>운영 안내</h3><p>월–토 08:30–17:30<br>장기요양보험 적용 · 등급 상담</p></div>
       <div class="col sns"><h3>상담 문의</h3>
         <a class="footcall" href="tel:051-791-1797" aria-label="전화 상담 051-791-1797"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.6 15.6 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24 11.4 11.4 0 0 0 3.6.58 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.46.58 3.6a1 1 0 0 1-.25 1z"/></svg>051-791-1797</a>
         <p style="margin-top:14px"><a href="https://www.instagram.com/thegrace_daycare/" target="_blank" rel="noopener">instagram @thegrace_daycare</a><br><a href="https://blog.naver.com/the_grace_daycare" target="_blank" rel="noopener">네이버 블로그</a></p>
@@ -491,6 +556,14 @@
   </section>
 
 </main>
+
+<dialog class="photo-dialog" id="photo-dialog" aria-modal="true" aria-labelledby="photo-caption">
+  <figure>
+    <img id="photo-dialog-image" src="" alt="">
+    <figcaption id="photo-caption"></figcaption>
+  </figure>
+  <button class="photo-close" type="button" aria-label="사진 닫기">×</button>
+</dialog>
 
 <!-- mobile persistent call bar (≤760px only) — tel + naver 길찾기 -->
 <div class="mobilecall" role="group" aria-label="빠른 연락">
@@ -506,6 +579,144 @@ document.documentElement.classList.add('js');
   var rail = document.getElementById('rail');
   var prog = document.getElementById('prog');
   var nav = document.querySelector('.nav');
+
+  /* ---------- accessible facility lightbox ---------- */
+  var photoDialog=document.getElementById('photo-dialog');
+  var photoDialogImage=document.getElementById('photo-dialog-image');
+  var photoCaption=document.getElementById('photo-caption');
+  var photoClose=photoDialog.querySelector('.photo-close');
+  var photoTrigger=null;
+  var photoSourceImage=null;
+  var photoFlight=null;
+  var photoFlightAnimation=null;
+  var photoState='closed';
+  var photoGeneration=0;
+  var photoDuration=340;
+  var photoEase='cubic-bezier(.22,1,.36,1)';
+
+  function lockPhotoScroll(){
+    var gap=Math.max(0,window.innerWidth-document.documentElement.clientWidth);
+    document.documentElement.style.setProperty('--lightbox-scrollbar-gap',gap+'px');
+    document.documentElement.classList.add('lightbox-open');
+  }
+  function unlockPhotoScroll(){
+    document.documentElement.classList.remove('lightbox-open');
+    document.documentElement.style.removeProperty('--lightbox-scrollbar-gap');
+  }
+  function sourceIsVisible(rect){ return rect.width>0&&rect.height>0&&rect.right>0&&rect.bottom>0&&rect.left<innerWidth&&rect.top<innerHeight; }
+  function sourceTransform(sourceRect,targetRect){
+    return 'translate3d('+(sourceRect.left-targetRect.left)+'px,'+(sourceRect.top-targetRect.top)+'px,0) scale('+(sourceRect.width/targetRect.width)+','+(sourceRect.height/targetRect.height)+')';
+  }
+  function removePhotoFlight(){
+    if(photoFlightAnimation){ photoFlightAnimation.cancel(); photoFlightAnimation=null; }
+    if(photoFlight){ photoFlight.remove(); photoFlight=null; }
+  }
+  function buildPhotoFlight(sourceRect,targetRect,src){
+    removePhotoFlight();
+    photoFlight=document.createElement('img');
+    photoFlight.className='photo-flight'; photoFlight.alt=''; photoFlight.src=src;
+    photoFlight.style.left=targetRect.left+'px'; photoFlight.style.top=targetRect.top+'px';
+    photoFlight.style.width=targetRect.width+'px'; photoFlight.style.height=targetRect.height+'px';
+    photoFlight.style.transformOrigin='0 0';
+    photoDialog.appendChild(photoFlight);
+    return sourceTransform(sourceRect,targetRect);
+  }
+  function finishPhotoClose(generation){
+    if(generation!==photoGeneration) return;
+    removePhotoFlight();
+    if(photoDialog.open) photoDialog.close();
+  }
+  function finalizePhotoClose(){
+    removePhotoFlight();
+    photoDialog.classList.remove('is-preparing','is-ready','is-closing');
+    photoDialogImage.removeAttribute('src');
+    unlockPhotoScroll();
+    photoState='closed';
+    var restore=photoTrigger; photoTrigger=null; photoSourceImage=null;
+    var generation=++photoGeneration;
+    if(restore){
+      requestAnimationFrame(function(){
+        if(generation===photoGeneration&&restore.isConnected) restore.focus({preventScroll:true});
+      });
+    }
+  }
+  function revealPhotoWhenReady(generation){
+    var ready=photoDialogImage.decode?photoDialogImage.decode().catch(function(){}):Promise.resolve();
+    ready.then(function(){
+      if(generation!==photoGeneration||photoState!=='opening') return;
+      photoDialog.classList.remove('is-preparing'); photoDialog.classList.add('is-ready');
+      requestAnimationFrame(function(){
+        if(generation!==photoGeneration||photoState!=='opening') return;
+        removePhotoFlight(); photoState='open'; photoClose.focus();
+      });
+    });
+  }
+  function openPhoto(trigger){
+    if(photoState!=='closed') return;
+    var generation=++photoGeneration;
+    photoState='opening'; photoTrigger=trigger; photoSourceImage=trigger.querySelector('img');
+    photoDialogImage.src=trigger.dataset.full; photoDialogImage.alt=photoSourceImage.alt;
+    photoDialogImage.width=photoSourceImage.naturalWidth||1448; photoDialogImage.height=photoSourceImage.naturalHeight||1086;
+    photoCaption.textContent=trigger.dataset.caption;
+    photoDialog.classList.add('is-preparing'); lockPhotoScroll(); photoDialog.showModal();
+    if(reduce){
+      requestAnimationFrame(function(){
+        if(generation!==photoGeneration||photoState!=='opening') return;
+        photoDialog.classList.remove('is-preparing'); photoDialog.classList.add('is-ready'); photoState='open'; photoClose.focus();
+      });
+      return;
+    }
+    var sourceRect=photoSourceImage.getBoundingClientRect();
+    var targetRect=photoDialogImage.getBoundingClientRect();
+    var start=buildPhotoFlight(sourceRect,targetRect,photoSourceImage.currentSrc||photoSourceImage.src);
+    photoFlightAnimation=photoFlight.animate([
+      {transform:start,borderRadius:getComputedStyle(photoSourceImage).borderRadius,opacity:1},
+      {transform:'translate3d(0,0,0) scale(1,1)',borderRadius:'0px',opacity:1}
+    ],{duration:photoDuration,easing:photoEase,fill:'both'});
+    photoFlightAnimation.onfinish=function(){
+      if(generation!==photoGeneration) return;
+      if(photoState==='opening') revealPhotoWhenReady(generation);
+      else if(photoState==='closing') finishPhotoClose(generation);
+    };
+  }
+  function closePhoto(){
+    if(photoState==='closed'||photoState==='closing') return;
+    var generation=photoGeneration;
+    if(reduce){
+      photoState='closing'; photoDialog.classList.add('is-closing');
+      setTimeout(function(){ if(generation===photoGeneration&&photoState==='closing') finishPhotoClose(generation); },180);
+      return;
+    }
+    if(photoState==='opening'&&photoFlightAnimation){
+      photoState='closing'; photoDialog.classList.add('is-closing'); photoFlightAnimation.reverse(); return;
+    }
+    photoState='closing';
+    var sourceRect=photoSourceImage.getBoundingClientRect();
+    if(!sourceIsVisible(sourceRect)){
+      photoDialog.classList.add('is-closing');
+      var fade=photoDialog.animate([{opacity:1},{opacity:0}],{duration:260,easing:photoEase,fill:'forwards'});
+      fade.onfinish=function(){ if(generation!==photoGeneration)return; fade.cancel(); finishPhotoClose(generation); };
+      return;
+    }
+    var targetRect=photoDialogImage.getBoundingClientRect();
+    var end=buildPhotoFlight(sourceRect,targetRect,photoDialogImage.currentSrc||photoDialogImage.src);
+    photoDialog.classList.add('is-closing');
+    photoFlightAnimation=photoFlight.animate([
+      {transform:'translate3d(0,0,0) scale(1,1)',borderRadius:'0px',opacity:1},
+      {transform:end,borderRadius:getComputedStyle(photoSourceImage).borderRadius,opacity:1}
+    ],{duration:300,easing:photoEase,fill:'both'});
+    photoFlightAnimation.onfinish=function(){ finishPhotoClose(generation); };
+  }
+  document.querySelectorAll('[data-lightbox]').forEach(function(trigger){
+    trigger.addEventListener('click',function(){ openPhoto(trigger); });
+  });
+  photoClose.addEventListener('click',closePhoto);
+  photoDialog.addEventListener('cancel',function(e){ e.preventDefault(); closePhoto(); });
+  photoDialog.addEventListener('click',function(e){
+    var r=photoDialog.getBoundingClientRect();
+    if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom) closePhoto();
+  });
+  photoDialog.addEventListener('close',finalizePhotoClose);
 
   /* scene index -> layer index (closing reuses hero) */
   var TEXKEY = ['hero','intro','program','health','meal'];
