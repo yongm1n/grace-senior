@@ -192,7 +192,7 @@
   .closing .content{position:relative}
   .closing .content::before{content:"";position:absolute;inset:-54px -12% -40px;z-index:-1;pointer-events:none;border-radius:50%;background:radial-gradient(68% 82% at 50% 46%, rgba(22,14,7,.64) 0%, rgba(22,14,7,.40) 50%, rgba(22,14,7,0) 78%)}
   /* ---------- 실제 시설 사진 ---------- */
-  .facility-proof{position:relative;z-index:31;overflow:hidden;scroll-margin-top:82px;background:var(--paper);color:var(--ink);padding:clamp(88px,11vw,148px) var(--gutter)}
+  .facility-proof{position:relative;z-index:5;overflow:hidden;scroll-margin-top:82px;background:var(--paper);color:var(--ink);padding:clamp(88px,11vw,148px) var(--gutter)}
   .facility-wrap{width:min(1240px,100%);margin:0 auto}
   .facility-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,.72fr);gap:clamp(28px,6vw,92px);align-items:end;margin-bottom:clamp(34px,5vw,58px)}
   .facility-kicker{display:flex;align-items:center;gap:13px;margin-bottom:18px;font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--amber-deep)}
@@ -456,7 +456,7 @@
       <div class="stats reveal tilt"><div class="glow-edge"></div>
         <div class="stat"><div class="kv">간호·건강관리</div><div class="cap">약 복용·상태 점검</div></div>
         <div class="stat"><div class="kv">안전 대응</div><div class="cap">의료 경험 기반</div></div>
-        <div class="stat"><div class="kv">송영 서비스</div><div class="cap">안전한 차량 운행</div></div>
+        <div class="stat"><div class="kv">송영 서비스</div><div class="cap">댁 앞까지</div></div>
       </div>
     </div>
   </section>
@@ -476,7 +476,7 @@
     </div>
   </section>
 
-  <section class="facility-proof" id="facilities" aria-labelledby="facility-title">
+  <section class="facility-proof" id="facilities" data-label="시설" aria-labelledby="facility-title">
     <div class="facility-wrap">
       <header class="facility-head">
         <div>
@@ -521,7 +521,7 @@
         </div>
         <div class="faqcard reveal">
           <h3>식사비 등 추가 비용이 있나요?</h3>
-          <p>본인부담금 외 식사는 1식 5,000원, 간식은 1,000원입니다. 송영은 장기요양 급여 범위 내에서 제공되며 이용 유형에 따라 비용 차이가 있을 수 있습니다.</p>
+          <p>본인부담금 외 식사는 1식 5,000원, 간식은 1,000원입니다. 송영 서비스는 장기요양 급여 범위 내에서 제공되며 이용 유형에 따라 비용 차이가 있을 수 있습니다.</p>
         </div>
         <div class="faqcard reveal">
           <h3>시설을 미리 둘러볼 수 있나요?</h3>
@@ -576,6 +576,7 @@ document.documentElement.classList.add('js');
 (function(){
   var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   var scenes = Array.prototype.slice.call(document.querySelectorAll('.scene'));
+  var railSections = Array.prototype.slice.call(document.querySelectorAll('.scene, .facility-proof'));
   var rail = document.getElementById('rail');
   var prog = document.getElementById('prog');
   var nav = document.querySelector('.nav');
@@ -724,7 +725,7 @@ document.documentElement.classList.add('js');
 
   /* ---------- rail ---------- */
   var railBtns = {};
-  scenes.forEach(function(s){
+  railSections.forEach(function(s){
     var b=document.createElement('button');
     b.innerHTML='<span class="dot"></span><span class="lbl">'+s.dataset.label+'</span>';
     b.addEventListener('click',function(){ s.scrollIntoView({behavior: reduce?'auto':'smooth'}); });
@@ -764,10 +765,10 @@ document.documentElement.classList.add('js');
   var io=new IntersectionObserver(function(entries){
     entries.forEach(function(e){ ratios[e.target.id]=e.intersectionRatio; });
     var bestId=null,best=0;
-    scenes.forEach(function(s){ var r=ratios[s.id]||0; if(r>best){best=r;bestId=s.id;} });
+    railSections.forEach(function(s){ var r=ratios[s.id]||0; if(r>best){best=r;bestId=s.id;} });
     if(bestId){ var sc=document.getElementById(bestId); setRail(bestId); if(!sc.classList.contains('in')) sc.classList.add('in'); }
   },{threshold:[0,.15,.3,.5,.7,.9]});
-  scenes.forEach(function(s){ io.observe(s); });
+  railSections.forEach(function(s){ io.observe(s); });
   setRail('hero');
 
   /* ---------- progress bar + nav ---------- */

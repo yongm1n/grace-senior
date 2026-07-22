@@ -13,7 +13,7 @@
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preload" as="image" fetchpriority="high" href="../assets/hero.jpg">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"LocalBusiness","name":"더 그레이스 시니어 주간보호센터","alternateName":"THE GRACE Senior Day Care","url":"https://gracedaycare.co.kr/","telephone":"+82-51-791-1797","image":"https://gracedaycare.co.kr/assets/og.jpg","address":{"@type":"PostalAddress","addressCountry":"KR","addressRegion":"부산광역시","addressLocality":"해운대구","streetAddress":"좌동순환로 78 5층"},"openingHoursSpecification":{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"08:00","closes":"18:00"},"sameAs":["https://www.instagram.com/thegrace_daycare/","https://blog.naver.com/the_grace_daycare"]}</script></head><body>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"LocalBusiness","name":"더 그레이스 시니어 주간보호센터","alternateName":"THE GRACE Senior Day Care","url":"https://gracedaycare.co.kr/","telephone":"+82-51-791-1797","image":"https://gracedaycare.co.kr/assets/og.jpg","address":{"@type":"PostalAddress","addressCountry":"KR","addressRegion":"부산광역시","addressLocality":"해운대구","streetAddress":"좌동순환로 78 건우빌딩 5층"},"openingHoursSpecification":{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"opens":"08:30","closes":"17:30"},"sameAs":["https://www.instagram.com/thegrace_daycare/","https://blog.naver.com/the_grace_daycare"]}</script></head><body>
 <style>
   :root{
     --ink:#0A2032; --ink-2:#0E2B42; --ink-3:#163C57;
@@ -28,7 +28,7 @@
     --gutter:clamp(20px,5vw,84px);
   }
   *{margin:0;padding:0;box-sizing:border-box}
-  html{scroll-behavior:smooth}
+  html{scroll-behavior:smooth;overflow-x:hidden}
   body{
     background:var(--ink); color:var(--paper);
     font-family:var(--body); -webkit-font-smoothing:antialiased;
@@ -174,6 +174,47 @@
       background:radial-gradient(150% 100% at 32% 50%, rgba(6,18,30,.9) 0%, rgba(6,18,30,.66) 46%, rgba(6,18,30,0) 86%)}
   }
 
+  /* ---------- actual facility photography: classic contact sheet ---------- */
+  .facility-classic{position:relative;z-index:5;isolation:isolate;overflow:hidden;scroll-margin-top:82px;padding:clamp(92px,11vw,156px) var(--gutter);
+    background:linear-gradient(180deg,color-mix(in srgb,var(--ink-2) 94%,var(--amber-deep)),color-mix(in srgb,var(--ink) 98%,transparent));
+    border-block:1px solid color-mix(in srgb,var(--amber) 42%,transparent)}
+  .facility-classic::before{content:"";position:absolute;z-index:-1;inset:0;pointer-events:none;opacity:.38;
+    background:repeating-linear-gradient(90deg,transparent 0,transparent calc(25% - 1px),var(--line) 25%)}
+  .classic-facility-wrap{width:min(1240px,100%);margin:0 auto}
+  .classic-facility-head{display:grid;grid-template-columns:minmax(116px,.23fr) minmax(0,1fr) minmax(280px,.72fr);gap:clamp(24px,4vw,62px);align-items:center;margin-bottom:clamp(40px,5vw,62px);padding:clamp(22px,3vw,34px) 0;border-block:1px solid color-mix(in srgb,var(--paper) 26%,transparent)}
+  .classic-facility-issue{align-self:stretch;display:flex;flex-direction:column;justify-content:space-between;font-family:var(--mono);font-size:11px;font-weight:400;line-height:1;letter-spacing:.22em;text-transform:uppercase;color:var(--paper-dim);text-shadow:0 1px 10px rgba(4,16,28,.5)}
+  .classic-facility-issue strong{font-family:var(--mono);font-size:12px;font-weight:400;font-style:normal;line-height:1;letter-spacing:.2em;color:var(--amber)}
+  .classic-facility-head h2{font-family:var(--display);font-size:clamp(40px,8.2vw,104px);font-weight:800;line-height:.98;letter-spacing:-.01em;text-wrap:balance;text-shadow:0 4px 40px rgba(0,0,0,.5)}
+  .classic-facility-head p{font-family:var(--body);font-size:clamp(15px,1.35vw,17px);font-weight:400;line-height:1.72;letter-spacing:normal;color:#E7EFF5;max-width:36em;text-shadow:0 1px 14px rgba(4,16,28,.6)}
+  .classic-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-auto-flow:dense;grid-auto-rows:clamp(190px,16vw,230px);gap:clamp(10px,1.2vw,16px)}
+  .classic-card{position:relative;display:block;min-height:44px;overflow:hidden;border:1px solid color-mix(in srgb,var(--paper) 34%,transparent);border-radius:3px;background:var(--paper);color:var(--ink);text-decoration:none;isolation:isolate;box-shadow:0 20px 48px -28px rgba(0,0,0,.88);transition:transform .3s ease}
+  .classic-card::before{content:"";position:absolute;z-index:2;inset:6px;border:1px solid color-mix(in srgb,var(--paper) 48%,transparent);pointer-events:none}
+  .classic-card img{display:block;width:100%;height:100%;object-fit:cover;filter:saturate(.82) contrast(1.04) sepia(.04);transition:transform .75s cubic-bezier(.2,.7,.2,1),filter .4s ease}
+  .classic-card:hover{transform:translateY(-3px)}
+  .classic-card:hover img{transform:scale(1.035);filter:saturate(.95) contrast(1.03)}
+  .classic-card .no{position:absolute;z-index:3;top:13px;left:13px;display:grid;place-items:center;width:31px;height:31px;background:color-mix(in srgb,var(--ink) 84%,transparent);border:1px solid color-mix(in srgb,var(--paper) 38%,transparent);border-radius:50%;font-family:var(--mono);font-size:9px;letter-spacing:.08em;color:var(--glow)}
+  .classic-card .label{position:absolute;z-index:3;right:7px;bottom:7px;max-width:calc(100% - 14px);min-height:42px;display:flex;align-items:center;padding:9px 13px;background:color-mix(in srgb,var(--paper) 94%,transparent);border-left:3px solid var(--amber-deep);font-family:var(--mono);font-size:13px;font-weight:700;line-height:1.3;letter-spacing:.06em;text-transform:uppercase;box-shadow:0 8px 24px rgba(0,0,0,.22)}
+  .classic-card:nth-child(1),.classic-card:nth-child(6),.classic-card:nth-child(7),.classic-card:nth-child(8){grid-column:span 2}
+  .classic-facility-actions{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-top:clamp(30px,4vw,48px);padding-top:20px;border-top:1px solid color-mix(in srgb,var(--paper) 20%,transparent)}
+  .classic-facility-actions::before{content:"THE GRACE · FACILITY ARCHIVE";font-family:var(--mono);font-size:10px;letter-spacing:.17em;color:var(--steel)}
+  .classic-facility-more{display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:50px;padding:0 22px;border:1px solid var(--amber);border-radius:2px;color:var(--ink);font-family:var(--mono);font-size:13px;font-weight:700;letter-spacing:.08em;text-decoration:none;background:var(--amber);transition:background .25s,color .25s,transform .25s}
+  .classic-facility-more svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.8}
+  .classic-facility-more:hover{transform:translateY(-2px);color:var(--ink);background:var(--glow)}
+  @media(max-width:760px){
+    .facility-classic{padding:82px var(--gutter)}
+    .classic-facility-head{grid-template-columns:1fr;gap:18px;align-items:start}
+    .classic-facility-issue{min-height:auto;flex-direction:row;align-items:baseline;border-bottom:1px solid color-mix(in srgb,var(--paper) 20%,transparent);padding-bottom:12px}
+    .classic-grid{grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:auto;gap:10px}
+    .classic-grid .classic-card:nth-child(n){grid-column:auto;aspect-ratio:4/3}
+    .classic-card .no{top:9px;left:9px;width:27px;height:27px}
+    .classic-card .label{right:6px;bottom:6px;max-width:calc(100% - 12px);min-height:38px;padding:7px 9px}
+    .classic-facility-actions{align-items:stretch;flex-direction:column}
+    .classic-facility-actions::before{text-align:center}
+    .classic-facility-more{width:100%;min-height:52px}
+  }
+  @media(prefers-reduced-motion:reduce){.classic-card,.classic-card img,.classic-facility-more{transition:none}.classic-card:hover,.classic-card:hover img,.classic-facility-more:hover{transform:none}}
+  @media(prefers-reduced-transparency:reduce){.facility-classic{background:var(--ink)}.classic-card .no{background:var(--ink)}.classic-card .label{background:var(--paper)}}
+
   /* ---------- hero specifics ---------- */
   .hero .content{max-width:1040px}
   .hero .ko-title{font-size:clamp(44px,8.4vw,118px);letter-spacing:.01em;line-height:1.04;padding-top:.06em}
@@ -216,7 +257,7 @@
   .faqcard h3::before{content:"Q";flex:none;font-family:var(--mono);font-weight:700;font-size:.82em;line-height:1.5;color:var(--amber)}
   .faqcard p{font-size:clamp(15px,1.3vw,16px);line-height:1.75;color:#E7EFF5}
   @media(max-width:760px){.faqgrid{grid-template-columns:1fr;gap:14px}}
-  .faqmore{display:flex;justify-content:center;margin-top:clamp(22px,2.6vw,32px)}
+  .faqmore{display:flex;justify-content:center;flex-wrap:wrap;gap:12px;margin-top:clamp(22px,2.6vw,32px)}
   .faqmore a{display:inline-flex;align-items:center;gap:9px;min-height:48px;padding:0 22px;border-radius:999px;
     font-family:var(--mono);font-weight:700;font-size:13px;letter-spacing:.08em;text-decoration:none;
     color:var(--glow);border:1px solid rgba(228,169,62,.4);background:rgba(228,169,62,.06);
@@ -224,6 +265,16 @@
   .faqmore a svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.7;flex:none}
   .faqmore a:hover{color:var(--ink);background:var(--amber);border-color:var(--amber-deep)}
   .faqmore a:hover svg{stroke:var(--ink)}
+  @media(max-width:760px){
+    .faqmore a{color:var(--paper);border-color:var(--amber);background:color-mix(in srgb,var(--ink) 78%,transparent);
+      -webkit-backdrop-filter:blur(12px) saturate(118%);backdrop-filter:blur(12px) saturate(118%)}
+  }
+  @media(max-width:760px) and (prefers-reduced-transparency:reduce){
+    .faqmore a{background:var(--ink);-webkit-backdrop-filter:none;backdrop-filter:none}
+  }
+  @media(max-width:760px) and (prefers-contrast:more){
+    .faqmore a{color:var(--paper);border-color:var(--glow);background:var(--ink)}
+  }
 
   footer{width:100%;max-width:1180px;margin:90px auto 0;padding:36px clamp(24px,4vw,46px) 40px;
     border:1px solid var(--glass-line);border-radius:16px;
@@ -344,6 +395,7 @@
     <a href="#intro">센터소개</a>
     <a href="#program">프로그램</a>
     <a href="#health">건강·안전</a>
+    <a href="#facilities">시설</a>
     <a class="cta cta-desk" href="#closing">상담 문의</a>
     <a class="cta cta-mob" href="tel:051-791-1797" aria-label="전화 상담 051-791-1797"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.6 15.6 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24 11.4 11.4 0 0 0 3.6.58 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.46.58 3.6a1 1 0 0 1-.25 1z"/></svg>전화 상담</a>
   </div>
@@ -381,7 +433,7 @@
       <div class="eyebrow reveal"><span class="idx">02</span><span class="bar"></span><span class="cls">Daily Programs</span></div>
       <h2 class="ko-title split">하루를 채우는<br>프로그램</h2>
       <div class="en-title reveal">A Day Worth Living</div>
-      <p class="lead reveal">즐거움이 곧, 가장 좋은 재활입니다.</p>
+      <p class="lead reveal">즐거운 활동이, 하루에 활력을 더합니다.</p>
       <p class="body reveal">인지 강화 활동부터 미술·음악·원예, 가벼운 신체 활동까지. 지금 하실 수 있는 것을 더 오래, 더 즐겁게 이어가는 프로그램을 매일 정성껏 운영합니다.</p>
       <div class="stats reveal tilt"><div class="glow-edge"></div>
         <div class="stat"><div class="kv">인지 강화 활동</div><div class="cap">기억·집중 유지</div></div>
@@ -397,11 +449,11 @@
       <h2 class="ko-title split">건강과 안전을<br>가장 먼저</h2>
       <div class="en-title reveal">Cared For, Safely</div>
       <p class="lead reveal">안심이 곧, 가족을 위한 배려입니다.</p>
-      <p class="body reveal">간호 전문 인력이 매일의 건강 상태와 복약을 살피고, 응급 상황에는 의료 경험을 바탕으로 신속하게 대응합니다. 전문 재활·물리치료와 댁 앞까지 안전한 차량 운행으로 어르신과 가족 모두가 마음 놓으실 수 있습니다.</p>
+      <p class="body reveal">간호 전문 인력이 매일의 건강 상태와 복약을 살피고, 응급 상황에는 의료 경험을 바탕으로 신속하게 대응합니다. 안전한 송영 서비스는 해운대구 전 지역과 송정 일대까지 제공하며, 그 외 지역은 상담을 통해 안내합니다.</p>
       <div class="stats reveal tilt"><div class="glow-edge"></div>
         <div class="stat"><div class="kv">간호·건강관리</div><div class="cap">복약·상태 점검</div></div>
-        <div class="stat"><div class="kv">재활·물리치료</div><div class="cap">전문 프로그램</div></div>
-        <div class="stat"><div class="kv">안전 차량 운행</div><div class="cap">댁 앞까지</div></div>
+        <div class="stat"><div class="kv">안전 대응</div><div class="cap">의료 경험 기반</div></div>
+        <div class="stat"><div class="kv">송영 서비스</div><div class="cap">댁 앞까지</div></div>
       </div>
     </div>
   </section>
@@ -418,6 +470,27 @@
         <div class="stat"><div class="kv">위생·청결 관리</div><div class="cap">안심 환경</div></div>
         <div class="stat"><div class="kv">햇살 드는 시설</div><div class="cap">쾌적한 공간</div></div>
       </div>
+    </div>
+  </section>
+
+  <section class="facility-classic" id="facilities" data-label="시설" aria-labelledby="classic-facility-title">
+    <div class="classic-facility-wrap">
+      <header class="classic-facility-head">
+        <div class="classic-facility-issue"><span>Contact Sheet</span><strong>05</strong></div>
+        <h2 id="classic-facility-title">머무는 하루가<br>편안한 공간</h2>
+        <p>더 그레이스 센터에서 직접 촬영한 실제 공간입니다. 생활과 휴식, 위생을 위한 공간을 차분하고 안전하게 마련했습니다.</p>
+      </header>
+      <div class="classic-grid" aria-label="센터 시설 사진">
+        <a class="classic-card" href="/facilities.html" aria-label="공용생활실 시설 사진 더 보기"><img src="../assets/facilities/공용생활실_04-900.webp" width="1448" height="1086" loading="lazy" decoding="async" alt="테이블과 의자가 놓인 공용생활실"><span class="no">01</span><span class="label">공용생활실</span></a>
+        <a class="classic-card" href="/facilities.html" aria-label="1번생활실 시설 사진 더 보기"><img src="../assets/facilities/1번생활실_01-900.webp" width="1448" height="1086" loading="lazy" decoding="async" alt="창가와 좌석이 보이는 1번생활실"><span class="no">02</span><span class="label">1번생활실</span></a>
+        <a class="classic-card" href="/facilities.html" aria-label="2번생활실 시설 사진 더 보기"><img src="../assets/facilities/2번생활실_04-900.webp" width="1448" height="1086" loading="lazy" decoding="async" alt="테이블과 의자가 정돈된 2번생활실"><span class="no">03</span><span class="label">2번생활실</span></a>
+        <a class="classic-card" href="/facilities.html" aria-label="여성수면실 시설 사진 더 보기"><img src="../assets/facilities/여성수면실_01-900.webp" width="1448" height="1086" loading="lazy" decoding="async" alt="침상이 마련된 여성수면실"><span class="no">04</span><span class="label">여성수면실</span></a>
+        <a class="classic-card" href="/facilities.html" aria-label="남성수면실 시설 사진 더 보기"><img src="../assets/facilities/남성수면실_03-900.webp" width="1448" height="1086" loading="lazy" decoding="async" alt="침상이 마련된 남성수면실"><span class="no">05</span><span class="label">남성수면실</span></a>
+        <a class="classic-card" href="/facilities.html" aria-label="안전 화장실 시설 사진 더 보기"><img src="../assets/facilities/샤워실화장실_03-900.webp" width="1448" height="1086" loading="lazy" decoding="async" alt="안전 손잡이가 설치된 화장실"><span class="no">06</span><span class="label">안전 화장실</span></a>
+        <a class="classic-card" href="/facilities.html" aria-label="공용 세면 공간 시설 사진 더 보기"><img src="../assets/facilities/기타_05-900.webp" width="1448" height="1086" loading="lazy" decoding="async" alt="여러 대의 세면대가 마련된 공용 세면 공간"><span class="no">07</span><span class="label">공용 세면 공간</span></a>
+        <a class="classic-card" href="/facilities.html" aria-label="기타 공간 시설 사진 더 보기"><img src="../assets/facilities/기타_14-900.webp" width="1448" height="1086" loading="lazy" decoding="async" alt="센터 내부의 기타 공간"><span class="no">08</span><span class="label">기타 공간</span></a>
+      </div>
+      <div class="classic-facility-actions"><a class="classic-facility-more" href="/facilities.html">시설 전체 둘러보기<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
     </div>
   </section>
 
@@ -445,20 +518,21 @@
       <div class="faq-head reveal"><span class="bar"></span><span class="cap">이용 안내 · 자주 묻는 질문</span><span class="bar"></span></div>
       <div class="faqgrid">
         <div class="faqcard reveal">
-          <h3>누가 이용할 수 있나요?</h3>
-          <p>장기요양 1~5등급은 물론 인지지원등급 어르신까지 이용하실 수 있습니다. 아직 등급이 없으시다면 신청 절차부터 함께 도와드립니다.</p>
+          <h3>등급이 없어도 상담할 수 있나요?</h3>
+          <p>언제든 상담하실 수 있습니다. 등급 신청 절차를 안내해 드리며, 등급 없이 일반 이용도 가능합니다. 비용은 장기요양급여 대상 여부에 따라 달라집니다.</p>
         </div>
         <div class="faqcard reveal">
-          <h3>비용은 얼마나 드나요?</h3>
-          <p>장기요양보험 적용 시 본인부담은 15% 수준입니다(감경 대상 6~9%, 기초생활수급자 면제 · 식사재료비 등 실비 별도). 정확한 금액은 전화 주시면 바로 계산해 드립니다.</p>
+          <h3>식사비 등 추가 비용이 있나요?</h3>
+          <p>본인부담금 외 식사는 1식 5,000원, 간식은 1,000원입니다. 송영 서비스는 장기요양 급여 범위 내에서 제공되며 이용 유형에 따라 비용 차이가 있을 수 있습니다.</p>
         </div>
         <div class="faqcard reveal">
-          <h3>어떻게 시작하나요?</h3>
-          <p>전화 상담 → 방문·견학 → 맞춤 케어 설계 → 적응 이용 시작의 4단계입니다. 견학만 오셔도 좋습니다 — 편하게 둘러보시고 결정하세요.</p>
+          <h3>시설을 미리 둘러볼 수 있나요?</h3>
+          <p>사전 예약 후 시설 방문과 상담이 가능합니다. 센터를 직접 둘러보실 수 있으며, 단기 체험 이용도 상담을 통해 안내해 드립니다.</p>
         </div>
       </div>
       <div class="faqmore reveal">
         <a href="/guide.html">비용·등급·절차 자세히 보기<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></a>
+        <a href="/facilities.html">실제 시설 둘러보기<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></a>
       </div>
     </section>
 
@@ -468,14 +542,14 @@
         <p style="color:var(--paper-dim);font-family:var(--mono);font-size:11px;letter-spacing:.16em">THE GRACE SENIOR DAY CARE</p>
       </div>
       <div class="col"><h3>오시는 길</h3>
-        <p>부산광역시 해운대구 좌동순환로 78 5층</p>
+        <p>부산광역시 해운대구 좌동순환로 78 건우빌딩 5층</p>
         <!-- TODO: 스마트플레이스/카카오맵 등록 후 플레이스 상세 링크로 교체 -->
         <div class="maplinks">
           <a class="maplink" href="https://map.naver.com/p/entry/place/2028121432" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-6.3 7-11a7 7 0 1 0-14 0c0 4.7 7 11 7 11z"/><circle cx="12" cy="10" r="2.6"/></svg>네이버지도</a>
-          <a class="maplink" href="https://map.kakao.com/link/search/%EB%B6%80%EC%82%B0%EA%B4%91%EC%97%AD%EC%8B%9C%20%ED%95%B4%EC%9A%B4%EB%8C%80%EA%B5%AC%20%EC%A2%8C%EB%8F%99%EC%88%9C%ED%99%98%EB%A1%9C%2078" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-6.3 7-11a7 7 0 1 0-14 0c0 4.7 7 11 7 11z"/><circle cx="12" cy="10" r="2.6"/></svg>카카오맵</a>
+          <a class="maplink" href="https://map.kakao.com/link/search/%EB%B6%80%EC%82%B0%EA%B4%91%EC%97%AD%EC%8B%9C%20%ED%95%B4%EC%9A%B4%EB%8C%80%EA%B5%AC%20%EC%A2%8C%EB%8F%99%EC%88%9C%ED%99%98%EB%A1%9C%2078%20%EA%B1%B4%EC%9A%B0%EB%B9%8C%EB%94%A9%205%EC%B8%B5" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-6.3 7-11a7 7 0 1 0-14 0c0 4.7 7 11 7 11z"/><circle cx="12" cy="10" r="2.6"/></svg>카카오맵</a>
         </div>
       </div>
-      <div class="col"><h3>운영 안내</h3><p>평일 08:00 – 18:00<br>장기요양보험 적용 · 등급 상담</p></div>
+      <div class="col"><h3>운영 안내</h3><p>월–토 08:30–17:30<br>일요일·공휴일 제외 · 등급 상담</p></div>
       <div class="col sns"><h3>상담 문의</h3>
         <a class="footcall" href="tel:051-791-1797" aria-label="전화 상담 051-791-1797"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.6 15.6 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24 11.4 11.4 0 0 0 3.6.58 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.46.58 3.6a1 1 0 0 1-.25 1z"/></svg>051-791-1797</a>
         <p style="margin-top:14px"><a href="https://www.instagram.com/thegrace_daycare/" target="_blank" rel="noopener">instagram @thegrace_daycare</a><br><a href="https://blog.naver.com/the_grace_daycare" target="_blank" rel="noopener">네이버 블로그</a></p>
@@ -497,6 +571,7 @@ document.documentElement.classList.add('js');
 (function(){
   var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   var scenes = Array.prototype.slice.call(document.querySelectorAll('.scene'));
+  var railSections = Array.prototype.slice.call(document.querySelectorAll('.scene, .facility-classic'));
   var rail = document.getElementById('rail');
   var prog = document.getElementById('prog');
   var nav = document.querySelector('.nav');
@@ -514,7 +589,7 @@ document.documentElement.classList.add('js');
 
   /* ---------- rail ---------- */
   var railBtns = {};
-  scenes.forEach(function(s){
+  railSections.forEach(function(s){
     var b=document.createElement('button');
     b.innerHTML='<span class="dot"></span><span class="lbl">'+s.dataset.label+'</span>';
     b.addEventListener('click',function(){ s.scrollIntoView({behavior: reduce?'auto':'smooth'}); });
@@ -569,10 +644,10 @@ document.documentElement.classList.add('js');
   var io=new IntersectionObserver(function(entries){
     entries.forEach(function(e){ ratios[e.target.id]=e.intersectionRatio; });
     var bestId=null,best=0;
-    scenes.forEach(function(s){ var r=ratios[s.id]||0; if(r>best){best=r;bestId=s.id;} });
+    railSections.forEach(function(s){ var r=ratios[s.id]||0; if(r>best){best=r;bestId=s.id;} });
     if(bestId){ var sc=document.getElementById(bestId); setRail(bestId); if(!sc.classList.contains('in')) sc.classList.add('in'); runCount(sc); }
   },{threshold:[0,.15,.3,.5,.7,.9]});
-  scenes.forEach(function(s){ io.observe(s); });
+  railSections.forEach(function(s){ io.observe(s); });
   setRail('hero'); runCount(document.getElementById('hero'));
 
   /* ---------- progress bar ---------- */
