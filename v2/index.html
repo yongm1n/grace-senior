@@ -187,7 +187,7 @@
   .classic-facility-head h2{font-family:var(--display);font-size:clamp(40px,8.2vw,104px);font-weight:800;line-height:.98;letter-spacing:-.01em;text-wrap:balance;text-shadow:0 4px 40px rgba(0,0,0,.5)}
   .classic-facility-head p{font-family:var(--body);font-size:clamp(15px,1.35vw,17px);font-weight:400;line-height:1.72;letter-spacing:normal;color:#E7EFF5;max-width:36em;text-shadow:0 1px 14px rgba(4,16,28,.6)}
   .classic-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-auto-flow:dense;grid-auto-rows:clamp(190px,16vw,230px);gap:clamp(10px,1.2vw,16px)}
-  .classic-card{position:relative;display:block;min-height:44px;overflow:hidden;border:1px solid color-mix(in srgb,var(--paper) 34%,transparent);border-radius:3px;background:var(--paper);color:var(--ink);text-decoration:none;isolation:isolate;box-shadow:0 20px 48px -28px rgba(0,0,0,.88);transition:transform .3s ease}
+  .classic-card{position:relative;display:block;width:100%;min-height:44px;padding:0;overflow:hidden;border:1px solid color-mix(in srgb,var(--paper) 34%,transparent);border-radius:3px;background:var(--paper);color:var(--ink);font:inherit;text-align:left;text-decoration:none;cursor:zoom-in;-webkit-appearance:none;appearance:none;isolation:isolate;box-shadow:0 20px 48px -28px rgba(0,0,0,.88);transition:transform .3s ease}
   .classic-card::before{content:"";position:absolute;z-index:2;inset:6px;border:1px solid color-mix(in srgb,var(--paper) 48%,transparent);pointer-events:none}
   .classic-card img{display:block;width:100%;height:100%;object-fit:cover;filter:saturate(.82) contrast(1.04) sepia(.04);transition:transform .75s cubic-bezier(.2,.7,.2,1),filter .4s ease}
   .classic-card:hover{transform:translateY(-3px)}
@@ -200,6 +200,24 @@
   .classic-facility-more{display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:50px;padding:0 22px;border:1px solid var(--amber);border-radius:2px;color:var(--ink);font-family:var(--mono);font-size:13px;font-weight:700;letter-spacing:.08em;text-decoration:none;background:var(--amber);transition:background .25s,color .25s,transform .25s}
   .classic-facility-more svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.8}
   .classic-facility-more:hover{transform:translateY(-2px);color:var(--ink);background:var(--glow)}
+
+  /* ---------- accessible facility lightbox (dialog uses top layer) ---------- */
+  html.lightbox-open,html.lightbox-open body{overflow:hidden}
+  html.lightbox-open body{padding-right:var(--lightbox-scrollbar-gap,0px)}
+  .photo-dialog{position:fixed;inset:0;width:min(92vw,1240px);max-width:none;max-height:min(88vh,calc(100dvh - env(safe-area-inset-top) - env(safe-area-inset-bottom) - 20px));margin:auto;padding:0;border:0;border-radius:18px;overflow:visible;background:#071B2B;color:var(--paper);box-shadow:0 34px 100px rgba(0,0,0,.58)}
+  .photo-dialog::backdrop{background:rgba(2,10,17,.84);-webkit-backdrop-filter:blur(9px) saturate(112%);backdrop-filter:blur(9px) saturate(112%);animation:photo-dim-in .32s cubic-bezier(.22,1,.36,1) both}
+  .photo-dialog.is-closing::backdrop{animation:photo-dim-out .3s cubic-bezier(.22,1,.36,1) both}
+  .photo-dialog.is-preparing,.photo-dialog.is-closing{background:transparent;box-shadow:none}
+  .photo-dialog figure{display:flex;flex-direction:column;align-items:stretch;margin:0;padding-top:14px}
+  .photo-dialog figure>img{display:block;width:auto;height:auto;max-width:100%;max-height:calc(88vh - 76px);margin:auto;object-fit:contain;background:#06131F;border-radius:0}
+  .photo-dialog figcaption{padding:16px 70px 18px 20px;font-family:var(--display);font-size:17px;font-weight:700}
+  .photo-close{position:absolute;right:10px;bottom:9px;display:grid;place-items:center;width:46px;height:46px;border:1px solid rgba(255,255,255,.18);border-radius:50%;background:rgba(255,255,255,.08);color:white;font-size:25px;line-height:1;cursor:pointer;transition:background .2s ease}
+  .photo-close:hover{background:rgba(255,255,255,.16)}
+  .photo-dialog.is-preparing figure,.photo-dialog.is-preparing .photo-close,.photo-dialog.is-closing figure,.photo-dialog.is-closing .photo-close{opacity:0}
+  .photo-flight{position:fixed;z-index:3;display:block;max-width:none!important;max-height:none!important;margin:0!important;object-fit:cover;pointer-events:none;will-change:transform,opacity;border-radius:0;box-shadow:0 24px 72px rgba(0,0,0,.42)}
+  @keyframes photo-dim-in{from{background:rgba(2,10,17,0);-webkit-backdrop-filter:blur(0);backdrop-filter:blur(0)}to{background:rgba(2,10,17,.84);-webkit-backdrop-filter:blur(9px) saturate(112%);backdrop-filter:blur(9px) saturate(112%)}}
+  @keyframes photo-dim-out{from{background:rgba(2,10,17,.84);-webkit-backdrop-filter:blur(9px) saturate(112%);backdrop-filter:blur(9px) saturate(112%)}to{background:rgba(2,10,17,0);-webkit-backdrop-filter:blur(0);backdrop-filter:blur(0)}}
+
   @media(max-width:760px){
     .facility-classic{padding:82px var(--gutter)}
     .classic-facility-head{grid-template-columns:1fr;gap:18px;align-items:start}
@@ -211,9 +229,11 @@
     .classic-facility-actions{align-items:stretch;flex-direction:column}
     .classic-facility-actions::before{text-align:center}
     .classic-facility-more{width:100%;min-height:52px}
+    .photo-dialog{width:calc(100vw - 20px);max-height:calc(100dvh - env(safe-area-inset-top) - env(safe-area-inset-bottom) - 20px)}
+    .photo-dialog figure>img{max-height:calc(100dvh - env(safe-area-inset-top) - env(safe-area-inset-bottom) - 96px)}
   }
-  @media(prefers-reduced-motion:reduce){.classic-card,.classic-card img,.classic-facility-more{transition:none}.classic-card:hover,.classic-card:hover img,.classic-facility-more:hover{transform:none}}
-  @media(prefers-reduced-transparency:reduce){.facility-classic{background:var(--ink)}.classic-card .no{background:var(--ink)}.classic-card .label{background:var(--paper)}}
+  @media(prefers-reduced-motion:reduce){.classic-card,.classic-card img,.classic-facility-more{transition:none}.classic-card:hover,.classic-card:hover img,.classic-facility-more:hover{transform:none}.photo-dialog::backdrop{animation-duration:.18s}.photo-dialog figure,.photo-close{transition:opacity .18s ease}}
+  @media(prefers-reduced-transparency:reduce){.facility-classic{background:var(--ink)}.classic-card .no{background:var(--ink)}.classic-card .label{background:var(--paper)}.photo-dialog::backdrop{background:rgba(2,10,17,.95);-webkit-backdrop-filter:none;backdrop-filter:none}}
 
   /* ---------- hero specifics ---------- */
   .hero .content{max-width:1040px}
@@ -481,14 +501,14 @@
         <p>더 그레이스 센터에서 직접 촬영한 실제 공간입니다. 생활과 휴식, 위생을 위한 공간을 차분하고 안전하게 마련했습니다.</p>
       </header>
       <div class="classic-grid" aria-label="센터 시설 사진">
-        <a class="classic-card" href="/facilities.html" aria-label="공용생활실 시설 사진 더 보기"><img src="../assets/facilities/공용생활실_04-900.webp" width="1448" height="1086" loading="lazy" decoding="async" alt="테이블과 의자가 놓인 공용생활실"><span class="no">01</span><span class="label">공용생활실</span></a>
-        <a class="classic-card" href="/facilities.html" aria-label="1번생활실 시설 사진 더 보기"><img src="../assets/facilities/1번생활실_01-900.webp" width="1448" height="1086" loading="lazy" decoding="async" alt="창가와 좌석이 보이는 1번생활실"><span class="no">02</span><span class="label">1번생활실</span></a>
-        <a class="classic-card" href="/facilities.html" aria-label="2번생활실 시설 사진 더 보기"><img src="../assets/facilities/2번생활실_04-900.webp" width="1448" height="1086" loading="lazy" decoding="async" alt="테이블과 의자가 정돈된 2번생활실"><span class="no">03</span><span class="label">2번생활실</span></a>
-        <a class="classic-card" href="/facilities.html" aria-label="여성수면실 시설 사진 더 보기"><img src="../assets/facilities/여성수면실_01-900.webp" width="1448" height="1086" loading="lazy" decoding="async" alt="침상이 마련된 여성수면실"><span class="no">04</span><span class="label">여성수면실</span></a>
-        <a class="classic-card" href="/facilities.html" aria-label="남성수면실 시설 사진 더 보기"><img src="../assets/facilities/남성수면실_03-900.webp" width="1448" height="1086" loading="lazy" decoding="async" alt="침상이 마련된 남성수면실"><span class="no">05</span><span class="label">남성수면실</span></a>
-        <a class="classic-card" href="/facilities.html" aria-label="안전 화장실 시설 사진 더 보기"><img src="../assets/facilities/샤워실화장실_03-900.webp" width="1448" height="1086" loading="lazy" decoding="async" alt="안전 손잡이가 설치된 화장실"><span class="no">06</span><span class="label">안전 화장실</span></a>
-        <a class="classic-card" href="/facilities.html" aria-label="공용 세면 공간 시설 사진 더 보기"><img src="../assets/facilities/기타_05-900.webp" width="1448" height="1086" loading="lazy" decoding="async" alt="여러 대의 세면대가 마련된 공용 세면 공간"><span class="no">07</span><span class="label">공용 세면 공간</span></a>
-        <a class="classic-card" href="/facilities.html" aria-label="기타 공간 시설 사진 더 보기"><img src="../assets/facilities/기타_14-900.webp" width="1448" height="1086" loading="lazy" decoding="async" alt="센터 내부의 기타 공간"><span class="no">08</span><span class="label">기타 공간</span></a>
+        <button class="classic-card" type="button" data-lightbox data-full="../assets/facilities/공용생활실_04-1440.webp" data-caption="공용생활실" aria-label="공용생활실 시설 사진 더 보기"><img src="../assets/facilities/공용생활실_04-900.webp" width="1448" height="1086" loading="lazy" decoding="async" alt="테이블과 의자가 놓인 공용생활실"><span class="no">01</span><span class="label">공용생활실</span></button>
+        <button class="classic-card" type="button" data-lightbox data-full="../assets/facilities/1번생활실_01-1440.webp" data-caption="1번생활실" aria-label="1번생활실 시설 사진 더 보기"><img src="../assets/facilities/1번생활실_01-900.webp" width="1448" height="1086" loading="lazy" decoding="async" alt="창가와 좌석이 보이는 1번생활실"><span class="no">02</span><span class="label">1번생활실</span></button>
+        <button class="classic-card" type="button" data-lightbox data-full="../assets/facilities/2번생활실_04-1440.webp" data-caption="2번생활실" aria-label="2번생활실 시설 사진 더 보기"><img src="../assets/facilities/2번생활실_04-900.webp" width="1448" height="1086" loading="lazy" decoding="async" alt="테이블과 의자가 정돈된 2번생활실"><span class="no">03</span><span class="label">2번생활실</span></button>
+        <button class="classic-card" type="button" data-lightbox data-full="../assets/facilities/여성수면실_01-1440.webp" data-caption="여성수면실" aria-label="여성수면실 시설 사진 더 보기"><img src="../assets/facilities/여성수면실_01-900.webp" width="1448" height="1086" loading="lazy" decoding="async" alt="침상이 마련된 여성수면실"><span class="no">04</span><span class="label">여성수면실</span></button>
+        <button class="classic-card" type="button" data-lightbox data-full="../assets/facilities/남성수면실_03-1440.webp" data-caption="남성수면실" aria-label="남성수면실 시설 사진 더 보기"><img src="../assets/facilities/남성수면실_03-900.webp" width="1448" height="1086" loading="lazy" decoding="async" alt="침상이 마련된 남성수면실"><span class="no">05</span><span class="label">남성수면실</span></button>
+        <button class="classic-card" type="button" data-lightbox data-full="../assets/facilities/샤워실화장실_03-1440.webp" data-caption="안전 화장실" aria-label="안전 화장실 시설 사진 더 보기"><img src="../assets/facilities/샤워실화장실_03-900.webp" width="1448" height="1086" loading="lazy" decoding="async" alt="안전 손잡이가 설치된 화장실"><span class="no">06</span><span class="label">안전 화장실</span></button>
+        <button class="classic-card" type="button" data-lightbox data-full="../assets/facilities/기타_05-1440.webp" data-caption="공용 세면 공간" aria-label="공용 세면 공간 시설 사진 더 보기"><img src="../assets/facilities/기타_05-900.webp" width="1448" height="1086" loading="lazy" decoding="async" alt="여러 대의 세면대가 마련된 공용 세면 공간"><span class="no">07</span><span class="label">공용 세면 공간</span></button>
+        <button class="classic-card" type="button" data-lightbox data-full="../assets/facilities/기타_14-1440.webp" data-caption="기타 공간" aria-label="기타 공간 시설 사진 더 보기"><img src="../assets/facilities/기타_14-900.webp" width="1448" height="1086" loading="lazy" decoding="async" alt="센터 내부의 기타 공간"><span class="no">08</span><span class="label">기타 공간</span></button>
       </div>
       <div class="classic-facility-actions"><a class="classic-facility-more" href="/facilities.html">시설 전체 둘러보기<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
     </div>
@@ -560,6 +580,14 @@
 
 </main>
 
+<dialog class="photo-dialog" id="photo-dialog" aria-modal="true" aria-labelledby="photo-caption">
+  <figure>
+    <img id="photo-dialog-image" src="" alt="">
+    <figcaption id="photo-caption"></figcaption>
+  </figure>
+  <button class="photo-close" type="button" aria-label="사진 닫기">×</button>
+</dialog>
+
 <!-- mobile persistent call bar (≤760px only) — tel + naver 길찾기 -->
 <div class="mobilecall" role="group" aria-label="빠른 연락">
   <a class="mc-btn mc-call" href="tel:051-791-1797" aria-label="전화 상담 051-791-1797"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.6 15.6 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24 11.4 11.4 0 0 0 3.6.58 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.46.58 3.6a1 1 0 0 1-.25 1z"/></svg><span>전화 <b>051-791-1797</b></span></a>
@@ -575,6 +603,144 @@ document.documentElement.classList.add('js');
   var rail = document.getElementById('rail');
   var prog = document.getElementById('prog');
   var nav = document.querySelector('.nav');
+
+  /* ---------- accessible facility lightbox ---------- */
+  var photoDialog=document.getElementById('photo-dialog');
+  var photoDialogImage=document.getElementById('photo-dialog-image');
+  var photoCaption=document.getElementById('photo-caption');
+  var photoClose=photoDialog.querySelector('.photo-close');
+  var photoTrigger=null;
+  var photoSourceImage=null;
+  var photoFlight=null;
+  var photoFlightAnimation=null;
+  var photoState='closed';
+  var photoGeneration=0;
+  var photoDuration=340;
+  var photoEase='cubic-bezier(.22,1,.36,1)';
+
+  function lockPhotoScroll(){
+    var gap=Math.max(0,window.innerWidth-document.documentElement.clientWidth);
+    document.documentElement.style.setProperty('--lightbox-scrollbar-gap',gap+'px');
+    document.documentElement.classList.add('lightbox-open');
+  }
+  function unlockPhotoScroll(){
+    document.documentElement.classList.remove('lightbox-open');
+    document.documentElement.style.removeProperty('--lightbox-scrollbar-gap');
+  }
+  function sourceIsVisible(rect){ return rect.width>0&&rect.height>0&&rect.right>0&&rect.bottom>0&&rect.left<innerWidth&&rect.top<innerHeight; }
+  function sourceTransform(sourceRect,targetRect){
+    return 'translate3d('+(sourceRect.left-targetRect.left)+'px,'+(sourceRect.top-targetRect.top)+'px,0) scale('+(sourceRect.width/targetRect.width)+','+(sourceRect.height/targetRect.height)+')';
+  }
+  function removePhotoFlight(){
+    if(photoFlightAnimation){ photoFlightAnimation.cancel(); photoFlightAnimation=null; }
+    if(photoFlight){ photoFlight.remove(); photoFlight=null; }
+  }
+  function buildPhotoFlight(sourceRect,targetRect,src){
+    removePhotoFlight();
+    photoFlight=document.createElement('img');
+    photoFlight.className='photo-flight'; photoFlight.alt=''; photoFlight.src=src;
+    photoFlight.style.left=targetRect.left+'px'; photoFlight.style.top=targetRect.top+'px';
+    photoFlight.style.width=targetRect.width+'px'; photoFlight.style.height=targetRect.height+'px';
+    photoFlight.style.transformOrigin='0 0';
+    photoDialog.appendChild(photoFlight);
+    return sourceTransform(sourceRect,targetRect);
+  }
+  function finishPhotoClose(generation){
+    if(generation!==photoGeneration) return;
+    removePhotoFlight();
+    if(photoDialog.open) photoDialog.close();
+  }
+  function finalizePhotoClose(){
+    removePhotoFlight();
+    photoDialog.classList.remove('is-preparing','is-ready','is-closing');
+    photoDialogImage.removeAttribute('src');
+    unlockPhotoScroll();
+    photoState='closed';
+    var restore=photoTrigger; photoTrigger=null; photoSourceImage=null;
+    var generation=++photoGeneration;
+    if(restore){
+      requestAnimationFrame(function(){
+        if(generation===photoGeneration&&restore.isConnected) restore.focus({preventScroll:true});
+      });
+    }
+  }
+  function revealPhotoWhenReady(generation){
+    var ready=photoDialogImage.decode?photoDialogImage.decode().catch(function(){}):Promise.resolve();
+    ready.then(function(){
+      if(generation!==photoGeneration||photoState!=='opening') return;
+      photoDialog.classList.remove('is-preparing'); photoDialog.classList.add('is-ready');
+      requestAnimationFrame(function(){
+        if(generation!==photoGeneration||photoState!=='opening') return;
+        removePhotoFlight(); photoState='open'; photoClose.focus();
+      });
+    });
+  }
+  function openPhoto(trigger){
+    if(photoState!=='closed') return;
+    var generation=++photoGeneration;
+    photoState='opening'; photoTrigger=trigger; photoSourceImage=trigger.querySelector('img');
+    photoDialogImage.src=trigger.dataset.full; photoDialogImage.alt=photoSourceImage.alt;
+    photoDialogImage.width=photoSourceImage.naturalWidth||1448; photoDialogImage.height=photoSourceImage.naturalHeight||1086;
+    photoCaption.textContent=trigger.dataset.caption;
+    photoDialog.classList.add('is-preparing'); lockPhotoScroll(); photoDialog.showModal();
+    if(reduce){
+      requestAnimationFrame(function(){
+        if(generation!==photoGeneration||photoState!=='opening') return;
+        photoDialog.classList.remove('is-preparing'); photoDialog.classList.add('is-ready'); photoState='open'; photoClose.focus();
+      });
+      return;
+    }
+    var sourceRect=photoSourceImage.getBoundingClientRect();
+    var targetRect=photoDialogImage.getBoundingClientRect();
+    var start=buildPhotoFlight(sourceRect,targetRect,photoSourceImage.currentSrc||photoSourceImage.src);
+    photoFlightAnimation=photoFlight.animate([
+      {transform:start,borderRadius:getComputedStyle(photoSourceImage).borderRadius,opacity:1},
+      {transform:'translate3d(0,0,0) scale(1,1)',borderRadius:'0px',opacity:1}
+    ],{duration:photoDuration,easing:photoEase,fill:'both'});
+    photoFlightAnimation.onfinish=function(){
+      if(generation!==photoGeneration) return;
+      if(photoState==='opening') revealPhotoWhenReady(generation);
+      else if(photoState==='closing') finishPhotoClose(generation);
+    };
+  }
+  function closePhoto(){
+    if(photoState==='closed'||photoState==='closing') return;
+    var generation=photoGeneration;
+    if(reduce){
+      photoState='closing'; photoDialog.classList.add('is-closing');
+      setTimeout(function(){ if(generation===photoGeneration&&photoState==='closing') finishPhotoClose(generation); },180);
+      return;
+    }
+    if(photoState==='opening'&&photoFlightAnimation){
+      photoState='closing'; photoDialog.classList.add('is-closing'); photoFlightAnimation.reverse(); return;
+    }
+    photoState='closing';
+    var sourceRect=photoSourceImage.getBoundingClientRect();
+    if(!sourceIsVisible(sourceRect)){
+      photoDialog.classList.add('is-closing');
+      var fade=photoDialog.animate([{opacity:1},{opacity:0}],{duration:260,easing:photoEase,fill:'forwards'});
+      fade.onfinish=function(){ if(generation!==photoGeneration)return; fade.cancel(); finishPhotoClose(generation); };
+      return;
+    }
+    var targetRect=photoDialogImage.getBoundingClientRect();
+    var end=buildPhotoFlight(sourceRect,targetRect,photoDialogImage.currentSrc||photoDialogImage.src);
+    photoDialog.classList.add('is-closing');
+    photoFlightAnimation=photoFlight.animate([
+      {transform:'translate3d(0,0,0) scale(1,1)',borderRadius:'0px',opacity:1},
+      {transform:end,borderRadius:getComputedStyle(photoSourceImage).borderRadius,opacity:1}
+    ],{duration:300,easing:photoEase,fill:'both'});
+    photoFlightAnimation.onfinish=function(){ finishPhotoClose(generation); };
+  }
+  document.querySelectorAll('[data-lightbox]').forEach(function(trigger){
+    trigger.addEventListener('click',function(){ openPhoto(trigger); });
+  });
+  photoClose.addEventListener('click',closePhoto);
+  photoDialog.addEventListener('cancel',function(e){ e.preventDefault(); closePhoto(); });
+  photoDialog.addEventListener('click',function(e){
+    var r=photoDialog.getBoundingClientRect();
+    if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom) closePhoto();
+  });
+  photoDialog.addEventListener('close',finalizePhotoClose);
 
   /* image sources (injected as data URIs) */
   var SRC = {
