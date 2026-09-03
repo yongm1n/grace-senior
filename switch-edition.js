@@ -14,9 +14,9 @@
 const fs = require('fs');
 const path = require('path');
 const { spawnSync } = require('child_process');
+const { HOME_TITLE, HOME_DESCRIPTION, HOME_URL, withHomeSeo } = require('./seo-home');
 
 const root = __dirname;
-const SEO_TITLE = '더 그레이스 시니어 주간보호센터 | 부산 해운대 데이케어';
 const ALLOWED = ['main', 'classic', 'anime'];
 
 function fail(msg) {
@@ -52,9 +52,8 @@ if (edition === 'main') {
   // v2/v3 스냅샷의 미리보기용 noindex 는 루트 승격 시 반드시 제거 — 남기면 https://gracedaycare.co.kr/
   // 전체가 구글·네이버 색인에서 제거된다 (사후 검증에서도 부재를 재확인).
   html = html.replace(/<meta[^>]*name=["']robots["'][^>]*>\s*/gi, '');
-  html = html.replace(/<title>[\s\S]*?<\/title>/, '<title>' + SEO_TITLE + '</title>'); // 루트 승격 시 SEO 정규화
   html = html.replace('<head>', '<head><meta name="edition" content="' + edition + '">'); // 배포 마커
-  fs.writeFileSync(path.join(root, 'index.html'), html);
+  fs.writeFileSync(path.join(root, 'index.html'), withHomeSeo(html));
 }
 
 // ---- 3) 공통 사후 검증 (main 포함 — 깨진 index.html 배포 차단) ----
@@ -75,9 +74,26 @@ if (!out.includes('<meta name="edition" content="' + edition + '">')) {
   errors.push('에디션 마커 누락: <meta name="edition" content="' + edition + '">');
 }
 const title = (out.match(/<title>([\s\S]*?)<\/title>/) || [, ''])[1];
-if (title !== SEO_TITLE) errors.push('<title> 이 SEO 타이틀이 아님: "' + title + '"');
-for (const need of ['rel="canonical"', 'google-site-verification', 'naver-site-verification', 'application/ld+json', 'og:image', 'name="description"']) {
+if (title !== HOME_TITLE) errors.push('<title> 이 SEO 타이틀이 아님: "' + title + '"');
+for (const need of ['rel="canonical" href="' + HOME_URL + '"', 'google-site-verification', 'naver-site-verification', 'application/ld+json', 'og:image', 'og:image:alt', 'twitter:image:alt', 'name="description"']) {
   if (!out.includes(need)) errors.push('SEO 필수 태그 누락: ' + need);
+}
+const count = re => (out.match(re) || []).length;
+if (count(/<title>/gi) !== 1) errors.push('title 중복 또는 누락: ' + count(/<title>/gi) + '개');
+if (count(/<meta\b[^>]*name=["']description["']/gi) !== 1) errors.push('description 중복 또는 누락');
+if (count(/<link\b[^>]*rel=["']canonical["']/gi) !== 1) errors.push('canonical 중복 또는 누락');
+if (count(/<h1\b/gi) !== 1) errors.push('H1 중복 또는 누락: ' + count(/<h1\b/gi) + '개');
+const jsonLdBlocks = [...out.matchAll(/<script\b[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi)];
+if (jsonLdBlocks.length !== 1) {
+  errors.push('홈 JSON-LD 중복 또는 누락: ' + jsonLdBlocks.length + '개');
+} else {
+  try {
+    const graph = JSON.parse(jsonLdBlocks[0][1]);
+    const ids = new Set((graph['@graph'] || []).map(node => node['@id']));
+    for (const id of ['https://gracedaycare.co.kr/#website', 'https://gracedaycare.co.kr/#webpage', 'https://gracedaycare.co.kr/#localbusiness']) {
+      if (!ids.has(id)) errors.push('홈 JSON-LD @id 누락: ' + id);
+    }
+  } catch (e) { errors.push('홈 JSON-LD JSON.parse 실패: ' + e.message); }
 }
 // 루트에는 어떤 에디션이든 noindex 가 있으면 안 된다 — 승격 시 제거 로직의 회귀를 여기서 차단.
 const robotsNoindex = (out.match(/<meta[^>]*name=["']robots["'][^>]*>/gi) || []).find(t => /noindex/i.test(t));
