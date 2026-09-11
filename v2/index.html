@@ -296,7 +296,22 @@
     .faqmore a{color:var(--paper);border-color:var(--glow);background:var(--ink)}
   }
 
-  footer{width:100%;max-width:1180px;margin:90px auto 0;padding:36px clamp(24px,4vw,46px) 40px;
+  .partners{width:100%;max-width:1180px;margin:80px auto 0;text-align:left;scroll-margin-top:110px}
+  .partners-label{font-family:var(--mono);font-size:11px;letter-spacing:.2em;color:var(--amber);margin-bottom:12px}
+  .partners h2{font-family:var(--display);font-size:clamp(24px,3vw,34px);font-weight:800;color:var(--paper);margin-bottom:26px}
+  .partner-list{list-style:none;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--glass-line);border-bottom:1px solid var(--glass-line)}
+  .partner-list li{min-width:0}
+  .partner-list li+li{border-left:1px solid var(--glass-line)}
+  .partner-item{height:100%;min-height:118px;padding:25px 20px;display:flex;flex-direction:column;justify-content:center;gap:14px;color:var(--paper);text-decoration:none;background:var(--glass)}
+  .partner-name{font-size:18px;font-weight:600;line-height:1.6}
+  .partner-link{font-size:12px;color:var(--paper-dim)}
+  a.partner-item:hover{background:var(--ink-2)}
+  a.partner-item:hover .partner-name,a.partner-item:hover .partner-link{color:var(--glow)}
+  a.partner-item:focus-visible{outline:2px solid var(--glow);outline-offset:-2px}
+  @media(max-width:900px){.partner-list{grid-template-columns:repeat(2,minmax(0,1fr))}.partner-list li:nth-child(3){border-left:0}.partner-list li:nth-child(n+3){border-top:1px solid var(--glass-line)}}
+  @media(max-width:480px){.partner-list{grid-template-columns:1fr}.partner-list li+li{border-left:0;border-top:1px solid var(--glass-line)}.partner-item{min-height:88px;padding:20px;flex-direction:row;align-items:center;justify-content:space-between;gap:12px}.partner-name{font-size:17px}.partner-link{flex-shrink:0}}
+
+  footer{width:100%;max-width:1180px;margin:60px auto 0;padding:36px clamp(24px,4vw,46px) 40px;
     border:1px solid var(--glass-line);border-radius:16px;
     background:rgba(7,20,33,.7);
     -webkit-backdrop-filter:blur(16px) saturate(130%);backdrop-filter:blur(16px) saturate(130%);
@@ -554,6 +569,17 @@
         <a href="/guide.html">비용·등급·절차 자세히 보기<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></a>
         <a href="/facilities.html">실제 시설 둘러보기<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></a>
       </div>
+    </section>
+
+    <section class="partners" id="partners" aria-labelledby="partners-title">
+      <p class="partners-label">PARTNERS</p>
+      <h2 id="partners-title">함께하는 제휴업체</h2>
+      <ul class="partner-list">
+        <li><a class="partner-item" href="https://danaumrehab.co.kr/" target="_blank" rel="noopener noreferrer" aria-label="다나음재활센터 홈페이지 (새 창)"><span class="partner-name">다나음재활센터</span><span class="partner-link">홈페이지 <span aria-hidden="true">↗</span></span></a></li>
+        <li><div class="partner-item"><span class="partner-name">해운대탑정형외과</span></div></li>
+        <li><a class="partner-item" href="http://www.ihyosung.org/" target="_blank" rel="noopener noreferrer" aria-label="효성노인건강센터 홈페이지 (새 창)"><span class="partner-name">효성노인건강센터</span><span class="partner-link">홈페이지 <span aria-hidden="true">↗</span></span></a></li>
+        <li><div class="partner-item"><span class="partner-name">사랑방재가복지센터</span></div></li>
+      </ul>
     </section>
 
     <footer>

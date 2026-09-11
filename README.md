@@ -30,6 +30,14 @@
 ```
 
 ## 수정 → 배포 흐름
+현재 운영 에디션은 `classic`입니다. 운영 화면의 제휴업체 영역은 `v2/index.html`의 `#partners`에서 수정하고, `node switch-edition.js`로 루트 `index.html`을 재생성합니다. 아래 `src/site.html` 편집 절차는 `main` 에디션에 해당합니다.
+
+### 제휴업체 링크 (2026-09-11 확인)
+- 다나음재활센터: https://danaumrehab.co.kr/ — 해운대 다나음 재활운동센터 홈페이지.
+- 효성노인건강센터: http://www.ihyosung.org/ — 기관 등록 홈페이지와 브라우저 접속 확인.
+- 해운대탑정형외과, 사랑방재가복지센터: 공식 홈페이지·블로그를 확실히 식별하지 못하여 상호만 표시. 사랑방은 타 지역 동명 기관의 블로그가 있어 연결하지 않음.
+- 외부 홈페이지는 새 창으로 열립니다. 제휴 범위·진료 내용 등 확인되지 않은 설명은 추가하지 않았습니다.
+
 1. **편집**: `src/site.html` 만 고친다 (카피·CSS·섹션). `index.html` 은 직접 고치지 말 것 — 빌드가 덮어쓴다.
 2. **빌드**: `node build.js` → `index.html`(Pages 상대경로) + `dist/site.artifact.html`(Artifact base64) 생성.
 3. **검증(선택)**: `NODE_PATH=/Users/yongmin/node_modules node render.js` → `shot-<섹션>.png` + `pageerrors 0` 확인.
