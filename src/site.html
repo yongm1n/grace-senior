@@ -29,6 +29,10 @@
     --amber:#E4A93E; --amber-deep:#C07C24; --glow:#FBDC93;
     --line:rgba(180,208,224,0.16);
     --glass:rgba(7,24,40,0.48); --glass-line:rgba(190,216,232,0.20);
+    /* 밝은 실내 배경(정지 이미지) 위 글 가독성: 글 덩어리 뒤 은은한 어둠막(veil) + 글자 가장자리 그림자(halo) */
+    --veil-strong:rgba(6,18,30,.72); --veil-core:rgba(6,18,30,.64); --veil-mid:rgba(6,18,30,.50); --veil-edge:rgba(6,18,30,.16);
+    --halo:0 0 2px rgba(4,16,28,.5),0 1px 14px rgba(4,16,28,.62);
+    --halo-title:0 2px 18px rgba(4,16,28,.42),0 4px 40px rgba(0,0,0,.5);
     --display:"Helvetica Neue","Arial Narrow",Pretendard,-apple-system,system-ui,sans-serif;
     --body:-apple-system,"Apple SD Gothic Neo",Pretendard,"Helvetica Neue",sans-serif;
     --mono:"SF Mono",ui-monospace,Menlo,"Roboto Mono",monospace;
@@ -53,6 +57,25 @@
     object-fit:cover;display:block}
   .vlayer .vposter{z-index:0}
   .vlayer video{z-index:1}
+
+  /* ---------- still layers (intro·program·health·meal): 정지 이미지 + 느린 카메라 움직임 ----------
+     움직임은 안쪽 이미지의 transform 만(GPU 합성). 바깥 .vlayer 의 scale(1.05~1.15, JS 크로스페이드)과 곱해져
+     멈춰 있을 때 최대 1.05×1.06≈1.11배. 기준점(transform-origin)을 인물 쪽에 둬서 확대돼도 얼굴이 가장자리로 밀려나지 않는다.
+     object-position 을 인물 쪽으로 옮겨 4:3·세로 화면에서 잘릴 때도 인물이 남게 한다(16:9 에서는 영향 없음).
+     보이지 않는 레이어는 멈춰 두고(JS 가 .live 부여), 동작 줄이기 설정이면 움직이지 않는다. */
+  .vlayer .vstill{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;backface-visibility:hidden;
+    animation:11s ease-in-out infinite alternate both paused}
+  .vlayer.live .vstill{animation-play-state:running}
+  .vlayer[data-key="intro"] .vstill{object-position:76% 50%;transform-origin:74% 44%;animation-name:cam-intro;animation-duration:11s}
+  .vlayer[data-key="program"] .vstill{object-position:66% 50%;transform-origin:68% 40%;animation-name:cam-program;animation-duration:12s}
+  .vlayer[data-key="health"] .vstill{object-position:74% 50%;transform-origin:70% 52%;animation-name:cam-health;animation-duration:10.5s}
+  .vlayer[data-key="meal"] .vstill{object-position:72% 50%;transform-origin:70% 60%;animation-name:cam-meal;animation-duration:11.5s}
+  /* intro: 두 사람 쪽으로 천천히 다가감 · program: 가까이서 시작해 방이 드러나게 물러남 ·
+     health: 혈압계 손 쪽으로 살짝 내려앉으며 다가감 · meal: 옆으로 흐르며 식판·어르신 쪽으로 다가감 */
+  @keyframes cam-intro{from{transform:scale(1) translate3d(0,0,0)}to{transform:scale(1.06) translate3d(-.8%,-.4%,0)}}
+  @keyframes cam-program{from{transform:scale(1.06) translate3d(.9%,-.3%,0)}to{transform:scale(1) translate3d(0,0,0)}}
+  @keyframes cam-health{from{transform:scale(1) translate3d(0,0,0)}to{transform:scale(1.055) translate3d(-.5%,-.8%,0)}}
+  @keyframes cam-meal{from{transform:scale(1.02) translate3d(.6%,0,0)}to{transform:scale(1.06) translate3d(-.7%,-.2%,0)}}
   .scrim{
     position:fixed;inset:0;z-index:1;pointer-events:none;
     background:
@@ -174,13 +197,18 @@
     background:radial-gradient(220px 160px at var(--mx,50%) var(--my,0%),rgba(255,170,90,.16),transparent 60%);opacity:0;transition:opacity .3s}
   .stats:hover .glow-edge{opacity:1}
 
-  /* ---------- meal: local scrim over bright food image ---------- */
-  #meal .content{position:relative}
-  #meal .content::before{content:"";position:absolute;inset:-52px -20% -48px -48px;z-index:-1;pointer-events:none;
-    background:radial-gradient(128% 104% at 14% 52%, rgba(6,18,30,.88) 0%, rgba(6,18,30,.62) 40%, rgba(6,18,30,.24) 66%, rgba(6,18,30,0) 84%)}
+  /* ---------- interior scenes (intro·program·health·meal): bright interior stills ----------
+     글 덩어리 뒤에만 타원형 어둠막을 깐다. closest-side 타원이 상자 안에서 투명으로 끝나므로
+     화면 어디에도 경계선이 생기지 않는다. 오른쪽(공간이 보이는 쪽)과 hero·closing 은 건드리지 않는다. */
+  .scene.interior .content{position:relative}
+  .scene.interior .content::before{content:"";position:absolute;inset:-40% -37% -10% -57%;z-index:-1;pointer-events:none;
+    background:radial-gradient(closest-side,var(--veil-core) 0%,var(--veil-core) 28%,var(--veil-mid) 56%,var(--veil-edge) 80%,transparent 100%)}
+  .scene.interior .ko-title{text-shadow:var(--halo-title)}
+  .scene.interior .en-title,.scene.interior .lead,.scene.interior .body,.scene.interior .eyebrow .cls{text-shadow:var(--halo)}
+  /* 모바일: 글이 화면 폭을 거의 다 쓰므로 타원 대신 화면 폭 띠(위아래만 흐림). 실내 사진은 위쪽(창·조명)이 가장 밝아서 eyebrow·제목 구간을 조금 더 진하게(--veil-strong) */
   @media(max-width:760px){
-    #meal .content::before{inset:-40px -8% -40px -30px;
-      background:radial-gradient(150% 100% at 32% 50%, rgba(6,18,30,.9) 0%, rgba(6,18,30,.66) 46%, rgba(6,18,30,0) 86%)}
+    .scene.interior .content::before{inset:-88px calc(-1 * var(--gutter)) -32px;
+      background:linear-gradient(180deg,transparent 0,var(--veil-mid) 48px,var(--veil-strong) 104px,var(--veil-core) 44%,var(--veil-core) 62%,var(--veil-mid) 84%,transparent 100%)}
   }
 
   /* ---------- actual facility photography: cinema contact sequence ---------- */
@@ -277,6 +305,11 @@
   .fleet a:hover{box-shadow:0 30px 60px -24px rgba(0,0,0,.9)}
   .fleet .ph{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform .8s cubic-bezier(.2,.7,.2,1);filter:saturate(.97)}
   .fleet a:hover .ph{transform:scale(1.10)}
+  /* 섹션 썸네일 = 배경 정지 이미지와 같은 파일(캐시 재사용). 인물이 오른쪽에 있어 가로 기준점을 인물 쪽으로 */
+  .fleet .ph-intro{background-position:76% 40%;background-image:url(media/intro.jpg);background-image:image-set(url(media/intro.webp) type("image/webp"),url(media/intro.jpg) type("image/jpeg"))}
+  .fleet .ph-program{background-position:66% 40%;background-image:url(media/program.jpg);background-image:image-set(url(media/program.webp) type("image/webp"),url(media/program.jpg) type("image/jpeg"))}
+  .fleet .ph-health{background-position:74% 40%;background-image:url(media/health.jpg);background-image:image-set(url(media/health.webp) type("image/webp"),url(media/health.jpg) type("image/jpeg"))}
+  .fleet .ph-meal{background-position:72% 40%;background-image:url(media/meal.jpg);background-image:image-set(url(media/meal.webp) type("image/webp"),url(media/meal.jpg) type("image/jpeg"))}
   .fleet .tag{position:absolute;inset:auto 8px 8px 8px;padding:18px 14px 12px;border-radius:9px;
     background:rgba(8,16,26,.52);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
     border:1px solid rgba(255,255,255,.08);
@@ -305,6 +338,47 @@
   .faqmore a svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.7;flex:none}
   .faqmore a:hover{color:var(--ink);background:var(--amber);border-color:var(--amber-deep)}
   .faqmore a:hover svg{stroke:var(--ink)}
+
+  /* ---------- 제휴업체 (closing 내부, 푸터 바로 위) — 내용은 classic v2/index.html · anime v3/index.html 의 #partners 와 동일하게 유지 ----------
+     한 장의 글래스 패널을 가는 선으로 4칸 나눈 '명단' 형태. 링크 칸만 hover·focus 반응.
+     링크 없는 칸은 '홈페이지 ↗' 줄 높이만큼 빈 자리를 둬서 상호 줄이 옆 칸과 같은 높이에 온다. */
+  .partners{position:relative;isolation:isolate;width:100%;max-width:1180px;margin:clamp(72px,10vh,104px) auto 0;text-align:center;scroll-margin-top:144px} /* 144 = 내비 여유 110 + reveal 이 끝나며 올라오는 34px */
+  /* 뒤 배경은 hero 영상(황금빛 도심)이라 밝다 → 제목 뒤에만 은은한 어둠막, 명단 패널은 푸터와 같은 깊은 글래스 */
+  .partners::before{content:"";position:absolute;z-index:-1;pointer-events:none;left:50%;top:-44px;width:min(640px,100%);height:180px;transform:translateX(-50%);
+    background:radial-gradient(closest-side,var(--veil-strong) 0%,var(--veil-strong) 36%,var(--veil-mid) 66%,transparent 100%)}
+  .partners-label{display:flex;align-items:center;justify-content:center;gap:16px;margin-bottom:14px;
+    font-family:var(--mono);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--glow);text-shadow:var(--halo)}
+  .partners-label::before,.partners-label::after{content:"";height:1px;width:clamp(24px,5vw,54px);background:var(--amber);opacity:.7}
+  .partners h2{font-family:var(--display);font-weight:800;font-size:clamp(24px,2.6vw,32px);line-height:1.2;letter-spacing:-.01em;
+    color:var(--paper);margin-bottom:clamp(22px,2.8vw,32px);text-shadow:0 2px 20px rgba(4,16,28,.55)}
+  .partner-list{list-style:none;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));
+    border:1px solid var(--glass-line);border-radius:14px;overflow:hidden;background:color-mix(in srgb,var(--ink) 72%,transparent);
+    -webkit-backdrop-filter:blur(16px) saturate(130%);backdrop-filter:blur(16px) saturate(130%);
+    box-shadow:0 24px 60px -30px rgba(0,0,0,.7),inset 0 1px 0 rgba(255,255,255,.06)}
+  .partner-list li{min-width:0}
+  .partner-list li+li{border-left:1px solid var(--glass-line)}
+  .partner-item{height:100%;min-height:118px;padding:24px 18px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;
+    color:var(--paper);text-decoration:none;transition:background .25s}
+  .partner-name{font-family:var(--display);font-weight:700;font-size:clamp(16px,1.5vw,19px);line-height:1.35;letter-spacing:-.005em}
+  .partner-link{font-family:var(--mono);font-size:11px;line-height:16px;letter-spacing:.14em;color:var(--glow);transition:color .25s}
+  div.partner-item::after{content:"";display:block;height:16px}
+  a.partner-item:hover{background:color-mix(in srgb,var(--glow) 7%,transparent)}
+  a.partner-item:hover .partner-name{color:var(--glow)}
+  a.partner-item:focus-visible{outline:2px solid var(--glow);outline-offset:-4px;border-radius:10px}
+  .partners + footer{margin-top:clamp(48px,6vw,72px)}
+  @media(max-width:900px){
+    .partner-list{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .partner-list li:nth-child(3){border-left:0}
+    .partner-list li:nth-child(n+3){border-top:1px solid var(--glass-line)}
+  }
+  @media(max-width:480px){
+    .partner-list{grid-template-columns:1fr}
+    .partner-list li+li{border-left:0;border-top:1px solid var(--glass-line)}
+    .partner-item{min-height:72px;padding:18px 20px;flex-direction:row;align-items:center;justify-content:space-between;gap:12px;text-align:left}
+    .partner-name{font-size:17px}
+    .partner-link{flex-shrink:0}
+    div.partner-item::after{display:none}
+  }
 
   footer{width:100%;max-width:1180px;margin:90px auto 0;padding:36px clamp(24px,4vw,46px) 40px;
     border:1px solid var(--glass-line);border-radius:16px;
@@ -404,16 +478,18 @@
     .split .ch{transition-duration:.4s}
     .scrolltip .line::after,.brand .mark{animation:none}
     .vlayer{transition:opacity .5s ease}
+    .vlayer[data-key] .vstill{animation:none;transform:none} /* 섹션별 규칙과 같은 우선순위 + 뒤에 와서 이긴다 */
   }
 </style>
 
 <div class="vstage" id="vstage" aria-hidden="true">
   <!-- hero: 1080p 무한루프 비디오(첫=끝 프레임) + 고해상도 포스터 폴백 -->
   <div class="vlayer" data-key="hero"><img class="vposter" src="media/hero-poster.jpg" alt=""><video muted loop playsinline preload="auto" poster="media/hero-poster.jpg" src="media/hero.mp4"></video></div>
-  <div class="vlayer" data-key="intro"><img class="vposter" src="media/intro-poster.jpg" alt=""><video muted loop playsinline preload="none" poster="media/intro-poster.jpg" data-src="media/intro.mp4"></video></div>
-  <div class="vlayer" data-key="program"><img class="vposter" src="media/program-poster.jpg" alt=""><video muted loop playsinline preload="none" poster="media/program-poster.jpg" data-src="media/program.mp4"></video></div>
-  <div class="vlayer" data-key="health"><img class="vposter" src="media/health-poster.jpg" alt=""><video muted loop playsinline preload="none" poster="media/health-poster.jpg" data-src="media/health.mp4"></video></div>
-  <div class="vlayer" data-key="meal"><img class="vposter" src="media/meal-poster.jpg" alt=""><video muted loop playsinline preload="none" poster="media/meal-poster.jpg" data-src="media/meal.mp4"></video></div>
+  <!-- intro·program·health·meal: 정지 이미지(WebP 우선, JPEG 대체) + CSS 카메라 움직임. hero 영상보다 늦게 받도록 우선순위 낮춤 -->
+  <div class="vlayer" data-key="intro"><picture><source type="image/webp" srcset="media/intro.webp"><img class="vstill" src="media/intro.jpg" width="1920" height="1080" alt="" decoding="async" fetchpriority="low"></picture></div>
+  <div class="vlayer" data-key="program"><picture><source type="image/webp" srcset="media/program.webp"><img class="vstill" src="media/program.jpg" width="1920" height="1080" alt="" decoding="async" fetchpriority="low"></picture></div>
+  <div class="vlayer" data-key="health"><picture><source type="image/webp" srcset="media/health.webp"><img class="vstill" src="media/health.jpg" width="1920" height="1080" alt="" decoding="async" fetchpriority="low"></picture></div>
+  <div class="vlayer" data-key="meal"><picture><source type="image/webp" srcset="media/meal.webp"><img class="vstill" src="media/meal.jpg" width="1920" height="1080" alt="" decoding="async" fetchpriority="low"></picture></div>
 </div>
 <div class="scrim"></div>
 <div class="grain"></div>
@@ -449,7 +525,7 @@
     <div class="scrolltip reveal"><span class="line"></span><span>Scroll</span></div>
   </section>
 
-  <section class="scene" id="intro" data-key="intro" data-label="센터소개">
+  <section class="scene interior" id="intro" data-key="intro" data-label="센터소개">
     <div class="content">
       <div class="eyebrow reveal"><span class="idx">01</span><span class="bar"></span><span class="cls">Why The Grace</span></div>
       <h2 class="ko-title split">좋은 마음만으로는<br>부족합니다</h2>
@@ -464,7 +540,7 @@
     </div>
   </section>
 
-  <section class="scene" id="program" data-key="program" data-label="프로그램">
+  <section class="scene interior" id="program" data-key="program" data-label="프로그램">
     <div class="content">
       <div class="eyebrow reveal"><span class="idx">02</span><span class="bar"></span><span class="cls">Daily Programs</span></div>
       <h2 class="ko-title split">하루를 채우는<br>프로그램</h2>
@@ -479,7 +555,7 @@
     </div>
   </section>
 
-  <section class="scene" id="health" data-key="health" data-label="건강·안전">
+  <section class="scene interior" id="health" data-key="health" data-label="건강·안전">
     <div class="content">
       <div class="eyebrow reveal"><span class="idx">03</span><span class="bar"></span><span class="cls">Health &amp; Safety</span></div>
       <h2 class="ko-title split">건강과 안전을<br>가장 먼저</h2>
@@ -494,7 +570,7 @@
     </div>
   </section>
 
-  <section class="scene" id="meal" data-key="meal" data-label="식사·환경">
+  <section class="scene interior" id="meal" data-key="meal" data-label="식사·환경">
     <div class="content">
       <div class="eyebrow reveal"><span class="idx">04</span><span class="bar"></span><span class="cls">Meals &amp; Space</span></div>
       <h2 class="ko-title split">정성 담은<br>식사와 공간</h2>
@@ -546,10 +622,10 @@
     </div>
 
     <div class="fleet reveal">
-      <a href="#intro" class="tilt3"><div class="ph" style="background-image:url(media/intro-poster.jpg)"></div><div class="tag">센터 소개</div></a>
-      <a href="#program" class="tilt3"><div class="ph" style="background-image:url(media/program-poster.jpg)"></div><div class="tag">프로그램</div></a>
-      <a href="#health" class="tilt3"><div class="ph" style="background-image:url(media/health-poster.jpg)"></div><div class="tag">건강·안전</div></a>
-      <a href="#meal" class="tilt3"><div class="ph" style="background-image:url(media/meal-poster.jpg)"></div><div class="tag">식사·환경</div></a>
+      <a href="#intro" class="tilt3"><div class="ph ph-intro"></div><div class="tag">센터 소개</div></a>
+      <a href="#program" class="tilt3"><div class="ph ph-program"></div><div class="tag">프로그램</div></a>
+      <a href="#health" class="tilt3"><div class="ph ph-health"></div><div class="tag">건강·안전</div></a>
+      <a href="#meal" class="tilt3"><div class="ph ph-meal"></div><div class="tag">식사·환경</div></a>
     </div>
 
     <section class="faq" aria-label="이용 안내 및 자주 묻는 질문">
@@ -572,6 +648,18 @@
         <a href="/guide.html">비용·등급·절차 자세히 보기<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></a>
         <a href="/facilities.html">실제 시설 둘러보기<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></a>
       </div>
+    </section>
+
+    <!-- 제휴업체: classic v2/index.html · anime v3/index.html 의 #partners 와 내용·링크·순서 동일. 수정 시 세 곳 모두 고칠 것 -->
+    <section class="partners reveal" id="partners" aria-labelledby="partners-title">
+      <p class="partners-label">PARTNERS</p>
+      <h2 id="partners-title">함께하는 제휴업체</h2>
+      <ul class="partner-list">
+        <li><a class="partner-item" href="https://danaumrehab.co.kr/" target="_blank" rel="noopener noreferrer" aria-label="다나음재활센터 홈페이지 (새 창)"><span class="partner-name">다나음재활센터</span><span class="partner-link">홈페이지 <span aria-hidden="true">↗</span></span></a></li>
+        <li><div class="partner-item"><span class="partner-name">해운대탑정형외과</span></div></li>
+        <li><a class="partner-item" href="http://www.ihyosung.org/" target="_blank" rel="noopener noreferrer" aria-label="효성노인건강센터 홈페이지 (새 창)"><span class="partner-name">효성노인건강센터</span><span class="partner-link">홈페이지 <span aria-hidden="true">↗</span></span></a></li>
+        <li><div class="partner-item"><span class="partner-name">사랑방재가복지센터</span></div></li>
+      </ul>
     </section>
 
     <footer>
@@ -831,12 +919,13 @@ document.documentElement.classList.add('js');
   /* =========================================================
      Video stage — crossfade + parallax (transform/opacity only)
      ========================================================= */
+  /* hero = 영상 레이어, intro·program·health·meal = 정지 이미지 레이어(video:null). live = 지금 보이는지(카메라 움직임 재생 여부) */
   var stageLayers = TEXKEY.map(function(key){
     var el=document.querySelector('.vlayer[data-key="'+key+'"]');
-    return { el:el, video:el.querySelector('video') };
+    return { el:el, video:el?el.querySelector('video'):null, live:false };
   });
 
-  /* lazy-load the 4 non-hero clips on first scroll or after 3s idle */
+  /* lazy-load any data-src clips on first scroll or after 3s idle (정지 이미지 레이어는 건너뜀) */
   var loadedRest=false;
   function loadRest(){
     if(loadedRest||reduce) return; loadedRest=true;
@@ -866,8 +955,11 @@ document.documentElement.classList.add('js');
     }
     for(k=0;k<L;k++){
       var lay=stageLayers[k];
+      if(!lay.el) continue;
       lay.el.style.opacity=ops[k].toFixed(3);
       lay.el.style.transform='scale('+scs[k].toFixed(4)+')';
+      var live=ops[k]>0.02;
+      if(lay.live!==live){ lay.live=live; lay.el.classList.toggle('live',live); }
       if(!reduce && lay.video){
         var v=lay.video, wantPlay=ops[k]>0.02;
         if(wantPlay){

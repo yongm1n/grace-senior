@@ -22,6 +22,9 @@
     --amber:#E4A93E; --amber-deep:#C07C24; --glow:#FBDC93;
     --line:rgba(180,208,224,0.16);
     --glass:rgba(7,24,40,0.48); --glass-line:rgba(190,216,232,0.20);
+    /* 밝은 배경 영상 위 글 가독성용 어둠막(main 에디션과 같은 값) — 제휴업체 제목 뒤에 사용 */
+    --veil-strong:rgba(6,18,30,.72); --veil-mid:rgba(6,18,30,.50);
+    --halo:0 0 2px rgba(4,16,28,.5),0 1px 14px rgba(4,16,28,.62);
     --display:"Helvetica Neue","Arial Narrow",Pretendard,-apple-system,system-ui,sans-serif;
     --body:-apple-system,"Apple SD Gothic Neo",Pretendard,"Helvetica Neue",sans-serif;
     --mono:"SF Mono",ui-monospace,Menlo,"Roboto Mono",monospace;
@@ -267,6 +270,47 @@
   .faqmore a svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.7;flex:none}
   .faqmore a:hover{color:var(--ink);background:var(--amber);border-color:var(--amber-deep)}
   .faqmore a:hover svg{stroke:var(--ink)}
+
+  /* ---------- 제휴업체 (closing 내부, 푸터 바로 위) — 내용은 classic v2/index.html · main src/site.html 의 #partners 와 동일하게 유지 ----------
+     한 장의 글래스 패널을 가는 선으로 4칸 나눈 '명단' 형태. 링크 칸만 hover·focus 반응.
+     링크 없는 칸은 '홈페이지 ↗' 줄 높이만큼 빈 자리를 둬서 상호 줄이 옆 칸과 같은 높이에 온다.
+     뒤 배경(hero 영상)이 밝아서 제목 뒤에만 은은한 어둠막, 명단 패널은 푸터와 같은 깊은 글래스. */
+  .partners{position:relative;isolation:isolate;width:100%;max-width:1180px;margin:clamp(72px,10vh,104px) auto 0;text-align:center;scroll-margin-top:144px} /* 144 = 내비 여유 110 + reveal 이 끝나며 올라오는 34px */
+  .partners::before{content:"";position:absolute;z-index:-1;pointer-events:none;left:50%;top:-44px;width:min(640px,100%);height:180px;transform:translateX(-50%);
+    background:radial-gradient(closest-side,var(--veil-strong) 0%,var(--veil-strong) 36%,var(--veil-mid) 66%,transparent 100%)}
+  .partners-label{display:flex;align-items:center;justify-content:center;gap:16px;margin-bottom:14px;
+    font-family:var(--mono);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--glow);text-shadow:var(--halo)}
+  .partners-label::before,.partners-label::after{content:"";height:1px;width:clamp(24px,5vw,54px);background:var(--amber);opacity:.7}
+  .partners h2{font-family:var(--display);font-weight:800;font-size:clamp(24px,2.6vw,32px);line-height:1.2;letter-spacing:-.01em;
+    color:var(--paper);margin-bottom:clamp(22px,2.8vw,32px);text-shadow:0 2px 20px rgba(4,16,28,.55)}
+  .partner-list{list-style:none;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));
+    border:1px solid var(--glass-line);border-radius:14px;overflow:hidden;background:color-mix(in srgb,var(--ink) 72%,transparent);
+    -webkit-backdrop-filter:blur(16px) saturate(130%);backdrop-filter:blur(16px) saturate(130%);
+    box-shadow:0 24px 60px -30px rgba(0,0,0,.7),inset 0 1px 0 rgba(255,255,255,.06)}
+  .partner-list li{min-width:0}
+  .partner-list li+li{border-left:1px solid var(--glass-line)}
+  .partner-item{height:100%;min-height:118px;padding:24px 18px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;
+    color:var(--paper);text-decoration:none;transition:background .25s}
+  .partner-name{font-family:var(--display);font-weight:700;font-size:clamp(16px,1.5vw,19px);line-height:1.35;letter-spacing:-.005em}
+  .partner-link{font-family:var(--mono);font-size:11px;line-height:16px;letter-spacing:.14em;color:var(--glow);transition:color .25s}
+  div.partner-item::after{content:"";display:block;height:16px}
+  a.partner-item:hover{background:color-mix(in srgb,var(--glow) 7%,transparent)}
+  a.partner-item:hover .partner-name{color:var(--glow)}
+  a.partner-item:focus-visible{outline:2px solid var(--glow);outline-offset:-4px;border-radius:10px}
+  .partners + footer{margin-top:clamp(48px,6vw,72px)}
+  @media(max-width:900px){
+    .partner-list{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .partner-list li:nth-child(3){border-left:0}
+    .partner-list li:nth-child(n+3){border-top:1px solid var(--glass-line)}
+  }
+  @media(max-width:480px){
+    .partner-list{grid-template-columns:1fr}
+    .partner-list li+li{border-left:0;border-top:1px solid var(--glass-line)}
+    .partner-item{min-height:72px;padding:18px 20px;flex-direction:row;align-items:center;justify-content:space-between;gap:12px;text-align:left}
+    .partner-name{font-size:17px}
+    .partner-link{flex-shrink:0}
+    div.partner-item::after{display:none}
+  }
 
   footer{width:100%;max-width:1180px;margin:90px auto 0;padding:36px clamp(24px,4vw,46px) 40px;
     border:1px solid var(--glass-line);border-radius:16px;
@@ -531,6 +575,18 @@
       <div class="faqmore reveal">
         <a href="/guide.html">비용·등급·절차 자세히 보기<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></a>
       </div>
+    </section>
+
+    <!-- 제휴업체: classic v2/index.html · main src/site.html 의 #partners 와 내용·링크·순서 동일. 수정 시 세 곳 모두 고칠 것 -->
+    <section class="partners reveal" id="partners" aria-labelledby="partners-title">
+      <p class="partners-label">PARTNERS</p>
+      <h2 id="partners-title">함께하는 제휴업체</h2>
+      <ul class="partner-list">
+        <li><a class="partner-item" href="https://danaumrehab.co.kr/" target="_blank" rel="noopener noreferrer" aria-label="다나음재활센터 홈페이지 (새 창)"><span class="partner-name">다나음재활센터</span><span class="partner-link">홈페이지 <span aria-hidden="true">↗</span></span></a></li>
+        <li><div class="partner-item"><span class="partner-name">해운대탑정형외과</span></div></li>
+        <li><a class="partner-item" href="http://www.ihyosung.org/" target="_blank" rel="noopener noreferrer" aria-label="효성노인건강센터 홈페이지 (새 창)"><span class="partner-name">효성노인건강센터</span><span class="partner-link">홈페이지 <span aria-hidden="true">↗</span></span></a></li>
+        <li><div class="partner-item"><span class="partner-name">사랑방재가복지센터</span></div></li>
+      </ul>
     </section>
 
     <footer>
