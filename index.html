@@ -341,17 +341,46 @@
     background:radial-gradient(closest-side,var(--veil-strong) 0%,var(--veil-strong) 36%,var(--veil-mid) 66%,transparent 100%)}
   .partners-label{font-family:var(--mono);font-size:11px;letter-spacing:.2em;color:var(--glow);margin-bottom:12px}
   .partners h2{font-family:var(--display);font-size:clamp(24px,3vw,34px);font-weight:800;color:var(--paper);margin-bottom:26px}
-  .partner-list{list-style:none;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--glass-line);border-bottom:1px solid var(--glass-line)}
-  .partner-list li{min-width:0}
-  .partner-list li+li{border-left:1px solid var(--glass-line)}
+  /* ── 제휴업체 목록 배치: 세 에디션 공통 규칙 ─────────────────────────────
+     v2/index.html · src/site.html · v3/index.html 세 곳에 글자 하나까지 똑같이 둔다. 고칠 때는 세 곳을 함께 고친다.
+     에디션마다 다른 것(목록 테두리·배경, 칸 여백·글꼴·색)은 이 블록 밖에 둔다.
+     · 한 줄 최대 칸 수: 1170px 이상 5칸, 940~1169px 4칸, 710~939px 3칸, 709px 이하 1칸(한 줄에 한 곳).
+       칸 폭이 206px보다 좁아지기 전에 칸 수를 줄인다. 206px은 가장 긴 이름 '사랑방재가복지센터'가
+       윈도 글꼴(맑은 고딕)로도 여백 안에 한 줄로 들어가는 폭이다(2026-09 실측). 경계값은 윈도처럼
+       스크롤바가 17px을 차지하는 화면에서도 206px이 지켜지게 잡았다.
+     · 한 줄에 다 들어가면 한 줄로 놓는다. 넘치면 줄끼리 칸 수가 한 개 넘게 차이 나지 않게 나누고,
+       칸이 적은 줄은 폭을 똑같이 나눠 채운다. 한 칸만 외톨이로 남는 줄은 만들지 않는다.
+         곳 수   5칸 구간   4칸 구간   3칸 구간
+           4        4          4        2+2
+           5        5         3+2       3+2
+           6       3+3        3+3       3+3
+           7       4+3        4+3      3+2+2
+           8       4+4        4+4      3+3+2
+       곳 수는 :has() 대신 nth-last-child 로 센다. :has()를 모르는 옛 브라우저에서도 똑같이 나온다.
+     · 구분선은 칸 사이 1px 틈에 긋는다. 칸마다 왼쪽·위쪽에 선을 긋되, 줄 첫 칸의 왼쪽 선과 첫 줄의 위쪽 선은
+       목록 밖으로 나가 잘린다. 그래서 세로선은 같은 줄 칸 사이에만, 가로선은 줄 사이에만 남는다. */
+  .partner-list{list-style:none;display:flex;flex-wrap:wrap;gap:1px;overflow:hidden}
+  .partner-list li{--c5:5;--c4:3;--c3:3;--cols:var(--c5);position:relative;min-width:0;flex:1 1 calc(100% / var(--cols) - 1px)}
+  .partner-list li::before{content:"";position:absolute;top:-1px;right:0;bottom:0;left:-1px;pointer-events:none;
+    border-left:1px solid var(--glass-line);border-top:1px solid var(--glass-line)}
+  .partner-list li:first-child:nth-last-child(4),.partner-list li:first-child:nth-last-child(4)~li{--c4:4;--c3:2}
+  .partner-list li:first-child:nth-last-child(6),.partner-list li:first-child:nth-last-child(6)~li{--c5:3}
+  .partner-list li:first-child:nth-last-child(n+7):nth-last-child(-n+8),
+  .partner-list li:first-child:nth-last-child(n+7):nth-last-child(-n+8)~li{--c5:4;--c4:4}
+  .partner-list li:first-child:nth-last-child(7)~li:nth-child(n+4){--c3:2}
+  @media(max-width:1169px){.partner-list li{--cols:var(--c4)}}
+  @media(max-width:939px){.partner-list li{--cols:var(--c3)}}
+  @media(max-width:709px){.partner-list li{--cols:1}}
+  /* classic 질감: 위아래 가는 선 사이에 깊은 글래스 칸. 링크 없는 칸도 링크 한 줄(15px)만큼 비워 둬서 같은 줄 상호가 같은 높이에 선다. */
+  .partner-list{border-top:1px solid var(--glass-line);border-bottom:1px solid var(--glass-line)}
   .partner-item{height:100%;min-height:118px;padding:25px 20px;display:flex;flex-direction:column;justify-content:center;gap:14px;color:var(--paper);text-decoration:none;background:var(--glass-deep)}
   .partner-name{font-size:18px;font-weight:600;line-height:1.6}
-  .partner-link{font-size:12px;color:var(--paper-dim)}
+  .partner-link{font-size:12px;line-height:15px;color:var(--paper-dim)}
+  div.partner-item::after{content:"";display:block;height:15px}
   a.partner-item:hover{background:var(--ink-2)}
   a.partner-item:hover .partner-name,a.partner-item:hover .partner-link{color:var(--glow)}
   a.partner-item:focus-visible{outline:2px solid var(--glow);outline-offset:-2px}
-  @media(max-width:900px){.partner-list{grid-template-columns:repeat(2,minmax(0,1fr))}.partner-list li:nth-child(3){border-left:0}.partner-list li:nth-child(n+3){border-top:1px solid var(--glass-line)}}
-  @media(max-width:480px){.partner-list{grid-template-columns:1fr}.partner-list li+li{border-left:0;border-top:1px solid var(--glass-line)}.partner-item{min-height:88px;padding:20px;flex-direction:row;align-items:center;justify-content:space-between;gap:12px}.partner-name{font-size:17px}.partner-link{flex-shrink:0}}
+  @media(max-width:709px){.partner-item{min-height:88px;padding:20px;flex-direction:row;align-items:center;justify-content:space-between;gap:12px}.partner-name{font-size:17px}.partner-link{flex-shrink:0}div.partner-item::after{display:none}}
 
   footer{width:100%;max-width:1180px;margin:60px auto 0;padding:36px clamp(24px,4vw,46px) 40px;
     border:1px solid var(--glass-line);border-radius:16px;
