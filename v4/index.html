@@ -660,16 +660,21 @@
   .director-signature {
     background: linear-gradient(135deg, var(--navy-deep) 0%, var(--navy) 70%, #1B3B58 100%);
     border-radius: var(--radius-md);
-    border: 1px solid rgba(229, 172, 72, 0.42);
-    padding: 18px 26px;
+    border: 1px solid rgba(229, 172, 72, 0.45);
+    padding: 20px 26px 18px;
     margin-bottom: 20px;
     box-shadow: var(--shadow-md);
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    color: #FFFFFF;
+    position: relative;
+  }
+  .director-top {
     display: grid;
     grid-template-columns: auto minmax(0, 1fr) auto;
     gap: 20px;
     align-items: center;
-    color: #FFFFFF;
-    position: relative;
   }
   .quote-mark {
     font-family: var(--num);
@@ -679,10 +684,23 @@
     opacity: 0.55;
     user-select: none;
   }
+  .director-story {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .director-headline {
+    font-family: var(--serif);
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--amber-glow);
+    line-height: 1.42;
+    letter-spacing: -0.015em;
+  }
   .director-quote {
-    font-size: 15.2px;
+    font-size: 14.5px;
     color: rgba(255, 255, 255, 0.90);
-    line-height: 1.65;
+    line-height: 1.64;
   }
   .director-quote strong {
     color: var(--amber-glow);
@@ -709,6 +727,33 @@
     font-size: 16px;
     font-weight: 700;
     color: #FFFFFF;
+  }
+  .director-creds {
+    list-style: none;
+    padding-top: 12px;
+    border-top: 1px solid rgba(229, 172, 72, 0.24);
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 8px;
+  }
+  .director-cred-chip {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 7px 11px;
+    border-radius: 9px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(229, 172, 72, 0.30);
+    font-size: 12.8px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.92);
+    line-height: 1.35;
+  }
+  .director-cred-chip::before {
+    content: "✦";
+    color: var(--amber-light);
+    font-size: 11px;
+    flex: none;
   }
 
   .care-grid {
@@ -792,6 +837,89 @@
     display: flex;
     align-items: center;
     gap: 5px;
+  }
+
+  /* 병원 인증 기준 4대 임상·안전 프로토콜 */
+  .protocol-wrap {
+    margin-top: 22px;
+    background: rgba(255, 255, 255, 0.72);
+    border: 1px solid rgba(184, 115, 36, 0.30);
+    border-radius: var(--radius-md);
+    padding: 18px 22px 20px;
+    box-shadow: var(--shadow-sm);
+  }
+  .protocol-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 10px 16px;
+    padding-bottom: 12px;
+    margin-bottom: 14px;
+    border-bottom: 1px solid var(--line-strong);
+  }
+  .protocol-head-left {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+  }
+  .protocol-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 3px 10px;
+    border-radius: 999px;
+    background: var(--navy);
+    color: var(--amber-glow);
+    border: 1px solid rgba(229, 172, 72, 0.45);
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+  }
+  .protocol-title {
+    font-family: var(--serif);
+    font-size: 19px;
+    font-weight: 700;
+    color: var(--ink);
+    letter-spacing: -0.02em;
+  }
+  .protocol-sub {
+    font-size: 13.5px;
+    color: var(--ink-muted);
+  }
+  .protocol-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 14px;
+  }
+  .protocol-card {
+    background: var(--surface);
+    border: 1px solid rgba(184, 115, 36, 0.25);
+    border-top: 3px solid var(--navy);
+    border-radius: 13px;
+    padding: 14px 16px 15px;
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .protocol-kicker {
+    font-size: 11.8px;
+    font-weight: 800;
+    color: var(--amber-deep);
+    letter-spacing: 0.01em;
+  }
+  .protocol-card h4 {
+    font-family: var(--serif);
+    font-size: 15.8px;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.34;
+  }
+  .protocol-card p {
+    font-size: 13.6px;
+    color: var(--ink-body);
+    line-height: 1.54;
   }
 
   /* ---------- 3. PROGRAM: 골드 수직 타임라인 & 프로그램 화보 ---------- */
@@ -1300,7 +1428,7 @@
 
   .faq-grid {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 12px;
   }
   .faq-card {
@@ -1619,7 +1747,10 @@
   .hero-features > *,
   .hero-arch-bar > *,
   .director-signature > *,
+  .director-top > *,
+  .director-creds > *,
   .care-grid > *,
+  .protocol-grid > *,
   .program-layout > *,
   .program-photos > *,
   .meal-showcase > *,
@@ -1649,12 +1780,15 @@
     .stage-tabs {
       flex-wrap: wrap;
     }
+    .director-creds {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
   }
 
   @media (max-width: 1120px) {
     .menu { gap: 16px; }
     .menu-link { font-size: 14px; }
-    .care-grid, .cost-infographic { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .care-grid, .protocol-grid, .cost-infographic { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .hero-arch-bar, .process-ribbon { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .bento-1, .bento-2, .bento-3, .bento-4, .bento-5, .bento-6, .bento-7, .bento-8 {
       grid-column: span 6;
@@ -1670,7 +1804,7 @@
     .meal-points {
       grid-template-columns: minmax(0, 1fr);
     }
-    .director-signature {
+    .director-top {
       grid-template-columns: minmax(0, 1fr);
       gap: 10px;
     }
@@ -1811,7 +1945,9 @@
     }
 
     .hero-arch-bar,
+    .director-creds,
     .care-grid,
+    .protocol-grid,
     .program-photos,
     .cost-infographic,
     .process-ribbon,
@@ -1819,6 +1955,9 @@
     .partner-list,
     footer.site-footer {
       grid-template-columns: minmax(0, 1fr);
+    }
+    .protocol-wrap {
+      padding: 15px;
     }
     .arch-cell {
       border-right: 0;
@@ -1948,12 +2087,11 @@
         <div class="hero-copy">
           <div class="hero-eyebrow">
             <span class="tag-pill">노인장기요양보험 지정</span>
-            <span>부산 해운대 · 간호부서장 출신 대표 직접 운영</span>
+            <span>간호부서장 · 의료기관 인증평가 조사연구원 출신 대표 직접 운영</span>
           </div>
           <h1>어르신의 하루가 안전하고 따뜻하도록,<br><span class="hl">의료 경험으로 곁을 지킵니다</span></h1>
           <p class="hero-lead">
-            오랜 병원 현장에서 간호부서장으로 일하며 쌓은 임상 경험과 체계적인 돌봄 시스템으로,
-            어르신께는 존중받는 활기찬 일상을, 보호자님께는 마음 놓이는 안심을 드립니다.
+            20년 이상 대학병원·투석실·자생한방병원 임상 현장과 의료기관 인증평가를 거친 간호사 대표가 매일 어르신의 작은 변화를 직접 살피며, 병원 밖 일상에서도 가장 안전하고 활기찬 하루를 만들어 드립니다.
           </p>
 
           <ul class="hero-features" aria-label="더 그레이스 4대 핵심 약속">
@@ -1981,8 +2119,8 @@
             <li class="hero-feat-item">
               <span class="hero-feat-icon">04</span>
               <div class="hero-feat-text">
-                <strong>해운대 전역 · 송정 안전 송영</strong>
-                <span>전용 차량으로 댁 앞까지 안전 동행</span>
+                <strong>운전자·요양보호사 2인 동승 송영</strong>
+                <span>승·하차 부축부터 댁 문 앞까지 안심 동행</span>
               </div>
             </li>
           </ul>
@@ -2067,16 +2205,27 @@
       </div>
 
       <div class="director-signature">
-        <span class="quote-mark" aria-hidden="true">“</span>
-        <p class="director-quote">
-          오랜 시간 병원에서 <strong>간호부서장</strong>으로 일하며 확신하게 된 원칙이 있습니다.
-          어르신의 작은 컨디션 변화도 놓치지 않는 <strong>전문적인 건강·투약 관리</strong>와, 넘어지거나 다치지 않도록 설계된
-          <strong>배리어프리 안전 체계</strong>가 함께할 때 비로소 가족분들이 안심하실 수 있습니다. 부모님을 모시는 마음으로 매일의 건강과 일상을 살핍니다.
-        </p>
-        <div class="director-seal">
-          <span class="role">간호부서장 출신 · 의료 경험 기반</span>
-          <div class="name">더 그레이스 시니어 주간보호센터 대표</div>
+        <div class="director-top">
+          <span class="quote-mark" aria-hidden="true">“</span>
+          <div class="director-story">
+            <p class="director-headline">“만성질환은 병원 안의 치료만큼 병원 밖 일상의 관리가 중요합니다. 몸의 건강과 마음의 외로움까지 함께 살피는 공간을 만들었습니다.”</p>
+            <p class="director-quote">
+              20년 전 투석실 응급당직 날, 혼자 지내시던 어르신이 식이 관리가 되지 않아 응급실로 오셨던 순간을 지금도 잊지 못합니다.
+              해운대 자생한방병원에서 어르신들의 지친 마음까지 보듬으며 배운 통찰과, <strong>간호부서장 및 의료기관평가인증원 감염관리 조사연구원</strong>으로 쌓은 환자안전 기준을 그대로 담아 더 그레이스를 열었습니다.
+              만약 내 부모님을 모신다면, 그리고 훗날 내가 나이 들어 머문다면 어떤 곳이어야 할지 끝없이 질문하며 어르신의 작은 걸음걸이와 표정 변화 하나까지 놓치지 않고 살피겠습니다.
+            </p>
+          </div>
+          <div class="director-seal">
+            <span class="role">간호부서장 · 인증평가 조사연구원 출신</span>
+            <div class="name">정지안 대표 · 더 그레이스</div>
+          </div>
         </div>
+        <ul class="director-creds" aria-label="정지안 대표 주요 임상 및 전문 이력">
+          <li class="director-cred-chip">20년+ 임상 간호사 (투석실 · 해운대 자생한방병원 등)</li>
+          <li class="director-cred-chip">전) 병원 간호부서장 · 의료기관 인증 총괄 · 보건관리자</li>
+          <li class="director-cred-chip">전) 의료기관평가인증원 감염관리 조사 연구원</li>
+          <li class="director-cred-chip">동의과학대학교 요양보호사 자격 취득 · 현장실습 수료</li>
+        </ul>
       </div>
 
       <div class="care-grid">
@@ -2127,6 +2276,39 @@
             <div class="care-tag">✓ 상·하단 이중 비상벨 · 전역 안전바</div>
           </div>
         </article>
+      </div>
+
+      <!-- 병원 인증 기준으로 설계한 더 그레이스 4대 임상·안전 프로토콜 -->
+      <div class="protocol-wrap" aria-label="병원 인증 기준으로 설계한 더 그레이스 4대 임상·안전 프로토콜">
+        <div class="protocol-head">
+          <div class="protocol-head-left">
+            <span class="protocol-badge">CLINICAL CARE SYSTEM</span>
+            <h3 class="protocol-title">병원 인증 기준으로 설계한 더 그레이스 4대 임상·안전 프로토콜</h3>
+          </div>
+          <p class="protocol-sub">서류상 점수에 그치지 않고 입소 첫날부터 매일의 송영·진료실 연계까지 현장에서 실제 작동하는 돌봄 체계입니다.</p>
+        </div>
+        <div class="protocol-grid">
+          <article class="protocol-card">
+            <span class="protocol-kicker">PROTOCOL 01 · 정밀 초기 욕구사정 (Needs Assessment)</span>
+            <h4>같은 등급이어도 어르신마다 다른 맞춤 돌봄 설계</h4>
+            <p>입소 첫날 질환·복용약뿐 아니라 식사 형태(일반식·다진식·죽식, 당뇨·저염식, 연하·삼킴 곤란 여부), 구강 상태, 일상생활 수행능력(ADL), 인지·행동 변화까지 종합 평가해 개인별 돌봄 계획을 세웁니다.</p>
+          </article>
+          <article class="protocol-card">
+            <span class="protocol-kicker">PROTOCOL 02 · Huhn 낙상 · Braden 욕창 위험도 현장 적용</span>
+            <h4>사고가 나기 전에 ‘언제·어떤 동작이 위험한지’ 선제 파악</h4>
+            <p>서류상 점수에 그치지 않고 의자에서 일어설 때 휘청거리는 분, 기립성 빈혈이 있는 분, 방향 전환이나 오후 피로 누적 시 다리 힘이 풀리는 분까지 세밀히 구분해 전 직원이 부축 포인트를 공유합니다.</p>
+          </article>
+          <article class="protocol-card">
+            <span class="protocol-kicker">PROTOCOL 03 · 진료일 혈압·혈당 기록 동봉 &amp; 당뇨 식이교육</span>
+            <h4>센터에서 매일 쌓은 건강 기록을 병원 진료실까지 연결</h4>
+            <p>가정에서 꾸준히 재기 어려운 혈압·혈당을 매일 측정·기록하여 병원 진료 가시는 날 담당 의사 선생님께 동봉해 드리고, 당뇨 어르신께는 혈당 수치와 식사량을 함께 살피며 눈높이 식생활 교육을 진행합니다.</p>
+          </article>
+          <article class="protocol-card">
+            <span class="protocol-kicker">PROTOCOL 04 · 2인 동승 문 앞 송영 &amp; 해운대 협약 의료망</span>
+            <h4>요양보호사 동승 안심 송영과 실제 작동하는 지역 의료 연계</h4>
+            <p>운전자 1인과 요양보호사 선생님이 함께 동승해 승·하차 부축과 안전벨트를 챙기며, 해운대 센트럴 내과(독감 접종·만성질환)·365치과(원장 방문 구강관리)·리안 성모안과·탑정형외과·다나음재활운동센터·튼튼 복지용구와 긴밀히 협력합니다.</p>
+          </article>
+        </div>
       </div>
     </div>
   </section>
@@ -2288,7 +2470,7 @@
         <div class="meal-point-card">
           <div class="kicker">02 · 어르신 맞춤 영양 식단 · 식단표 공개</div>
           <h4>치아·소화를 배려한 균형 잡힌 한식</h4>
-          <p>어르신들이 씹고 소화하기 편안한 국·찬 구성과 제철 식단, 오후 간식까지 매일 정성껏 챙겨드리며, 매월 식단표를 공식 블로그에 투명하게 공개합니다.</p>
+          <p>어르신의 저작·연하(삼킴) 상태에 맞춘 식사 제공은 물론, 당뇨가 있으신 어르신께는 혈당 상태와 식사 내용을 함께 확인하며 식생활 안내를 진행합니다. 매월 식단표는 공식 블로그에 투명하게 공개합니다.</p>
         </div>
         <div class="meal-point-card">
           <div class="kicker">03 · 투명한 비용 &amp; 식기 살균 위생</div>
@@ -2482,8 +2664,16 @@
         </div>
       </div>
 
-      <!-- FAQ 6선 -->
-      <div class="faq-grid" aria-label="자주 묻는 질문 6선">
+      <!-- FAQ 8선 (2x4 대칭 그리드) -->
+      <div class="faq-grid" aria-label="자주 묻는 질문 8선">
+        <article class="faq-card">
+          <h3>부모님이 “나는 아직 그런 데 갈 때가 아니다”라며 거부하시면 어떡하죠?</h3>
+          <p>주간보호센터는 집을 떠나 입소하는 요양원이 아니라, ‘지금 살고 있는 내 집에서 더 오래 건강하게 살기 위해 낮 동안 운동하고 소통하러 다니는 시니어 건강·문화센터(노치원)’입니다. 어르신께서 마음의 문턱을 낮추실 수 있도록 눈높이 상담과 부담 없는 방문 견학·단기 체험을 도와드립니다.</p>
+        </article>
+        <article class="faq-card">
+          <h3>아직 혼자 잘 걸어 다니시는데 장기요양등급 신청이 가능할까요?</h3>
+          <p>네, 가능합니다. 보행이 괜찮으셔도 약 복용 여부를 자주 헷갈리시거나 같은 말씀을 반복하시는 등 인지·일상 관리가 필요한 경우 신청 대상이 됩니다. 해운대구 치매안심센터 무료 선별검사 연계부터 공단 인정 신청·방문조사 준비까지 센터에서 상세히 안내해 드립니다.</p>
+        </article>
         <article class="faq-card">
           <h3>장기요양등급이 없어도 상담·이용할 수 있나요?</h3>
           <p>네, 언제든 상담하실 수 있습니다. 국민건강보험공단 등급 신청 절차를 상세히 안내해 드리며, 등급 판정 전이라도 일반 이용이 가능합니다.</p>
@@ -2493,8 +2683,8 @@
           <p>장기요양 본인부담금 외에 식사는 1식 5,000원, 간식은 1,000원입니다. 송영 서비스는 장기요양 급여 범위 내에서 제공됩니다.</p>
         </article>
         <article class="faq-card">
-          <h3>송영 서비스는 어디까지 가능한가요?</h3>
-          <p>해운대구 전 지역과 송정 일대까지 댁 앞 송영 서비스를 제공합니다. 그 외 인접 지역은 상담을 통해 이용 가능 여부를 안내해 드립니다.</p>
+          <h3>송영(차량 픽업)은 어디까지 오나요?</h3>
+          <p>해운대구 전 지역과 송정 일대까지 제공하며, 운전자 1인과 요양보호사 선생님이 2인 1조로 함께 동승하여 승·하차 부축과 안전벨트 확인까지 댁 문 앞에서부터 안전하게 동행합니다.</p>
         </article>
         <article class="faq-card">
           <h3>토요일에도 이용할 수 있나요?</h3>
