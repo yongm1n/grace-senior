@@ -73,6 +73,7 @@
     --gutter: clamp(20px, 4.5vw, 72px);
     --switcher-h: 0px;
     --nav-h: 74px;
+    --quick-nav-h: 0px;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -220,7 +221,7 @@
     transform: translateY(-1px);
     box-shadow: 0 14px 28px -10px rgba(27, 67, 50, 0.6);
   }
-  .nav-cta-mob { display: none; }
+  .quick-nav { display: none; }
   /* ---------- 공통 섹션 & 에디토리얼 매거진 헤더 ---------- */
   .scene {
     position: relative;
@@ -228,7 +229,7 @@
     border-bottom: 1px solid var(--line);
   }
   .scene[id] {
-    scroll-margin-top: calc(var(--nav-h) + 8px);
+    scroll-margin-top: calc(var(--nav-h) + var(--quick-nav-h) + 12px);
   }
   .container {
     max-width: 1340px;
@@ -394,7 +395,7 @@
 
   /* ---------- 1. HERO: 브라이트 매거진 스플릿 프레임 ---------- */
   .scene.hero {
-    padding-top: calc(var(--switcher-h) + var(--nav-h) + 28px);
+    padding-top: calc(var(--switcher-h) + var(--nav-h) + var(--quick-nav-h) + 28px);
     padding-bottom: 48px;
     background:
       radial-gradient(50% 60% at 78% 28%, rgba(235, 243, 238, 0.95), transparent 70%),
@@ -464,6 +465,7 @@
     max-width: 600px;
     margin-bottom: 20px;
   }
+  .hero-lead-compact { display: none; }
 
   /* 히어로 좌측 4대 포인트 카드 칩 (2x2) */
   .hero-chips {
@@ -1691,6 +1693,39 @@
 
   /* ---------- 반응형 미디어쿼리 ---------- */
   @media (max-width: 1140px) {
+    :root { --quick-nav-h: 46px; }
+    .menu-link { display: none; }
+    .quick-nav {
+      position: fixed;
+      top: calc(var(--switcher-h) + var(--nav-h));
+      left: 0;
+      right: 0;
+      z-index: 44;
+      height: var(--quick-nav-h);
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      padding: 0 var(--gutter);
+      background: var(--bg-cream);
+      border-bottom: 1px solid var(--line-strong);
+    }
+    .quick-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 0;
+      color: var(--ink-body);
+      font-size: 14px;
+      font-weight: 700;
+      text-decoration: none;
+      border-bottom: 2px solid transparent;
+    }
+    .quick-link:hover,
+    .quick-link[aria-current="true"] {
+      color: var(--forest);
+      border-bottom-color: var(--coral);
+      background: var(--forest-soft);
+    }
+    .quick-link:focus-visible { outline-offset: -4px; }
     .hero-split { grid-template-columns: minmax(0, 1fr); }
     .poster-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .daily-steps { grid-template-columns: repeat(3, minmax(0, 1fr)); }
@@ -1712,14 +1747,21 @@
     body { padding-bottom: 74px; font-size: 15.5px; }
     .brand-logo-wrap { width: 38px; height: 38px; }
     .brand-name { font-size: 17.5px; }
-    .brand-sub, .menu-link, .nav-cta-desk, .sec-num { display: none; }
-    .nav-cta-mob {
-      display: inline-flex;
-      height: 38px;
-      padding: 0 13px;
-      font-size: 13.5px;
-    }
+    .brand-sub { font-size: 11.5px; }
+    .nav-cta-desk, .sec-num { display: none; }
+    .scene.hero { padding-top: calc(var(--nav-h) + var(--quick-nav-h) + 22px); }
+    .hero-split { gap: 0; }
+    .hero-copy { display: contents; }
+    .hero-eyebrow { order: 0; margin-bottom: 14px; font-size: 12px; gap: 8px; }
+    .hero-eyebrow .tag-pill { font-size: 10.5px; padding: 3px 8px; flex: none; }
     .hero h1 { font-size: clamp(25px, 6.8vw, 32px); }
+    .hero h1 { order: 1; margin-bottom: 12px; }
+    .hero-lead { order: 2; margin-bottom: 0; }
+    .hero-lead-full { display: none; }
+    .hero-lead-compact { display: inline; }
+    .hero-editorial-frame { order: 3; margin: 20px 0; }
+    .hero-chips { order: 4; margin-bottom: 0; }
+    .hero-copy > .btn-row { display: none; }
     .hero-chips,
     .hero-info-bar,
     .poster-grid,
@@ -1796,7 +1838,7 @@
     </span>
     <div class="brand-text">
       <strong class="brand-name">더 그레이스</strong>
-      <span class="brand-sub">시니어 웰니스·문화 클럽 · 해운대</span>
+      <span class="brand-sub">시니어 주간보호센터 · 해운대</span>
     </div>
   </a>
   <nav class="menu" aria-label="주요 메뉴">
@@ -1810,12 +1852,14 @@
       <span class="icon-ring"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.6 15.6 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24 11.4 11.4 0 0 0 3.6.58 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.46.58 3.6a1 1 0 0 1-.25 1z"/></svg></span>
       <span>상담 051-791-1797</span>
     </a>
-    <a class="nav-cta nav-cta-mob" href="tel:051-791-1797" aria-label="전화 상담 051-791-1797">
-      <span class="icon-ring"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.6 15.6 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24 11.4 11.4 0 0 0 3.6.58 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.46.58 3.6a1 1 0 0 1-.25 1z"/></svg></span>
-      <span>전화 상담</span>
-    </a>
   </nav>
 </header>
+<nav class="quick-nav" aria-label="주요 정보 바로가기">
+  <a class="quick-link" href="#program">프로그램</a>
+  <a class="quick-link" href="#facilities">시설</a>
+  <a class="quick-link" href="#guide">비용·이용</a>
+  <a class="quick-link" href="#closing">오시는 길</a>
+</nav>
 
 <main>
   <!-- 1. HERO: 매거진 스플릿 프레임 레이아웃 -->
@@ -1826,11 +1870,12 @@
         <div class="hero-copy">
           <div class="hero-eyebrow">
             <span class="tag-pill">노인장기요양보험 지정</span>
-            <span>부산 해운대 · 프리미엄 시니어 문화·웰니스 클럽</span>
+            <span>부산 해운대 · 시니어 주간보호센터</span>
           </div>
           <h1>매일 아침, 설레는 마음으로 나서는<br><span class="hl-spring">어르신의 두 번째 봄날</span></h1>
           <p class="hero-lead">
-            따스한 햇살이 가득한 공간에서 즐기는 다채로운 문화·요리·나들이와 전문 재활운동, 간호부서장 출신 대표가 직접 챙기는 세심한 건강 돌봄까지. 어르신이 매일 기다리시는 활기찬 클럽하우스를 만나보세요.
+            <span class="hero-lead-full">따스한 햇살이 가득한 공간에서 즐기는 다채로운 문화·요리·나들이와 전문 재활운동, 간호부서장 출신 대표가 직접 챙기는 세심한 건강 돌봄까지. 어르신이 매일 기다리시는 활기찬 주간보호센터를 만나보세요.</span>
+            <span class="hero-lead-compact">다채로운 활동과 세심한 간호 돌봄으로,<br>어르신의 하루에 즐거움을 더합니다.</span>
           </p>
 
           <ul class="hero-chips" aria-label="더 그레이스 4대 핵심 포인트">
@@ -2045,7 +2090,7 @@
         <div class="sec-head-left">
           <span class="sec-num">02</span>
           <div class="sec-title-group">
-            <span class="sec-kicker">MONTHLY SPECIAL CURATION · 이달의 클럽 프로그램</span>
+            <span class="sec-kicker">MONTHLY SPECIAL CURATION · 이달의 프로그램</span>
             <h2 class="sec-title" id="program-title">“내일은 또 어떤 즐거운 일이 있을까?”<br><em>이달의 특별한 프로그램 6선</em></h2>
             <p class="sec-desc">각 프로그램 포스터를 클릭하시면 기대 효과 요약과 공식 네이버 블로그 상세 안내를 확인하실 수 있습니다.</p>
           </div>
@@ -2684,7 +2729,7 @@
 
   /* 네비게이션 스크롤 헤더 */
   var nav = document.querySelector('.nav');
-  var menuLinks = Array.prototype.slice.call(document.querySelectorAll('.menu-link'));
+  var menuLinks = Array.prototype.slice.call(document.querySelectorAll('.menu-link, .quick-link'));
   var scenes = Array.prototype.slice.call(document.querySelectorAll('.scene[id]'));
 
   function onScroll(){
