@@ -302,10 +302,11 @@
   var ACTIONS_URL = 'https://github.com/' + REPO + '/actions';
 
   var EDITIONS = [
-    { id:'main',    mono:'MAIN',    name:'시네마',   def:true,  desc:'실사 영상 배경 · 기본',       preview:'/v1/' },
-    { id:'classic', mono:'CLASSIC', name:'클래식',   def:false, desc:'정적 이미지 · 가장 가벼움', preview:'/v2/' },
-    { id:'anime',   mono:'ANIME',   name:'애니',     def:false, desc:'애니메이션 룩 · 영상 배경', preview:'/v3/' },
-    { id:'v4',      mono:'TRUST · V4', name:'웜 라이트 (V4)', def:false, desc:'밝은 웜톤 · 실사 시설 · 정보 중심', preview:'/v4/' }
+    { id:'main',    mono:'MAIN',        name:'시네마',            def:true,  desc:'실사 영상 배경 · 기본',               preview:'/v1/' },
+    { id:'classic', mono:'CLASSIC',     name:'클래식',            def:false, desc:'정적 이미지 · 가장 가벼움',         preview:'/v2/' },
+    { id:'anime',   mono:'ANIME',       name:'애니',              def:false, desc:'애니메이션 룩 · 영상 배경',         preview:'/v3/' },
+    { id:'v4-1',    mono:'V4-1 · LOUNGE', name:'웜 라운지 (V4-1)', def:false, desc:'웜 아이보리 & 딥 네이비 · 프로그램 팝업', preview:'/v4-1/' },
+    { id:'v4-2',    mono:'V4-2 · CLUB',   name:'브라이트 클럽 (V4-2)', def:false, desc:'햇살 크림 & 세이지 그린 · 매거진 클럽', preview:'/v4-2/' }
   ];
   function labelOf(id){ for(var i=0;i<EDITIONS.length;i++){ if(EDITIONS[i].id===id) return EDITIONS[i].name; } return id || null; }
 

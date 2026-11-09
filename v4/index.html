@@ -374,13 +374,11 @@
     object-fit: cover;
     object-position: 68% center;
     opacity: 0;
-    transform: scale(1.04);
-    transition: opacity 0.85s ease, transform 6.5s ease-out;
+    transition: opacity 0.85s ease;
     filter: contrast(1.04) saturate(1.06) brightness(1.01);
   }
   .hero-bg-slide.active {
     opacity: 1;
-    transform: scale(1);
   }
   .hero-scrim {
     position: absolute;
@@ -651,109 +649,11 @@
     color: rgba(255, 255, 255, 0.72);
   }
 
-  /* ---------- 2. INTRO: 시그니처 대표 철학 + 4대 화보 카드 ---------- */
+  /* ---------- 2. INTRO: 4대 화보 카드 ---------- */
   .scene.section-intro {
     background:
       radial-gradient(55% 50% at 15% 15%, rgba(229, 172, 72, 0.12), transparent 70%),
       linear-gradient(180deg, #F3ECE0 0%, #EFE6D6 100%);
-  }
-  .director-signature {
-    background: linear-gradient(135deg, var(--navy-deep) 0%, var(--navy) 70%, #1B3B58 100%);
-    border-radius: var(--radius-md);
-    border: 1px solid rgba(229, 172, 72, 0.45);
-    padding: 20px 26px 18px;
-    margin-bottom: 20px;
-    box-shadow: var(--shadow-md);
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-    color: #FFFFFF;
-    position: relative;
-  }
-  .director-top {
-    display: grid;
-    grid-template-columns: auto minmax(0, 1fr) auto;
-    gap: 20px;
-    align-items: center;
-  }
-  .quote-mark {
-    font-family: var(--num);
-    font-size: 64px;
-    line-height: 0.7;
-    color: var(--amber-light);
-    opacity: 0.55;
-    user-select: none;
-  }
-  .director-story {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-  }
-  .director-headline {
-    font-family: var(--serif);
-    font-size: 17px;
-    font-weight: 700;
-    color: var(--amber-glow);
-    line-height: 1.42;
-    letter-spacing: -0.015em;
-  }
-  .director-quote {
-    font-size: 14.5px;
-    color: rgba(255, 255, 255, 0.90);
-    line-height: 1.64;
-  }
-  .director-quote strong {
-    color: var(--amber-glow);
-    font-weight: 700;
-  }
-  .director-seal {
-    text-align: right;
-    padding-left: 20px;
-    border-left: 1px solid rgba(229, 172, 72, 0.28);
-    white-space: nowrap;
-  }
-  .director-seal .role {
-    display: inline-block;
-    font-size: 11.5px;
-    font-weight: 700;
-    color: var(--navy-deep);
-    background: var(--amber-light);
-    padding: 2px 9px;
-    border-radius: 999px;
-    margin-bottom: 5px;
-  }
-  .director-seal .name {
-    font-family: var(--serif);
-    font-size: 16px;
-    font-weight: 700;
-    color: #FFFFFF;
-  }
-  .director-creds {
-    list-style: none;
-    padding-top: 12px;
-    border-top: 1px solid rgba(229, 172, 72, 0.24);
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 8px;
-  }
-  .director-cred-chip {
-    display: flex;
-    align-items: center;
-    gap: 7px;
-    padding: 7px 11px;
-    border-radius: 9px;
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(229, 172, 72, 0.30);
-    font-size: 12.8px;
-    font-weight: 600;
-    color: rgba(255, 255, 255, 0.92);
-    line-height: 1.35;
-  }
-  .director-cred-chip::before {
-    content: "✦";
-    color: var(--amber-light);
-    font-size: 11px;
-    flex: none;
   }
 
   .care-grid {
@@ -825,7 +725,7 @@
   .care-body p {
     font-size: 14.2px;
     color: var(--ink-body);
-    line-height: 1.56;
+    line-height: 1.54;
   }
   .care-tag {
     margin-top: auto;
@@ -839,90 +739,136 @@
     gap: 5px;
   }
 
-  /* 간호부서장의 임상 기준 4대 케어 프로토콜 */
-  .protocol-wrap {
-    margin-top: 22px;
-    background: rgba(255, 255, 255, 0.72);
-    border: 1px solid rgba(184, 115, 36, 0.30);
-    border-radius: var(--radius-md);
-    padding: 18px 22px 20px;
-    box-shadow: var(--shadow-sm);
+  /* ---------- 3. PROGRAM: 이달의 스페셜 프로그램 6선 쇼케이스 & 하루 일과 ---------- */
+  .special-showcase {
+    background: linear-gradient(135deg, #102437 0%, #17324B 100%);
+    border: 1px solid rgba(229, 172, 72, 0.42);
+    border-radius: var(--radius-lg);
+    padding: 20px 22px 22px;
+    margin-bottom: 22px;
+    box-shadow: var(--shadow-md);
+    color: #FFFFFF;
   }
-  .protocol-head {
+  .special-head {
     display: flex;
     flex-wrap: wrap;
-    align-items: baseline;
+    align-items: center;
     justify-content: space-between;
     gap: 10px 16px;
-    padding-bottom: 12px;
-    margin-bottom: 14px;
-    border-bottom: 1px solid var(--line-strong);
+    padding-bottom: 14px;
+    margin-bottom: 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.14);
   }
-  .protocol-head-left {
+  .special-head-left {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     gap: 10px;
   }
-  .protocol-badge {
+  .special-badge {
     display: inline-flex;
     align-items: center;
     padding: 3px 10px;
     border-radius: 999px;
-    background: var(--navy);
-    color: var(--amber-glow);
-    border: 1px solid rgba(229, 172, 72, 0.45);
+    background: var(--amber-light);
+    color: var(--navy-deep);
     font-size: 11.5px;
-    font-weight: 700;
+    font-weight: 800;
     letter-spacing: 0.02em;
   }
-  .protocol-title {
+  .special-head h3 {
     font-family: var(--serif);
-    font-size: 19px;
+    font-size: 19.5px;
     font-weight: 700;
-    color: var(--ink);
+    color: #FFFFFF;
     letter-spacing: -0.02em;
   }
-  .protocol-sub {
-    font-size: 13.5px;
-    color: var(--ink-muted);
+  .special-hint {
+    font-size: 13px;
+    color: var(--amber-glow);
+    font-weight: 600;
   }
-  .protocol-grid {
+  .special-grid {
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 14px;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 12px;
   }
-  .protocol-card {
-    background: var(--surface);
-    border: 1px solid rgba(184, 115, 36, 0.25);
-    border-top: 3px solid var(--navy);
-    border-radius: 13px;
-    padding: 14px 16px 15px;
-    box-shadow: var(--shadow-sm);
+  .poster-card {
+    appearance: none;
+    border: 1px solid rgba(229, 172, 72, 0.34);
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.06);
+    padding: 0;
+    overflow: hidden;
+    text-align: left;
+    cursor: pointer;
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    color: #FFFFFF;
+    transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
   }
-  .protocol-kicker {
-    font-size: 11.8px;
-    font-weight: 800;
-    color: var(--amber-deep);
-    letter-spacing: 0.01em;
+  .poster-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--amber-light);
+    box-shadow: 0 16px 32px -12px rgba(0, 0, 0, 0.55);
   }
-  .protocol-card h4 {
-    font-family: var(--serif);
-    font-size: 15.8px;
+  .poster-thumb {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    overflow: hidden;
+    position: relative;
+    background: var(--navy-deep);
+  }
+  .poster-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    transition: transform 0.45s ease;
+  }
+  .poster-card:hover .poster-thumb img {
+    transform: scale(1.04);
+  }
+  .poster-tag {
+    position: absolute;
+    top: 8px; left: 8px;
+    background: rgba(9, 23, 36, 0.86);
+    border: 1px solid rgba(229, 172, 72, 0.55);
+    color: var(--amber-glow);
+    font-size: 11px;
     font-weight: 700;
-    color: var(--ink);
-    line-height: 1.34;
+    padding: 2px 8px;
+    border-radius: 999px;
   }
-  .protocol-card p {
-    font-size: 13.6px;
-    color: var(--ink-body);
-    line-height: 1.54;
+  .poster-body {
+    padding: 11px 12px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    flex: 1;
   }
-
-  /* ---------- 3. PROGRAM: 골드 수직 타임라인 & 프로그램 화보 ---------- */
+  .poster-body strong {
+    font-family: var(--serif);
+    font-size: 14.5px;
+    font-weight: 700;
+    color: #FFFFFF;
+    line-height: 1.32;
+  }
+  .poster-body p {
+    font-size: 12.4px;
+    color: rgba(255, 255, 255, 0.80);
+    line-height: 1.46;
+  }
+  .poster-more {
+    margin-top: auto;
+    padding-top: 6px;
+    font-size: 11.8px;
+    font-weight: 700;
+    color: var(--amber-glow);
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+  }
   .program-layout {
     display: grid;
     grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
@@ -1683,11 +1629,11 @@
   .photo-dialog {
     position: fixed;
     inset: 0;
-    width: min(92vw, 1180px);
-    max-height: 88vh;
+    width: min(92vw, 960px);
+    max-height: 90vh;
     margin: auto;
     padding: 0;
-    border: 1px solid rgba(229, 172, 72, 0.4);
+    border: 1px solid rgba(229, 172, 72, 0.45);
     border-radius: 18px;
     background: var(--navy-deep);
     color: #FFFFFF;
@@ -1700,32 +1646,73 @@
   }
   .photo-dialog figure {
     margin: 0;
-    padding: 16px 16px 0;
+    padding: 18px 18px 16px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 12px;
   }
   .photo-dialog figure img {
     max-width: 100%;
-    max-height: calc(88vh - 86px);
+    max-height: calc(90vh - 165px);
     width: auto;
     height: auto;
     object-fit: contain;
     border-radius: 10px;
+    background: #061019;
+  }
+  .photo-dialog-meta {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 4px 54px 2px 6px;
+  }
+  .photo-dialog-text {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex: 1 1 320px;
   }
   .photo-dialog figcaption {
-    width: 100%;
-    padding: 14px 60px 16px 8px;
-    font-size: 15.5px;
+    font-family: var(--serif);
+    font-size: 17px;
     font-weight: 700;
     color: var(--amber-glow);
+    line-height: 1.3;
   }
+  .photo-dialog-desc {
+    font-size: 13.8px;
+    color: rgba(255, 255, 255, 0.86);
+    line-height: 1.5;
+  }
+  .lb-blog-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    height: 40px;
+    padding: 0 16px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #03C75A 0%, #029E48 100%);
+    color: #FFFFFF;
+    font-size: 13.5px;
+    font-weight: 800;
+    text-decoration: none;
+    white-space: nowrap;
+    box-shadow: 0 8px 20px -6px rgba(3, 199, 90, 0.55);
+    transition: transform 0.2s ease;
+  }
+  .lb-blog-btn[hidden] { display: none !important; }
+  .lb-blog-btn:hover { transform: translateY(-1px); }
   .photo-close {
     position: absolute;
     right: 14px;
-    bottom: 12px;
-    width: 42px;
-    height: 42px;
+    bottom: 14px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     border: 1px solid rgba(255, 255, 255, 0.25);
     background: rgba(255, 255, 255, 0.12);
@@ -1746,11 +1733,8 @@
   .hero-dock,
   .hero-features > *,
   .hero-arch-bar > *,
-  .director-signature > *,
-  .director-top > *,
-  .director-creds > *,
   .care-grid > *,
-  .protocol-grid > *,
+  .special-grid > *,
   .program-layout > *,
   .program-photos > *,
   .meal-showcase > *,
@@ -1780,15 +1764,15 @@
     .stage-tabs {
       flex-wrap: wrap;
     }
-    .director-creds {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+    .special-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
     }
   }
 
   @media (max-width: 1120px) {
     .menu { gap: 16px; }
     .menu-link { font-size: 14px; }
-    .care-grid, .protocol-grid, .cost-infographic { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .care-grid, .cost-infographic { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .hero-arch-bar, .process-ribbon { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .bento-1, .bento-2, .bento-3, .bento-4, .bento-5, .bento-6, .bento-7, .bento-8 {
       grid-column: span 6;
@@ -1803,19 +1787,6 @@
     .meal-showcase,
     .meal-points {
       grid-template-columns: minmax(0, 1fr);
-    }
-    .director-top {
-      grid-template-columns: minmax(0, 1fr);
-      gap: 10px;
-    }
-    .quote-mark { display: none; }
-    .director-seal {
-      text-align: left;
-      padding-left: 0;
-      border-left: 0;
-      padding-top: 8px;
-      border-top: 1px solid rgba(255, 255, 255, 0.15);
-      white-space: normal;
     }
     .closing-actions {
       min-width: 0;
@@ -1848,6 +1819,10 @@
     .sec-head .btn-secondary {
       width: 100%;
       justify-content: center;
+    }
+    .edition-switcher {
+      bottom: 74px !important;
+      right: 12px !important;
     }
 
     /* 모바일 HERO: 상단 인물 화보 노출 + 하단 가독성 스크림 + 2x2 공간 전환 도크 */
@@ -1944,10 +1919,16 @@
       font-size: 13px;
     }
 
+    .special-showcase {
+      padding: 16px 14px;
+    }
+    .special-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
     .hero-arch-bar,
-    .director-creds,
     .care-grid,
-    .protocol-grid,
     .program-photos,
     .cost-infographic,
     .process-ribbon,
@@ -1955,9 +1936,6 @@
     .partner-list,
     footer.site-footer {
       grid-template-columns: minmax(0, 1fr);
-    }
-    .protocol-wrap {
-      padding: 15px;
     }
     .arch-cell {
       border-right: 0;
@@ -2091,7 +2069,7 @@
           </div>
           <h1>어르신의 하루가 안전하고 따뜻하도록,<br><span class="hl">의료 경험으로 곁을 지킵니다</span></h1>
           <p class="hero-lead">
-            오랜 병원 현장에서 간호부서장으로 일하며 쌓은 임상 경험과 체계적인 돌봄 시스템으로, 매일 어르신의 작은 변화를 직접 살피며 안전하고 활기찬 하루를 만들어 드립니다.
+            간호부서장 출신 대표의 임상 경험과 체계적인 돌봄 시스템으로, 매일 어르신의 작은 변화를 살피며 안전하고 활기찬 하루를 함께합니다.
           </p>
 
           <ul class="hero-features" aria-label="더 그레이스 4대 핵심 약속">
@@ -2099,14 +2077,14 @@
               <span class="hero-feat-icon">01</span>
               <div class="hero-feat-text">
                 <strong>매일 간호·투약 세심 관리</strong>
-                <span>혈압·맥박·체온 점검 및 복약 지도</span>
+                <span>혈압·맥박·체온·혈당 점검 및 복약 지도</span>
               </div>
             </li>
             <li class="hero-feat-item">
               <span class="hero-feat-icon">02</span>
               <div class="hero-feat-text">
                 <strong>매월 풍성한 월간 맞춤 프로그램</strong>
-                <span>인지·음악·미술·원예·신체활동 매일 운영</span>
+                <span>인지·음악·미술·요리·나들이·재활운동</span>
               </div>
             </li>
             <li class="hero-feat-item">
@@ -2119,8 +2097,8 @@
             <li class="hero-feat-item">
               <span class="hero-feat-icon">04</span>
               <div class="hero-feat-text">
-                <strong>운전자·요양보호사 2인 동승 송영</strong>
-                <span>승·하차 부축부터 댁 문 앞까지 안심 동행</span>
+                <strong>해운대 전역 · 송정 안전 송영</strong>
+                <span>전용 차량으로 댁 앞까지 안전 동행</span>
               </div>
             </li>
           </ul>
@@ -2178,13 +2156,13 @@
         </div>
         <div class="arch-cell">
           <span class="arch-kicker"><em>03</em> 안전 송영 구역</span>
-          <strong class="arch-val">해운대구 전 지역 · 송정 일대</strong>
+          <strong class="arch-val">해운대 전역 · 송정 안전 송영</strong>
           <span class="arch-sub">전용 차량으로 댁 앞까지 안전 동행</span>
         </div>
         <div class="arch-cell">
-          <span class="arch-kicker"><em>04</em> 센터 위치 · 방문 견학</span>
+          <span class="arch-kicker"><em>04</em> 센터 위치 · 사전 방문 상담</span>
           <strong class="arch-val">해운대구 좌동순환로 78, 5층</strong>
-          <span class="arch-sub">건우빌딩 5층 · 사전 예약 후 견학·체험 환영</span>
+          <span class="arch-sub">건우빌딩 5층 · 시설 확인 및 입소 상담</span>
         </div>
       </div>
     </div>
@@ -2199,33 +2177,9 @@
           <div class="sec-title-group">
             <span class="sec-kicker">센터 소개 및 전문 돌봄 철학</span>
             <h2 class="sec-title" id="intro-title">진심만으로는 부족하기에,<br><em>의료 현장의 경험과 안전 설비</em>로 돌봅니다</h2>
-            <p class="sec-desc">어르신을 안전하게 모시는 일은 작은 변화도 놓치지 않는 임상 관찰력과 체계적인 공간에서 완성됩니다.</p>
+            <p class="sec-desc">작은 변화도 놓치지 않는 임상 관찰력과 안전한 공간에서 어르신의 편안한 하루를 완성합니다.</p>
           </div>
         </div>
-      </div>
-
-      <div class="director-signature">
-        <div class="director-top">
-          <span class="quote-mark" aria-hidden="true">“</span>
-          <div class="director-story">
-            <p class="director-headline">“만성질환은 병원 안의 치료만큼 병원 밖 일상의 관리가 중요합니다. 몸의 건강과 마음의 외로움까지 함께 살피는 공간을 만들었습니다.”</p>
-            <p class="director-quote">
-              20년 전 투석실 응급당직 날, 혼자 지내시던 어르신이 식이 관리가 되지 않아 응급실로 오셨던 순간을 지금도 잊지 못합니다.
-              해운대 자생한방병원에서 어르신들의 지친 마음까지 보듬으며 배운 통찰과, <strong>병원 간호부서장</strong>으로 환자안전과 감염관리 체계를 이끌며 쌓은 기준을 그대로 담아 더 그레이스를 열었습니다.
-              만약 내 부모님을 모신다면, 그리고 훗날 내가 나이 들어 머문다면 어떤 곳이어야 할지 끝없이 질문하며 어르신의 작은 걸음걸이와 표정 변화 하나까지 놓치지 않고 살피겠습니다.
-            </p>
-          </div>
-          <div class="director-seal">
-            <span class="role">간호부서장 출신 · 간호사</span>
-            <div class="name">정지안 대표 · 더 그레이스</div>
-          </div>
-        </div>
-        <ul class="director-creds" aria-label="정지안 대표 주요 임상 및 전문 이력">
-          <li class="director-cred-chip">20년+ 병원 임상 간호사 (투석실 · 해운대 자생한방병원 등)</li>
-          <li class="director-cred-chip">전) 병원 간호부서장 (환자안전 · 감염관리 · 간호조직 총괄)</li>
-          <li class="director-cred-chip">병원 보건관리자 및 응급대응 · 직원 안전교육 총괄</li>
-          <li class="director-cred-chip">요양보호사 자격 취득 및 노인요양 현장실습 수료</li>
-        </ul>
       </div>
 
       <div class="care-grid">
@@ -2236,7 +2190,7 @@
           </button>
           <div class="care-body">
             <h3>간호·건강 및 투약 관리</h3>
-            <p>매일 등원 시 혈압·맥박·체온·혈당을 측정하고 복약 시간을 정확히 챙깁니다. 병원 진료 가시는 날에는 센터에서 매일 꾸준히 측정·기록한 혈압·혈당 변화를 함께 동봉해 드려 진료에 도움을 드립니다.</p>
+            <p>매일 혈압·맥박·체온·혈당을 측정하고 복약을 챙기며, 병원 진료일에는 누적 건강 기록을 동봉해 드립니다.</p>
             <div class="care-tag">✓ 진료일 혈압·혈당 기록 동봉 · 간호사 건강교실</div>
           </div>
         </article>
@@ -2248,7 +2202,7 @@
           </button>
           <div class="care-body">
             <h3>매월 알차게 채우는 월간 프로그램</h3>
-            <p>매주 수요일 ‘다나음재활운동센터’ 물리치료사 센터장 초빙 운동을 비롯해, 망개떡 빚기·반구대 암각화 공예·장산 호수공원 나들이·미용 데이 등 어르신이 기다리시는 월간 프로그램을 매일 다채롭게 운영합니다.</p>
+            <p>매주 수요일 물리치료 센터장 초빙 재활운동부터 요리·공예·치과 구강검진·외출 나들이까지 매일 다채롭게 운영합니다.</p>
             <div class="care-tag">✓ 수요일 물리치료사 초빙 운동 · 월간 특화 수업</div>
           </div>
         </article>
@@ -2260,55 +2214,22 @@
           </button>
           <div class="care-body">
             <h3>온돌 수면실 &amp; 온열·안마 휴식</h3>
-            <p>남·여가 분리된 따뜻한 온돌 마루 수면실과 적외선 온열 조사기, 코웨이 BEREX 안마의자 3대를 갖추어 식사 후나 피로하실 때 언제든 편안하게 휴식하실 수 있습니다.</p>
+            <p>남·여 분리 온돌 마루 수면실과 적외선 온열기, 코웨이 안마의자 3대로 식후와 오후 시간 편안한 휴식을 돕습니다.</p>
             <div class="care-tag">✓ 남·여 분리 온돌방 · 안마의자 3대</div>
           </div>
         </article>
 
         <article class="care-card">
-          <button class="care-card-img" type="button" data-lightbox data-full="../assets/facilities/샤워실화장실_03-1440.webp" data-caption="배리어프리 안전 화장실 — 양측 안전 손잡이, 등받이, 상·하단 이중 비상 호출벨">
-            <img src="../assets/facilities/샤워실화장실_03-900.webp" width="900" height="675" loading="lazy" decoding="async" alt="안전 손잡이와 비상 호출벨이 설치된 배리어프리 화장실">
-            <span class="care-num-badge">04 · 배리어프리 안전</span>
+          <button class="care-card-img" type="button" data-lightbox data-full="../assets/facilities/샤워실화장실_03-1440.webp" data-caption="안전을 먼저 생각하는 시설 — 양측 안전 손잡이, 등받이, 상·하단 이중 비상 호출벨">
+            <img src="../assets/facilities/샤워실화장실_03-900.webp" width="900" height="675" loading="lazy" decoding="async" alt="안전 손잡이와 비상 호출벨이 설치된 안전 화장실">
+            <span class="care-num-badge">04 · 안전 우선 설계</span>
           </button>
           <div class="care-body">
-            <h3>배리어프리 안전 설비 완비</h3>
-            <p>화장실 양측 지지대와 등받이, 바닥에서도 누를 수 있는 상·하단 이중 비상 호출벨, 실내 전역 안전 손잡이, 5층 비상 수직구조대까지 철저한 안전 설비를 갖추었습니다.</p>
+            <h3>안전을 먼저 생각하는 시설</h3>
+            <p>화장실 양측 지지대와 등받이, 상·하단 이중 비상 호출벨, 실내 전역 안전 손잡이, 5층 비상 수직구조대를 완비했습니다.</p>
             <div class="care-tag">✓ 상·하단 이중 비상벨 · 전역 안전바</div>
           </div>
         </article>
-      </div>
-
-      <!-- 간호부서장의 임상 기준으로 설계한 더 그레이스 4대 케어 프로토콜 -->
-      <div class="protocol-wrap" aria-label="간호부서장의 임상 기준으로 설계한 더 그레이스 4대 케어 프로토콜">
-        <div class="protocol-head">
-          <div class="protocol-head-left">
-            <span class="protocol-badge">CLINICAL CARE SYSTEM</span>
-            <h3 class="protocol-title">간호부서장의 임상 기준으로 설계한 더 그레이스 4대 케어 프로토콜</h3>
-          </div>
-          <p class="protocol-sub">서류상 점수에 그치지 않고 입소 첫날부터 매일의 송영·진료실 연계까지 현장에서 실제 작동하는 돌봄 체계입니다.</p>
-        </div>
-        <div class="protocol-grid">
-          <article class="protocol-card">
-            <span class="protocol-kicker">PROTOCOL 01 · 정밀 초기 욕구사정 (Needs Assessment)</span>
-            <h4>같은 등급이어도 어르신마다 다른 맞춤 돌봄 설계</h4>
-            <p>입소 첫날 질환·복용약뿐 아니라 식사 형태(일반식·다진식·죽식, 당뇨·저염식, 연하·삼킴 곤란 여부), 구강 상태, 일상생활 수행능력(ADL), 인지·행동 변화까지 종합 평가해 개인별 돌봄 계획을 세웁니다.</p>
-          </article>
-          <article class="protocol-card">
-            <span class="protocol-kicker">PROTOCOL 02 · Huhn 낙상 · Braden 욕창 위험도 현장 적용</span>
-            <h4>사고가 나기 전에 ‘언제·어떤 동작이 위험한지’ 선제 파악</h4>
-            <p>서류상 점수에 그치지 않고 의자에서 일어설 때 휘청거리는 분, 기립성 빈혈이 있는 분, 방향 전환이나 오후 피로 누적 시 다리 힘이 풀리는 분까지 세밀히 구분해 전 직원이 부축 포인트를 공유합니다.</p>
-          </article>
-          <article class="protocol-card">
-            <span class="protocol-kicker">PROTOCOL 03 · 진료일 혈압·혈당 기록 동봉 &amp; 당뇨 식이교육</span>
-            <h4>센터에서 매일 쌓은 건강 기록을 병원 진료실까지 연결</h4>
-            <p>가정에서 꾸준히 재기 어려운 혈압·혈당을 매일 측정·기록하여 병원 진료 가시는 날 담당 의사 선생님께 동봉해 드리고, 당뇨 어르신께는 혈당 수치와 식사량을 함께 살피며 눈높이 식생활 교육을 진행합니다.</p>
-          </article>
-          <article class="protocol-card">
-            <span class="protocol-kicker">PROTOCOL 04 · 2인 동승 문 앞 송영 &amp; 해운대 협약 의료망</span>
-            <h4>요양보호사 동승 안심 송영과 실제 작동하는 지역 의료 연계</h4>
-            <p>운전자 1인과 요양보호사 선생님이 함께 동승해 승·하차 부축과 안전벨트를 챙기며, 해운대 센트럴 내과(독감 접종·만성질환)·365치과(원장 방문 구강관리)·리안 성모안과·탑정형외과·다나음재활운동센터·튼튼 복지용구와 긴밀히 협력합니다.</p>
-          </article>
-        </div>
       </div>
     </div>
   </section>
@@ -2322,12 +2243,97 @@
           <div class="sec-title-group">
             <span class="sec-kicker">매월 새롭게 기획하는 월간 프로그램 &amp; 하루 일과</span>
             <h2 class="sec-title" id="program-title">매일 오시는 발걸음이 기다려지는<br><em>월간 맞춤 프로그램</em>과 활기찬 일과</h2>
-            <p class="sec-desc">단조로운 시간 보내기가 아닌, 매월 어르신과 보호자님이 만족하시는 알찬 월간 프로그램(인지·미술·음악·원예·여가·신체활동)으로 활기찬 하루를 채웁니다.</p>
+            <p class="sec-desc">인지·미술·음악·요리·외출 나들이·전문 재활운동까지 어르신이 즐거우신 맞춤형 프로그램으로 하루를 채웁니다.</p>
           </div>
         </div>
-        <a class="btn-secondary" href="https://blog.naver.com/the_grace_daycare/224459126858" target="_blank" rel="noopener noreferrer">
-          <span>블로그에서 이달의 프로그램 일정표 확인하기 ↗</span>
-        </a>
+        <button class="btn-secondary" type="button" data-lightbox data-full="../assets/programs/schedule-nov.webp" data-caption="더 그레이스 이달의 프로그램 일정표" data-desc="매월 어르신의 인지·신체·정서 활력을 위해 새롭게 기획하는 월간 프로그램 일정표입니다." data-blog="https://blog.naver.com/the_grace_daycare/224459126858">
+          <span>이달의 프로그램 일정표 크게 보기 ↗</span>
+        </button>
+      </div>
+
+      <!-- 이달의 스페셜 프로그램 쇼케이스 (클릭 시 상세 팝업) -->
+      <div class="special-showcase" aria-label="이달의 스페셜 프로그램 쇼케이스">
+        <div class="special-head">
+          <div class="special-head-left">
+            <span class="special-badge">SPECIAL PROGRAM 6</span>
+            <h3>이달의 스페셜 프로그램 쇼케이스</h3>
+          </div>
+          <span class="special-hint">포스터를 클릭하시면 상세 설명 팝업과 네이버 블로그 원문을 보실 수 있습니다 ↗</span>
+        </div>
+
+        <div class="special-grid">
+          <button class="poster-card" type="button" data-lightbox data-full="../assets/programs/prog-outing.webp" data-caption="지역사회 맛집 탐방 외출" data-desc="함께여서 더 맛있는 외식 나들이로 기분 전환과 사회적 교류를 돕습니다." data-blog="https://blog.naver.com/the_grace_daycare/224466759865">
+            <div class="poster-thumb">
+              <img src="../assets/programs/prog-outing.webp" width="800" height="1200" loading="lazy" decoding="async" alt="지역사회 맛집 탐방 외출 프로그램 포스터">
+              <span class="poster-tag">01 · 외출 나들이</span>
+            </div>
+            <div class="poster-body">
+              <strong>지역사회 맛집 탐방 외출</strong>
+              <p>함께여서 더 맛있는 외식 나들이로 기분 전환과 사회적 교류를 돕습니다.</p>
+              <span class="poster-more">상세 팝업 · 블로그 ↗</span>
+            </div>
+          </button>
+
+          <button class="poster-card" type="button" data-lightbox data-full="../assets/programs/prog-cooking.webp" data-caption="내 손으로 만드는 샌드위치 요리" data-desc="신선한 재료를 직접 만지고 다듬으며 소근육과 인지 기능을 깨웁니다." data-blog="https://blog.naver.com/the_grace_daycare/224466759865">
+            <div class="poster-thumb">
+              <img src="../assets/programs/prog-cooking.webp" width="800" height="1200" loading="lazy" decoding="async" alt="내 손으로 만드는 샌드위치 요리 프로그램 포스터">
+              <span class="poster-tag">02 · 요리 교실</span>
+            </div>
+            <div class="poster-body">
+              <strong>내 손으로 만드는 샌드위치 요리</strong>
+              <p>신선한 재료를 직접 만지고 다듬으며 소근육과 인지 기능을 깨웁니다.</p>
+              <span class="poster-more">상세 팝업 · 블로그 ↗</span>
+            </div>
+          </button>
+
+          <button class="poster-card" type="button" data-lightbox data-full="../assets/programs/prog-dental.webp" data-caption="해운대365치과 원장 방문 구강검진·교육" data-desc="협약 치과 원장님이 직접 센터를 방문해 구강 상태 확인과 올바른 틀니·잇몸 관리를 안내합니다." data-blog="https://blog.naver.com/the_grace_daycare/224443479765">
+            <div class="poster-thumb">
+              <img src="../assets/programs/prog-dental.webp" width="800" height="1131" loading="lazy" decoding="async" alt="해운대365치과 원장 방문 구강검진 및 교육 포스터">
+              <span class="poster-tag">03 · 치과원장 방문</span>
+            </div>
+            <div class="poster-body">
+              <strong>해운대365치과 원장 방문 구강검진·교육</strong>
+              <p>협약 치과 원장님이 직접 센터를 방문해 구강 상태 확인과 올바른 틀니·잇몸 관리를 안내합니다.</p>
+              <span class="poster-more">상세 팝업 · 블로그 ↗</span>
+            </div>
+          </button>
+
+          <button class="poster-card" type="button" data-lightbox data-full="../assets/programs/prog-breath.webp" data-caption="간호사와 함께하는 숨 건강교실" data-desc="나만의 바람개비를 만들고 복식호흡·입술 오므리기 호흡으로 폐활량과 심폐 건강을 키웁니다." data-blog="https://blog.naver.com/the_grace_daycare/224466759865">
+            <div class="poster-thumb">
+              <img src="../assets/programs/prog-breath.webp" width="800" height="1200" loading="lazy" decoding="async" alt="간호사와 함께하는 숨 건강교실 포스터">
+              <span class="poster-tag">04 · 간호사 건강교실</span>
+            </div>
+            <div class="poster-body">
+              <strong>간호사와 함께하는 숨 건강교실</strong>
+              <p>나만의 바람개비를 만들고 복식호흡·입술 오므리기 호흡으로 폐활량과 심폐 건강을 키웁니다.</p>
+              <span class="poster-more">상세 팝업 · 블로그 ↗</span>
+            </div>
+          </button>
+
+          <button class="poster-card" type="button" data-lightbox data-full="../assets/programs/prog-christmas.webp" data-caption="미리하는 성탄절 장식 &amp; 트리 만들기" data-desc="반짝이 색지와 나뭇가지 트리를 함께 꾸미며 계절감과 정서적 활력을 채웁니다." data-blog="https://blog.naver.com/the_grace_daycare/224466759865">
+            <div class="poster-thumb">
+              <img src="../assets/programs/prog-christmas.webp" width="800" height="1000" loading="lazy" decoding="async" alt="미리하는 성탄절 장식 및 트리 만들기 포스터">
+              <span class="poster-tag">05 · 계절 정서활동</span>
+            </div>
+            <div class="poster-body">
+              <strong>미리하는 성탄절 장식 &amp; 트리 만들기</strong>
+              <p>반짝이 색지와 나뭇가지 트리를 함께 꾸미며 계절감과 정서적 활력을 채웁니다.</p>
+              <span class="poster-more">상세 팝업 · 블로그 ↗</span>
+            </div>
+          </button>
+
+          <button class="poster-card" type="button" data-lightbox data-full="../assets/programs/prog-rehab.webp" data-caption="매주 수요일 다나음 물리치료 센터장 초빙 운동" data-desc="물리치료사 면허·전문석사 과정의 허종빈 센터장님이 매주 수요일 방문해 개인별 맞춤 재활운동을 지도합니다." data-blog="https://blog.naver.com/the_grace_daycare/224445629388">
+            <div class="poster-thumb">
+              <img src="../assets/programs/prog-rehab.webp" width="800" height="1131" loading="lazy" decoding="async" alt="매주 수요일 다나음 물리치료 센터장 초빙 운동 포스터">
+              <span class="poster-tag">06 · 수요일 재활운동</span>
+            </div>
+            <div class="poster-body">
+              <strong>매주 수요일 다나음 물리치료 센터장 초빙 운동</strong>
+              <p>물리치료사 면허·전문석사 과정의 허종빈 센터장님이 매주 수요일 방문해 개인별 맞춤 재활운동을 지도합니다.</p>
+              <span class="poster-more">상세 팝업 · 블로그 ↗</span>
+            </div>
+          </button>
+        </div>
       </div>
 
       <div class="program-layout">
@@ -2341,49 +2347,49 @@
               <span class="schedule-time">08:30 – 09:30</span>
               <div class="schedule-info">
                 <strong>아침 안전 등원 송영</strong>
-                <span>전용 차량으로 댁 앞까지 모시며 밤사이 컨디션과 안부를 살핍니다.</span>
+                <span>전용 차량으로 댁 앞까지 안전하게 동행합니다.</span>
               </div>
             </li>
             <li class="schedule-item">
               <span class="schedule-time">09:30 – 10:30</span>
               <div class="schedule-info">
                 <strong>건강 체크 · 아침 차 나눔</strong>
-                <span>간호 인력이 혈압·맥박·체온·혈당을 측정하고 따뜻한 차로 하루를 시작합니다.</span>
+                <span>혈압·맥박·체온·혈당 측정 후 따뜻한 차로 하루를 시작합니다.</span>
               </div>
             </li>
             <li class="schedule-item">
               <span class="schedule-time">10:30 – 11:50</span>
               <div class="schedule-info">
                 <strong>오전 인지 강화 · 건강교실</strong>
-                <span>수준별 워크북, 치과의사 구강건강 교육, 간호사 숨 건강교실, 치매 예방 수업을 진행합니다.</span>
+                <span>수준별 워크북, 구강·호흡 건강교실, 치매 예방 수업을 진행합니다.</span>
               </div>
             </li>
             <li class="schedule-item">
               <span class="schedule-time">12:00 – 13:30</span>
               <div class="schedule-info">
                 <strong>영양 점심 식사 · 복약 · 휴식</strong>
-                <span>맞춤 한식 식사 후 복약 도움, 양치·세면, 온돌 수면실 및 안마의자 휴식을 취합니다.</span>
+                <span>맞춤 식사와 복약 지도 후 온돌 수면실·안마의자에서 휴식합니다.</span>
               </div>
             </li>
             <li class="schedule-item">
               <span class="schedule-time">13:30 – 15:30</span>
               <div class="schedule-info">
-                <strong>오후 월간 특화 · 정서 · 신체 활동</strong>
-                <span>월간 프로그램표에 맞춘 미술·음악·원예·전통놀이 활동과 수요일 물리치료사 초빙 운동, 실내 사이클·실버 체조를 함께합니다.</span>
+                <strong>오후 월간 특화 · 신체 활동</strong>
+                <span>미술·음악·요리·나들이 및 수요일 물리치료 센터장 초빙 운동을 함께합니다.</span>
               </div>
             </li>
             <li class="schedule-item">
               <span class="schedule-time">15:30 – 16:30</span>
               <div class="schedule-info">
                 <strong>오후 영양 간식 · 담소 및 마무리</strong>
-                <span>정성껏 준비한 간식을 나누며 담소를 나누고 하루 활동을 편안하게 정리합니다.</span>
+                <span>오후 간식을 나누며 하루 활동을 편안하게 정리합니다.</span>
               </div>
             </li>
             <li class="schedule-item">
               <span class="schedule-time">16:30 – 17:30</span>
               <div class="schedule-info">
                 <strong>저녁 안전 귀가 송영</strong>
-                <span>보호자님께 하루 안부를 전하고 댁 앞까지 안전하게 동행하여 모셔다드립니다.</span>
+                <span>보호자님께 안부를 전하고 전용 차량으로 댁 앞까지 모셔다드립니다.</span>
               </div>
             </li>
           </ol>
@@ -2404,15 +2410,15 @@
           <div class="pillar-list">
             <div class="pillar-card">
               <h4><span>매월 새롭게 구성하는 월간 특화 프로그램</span> <span class="pill-tag">월간 맞춤 기획</span></h4>
-              <p><strong>옛 추억의 망개떡 직접 빚기</strong>, <strong>장산 호수공원 계절 산책 나들이</strong>, <strong>지역사회 맛집 탐방</strong>, 얼굴 팩·손 마사지·네일케어로 자존감을 높여드리는 <strong>‘더 그레이스 미용 데이’</strong> 등 매월 새로운 일정표를 블로그에 투명하게 공개합니다.</p>
+              <p><strong>지역사회 맛집 탐방</strong>, <strong>샌드위치·망개떡 요리</strong>, <strong>장산 호수공원 산책</strong>, <strong>미용 데이</strong> 등 매월 새로운 일정표를 투명하게 공개합니다.</p>
             </div>
             <div class="pillar-card">
               <h4><span>인지 강화 · 치매 예방 두뇌 활동</span> <span class="pill-tag">기억·집중 유지</span></h4>
-              <p>단순 색칠공부가 아닌 <strong>7천 년 전 반구대 암각화 고래 작품 만들기</strong>, <strong>가을 철새 알아보기 &amp; 새 둥지 만들기</strong>, <strong>환절기 천연 가습기 만들기 &amp; 추억의 공기놀이</strong>, <strong>해운대 송정 ‘섬집아기’ 우리 지역 알기</strong> 등 집에 돌아가 가족과 나눌 이야기가 풍성한 수업을 진행합니다.</p>
+              <p><strong>반구대 암각화 공예</strong>, <strong>성탄절 트리 만들기</strong>, <strong>천연 가습기 제작</strong> 등 가족과 나눌 이야기가 풍성한 창작 수업을 진행합니다.</p>
             </div>
             <div class="pillar-card">
               <h4><span>전문 물리치료사 초빙 운동 &amp; 의료진 건강교실</span> <span class="pill-tag">정서·신체 활력</span></h4>
-              <p>협약기관 <strong>‘다나음재활운동센터’ 물리치료사 센터장님이 매주 수요일 방문</strong>하여 맞춤 신체·재활 운동을 지도하며, <strong>치과의사 구강건강 교육</strong>·<strong>간호사 숨 건강교실</strong>과 실내 운동 사이클(3대)·탄력밴드·실버 체조로 하체 근력을 지킵니다.</p>
+              <p><strong>매주 수요일 다나음 물리치료 센터장 초빙 운동</strong>과 <strong>365치과 원장 구강검진</strong>, <strong>간호사 숨 건강교실</strong>로 활력을 지킵니다.</p>
             </div>
           </div>
         </div>
@@ -2429,12 +2435,12 @@
           <div class="sec-title-group">
             <span class="sec-kicker">HACCP 인증 안전 위탁급식 및 위생 환경</span>
             <h2 class="sec-title" id="meal-title"><em>HACCP 인증</em> 받은 안전한 위탁급식과<br>청결하게 관리되는 위생 배식·식사 환경</h2>
-            <p class="sec-desc">어르신의 식사는 무엇보다 식품 안전과 균형 잡힌 영양이 중요합니다. 엄격한 위생 기준(HACCP) 인증을 받은 전문 위탁급식으로 안전한 식사를 제공하고, 청결한 배식 공간과 세면 시설로 위생을 철저히 관리합니다.</p>
+            <p class="sec-desc">엄격한 위생 기준(HACCP) 인증 위탁급식으로 균형 잡힌 식사를 대접하고, 청결한 배식실과 세면 공간으로 위생을 지킵니다.</p>
           </div>
         </div>
-        <a class="btn-secondary" href="https://blog.naver.com/the_grace_daycare/224459122425" target="_blank" rel="noopener noreferrer">
-          <span>블로그에서 이달의 식단표 확인하기 ↗</span>
-        </a>
+        <button class="btn-secondary" type="button" data-lightbox data-full="../assets/programs/meal-nov.webp" data-caption="더 그레이스 이달의 영양 식단표" data-desc="HACCP 인증 위탁급식 및 오후 간식이 제공되는 이달의 영양 식단표입니다. (비급여 비용은 상담 시 안내)" data-blog="https://blog.naver.com/the_grace_daycare/224459122425">
+          <span>이달의 영양 식단표 크게 보기 ↗</span>
+        </button>
       </div>
 
       <div class="meal-showcase">
@@ -2445,7 +2451,7 @@
           </button>
           <div class="meal-photo-desc">
             <h3>HACCP 인증 위탁급식 &amp; 투명하고 청결한 배식 관리</h3>
-            <p>식품안전관리인증(HACCP)을 받은 전문 위탁급식 시스템을 통해 영양 균형이 잡힌 안전한 식단을 제공받으며, 생활실과 분리된 통유리 배식 공간에서 위생적인 상차림과 식기 고온 살균 관리를 진행합니다.</p>
+            <p>식품안전관리인증(HACCP) 전문 위탁급식으로 영양 균형 잡힌 식단을 제공하며, 분리된 통유리 배식 공간에서 식기 고온 살균 관리를 진행합니다.</p>
           </div>
         </article>
 
@@ -2456,7 +2462,7 @@
           </button>
           <div class="meal-photo-desc">
             <h3>기다림 없이 쾌적한 4인용 공용 세면·위생 공간</h3>
-            <p>식사 전후 손 씻기와 식후 양치질을 어르신들이 줄 서지 않고 편안하게 하실 수 있도록 밝은 간접조명과 4대의 독립 세면대를 여유 있게 마련했습니다.</p>
+            <p>식사 전후 손 씻기와 양치질을 줄 서지 않고 편안하게 하실 수 있도록 밝은 간접조명과 독립 세면대 4대를 마련했습니다.</p>
           </div>
         </article>
       </div>
@@ -2465,17 +2471,17 @@
         <div class="meal-point-card">
           <div class="kicker">01 · HACCP 인증 안전 급식</div>
           <h4>엄격하게 검증된 안전한 위탁급식</h4>
-          <p>식품안전관리인증기준(HACCP)을 통과한 전문 위탁급식을 통해 식재료 위생부터 영양 설계까지 철저히 검증된 안전한 식사를 대접합니다.</p>
+          <p>식품안전관리인증기준(HACCP)을 통과한 전문 위탁급식으로 식재료 위생부터 영양 균형까지 안전하게 대접합니다.</p>
         </div>
         <div class="meal-point-card">
           <div class="kicker">02 · 어르신 맞춤 영양 식단 · 식단표 공개</div>
           <h4>치아·소화를 배려한 균형 잡힌 한식</h4>
-          <p>어르신의 저작·연하(삼킴) 상태에 맞춘 식사 제공은 물론, 당뇨가 있으신 어르신께는 혈당 상태와 식사 내용을 함께 확인하며 식생활 안내를 진행합니다. 매월 식단표는 공식 블로그에 투명하게 공개합니다.</p>
+          <p>어르신의 치아·소화 상태에 맞춘 식사를 제공하며, 매월 식단표를 공식 블로그에 투명하게 공개합니다.</p>
         </div>
         <div class="meal-point-card">
-          <div class="kicker">03 · 투명한 비용 &amp; 식기 살균 위생</div>
-          <h4>식사 1식 5,000원 · 간식 1,000원</h4>
-          <p>장기요양 급여 본인부담금 외 식사비는 1식 5,000원, 간식비는 1,000원이며, 식기와 수저는 매 식사 후 고온 살균 소독하여 청결하게 관리합니다.</p>
+          <div class="kicker">03 · 비급여 안내 &amp; 식기 살균 위생</div>
+          <h4>식사·간식 비급여 별도 안내</h4>
+          <p>HACCP 인증 위탁급식 및 오후 간식 제공(비급여 비용은 상담 시 안내) · 매 식사 후 식기와 수저를 고온 살균 소독합니다.</p>
         </div>
       </div>
     </div>
@@ -2545,11 +2551,11 @@
           </div>
         </button>
 
-        <button class="bento-card bento-6" type="button" data-lightbox data-full="../assets/facilities/샤워실화장실_03-1440.webp" data-caption="배리어프리 안전 화장실 — 양측 안전 손잡이, 등받이, 상·하단 이중 비상 호출벨 설치">
+        <button class="bento-card bento-6" type="button" data-lightbox data-full="../assets/facilities/샤워실화장실_03-1440.webp" data-caption="안전을 먼저 생각하는 시설 — 양측 안전 손잡이, 등받이, 상·하단 이중 비상 호출벨 설치">
           <img src="../assets/facilities/샤워실화장실_03-900.webp" width="900" height="675" loading="lazy" decoding="async" alt="양측 안전 지지대와 비상벨이 설치된 안전 화장실">
           <span class="bento-no">06</span>
           <div class="bento-overlay">
-            <strong>배리어프리 안전 화장실</strong>
+            <strong>안전을 먼저 생각하는 시설</strong>
             <span>양측 지지대 · 등받이 · 상·하단 이중 비상벨</span>
           </div>
         </button>
@@ -2623,12 +2629,12 @@
         </div>
 
         <div class="infocard">
-          <span class="infocard-kicker">정직한 비급여 실비 · 무료 송영</span>
+          <span class="infocard-kicker">정직한 비급여 실비 · 안전 송영</span>
           <div class="infocard-num-row">
-            <strong class="infocard-big">5,000원</strong>
-            <span class="infocard-label">1식 식사 (간식 1,000원)</span>
+            <strong class="infocard-big" style="font-size:clamp(19px,2vw,24px)">별도 안내</strong>
+            <span class="infocard-label">식사·간식 비급여 실비</span>
           </div>
-          <p>식사·간식 외에 댁 앞까지 모시는 송영 서비스는 장기요양 급여 범위 내 무료로 제공됩니다.</p>
+          <p>장기요양 급여 외 식사·간식 비급여 별도 안내드리며, 댁 앞까지 모시는 송영 서비스는 장기요양 급여 범위 내 안전하게 제공됩니다.</p>
         </div>
       </div>
 
@@ -2644,8 +2650,8 @@
         <div class="proc-step">
           <span class="proc-circle">02</span>
           <div class="proc-text">
-            <strong>2단계 · 센터 방문 및 시설 견학</strong>
-            <span>사전 예약 후 실제 시설·식사 확인 (단기 체험 가능)</span>
+            <strong>2단계 · 시설 확인 및 사전 방문 상담</strong>
+            <span>사전 예약 후 실제 시설 확인 및 입소 상담 안내</span>
           </div>
         </div>
         <div class="proc-step">
@@ -2668,7 +2674,7 @@
       <div class="faq-grid" aria-label="자주 묻는 질문 8선">
         <article class="faq-card">
           <h3>부모님이 “나는 아직 그런 데 갈 때가 아니다”라며 거부하시면 어떡하죠?</h3>
-          <p>주간보호센터는 집을 떠나 입소하는 요양원이 아니라, ‘지금 살고 있는 내 집에서 더 오래 건강하게 살기 위해 낮 동안 운동하고 소통하러 다니는 시니어 건강·문화센터(노치원)’입니다. 어르신께서 마음의 문턱을 낮추실 수 있도록 눈높이 상담과 부담 없는 방문 견학·단기 체험을 도와드립니다.</p>
+          <p>주간보호센터는 집을 떠나 입소하는 요양원이 아니라, ‘지금 살고 있는 내 집에서 더 오래 건강하게 살기 위해 낮 동안 운동하고 소통하러 다니는 시니어 건강·문화센터(노치원)’입니다. 어르신께서 마음의 문턱을 낮추실 수 있도록 눈높이 상담과 부담 없는 사전 방문 상담 및 시설 확인을 도와드립니다.</p>
         </article>
         <article class="faq-card">
           <h3>아직 혼자 잘 걸어 다니시는데 장기요양등급 신청이 가능할까요?</h3>
@@ -2680,19 +2686,19 @@
         </article>
         <article class="faq-card">
           <h3>식사비 등 추가 비용이 있나요?</h3>
-          <p>장기요양 본인부담금 외에 식사는 1식 5,000원, 간식은 1,000원입니다. 송영 서비스는 장기요양 급여 범위 내에서 제공됩니다.</p>
+          <p>장기요양 본인부담금 외에 식사·간식은 장기요양 급여 외 식사·간식 비급여 별도 안내해 드리며, 송영 서비스는 장기요양 급여 범위 내에서 안전하게 제공됩니다.</p>
         </article>
         <article class="faq-card">
           <h3>송영(차량 픽업)은 어디까지 오나요?</h3>
-          <p>해운대구 전 지역과 송정 일대까지 제공하며, 운전자 1인과 요양보호사 선생님이 2인 1조로 함께 동승하여 승·하차 부축과 안전벨트 확인까지 댁 문 앞에서부터 안전하게 동행합니다.</p>
+          <p>해운대구 전 지역과 송정 일대까지 제공하며, 전용 차량으로 댁 앞까지 안전 동행하여 승·하차 부축과 안전벨트 확인까지 안전한 송영 서비스를 제공합니다.</p>
         </article>
         <article class="faq-card">
           <h3>토요일에도 이용할 수 있나요?</h3>
           <p>네. 운영 시간은 월요일부터 토요일까지 08:30–17:30이며, 일요일과 공휴일은 운영하지 않습니다.</p>
         </article>
         <article class="faq-card">
-          <h3>시설을 미리 둘러보거나 단기 체험이 가능한가요?</h3>
-          <p>사전 예약 후 시설 방문 및 상담이 가능하며, 어르신이 센터 분위기를 먼저 경험해 보실 수 있도록 단기 체험 이용도 안내해 드립니다.</p>
+          <h3>시설을 미리 둘러보거나 사전 방문 상담이 가능한가요?</h3>
+          <p>사전 예약 후 시설 확인 및 입소 상담이 가능하며, 어르신이 센터 분위기를 편안하게 살펴보실 수 있도록 사전 방문 상담을 상세히 안내해 드립니다.</p>
         </article>
         <article class="faq-card">
           <h3>등급 신청은 어떻게 하며 얼마나 걸리나요?</h3>
@@ -2707,9 +2713,9 @@
     <div class="container">
       <div class="closing-banner">
         <div>
-          <span class="kicker">방문 견학 및 전화 상담 안내</span>
+          <span class="kicker">사전 방문 상담 및 전화 상담 안내</span>
           <h2 id="closing-title">사진보다 직접 오셔서 보시면<br>더 안심하실 수 있습니다</h2>
-          <p>견학만 오셔도 좋습니다. 어르신께 가장 잘 맞는 하루를 가족의 마음으로 함께 설계해 드리겠습니다.</p>
+          <p>사전 방문 상담만 오셔도 좋습니다. 어르신께 가장 잘 맞는 하루를 가족의 마음으로 함께 설계해 드리겠습니다.</p>
           <div class="closing-meta">
             <span><strong>주소</strong> 부산광역시 해운대구 좌동순환로 78 건우빌딩 5층</span>
             <span><strong>운영시간</strong> 월–토 08:30–17:30 (일요일·공휴일 제외)</span>
@@ -2798,10 +2804,22 @@
 <dialog class="photo-dialog" id="photo-dialog" aria-modal="true" aria-labelledby="photo-caption">
   <figure>
     <img id="photo-dialog-image" src="" alt="">
-    <figcaption id="photo-caption"></figcaption>
+    <div class="photo-dialog-meta">
+      <div class="photo-dialog-text">
+        <figcaption id="photo-caption"></figcaption>
+        <p class="photo-dialog-desc" id="photo-dialog-desc" style="display:none;"></p>
+      </div>
+      <a class="lb-blog-btn" id="photo-dialog-blog" href="#" target="_blank" rel="noopener noreferrer" style="display:none;">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.273 12.845 7.376 0H0v24h7.726V11.155L16.624 24H24V0h-7.727v12.845z"/></svg>
+        <span>블로그에서 현장 보기 ↗</span>
+      </a>
+    </div>
   </figure>
   <button class="photo-close" type="button" aria-label="사진 닫기">×</button>
 </dialog>
+
+<!-- 시안 비교 플로팅 알약 -->
+<div class="edition-switcher" style="position:fixed;bottom:24px;right:24px;z-index:999;background:rgba(15,23,42,0.92);backdrop-filter:blur(8px);border:1px solid rgba(212,163,89,0.4);border-radius:999px;padding:6px 14px;display:flex;align-items:center;gap:8px;font-family:sans-serif;font-size:12px;box-shadow:0 8px 24px rgba(0,0,0,0.3);"><span style="color:#d4a359;font-weight:700;">시안 비교:</span><a href="../v4-1/" style="color:#fff;font-weight:700;text-decoration:none;padding:4px 8px;background:rgba(212,163,89,0.3);border-radius:12px;">V4-1 웜 라운지</a><span style="color:rgba(255,255,255,0.3);">|</span><a href="../v4-2/" style="color:#cbd5e1;text-decoration:none;padding:4px 8px;border-radius:12px;">V4-2 브라이트 클럽 →</a></div>
 
 <!-- 모바일 하단 고정 콜바 (≤760px) -->
 <div class="mobilecall" role="group" aria-label="빠른 연락">
@@ -2880,6 +2898,8 @@
   var dialog = document.getElementById('photo-dialog');
   var dialogImg = document.getElementById('photo-dialog-image');
   var dialogCap = document.getElementById('photo-caption');
+  var dialogDesc = document.getElementById('photo-dialog-desc');
+  var dialogBlog = document.getElementById('photo-dialog-blog');
   var closeBtn = dialog ? dialog.querySelector('.photo-close') : null;
   var lastTrigger = null;
 
@@ -2890,6 +2910,29 @@
     dialogImg.src = btn.getAttribute('data-full') || (img ? img.src : '');
     dialogImg.alt = img ? img.alt : '';
     dialogCap.textContent = btn.getAttribute('data-caption') || '';
+
+    var desc = btn.getAttribute('data-desc');
+    if (dialogDesc) {
+      if (desc) {
+        dialogDesc.textContent = desc;
+        dialogDesc.style.display = '';
+      } else {
+        dialogDesc.textContent = '';
+        dialogDesc.style.display = 'none';
+      }
+    }
+
+    var blog = btn.getAttribute('data-blog');
+    if (dialogBlog) {
+      if (blog) {
+        dialogBlog.href = blog;
+        dialogBlog.style.display = 'inline-flex';
+      } else {
+        dialogBlog.removeAttribute('href');
+        dialogBlog.style.display = 'none';
+      }
+    }
+
     document.documentElement.classList.add('lightbox-open');
     dialog.showModal();
     if (closeBtn) closeBtn.focus();

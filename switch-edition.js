@@ -18,7 +18,7 @@ const { spawnSync } = require('child_process');
 const { HOME_TITLE, HOME_DESCRIPTION, HOME_URL, withHomeSeo } = require('./seo-home');
 
 const root = __dirname;
-const ALLOWED = ['main', 'classic', 'anime', 'v4'];
+const ALLOWED = ['main', 'classic', 'anime', 'v4', 'v4-1', 'v4-2'];
 
 function fail(msg) {
   console.error('[switch-edition] 실패: ' + msg);
@@ -46,10 +46,16 @@ if (edition === 'main') {
   if (r.error) fail('build.js 실행 실패 — ' + r.error.message);
   if (r.status !== 0) fail('build.js 비정상 종료 (exit ' + r.status + ')');
 } else {
-  const srcMap = { classic: path.join('v2', 'index.html'), anime: path.join('v3', 'index.html'), v4: path.join('v4', 'index.html') };
+  const srcMap = {
+    classic: path.join('v2', 'index.html'),
+    anime: path.join('v3', 'index.html'),
+    v4: path.join('v4', 'index.html'),
+    'v4-1': path.join('v4-1', 'index.html'),
+    'v4-2': path.join('v4-2', 'index.html'),
+  };
   const srcFile = srcMap[edition];
   let html = fs.readFileSync(path.join(root, srcFile), 'utf8');
-  html = html.replace(/\.\.\/(assets|media)\//g, '$1/');                   // /v2·/v3·/v4 기준 → 루트 기준
+  html = html.replace(/\.\.\/(assets|media|v4-1|v4-2|v4)\//g, '$1/');      // 서브디렉토리 기준 → 루트 기준
   if (edition === 'anime') html = html.replace(/(["'(=])media\//g, '$1v3/media/'); // v3 전용 media
   // v2/v3 스냅샷의 미리보기용 noindex 는 루트 승격 시 반드시 제거 — 남기면 https://gracedaycare.co.kr/
   // 전체가 구글·네이버 색인에서 제거된다 (사후 검증에서도 부재를 재확인).
