@@ -1598,7 +1598,45 @@
   /* ---------- 모바일 하단 고정 콜바 ---------- */
   .mobilecall { display: none; }
 
+  /* ---------- 그리드·플렉스 자식 오버플로우 원천 차단 ---------- */
+  .hero-grid > *,
+  .hero-copy,
+  .hero-dock,
+  .hero-features > *,
+  .hero-arch-bar > *,
+  .director-signature > *,
+  .care-grid > *,
+  .program-layout > *,
+  .program-photos > *,
+  .meal-showcase > *,
+  .meal-points > *,
+  .bento-grid > *,
+  .cost-infographic > *,
+  .process-ribbon > *,
+  .faq-grid > *,
+  .closing-banner > *,
+  .partner-list > *,
+  footer.site-footer > * {
+    min-width: 0;
+    max-width: 100%;
+  }
+
   /* ---------- 반응형 미디어쿼리 ---------- */
+  @media (max-width: 1240px) {
+    .hero-grid {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 18px;
+    }
+    .hero-dock {
+      justify-self: start;
+      max-width: 100%;
+      flex-wrap: wrap;
+    }
+    .stage-tabs {
+      flex-wrap: wrap;
+    }
+  }
+
   @media (max-width: 1120px) {
     .menu { gap: 16px; }
     .menu-link { font-size: 14px; }
@@ -1616,10 +1654,10 @@
     .closing-banner,
     .meal-showcase,
     .meal-points {
-      grid-template-columns: 1fr;
+      grid-template-columns: minmax(0, 1fr);
     }
     .director-signature {
-      grid-template-columns: 1fr;
+      grid-template-columns: minmax(0, 1fr);
       gap: 10px;
     }
     .quote-mark { display: none; }
@@ -1629,6 +1667,11 @@
       border-left: 0;
       padding-top: 8px;
       border-top: 1px solid rgba(255, 255, 255, 0.15);
+      white-space: normal;
+    }
+    .closing-actions {
+      min-width: 0;
+      width: 100%;
     }
     .partner-list,
     footer.site-footer {
@@ -1636,30 +1679,179 @@
     }
   }
 
-  @media (max-width: 760px) {
-    :root { --nav-h: 66px; }
+  @media (max-width: 768px) {
+    :root {
+      --nav-h: 64px;
+      --gutter: 18px;
+    }
     body { padding-bottom: 74px; font-size: 15.5px; }
+    .brand-logo-wrap { width: 38px; height: 38px; }
+    .brand-name { font-size: 17.5px; }
     .menu-link { display: none; }
     .nav-cta-desk { display: none; }
-    .nav-cta-mob { display: inline-flex; }
+    .nav-cta-mob {
+      display: inline-flex;
+      height: 38px;
+      padding: 0 13px;
+      font-size: 13.5px;
+    }
     .brand-sub { display: none; }
     .sec-num { display: none; }
-    .hero-features,
-    .stage-tabs,
+    .sec-head .btn-secondary {
+      width: 100%;
+      justify-content: center;
+    }
+
+    /* 모바일 HERO: 상단 인물 화보 노출 + 하단 가독성 스크림 + 2x2 공간 전환 도크 */
+    .scene.hero {
+      min-height: auto;
+      padding-top: calc(var(--nav-h) + 210px);
+      padding-bottom: 28px;
+    }
+    .hero-bg {
+      height: 360px;
+      bottom: auto;
+    }
+    .hero-bg-slide {
+      object-position: 74% top;
+    }
+    .hero-scrim {
+      background:
+        linear-gradient(180deg,
+          rgba(9, 21, 34, 0.10) 0%,
+          rgba(9, 21, 34, 0.16) 160px,
+          rgba(9, 21, 34, 0.78) 275px,
+          #091724 350px,
+          #091724 100%);
+    }
+    .hero-eyebrow {
+      max-width: 100%;
+      flex-wrap: wrap;
+      row-gap: 4px;
+      column-gap: 8px;
+      border-radius: 14px;
+      padding: 6px 11px;
+      font-size: 11.5px;
+      line-height: 1.35;
+    }
+    .hero-eyebrow .tag-pill {
+      font-size: 11px;
+      padding: 2px 7px;
+    }
+    .hero h1 {
+      font-size: clamp(23.5px, 6.6vw, 31px);
+      line-height: 1.32;
+    }
+    .hero-lead {
+      font-size: 14.8px;
+      line-height: 1.62;
+    }
+    .hero-features {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 8px;
+      margin: 16px 0 18px;
+    }
+
+    /* 모바일 히어로 도크: 2열 그리드로 버튼 폭 확보 및 글자 겹침 100% 방지 */
+    .hero-dock {
+      justify-self: stretch;
+      width: 100%;
+      max-width: 100%;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+      border-radius: 16px;
+      padding: 10px;
+    }
+    .stage-tabs {
+      display: contents;
+    }
+    .stage-tab {
+      width: 100%;
+      min-width: 0;
+      padding: 6px 10px 6px 6px;
+      gap: 8px;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .stage-tab img {
+      width: 36px;
+      height: 28px;
+      flex-shrink: 0;
+    }
+    .stage-tab .t-label {
+      font-size: 13px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .dock-zoom-btn {
+      grid-column: 1 / -1;
+      width: 100%;
+      height: 36px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px 12px;
+      font-size: 13px;
+    }
+
     .hero-arch-bar,
     .care-grid,
+    .program-photos,
     .cost-infographic,
     .process-ribbon,
     .faq-grid,
     .partner-list,
     footer.site-footer {
-      grid-template-columns: 1fr;
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .arch-cell {
+      border-right: 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+      padding: 13px 16px;
+    }
+    .arch-cell:last-child { border-bottom: 0; }
+    .proc-step {
+      border-right: 0;
+      padding-right: 0;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    }
+    .proc-step:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .bento-grid {
+      grid-template-columns: minmax(0, 1fr);
+      grid-auto-rows: 220px;
     }
     .bento-1, .bento-2, .bento-3, .bento-4, .bento-5, .bento-6, .bento-7, .bento-8 {
-      grid-column: span 12;
+      grid-column: 1 / -1;
+    }
+    .schedule-box {
+      padding: 16px 15px;
+    }
+    .schedule-head {
+      flex-wrap: wrap;
+      gap: 8px;
     }
     .schedule-item {
-      grid-template-columns: 1fr;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 3px;
+    }
+    .pillar-card h4 {
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .closing-banner {
+      padding: 22px 18px;
+      gap: 18px;
+    }
+    .partners-head {
+      flex-direction: column;
+      align-items: flex-start;
       gap: 3px;
     }
     .btn-row .btn-primary,
