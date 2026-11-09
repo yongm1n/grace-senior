@@ -901,6 +901,7 @@
     object-fit: cover;
     transition: transform 0.45s ease;
   }
+  .care-card-nursing .care-card-img img { object-position: center bottom; }
   .care-card:hover .care-card-img img { transform: scale(1.05); }
   .care-num-badge {
     position: absolute;
@@ -2004,16 +2005,17 @@
       </div>
 
       <div class="care-grid">
-        <button class="care-card" type="button"
+        <button class="care-card care-card-nursing" type="button"
           data-prog-modal
           data-badge="01 · 간호·투약 케어"
           data-title="매일 간호·건강 및 투약 세심 관리"
           data-sub="간호부서장 출신 대표와 간호 인력이 매일 아침 어르신의 작은 컨디션 변화까지 세심하게 살핍니다."
-          data-img="../assets/facilities/1번생활실_02-1440.webp"
+          data-img="../assets/facilities/nursing-equipment.webp"
+          data-img-alt="더 그레이스 센터의 건강 측정 도구가 놓인 트레이와 혈압계를 갖춘 간호 카트"
           data-effects="매일 등원 시 혈압·맥박·체온·혈당 측정 및 기록 관리|어르신별 정확한 복약 시간 챙김 및 복약 지도|병원 진료 가시는 날 센터 누적 혈압·혈당 기록지 동봉|해운대 협약 병·의원(내과·치과·정형외과·안과) 긴밀 연계"
-          data-blog="https://blog.naver.com/the_grace_daycare">
+          data-blog="https://blog.naver.com/PostView.naver?blogId=the_grace_daycare&amp;logNo=224448157313">
           <div class="care-card-img">
-            <img src="../assets/facilities/1번생활실_02-900.webp" width="900" height="675" loading="lazy" decoding="async" alt="밝고 정갈한 1번생활실 전경">
+            <img src="../assets/facilities/nursing-equipment.webp" width="600" height="637" loading="lazy" decoding="async" alt="더 그레이스 센터의 건강 측정 도구가 놓인 트레이와 혈압계를 갖춘 간호 카트">
             <span class="care-num-badge">01 · 간호·투약</span>
           </div>
           <div class="care-body">
@@ -2804,7 +2806,7 @@
     if (pmSub) pmSub.textContent = sub;
     if (pmImg) {
       pmImg.src = img;
-      pmImg.alt = title;
+      pmImg.alt = btn.getAttribute('data-img-alt') || title;
     }
     if (pmBlogBtn) {
       pmBlogBtn.href = blog;
