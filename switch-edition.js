@@ -4,6 +4,7 @@
  *   main    → node build.js (src/site.html 재빌드. NO_SWITCH=1 로 상호 재귀 차단)
  *   classic → v2/index.html 을 경로 보정(../assets/ → assets/)해 루트로 승격
  *   anime   → v3/index.html 을 경로 보정(../assets/ → assets/, media/ → v3/media/)해 루트로 승격
+ *   v4      → v4/index.html 을 경로 보정(../assets/ → assets/)해 루트로 승격
  * 승격 시 미리보기용 <meta name="robots" content="noindex"> 를 제거하고(잔존 시 홈페이지가
  * 색인에서 제거됨), <title> 을 SEO 타이틀로 정규화, <meta name="edition"> 마커를 주입한다.
  * 마지막에 모든 에디션 공통 사후 검증(상대참조 실재 + 마커 + title + SEO 태그 + noindex 부재)을 돌려
@@ -17,7 +18,7 @@ const { spawnSync } = require('child_process');
 const { HOME_TITLE, HOME_DESCRIPTION, HOME_URL, withHomeSeo } = require('./seo-home');
 
 const root = __dirname;
-const ALLOWED = ['main', 'classic', 'anime'];
+const ALLOWED = ['main', 'classic', 'anime', 'v4'];
 
 function fail(msg) {
   console.error('[switch-edition] 실패: ' + msg);
@@ -45,9 +46,10 @@ if (edition === 'main') {
   if (r.error) fail('build.js 실행 실패 — ' + r.error.message);
   if (r.status !== 0) fail('build.js 비정상 종료 (exit ' + r.status + ')');
 } else {
-  const srcFile = edition === 'classic' ? path.join('v2', 'index.html') : path.join('v3', 'index.html');
+  const srcMap = { classic: path.join('v2', 'index.html'), anime: path.join('v3', 'index.html'), v4: path.join('v4', 'index.html') };
+  const srcFile = srcMap[edition];
   let html = fs.readFileSync(path.join(root, srcFile), 'utf8');
-  html = html.replace(/\.\.\/assets\//g, 'assets/');                       // /v2·/v3 기준 → 루트 기준
+  html = html.replace(/\.\.\/(assets|media)\//g, '$1/');                   // /v2·/v3·/v4 기준 → 루트 기준
   if (edition === 'anime') html = html.replace(/(["'(=])media\//g, '$1v3/media/'); // v3 전용 media
   // v2/v3 스냅샷의 미리보기용 noindex 는 루트 승격 시 반드시 제거 — 남기면 https://gracedaycare.co.kr/
   // 전체가 구글·네이버 색인에서 제거된다 (사후 검증에서도 부재를 재확인).
@@ -60,9 +62,9 @@ if (edition === 'main') {
 const out = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
 const errors = [];
 
-// 상대참조 전수 추출: " ' ( = 바로 뒤의 assets/media/v1/v2/v3 경로만 (절대 URL 의
+// 상대참조 전수 추출: " ' ( = 바로 뒤의 assets/media/v1/v2/v3/v4 경로만 (절대 URL 의
 // https://…/assets/… 는 앞 글자가 '/' 라 매치되지 않음 — 치환/검증 대상 아님)
-const refRe = /(["'(=])((?:\.\.\/)*(?:assets|media|v1|v2|v3)\/[\p{L}\p{N}._/-]+)/gu;
+const refRe = /(["'(=])((?:\.\.\/)*(?:assets|media|v1|v2|v3|v4)\/[\p{L}\p{N}._/-]+)/gu;
 const refs = new Set();
 let m;
 while ((m = refRe.exec(out)) !== null) refs.add(m[2]);

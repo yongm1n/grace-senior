@@ -14,14 +14,15 @@
 ├── index.html              # ← GitHub Pages가 서빙 (edition.json이 가리키는 에디션의 산출물, 직접 편집 금지)
 ├── src/site.html           # ← 편집하는 소스 (실사 시네마 메인. 1행 title + favicon + <!--HEAD--> 블록 + 본문)
 ├── build.js                # src/site.html → index.html + v1/index.html (+ dist/site.artifact.html). HEAD 블록을 <head>로 승격
-├── edition.json            # 루트에 서빙할 에디션 선택 (main | classic | anime) — "에디션 전환" 섹션 참고
+├── edition.json            # 루트에 서빙할 에디션 선택 (main | classic | anime | v4) — "에디션 전환" 섹션 참고
 ├── switch-edition.js       # edition.json → index.html 반영 + 사후 검증 (CI·로컬 공용)
 ├── .github/workflows/      # switch-edition.yml — edition.json 푸시 시 자동 반영
 ├── media/                  # 메인 배경: hero 영상(mp4, 무음)+포스터 jpg, intro·program·health·meal 정지 이미지(webp + jpg 대체)
-├── assets/                 # 로고·파비콘·og.jpg + (v2가 쓰는) 사진 5장
+├── assets/                 # 로고·파비콘·og.jpg + (v2가 쓰는) 사진 5장 + facilities/ 실사 사진
 ├── v1/index.html           # 메인(실사 시네마) 미리보기 스냅샷 (noindex, build.js 생성물, 직접 편집 금지)
 ├── v2/index.html           # 클래식 v1 백업 스냅샷 (noindex, 동결 — 편집 대상 아님)
 ├── v3/                     # 애니 에디션 (애니메이션 룩, noindex): index.html + media/ 비디오·포스터
+├── v4/index.html           # 웜 라이트 에디션 (실사 시설 · 정보 중심, noindex)
 ├── admin/index.html        # 운영자용 에디션 전환 콘솔 (/admin/, noindex)
 ├── CNAME                   # gracedaycare.co.kr (커스텀 도메인 유지 — 지우지 말 것)
 ├── render.js               # Playwright 검증 (섹션별 스크린샷 + pageerror)
@@ -30,13 +31,14 @@
 ```
 
 ## 수정 → 배포 흐름
-현재 운영 에디션은 `classic`입니다. 운영 화면의 제휴업체 영역은 `v2/index.html`의 `#partners`에서 수정하고, `node switch-edition.js`로 루트 `index.html`을 재생성합니다. 아래 `src/site.html` 편집 절차는 `main` 에디션에 해당합니다.
+현재 운영 에디션은 `classic`입니다 (`v4` 웜 라이트 에디션은 `/v4/`에서 미리보기 가능). 운영 화면의 제휴업체 영역은 `v2/index.html`의 `#partners`에서 수정하고, `node switch-edition.js`로 루트 `index.html`을 재생성합니다. 아래 `src/site.html` 편집 절차는 `main` 에디션에 해당합니다.
 
-**제휴업체 영역은 세 곳에 있습니다. 수정할 때는 세 곳을 모두 고쳐야 합니다.**
+**제휴업체 영역은 네 곳에 있습니다. 수정할 때는 네 곳을 모두 고쳐야 합니다.**
+- v4 (웜 라이트): `v4/index.html`의 `#partners`. 수정 후 `node switch-edition.js`로 루트 `index.html`에 반영합니다.
 - classic: `v2/index.html`의 `#partners`. 수정 후 `node switch-edition.js`로 루트 `index.html`에 반영합니다.
 - main: `src/site.html`의 `#partners`. `/v1/`에서 보이며, 수정 후 `node build.js`로 `v1/index.html`에 반영합니다.
 - anime: `v3/index.html`의 `#partners`. 빌드 없이 직접 고치는 원본이며 `/v3/`에서 바로 보입니다. 루트로 올릴 때는 `switch-edition.js`가 경로를 보정합니다.
-- 세 곳의 상호·링크·순서·새 창 열기·`rel`·`aria-label`은 똑같이 맞춥니다. 모양(CSS)만 에디션별로 다릅니다.
+- 네 곳의 상호·링크·순서·새 창 열기·`rel`·`aria-label`은 똑같이 맞춥니다. 모양(CSS)만 에디션별로 다릅니다.
 
 ### 제휴업체 링크 (2026-09-11 확인)
 - 다나음재활센터: https://danaumrehab.co.kr/ — 해운대 다나음 재활운동센터 홈페이지.
@@ -49,11 +51,11 @@
 3. **검증(선택)**: `NODE_PATH=/Users/yongmin/node_modules node render.js` → `shot-<섹션>.png` + `pageerrors 0` 확인.
 4. **배포**: `git add -A && git commit -m "..." && git push` → 1~2분 후 https://gracedaycare.co.kr 반영.
 
-## 에디션 전환 (main / classic / anime)
-루트(`/`)에 어떤 에디션을 서빙할지는 **`edition.json`** 하나로 결정된다: `{"edition":"main"}` (허용값 `main` | `classic` | `anime`).
+## 에디션 전환 (main / classic / anime / v4)
+루트(`/`)에 어떤 에디션을 서빙할지는 **`edition.json`** 하나로 결정된다: `{"edition":"v4"}` (허용값 `main` | `classic` | `anime` | `v4`).
 
-- **작동 원리**: `edition.json` 변경을 main 에 push → GitHub Actions(`.github/workflows/switch-edition.yml`)가 `node switch-edition.js` 실행 → 선택 에디션으로 `index.html` 재생성(경로 보정, 미리보기용 noindex 제거, `<title>` SEO 정규화, `<meta name="edition">` 마커 주입) + 사후 검증(상대참조 실재·SEO 태그·**루트 noindex 부재** — 실패 시 커밋 없이 중단) → 봇이 산출물 커밋·푸시 → 1~2분 후 라이브 반영. 봇 커밋은 `edition.json` 을 건드리지 않아 무한루프 없음. 미리보기 스냅샷(`/v1/`·`/v2/`·`/v3/`)은 모두 noindex — 루트로 승격될 때만 색인 허용.
-- **/admin 사용법**: https://gracedaycare.co.kr/admin/ 에서 에디션 카드 선택 → 5초 내 2단계 확인 클릭 → 자동으로 `edition.json` 커밋 후 반영 상태를 폴링해 보여준다. 미리보기: 메인(실사 시네마) `/v1/` · 클래식 `/v2/` · 애니 `/v3/`.
+- **작동 원리**: `edition.json` 변경을 main 에 push → GitHub Actions(`.github/workflows/switch-edition.yml`)가 `node switch-edition.js` 실행 → 선택 에디션으로 `index.html` 재생성(경로 보정, 미리보기용 noindex 제거, `<title>` SEO 정규화, `<meta name="edition">` 마커 주입) + 사후 검증(상대참조 실재·SEO 태그·**루트 noindex 부재** — 실패 시 커밋 없이 중단) → 봇이 산출물 커밋·푸시 → 1~2분 후 라이브 반영. 봇 커밋은 `edition.json` 을 건드리지 않아 무한루프 없음. 미리보기 스냅샷(`/v1/`·`/v2/`·`/v3/`·`/v4/`)은 모두 noindex — 루트로 승격될 때만 색인 허용.
+- **/admin 사용법**: https://gracedaycare.co.kr/admin/ 에서 에디션 카드 선택 → 5초 내 2단계 확인 클릭 → 자동으로 `edition.json` 커밋 후 반영 상태를 폴링해 보여준다. 미리보기: 메인(실사 시네마) `/v1/` · 클래식 `/v2/` · 애니 `/v3/` · 웜 라이트 `/v4/`.
 - **PAT 발급** (/admin 에 필요): https://github.com/settings/personal-access-tokens/new → Repository access: **Only select repositories** → `yongm1n/grace-senior` → Permissions → **Contents: Read and write**. 발급한 토큰은 /admin 토큰 칸에 저장(해당 브라우저 localStorage 에만 보관).
 - **로컬 전환**: `edition.json` 수정 후 `node switch-edition.js` (사후 검증 포함, exit 0 확인) → 커밋·푸시.
 - **주의**: `index.html` 은 이제 "선택된 에디션"의 산출물이다. `src/site.html` 수정 후 `node build.js` 를 돌리면 — 선택이 main 이 아닐 경우 — 빌드 끝에서 `switch-edition.js` 가 자동 재실행되어 선택 에디션이 복원된다(메인 소스 작업이 실수로 루트 선택을 덮지 않음). 메인(실사 시네마) 최신본 확인은 `/v1/` 로.

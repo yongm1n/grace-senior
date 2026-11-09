@@ -304,7 +304,8 @@
   var EDITIONS = [
     { id:'main',    mono:'MAIN',    name:'시네마',   def:true,  desc:'실사 영상 배경 · 기본',       preview:'/v1/' },
     { id:'classic', mono:'CLASSIC', name:'클래식',   def:false, desc:'정적 이미지 · 가장 가벼움', preview:'/v2/' },
-    { id:'anime',   mono:'ANIME',   name:'애니',     def:false, desc:'애니메이션 룩 · 영상 배경', preview:'/v3/' }
+    { id:'anime',   mono:'ANIME',   name:'애니',     def:false, desc:'애니메이션 룩 · 영상 배경', preview:'/v3/' },
+    { id:'v4',      mono:'TRUST · V4', name:'웜 라이트 (V4)', def:false, desc:'밝은 웜톤 · 실사 시설 · 정보 중심', preview:'/v4/' }
   ];
   function labelOf(id){ for(var i=0;i<EDITIONS.length;i++){ if(EDITIONS[i].id===id) return EDITIONS[i].name; } return id || null; }
 
