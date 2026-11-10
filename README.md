@@ -31,7 +31,9 @@
 ```
 
 ## 수정 → 배포 흐름
-현재 운영 에디션은 `classic`입니다 (`v4` 웜 라이트 에디션은 `/v4/`에서 미리보기 가능). 운영 화면의 제휴업체 영역은 `v2/index.html`의 `#partners`에서 수정하고, `node switch-edition.js`로 루트 `index.html`을 재생성합니다. 아래 `src/site.html` 편집 절차는 `main` 에디션에 해당합니다.
+현재 운영 에디션은 `v4-2`입니다. 운영 화면은 `v4-2/index.html`에서 수정하고 `node switch-edition.js`로 루트 `index.html`을 재생성합니다. 아래 `src/site.html` 편집 절차는 `main` 에디션에 해당합니다.
+
+루트의 제목·설명·canonical·OG/Twitter·기관 JSON-LD는 `seo-home.js`가 공통 관리합니다. 변경 후 `node build.js`와 `node switch-edition.js`로 산출물을 재생성합니다. `guide.html`과 `facilities.html`은 각 파일의 메타데이터를 함께 확인합니다. 공유 카드는 `assets/og-v42-20261110.jpg`이며, 에디션 미리보기와 원본 `/src/site.html`의 `noindex`는 유지합니다.
 
 **제휴업체 영역은 네 곳에 있습니다. 수정할 때는 네 곳을 모두 고쳐야 합니다.**
 - v4 (웜 라이트): `v4/index.html`의 `#partners`. 수정 후 `node switch-edition.js`로 루트 `index.html`에 반영합니다.
