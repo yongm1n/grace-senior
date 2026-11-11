@@ -4,11 +4,11 @@
 <meta charset="utf-8">
 <meta name="robots" content="noindex">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>더 그레이스 시니어 주간보호센터 | V4-2 브라이트 보타니컬 클럽</title>
-<link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon-16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png">
-<link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon-180.png">
+<title>부산 해운대구 주간보호센터 | 더 그레이스 시니어 주간보호센터</title>
+<link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon-180.png">
 <meta name="naver-site-verification" content="51eddaffded158034539cb8abde4bea283ca25fb">
 <meta name="google-site-verification" content="Hn8WSNjS5erTV3yktRIPckFNGfWItRmFs7pZTH8CGSk">
 <meta name="description" content="부산 해운대구 더 그레이스 시니어 주간보호센터입니다. 설레는 마음으로 나서는 어르신의 두 번째 봄날, 다채로운 월간 문화·재활 프로그램과 간호 돌봄, HACCP 위탁급식, 안전한 송영 서비스를 제공합니다.">
@@ -27,7 +27,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Noto+Serif+KR:wght@500;600;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-dynamic-subset.min.css">
-<link rel="preload" as="image" type="image/webp" fetchpriority="high" href="../assets/v4-hero.webp">
+<link rel="preload" as="image" type="image/webp" fetchpriority="high" href="/assets/v4-hero.webp">
 <style>
   :root {
     /* V4-2 브라이트 보타니컬 클럽하우스 & 매거진 컬러 토큰 */
@@ -1823,13 +1823,392 @@
     .mc-call { background: var(--coral); color: #FFFFFF; }
     .mc-map { background: var(--forest); color: #FFFFFF; }
   }
+
+
+
+  @media (max-width: 640px) {
+    .dash-cards-head { flex-direction: column; align-items: flex-start; gap: 4px; }
+  }
+
+  /* ---------- 대표 소개: 경험과 세 가지 돌봄 원칙 ---------- */
+  .section-director-dash {
+    padding: clamp(64px, 7vw, 96px) 0;
+    background:
+      radial-gradient(50% 60% at 20% 15%, rgba(223, 236, 228, 0.75), transparent 70%),
+      radial-gradient(40% 50% at 85% 75%, rgba(247, 239, 224, 0.65), transparent 70%),
+      var(--bg-cream);
+    border-bottom: 1px solid var(--line);
+    position: relative;
+  }
+
+  /* 상단 비전 배너 */
+  .dash-vision-banner {
+    background: linear-gradient(135deg, var(--forest-deep) 0%, #1A3E2F 100%);
+    border-radius: var(--radius-md);
+    padding: clamp(28px, 4vw, 40px) clamp(24px, 5vw, 48px);
+    color: #FFFFFF;
+    margin-bottom: 36px;
+    box-shadow: var(--shadow-md);
+    border: 1px solid rgba(182, 141, 64, 0.35);
+    position: relative;
+    overflow: hidden;
+  }
+  .dash-vision-banner::after {
+    content: "";
+    position: absolute;
+    top: -50%; right: -10%;
+    width: 320px; height: 320px;
+    background: radial-gradient(circle, rgba(182, 141, 64, 0.2), transparent 70%);
+    pointer-events: none;
+  }
+  .dash-vision-kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 4px 12px;
+    background: rgba(182, 141, 64, 0.25);
+    border: 1px solid rgba(182, 141, 64, 0.55);
+    border-radius: 999px;
+    color: #F4E2BB;
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .dash-vision-title {
+    font-family: var(--serif);
+    font-size: clamp(24px, 3vw, 34px);
+    line-height: 1.32;
+    color: #FFFFFF;
+    margin-bottom: 10px;
+  }
+  .dash-vision-title em {
+    font-style: normal;
+    color: #F4E2BB;
+  }
+  .dash-vision-desc {
+    font-size: 15.5px;
+    color: #D3E0D8;
+    line-height: 1.65;
+    max-width: 820px;
+  }
+
+  /* 메인 2컬럼 레이아웃 (좌: 프로필+타임라인, 우: 3대 시스템 대시보드) */
+  .dash-grid {
+    display: grid;
+    grid-template-columns: 380px 1fr;
+    gap: clamp(28px, 4vw, 44px);
+    align-items: start;
+  }
+
+  /* 좌측: 프로필 & 전문성 여정 (Timeline) */
+  .dash-profile-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .dash-photo-box {
+    position: relative;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    aspect-ratio: 3 / 3.8;
+    background: var(--bg-sand);
+  }
+  .dash-photo-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 20%;
+  }
+  .dash-photo-badge {
+    position: absolute;
+    bottom: 12px; left: 12px; right: 12px;
+    background: rgba(18, 46, 34, 0.9);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(182, 141, 64, 0.4);
+    padding: 8px 12px;
+    border-radius: 10px;
+    color: #FFFFFF;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .dash-badge-name {
+    font-family: var(--serif);
+    font-size: 15px;
+    font-weight: 700;
+    color: #F4E2BB;
+  }
+  .dash-badge-role {
+    font-size: 11.5px;
+    color: #DFECE4;
+  }
+
+  /* 전문성 타임라인 */
+  .dash-timeline-wrap {
+    padding-top: 6px;
+  }
+  .dash-timeline-head {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--forest-deep);
+    letter-spacing: 0.04em;
+    margin-bottom: 14px;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .timeline-list {
+    list-style: none;
+    position: relative;
+    padding-left: 20px;
+  }
+  .timeline-list::before {
+    content: "";
+    position: absolute;
+    top: 6px; bottom: 6px; left: 7px;
+    width: 2px;
+    background: var(--line-gold);
+  }
+  .timeline-item {
+    position: relative;
+    margin-bottom: 16px;
+  }
+  .timeline-item:last-child {
+    margin-bottom: 0;
+  }
+  .timeline-dot {
+    position: absolute;
+    left: -20px; top: 4px;
+    width: 16px; height: 16px;
+    border-radius: 50%;
+    background: var(--surface);
+    border: 3px solid var(--forest);
+    box-shadow: 0 0 0 2px var(--surface);
+  }
+  .timeline-item.active .timeline-dot {
+    border-color: var(--gold);
+    background: var(--gold);
+  }
+  .timeline-stage {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--coral-deep);
+    letter-spacing: 0.05em;
+    display: block;
+    margin-bottom: 2px;
+  }
+  .timeline-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--forest-deep);
+    margin-bottom: 3px;
+  }
+  .timeline-desc {
+    font-size: 12.5px;
+    line-height: 1.55;
+    color: var(--ink-body);
+  }
+
+  /* 우측: 3대 스마트 웰니스 케어 시스템 대시보드 카드 */
+  .dash-cards-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .dash-cards-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 4px;
+  }
+  .dash-cards-title {
+    font-family: var(--serif);
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--forest-deep);
+  }
+  .dash-cards-tag {
+    font-size: 12px;
+    color: var(--ink-muted);
+  }
+
+  .dash-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-md);
+    padding: 22px 26px;
+    box-shadow: var(--shadow-sm);
+    transition: all 0.25s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    position: relative;
+    overflow: hidden;
+  }
+  .dash-card:hover {
+    box-shadow: var(--shadow-md);
+    border-color: var(--line-gold);
+    transform: translateY(-2px);
+  }
+  .dash-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .dash-card-kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11.5px;
+    font-weight: 700;
+    color: var(--forest-mid);
+    background: var(--forest-soft);
+    padding: 3px 10px;
+    border-radius: 6px;
+    text-transform: uppercase;
+  }
+  .dash-card-tagline {
+    font-size: 11.5px;
+    color: var(--gold-deep);
+    font-weight: 600;
+  }
+  .dash-card-title {
+    font-family: var(--serif);
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--forest-deep);
+    line-height: 1.4;
+  }
+  .dash-features {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .dash-feat-item {
+    display: grid;
+    grid-template-columns: 18px 1fr;
+    gap: 10px;
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--ink-body);
+  }
+  .dash-feat-icon {
+    color: var(--forest-mid);
+    font-size: 14px;
+    padding-top: 1px;
+  }
+  .dash-feat-item strong {
+    color: var(--forest-deep);
+    font-weight: 600;
+  }
+
+  /* 하단 슬로건 배너 */
+  .dash-bottom-bar {
+    margin-top: 24px;
+    background: linear-gradient(90deg, #FAF7F0 0%, #F5EFE4 100%);
+    border: 1px solid var(--line-gold);
+    border-radius: var(--radius-sm);
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .dash-bottom-slogan {
+    font-family: var(--serif);
+    font-size: 15.5px;
+    font-weight: 700;
+    color: var(--forest-deep);
+  }
+  .dash-bottom-slogan em {
+    font-style: normal;
+    color: var(--coral-deep);
+  }
+  .dash-bottom-sign {
+    font-size: 13px;
+    color: var(--ink-muted);
+    font-weight: 600;
+  }
+
+  @media (max-width: 1024px) {
+    .dash-grid {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+    .dash-profile-card {
+      max-width: 440px;
+      margin: 0 auto;
+    }
+  }
+
+
+  /* 운영 내비게이션 및 섹션 앵커 간격 */
+  .scene[id] { scroll-margin-top: calc(var(--switcher-h) + var(--nav-h) + var(--quick-nav-h) + 12px); }
+  .menu { gap: 17px; }
+  .menu-link { font-size: 14px; }
+  @media (max-width: 1140px) { .quick-nav { grid-template-columns: repeat(5,minmax(0,1fr)); } }
+  @media (max-width: 768px) {
+    .scene.hero { padding-top: calc(var(--switcher-h) + var(--nav-h) + var(--quick-nav-h) + 22px); }
+    .quick-nav { padding-left: 8px; padding-right: 8px; }
+    .quick-link { font-size: 13px; }
+  }
+
+
+
+  /* 대표 경험과 센터에서 전하는 인사말 */
+  .center-greeting-jump { display: inline-flex; align-items: center; gap: 24px; margin-top: 18px; padding: 7px 0; border-bottom: 1px solid var(--line-gold); color: var(--gold-soft); text-decoration: none; font-size: 14px; font-weight: 600; }
+  .center-greeting-jump:hover { color: var(--surface); }
+  .center-greeting { display: grid; grid-template-columns: minmax(0,1.22fr) minmax(0,1fr); align-items: center; gap: clamp(28px,4vw,54px); margin-top: 54px; padding-top: 42px; border-top: 1px solid var(--line-gold); scroll-margin-top: calc(var(--switcher-h) + var(--nav-h) + var(--quick-nav-h) + 25px); }
+  .center-greeting-figure { margin: 0; min-width: 0; }
+  .center-greeting-photo { display: block; width: 100%; padding: 0; border: 0; background: var(--bg-sand); border-radius: var(--radius-md); overflow: hidden; cursor: zoom-in; }
+  .center-greeting-photo img { width: 100%; height: auto; aspect-ratio: 4/3; object-fit: contain; }
+  .center-greeting-figure figcaption { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 12px; font-size: 13px; color: var(--ink-muted); }
+  .center-greeting-expand { appearance: none; padding: 0; border: 0; background: transparent; color: var(--forest); font: inherit; font-weight: 600; white-space: nowrap; cursor: zoom-in; }
+  .center-greeting-kicker { display: block; color: var(--coral-deep); font-weight: 700; font-size: 12px; letter-spacing: .07em; margin-bottom: 15px; }
+  .center-greeting-copy h3 { color: var(--forest-deep); font-family: var(--serif); font-size: clamp(25px,2.15vw,32px); font-weight: 700; line-height: 1.55; letter-spacing: -.045em; margin-bottom: 21px; }
+  .center-greeting-copy p { font-size: 17px; line-height: 1.9; color: var(--ink-body); }
+  .center-greeting-copy p + p { margin-top: 13px; }
+  .center-greeting-sign { margin-top: 25px; padding-top: 17px; border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 15px; }
+  .center-greeting-sign span { font-size: 13px; color: var(--ink-muted); }
+  .center-greeting-sign strong { font-family: var(--serif); color: var(--forest); font-size: 19px; letter-spacing: .01em; }
+  @media(max-width:900px) {
+    .center-greeting { grid-template-columns: minmax(0,1fr); gap: 29px; margin-top: 38px; padding: 30px var(--gutter) 0; }
+    .center-greeting-copy { max-width: 670px; }
+    .center-greeting-copy h3 { font-size: 28px; }
+  }
+  @media(max-width:640px) {
+    .center-greeting { gap: 25px; }
+    .center-greeting-figure figcaption { font-size: 11px; gap: 8px; }
+    .center-greeting-photo { border-radius: var(--radius-sm); }
+    .center-greeting-kicker { font-size: 11px; letter-spacing: .035em; margin-bottom: 12px; }
+    .center-greeting-copy h3 { font-size: clamp(23px,6.05vw,27px); margin-bottom: 17px; }
+    .center-greeting-copy p { font-size: 16px; line-height: 1.9; }
+    .center-greeting-sign { margin-top: 20px; gap: 7px; flex-direction: column; }
+    .center-greeting-sign strong { font-size: 19px; }
+  }
+
 </style>
 </head>
 <body>
+
+
 <header class="nav" role="banner">
   <a class="brand" href="#hero" aria-label="더 그레이스 시니어 주간보호센터 홈">
     <span class="brand-logo-wrap">
-      <img class="brand-logo" src="../assets/logo.png" width="36" height="36" alt="더 그레이스 로고">
+      <img class="brand-logo" src="/assets/logo.png" width="36" height="36" alt="더 그레이스 로고">
     </span>
     <div class="brand-text">
       <strong class="brand-name">더 그레이스</strong>
@@ -1837,7 +2216,8 @@
     </div>
   </a>
   <nav class="menu" aria-label="주요 메뉴">
-    <a class="menu-link" href="#intro">센터소개</a>
+    <a class="menu-link" href="#director">대표인사말</a>
+    <a class="menu-link" href="#intro">4대케어</a>
     <a class="menu-link" href="#program">하루일과·프로그램</a>
     <a class="menu-link" href="#meal">식사·위생</a>
     <a class="menu-link" href="#facilities">실제시설</a>
@@ -1850,6 +2230,7 @@
   </nav>
 </header>
 <nav class="quick-nav" aria-label="주요 정보 바로가기">
+  <a class="quick-link" href="#director">대표소개</a>
   <a class="quick-link" href="#program">프로그램</a>
   <a class="quick-link" href="#facilities">시설</a>
   <a class="quick-link" href="#guide">비용·이용</a>
@@ -1869,7 +2250,7 @@
           </div>
           <h1>매일 아침, 설레는 마음으로 나서는<br><span class="hl-spring">어르신의 두 번째 봄날</span></h1>
           <p class="hero-lead">
-            <span class="hero-lead-full">따스한 햇살이 가득한 공간에서 즐기는 다채로운 문화·요리·나들이와 전문 재활운동, 간호부서장 출신 대표가 직접 챙기는 세심한 건강 돌봄까지. 어르신이 매일 기다리시는 활기찬 주간보호센터를 만나보세요.</span>
+            <span class="hero-lead-full">따스한 햇살이 가득한 공간에서 즐기는 다채로운 문화·요리·나들이와 전문 재활운동, 간호사 출신 대표의 경험을 담은 세심한 건강 돌봄까지. 어르신이 매일 기다리시는 활기찬 주간보호센터를 만나보세요.</span>
             <span class="hero-lead-compact">다채로운 활동과 세심한 간호 돌봄으로,<br>어르신의 하루에 즐거움을 더합니다.</span>
           </p>
 
@@ -1925,32 +2306,32 @@
             <span>THE GRACE BOTANICAL LOUNGE</span>
           </div>
           <div class="hero-stage-viewport">
-            <img class="hero-bg-slide active" src="../assets/v4-hero.webp" width="1280" height="960" fetchpriority="high" alt="햇살이 스며드는 더 그레이스 센터 창가에서 어르신과 선생님이 함께 화분을 돌보며 미소 짓는 모습">
-            <img class="hero-bg-slide" src="../assets/facilities/premium-20261110/common-lounge-1440.webp" width="1440" height="1080" loading="eager" decoding="async" alt="넓고 쾌적한 공용생활실 및 프로그램홀">
-            <img class="hero-bg-slide" src="../assets/facilities/premium-20261110/massage-lounge-1440.webp" width="1440" height="1080" loading="eager" decoding="async" alt="코웨이 안마의자 3대와 휴식 공간">
-            <img class="hero-bg-slide" src="../assets/facilities/happiness-classroom-02-20261110-1440.webp" width="1440" height="1080" loading="eager" decoding="async" alt="소그룹 맞춤 프로그램이 진행되는 행복반 교실">
+            <img class="hero-bg-slide active" src="/assets/v4-hero.webp" width="1280" height="960" fetchpriority="high" alt="햇살이 스며드는 더 그레이스 센터 창가에서 어르신과 선생님이 함께 화분을 돌보며 미소 짓는 모습">
+            <img class="hero-bg-slide" src="/assets/facilities/premium-20261110/common-lounge-1440.webp" width="1440" height="1080" loading="eager" decoding="async" alt="넓고 쾌적한 공용생활실 및 프로그램홀">
+            <img class="hero-bg-slide" src="/assets/facilities/premium-20261110/massage-lounge-1440.webp" width="1440" height="1080" loading="eager" decoding="async" alt="코웨이 안마의자 3대와 휴식 공간">
+            <img class="hero-bg-slide" src="/assets/facilities/happiness-classroom-02-20261110-1440.webp" width="1440" height="1080" loading="eager" decoding="async" alt="소그룹 맞춤 프로그램이 진행되는 행복반 교실">
 
             <div class="hero-stage-caption">
               <strong id="stage-title">01 · 햇살 가득한 일상과 따뜻한 동행</strong>
-              <button class="dock-zoom-btn" id="hero-stage-trigger" type="button" data-lightbox data-full="../assets/v4-hero.webp" data-caption="더 그레이스 시니어 주간보호센터 — 햇살 가득한 일상과 따뜻한 동행" aria-label="현재 사진 크게 보기">사진 확대 +</button>
+              <button class="dock-zoom-btn" id="hero-stage-trigger" type="button" data-lightbox data-full="/assets/v4-hero.webp" data-caption="더 그레이스 시니어 주간보호센터 — 햇살 가득한 일상과 따뜻한 동행" aria-label="현재 사진 크게 보기">사진 확대 +</button>
             </div>
           </div>
 
           <div class="stage-tabs" role="tablist" aria-label="공간 화보 탭 선택">
-            <button class="stage-tab active" type="button" data-idx="0" data-full="../assets/v4-hero.webp" data-title="01 · 햇살 가득한 일상과 따뜻한 동행">
-              <img src="../assets/v4-hero.webp" width="120" height="80" alt="따뜻한 동행 화보">
+            <button class="stage-tab active" type="button" data-idx="0" data-full="/assets/v4-hero.webp" data-title="01 · 햇살 가득한 일상과 따뜻한 동행">
+              <img src="/assets/v4-hero.webp" width="120" height="80" alt="따뜻한 동행 화보">
               <span class="t-label">따뜻한 동행</span>
             </button>
-            <button class="stage-tab" type="button" data-idx="1" data-full="../assets/facilities/premium-20261110/common-lounge-1440.webp" data-title="02 · 넓고 쾌적한 메인 프로그램홀">
-              <img src="../assets/facilities/premium-20261110/common-lounge-900.webp" width="120" height="80" alt="프로그램홀">
+            <button class="stage-tab" type="button" data-idx="1" data-full="/assets/facilities/premium-20261110/common-lounge-1440.webp" data-title="02 · 넓고 쾌적한 메인 프로그램홀">
+              <img src="/assets/facilities/premium-20261110/common-lounge-900.webp" width="120" height="80" alt="프로그램홀">
               <span class="t-label">프로그램홀</span>
             </button>
-            <button class="stage-tab" type="button" data-idx="2" data-full="../assets/facilities/premium-20261110/massage-lounge-1440.webp" data-title="03 · 코웨이 안마의자 3대 &amp; 온돌 휴식존">
-              <img src="../assets/facilities/premium-20261110/massage-lounge-900.webp" width="120" height="80" alt="안마·휴식존">
+            <button class="stage-tab" type="button" data-idx="2" data-full="/assets/facilities/premium-20261110/massage-lounge-1440.webp" data-title="03 · 코웨이 안마의자 3대 &amp; 온돌 휴식존">
+              <img src="/assets/facilities/premium-20261110/massage-lounge-900.webp" width="120" height="80" alt="안마·휴식존">
               <span class="t-label">안마·휴식존</span>
             </button>
-            <button class="stage-tab" type="button" data-idx="3" data-full="../assets/facilities/happiness-classroom-02-20261110-1440.webp" data-title="04 · 함께 활동하는 행복반 교실">
-              <img src="../assets/facilities/happiness-classroom-02-20261110-900.webp" width="120" height="80" alt="행복반 교실">
+            <button class="stage-tab" type="button" data-idx="3" data-full="/assets/facilities/happiness-classroom-02-20261110-1440.webp" data-title="04 · 함께 활동하는 행복반 교실">
+              <img src="/assets/facilities/happiness-classroom-02-20261110-900.webp" width="120" height="80" alt="행복반 교실">
               <span class="t-label">행복반 교실</span>
             </button>
           </div>
@@ -1983,6 +2364,178 @@
     </div>
   </section>
 
+
+  <!-- 대표 소개: 경험과 세 가지 돌봄 원칙 -->
+  <section class="scene section-director-dash" id="director" aria-labelledby="director-dash-title">
+    <div class="container">
+
+      <!-- 상단 비전 배너 -->
+      <div class="dash-vision-banner">
+        <span class="dash-vision-kicker">CARE PRINCIPLES · 경험에서 이어지는 돌봄</span>
+        <h2 class="dash-vision-title" id="director-dash-title">
+          “간호사 출신 대표가 <em>설립하고 운영</em>하는 주간보호센터”
+        </h2>
+        <p class="dash-vision-desc">
+          약 20년간 의료기관에서 쌓은 간호 경험과 의료 IT 기업의 EMR 기획·설계팀을 이끈 경험을 바탕으로,
+          건강을 세심하게 살피고 체계적으로 운영하는 센터를 만들어 갑니다.
+        </p>
+        <a class="center-greeting-jump" href="#center-greeting">센터에서 전하는 인사말 <span aria-hidden="true">↓</span></a>
+      </div>
+
+      <!-- 메인 2컬럼 그리드 -->
+      <div class="dash-grid">
+
+        <!-- 좌측: 대표 프로필 & 전문성 여정 (Timeline) -->
+        <div class="dash-profile-card">
+          <div class="dash-photo-box">
+            <img src="/assets/representative/profile-20261111.jpg" width="654" height="892" loading="eager" alt="더 그레이스 시니어 주간보호센터 정지안 대표">
+            <div class="dash-photo-badge">
+              <span class="dash-badge-name">정지안 대표</span>
+              <span class="dash-badge-role">설립자 · 간호사 출신</span>
+            </div>
+          </div>
+
+          <div class="dash-timeline-wrap">
+            <h3 class="dash-timeline-head">
+              <svg viewBox="0 0 20 20" fill="currentColor" width="14" height="14" aria-hidden="true" style="color:var(--forest-mid);"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/></svg>
+              <span>더 그레이스로 이어진 경험</span>
+            </h3>
+
+            <ol class="timeline-list">
+              <li class="timeline-item">
+                <div class="timeline-dot"></div>
+                <span class="timeline-stage">PHASE 01 · 약 20년 의료현장</span>
+                <h4 class="timeline-title">의료기관 간호사 경험</h4>
+                <p class="timeline-desc">약 20년간 의료기관에서 간호사로 근무하며 환자 간호와 건강관리를 경험했습니다.</p>
+              </li>
+
+              <li class="timeline-item">
+                <div class="timeline-dot"></div>
+                <span class="timeline-stage">PHASE 02 · 헬스케어 IT</span>
+                <h4 class="timeline-title">의료 IT 기업 EMR 기획·설계팀 리드</h4>
+                <p class="timeline-desc">의료정보시스템 기획·설계팀을 이끌며 의료서비스의 효율성과 체계적인 관리 방식을 고민했습니다.</p>
+              </li>
+
+              <li class="timeline-item active">
+                <div class="timeline-dot"></div>
+                <span class="timeline-stage">PHASE 03 · 현재</span>
+                <h4 class="timeline-title">더 그레이스 설립 &amp; 직접 운영</h4>
+                <p class="timeline-desc">의료현장과 시스템 기획 경험을 바탕으로 더 그레이스를 설립하고 운영합니다.</p>
+              </li>
+            </ol>
+          </div>
+        </div>
+
+        <!-- 우측: 세 가지 돌봄 원칙 카드 -->
+        <div class="dash-cards-wrap">
+          <div class="dash-cards-head">
+            <h3 class="dash-cards-title">더 그레이스의 세 가지 돌봄 원칙</h3>
+            <span class="dash-cards-tag">건강 · 개별 존중 · 체계적 운영</span>
+          </div>
+
+          <!-- 카드 1 -->
+          <article class="dash-card">
+            <div class="dash-card-header">
+              <span class="dash-card-kicker">PRINCIPLE 01 · 건강과 안전</span>
+              <span class="dash-card-tagline">건강과 안전 최우선 원칙</span>
+            </div>
+            <h4 class="dash-card-title">건강의 작은 변화에도 관심을</h4>
+            <ul class="dash-features">
+              <li class="dash-feat-item">
+                <span class="dash-feat-icon">✦</span>
+                <div><strong>건강 상태를 이해하는 돌봄:</strong> 간호 경험을 바탕으로 어르신의 건강 상태를 세심하게 살피겠습니다.</div>
+              </li>
+              <li class="dash-feat-item">
+                <span class="dash-feat-icon">✦</span>
+                <div><strong>작은 변화에 기울이는 관심:</strong> 어르신의 일상에서 달라지는 모습을 놓치지 않도록 관심을 기울이겠습니다.</div>
+              </li>
+              <li class="dash-feat-item">
+                <span class="dash-feat-icon">✦</span>
+                <div><strong>안전을 먼저 생각하는 환경:</strong> 보호자께서 안심하고 맡기실 수 있도록 건강과 안전을 우선하겠습니다.</div>
+              </li>
+            </ul>
+          </article>
+
+          <!-- 카드 2 -->
+          <article class="dash-card">
+            <div class="dash-card-header">
+              <span class="dash-card-kicker">PRINCIPLE 02 · 개별 돌봄</span>
+              <span class="dash-card-tagline">한 분 한 분의 특성을 존중</span>
+            </div>
+            <h4 class="dash-card-title">각자의 생활과 성향에 맞게</h4>
+            <ul class="dash-features">
+              <li class="dash-feat-item">
+                <span class="dash-feat-icon">✦</span>
+                <div><strong>건강과 인지 상태 이해:</strong> 어르신마다 다른 건강 상태와 인지기능을 고려한 돌봄을 지향합니다.</div>
+              </li>
+              <li class="dash-feat-item">
+                <span class="dash-feat-icon">✦</span>
+                <div><strong>생활 습관과 성향 존중:</strong> 익숙한 생활 방식과 개인의 선호를 이해하는 것부터 시작합니다.</div>
+              </li>
+              <li class="dash-feat-item">
+                <span class="dash-feat-icon">✦</span>
+                <div><strong>즐겁고 의미 있는 활동:</strong> 신체·인지 활동과 함께 어르신이 존중받는 일상을 지원하겠습니다.</div>
+              </li>
+            </ul>
+          </article>
+
+          <!-- 카드 3 -->
+          <article class="dash-card">
+            <div class="dash-card-header">
+              <span class="dash-card-kicker">PRINCIPLE 03 · 체계적인 운영</span>
+              <span class="dash-card-tagline">의료 IT 기획 경험을 바탕으로</span>
+            </div>
+            <h4 class="dash-card-title">돌봄의 과정과 보호자 소통을 함께</h4>
+            <ul class="dash-features">
+              <li class="dash-feat-item">
+                <span class="dash-feat-icon">✦</span>
+                <div><strong>서로 이어지는 돌봄:</strong> 건강관리와 프로그램, 일상생활 지원을 체계적으로 관리하고자 합니다.</div>
+              </li>
+              <li class="dash-feat-item">
+                <span class="dash-feat-icon">✦</span>
+                <div><strong>보호자와 정성껏 소통:</strong> 어르신의 일상과 건강 상태에 대해 가족의 마음으로 함께 이야기하겠습니다.</div>
+              </li>
+              <li class="dash-feat-item">
+                <span class="dash-feat-icon">✦</span>
+                <div><strong>살피고 배우는 센터:</strong> 의료현장과 시스템 기획 경험을 바탕으로 더 나은 운영을 고민하겠습니다.</div>
+              </li>
+            </ul>
+          </article>
+
+          <!-- 하단 슬로건 바 -->
+          <div class="dash-bottom-bar">
+            <span class="dash-bottom-slogan">
+              “어르신께는 <em>행복한 하루</em>를, 보호자께는 <em>믿음과 안심</em>을 약속합니다.”
+            </span>
+            <span class="dash-bottom-sign">간호사 출신 대표 정지안 설립·운영</span>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="center-greeting" id="center-greeting" aria-labelledby="center-greeting-title">
+        <figure class="center-greeting-figure">
+          <button class="center-greeting-photo" type="button" data-lightbox
+            data-full="/assets/representative/center-20261111.jpg"
+            data-caption="더 그레이스 시니어 주간보호센터 · 정지안 대표"
+            aria-label="센터에서 인사하는 정지안 대표 사진 크게 보기">
+            <img src="/assets/representative/center-20261111.jpg" width="4000" height="3000" loading="lazy" decoding="async" alt="더 그레이스 시니어 주간보호센터 간판 앞에 서 있는 정지안 대표">
+          </button>
+          <figcaption><span>더 그레이스에서, 정지안 대표</span><button class="center-greeting-expand" type="button" title="센터 사진 크게 보기" data-lightbox data-full="/assets/representative/center-20261111.jpg" data-caption="더 그레이스 시니어 주간보호센터 · 정지안 대표" aria-label="센터에서 인사하는 정지안 대표 사진 크게 보기">사진 크게 보기 +</button></figcaption>
+        </figure>
+        <div class="center-greeting-copy">
+          <span class="center-greeting-kicker">FROM THE CENTER · 센터에서 전하는 인사말</span>
+          <h3 id="center-greeting-title">어르신께는 행복한 하루를,<br>보호자께는 믿음과 안심을.</h3>
+          <p>부모님을 센터에 모신다는 것이 보호자께 얼마나 큰 결정인지 잘 알고 있습니다.</p>
+          <p>한 분 한 분의 일상을 존중하고, 작은 변화에도 관심을 기울이겠습니다. 어르신이 건강하고 즐겁게 하루를 보내실 수 있도록 가족의 마음으로 함께하겠습니다.</p>
+          <div class="center-greeting-sign"><span>더 그레이스 시니어 주간보호센터</span><strong>대표 정지안 드림</strong></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
   <!-- 2. CARE & WELLNESS: 4대 핵심 웰니스 케어 (짧은 타이틀 + 1줄 요약 + 팝업 모달) -->
   <section class="scene section-intro" id="intro" aria-labelledby="intro-title">
     <div class="container">
@@ -1991,7 +2544,7 @@
           <span class="sec-num">01</span>
           <div class="sec-title-group">
             <span class="sec-kicker">WELLNESS &amp; CLINICAL CARE · 4대 핵심 케어</span>
-            <h2 class="sec-title" id="intro-title">간호부서장 출신 대표가 직접 가꾸는<br><em>건강하고 품격 있는 4대 웰니스 케어</em></h2>
+            <h2 class="sec-title" id="intro-title">간호사 출신 대표의 경험을 담은<br><em>건강하고 품격 있는 4대 웰니스 케어</em></h2>
             <p class="sec-desc">카드를 클릭하시면 실제 시설 사진과 함께 상세 돌봄 내용을 팝업으로 확인하실 수 있습니다.</p>
           </div>
         </div>
@@ -2002,13 +2555,13 @@
           data-prog-modal
           data-badge="01 · 간호·투약 케어"
           data-title="매일 간호·건강 및 투약 세심 관리"
-          data-sub="간호부서장 출신 대표와 간호 인력이 매일 아침 어르신의 작은 컨디션 변화까지 세심하게 살핍니다."
-          data-img="../assets/facilities/nursing-equipment.webp"
+          data-sub="간호 경험을 바탕으로 어르신의 건강 상태와 작은 변화를 세심하게 살피는 돌봄을 지향합니다."
+          data-img="/assets/facilities/nursing-equipment.webp"
           data-img-alt="더 그레이스 센터의 건강 측정 도구가 놓인 트레이와 혈압계를 갖춘 간호 카트"
           data-effects="매일 등원 시 혈압·맥박·체온·혈당 측정 및 기록 관리|어르신별 정확한 복약 시간 챙김 및 복약 지도|병원 진료 가시는 날 센터 누적 혈압·혈당 기록지 동봉|해운대 협약 병·의원(내과·치과·정형외과·안과) 긴밀 연계"
           data-blog="https://blog.naver.com/PostView.naver?blogId=the_grace_daycare&amp;logNo=224448157313">
           <div class="care-card-img">
-            <img src="../assets/facilities/nursing-equipment.webp" width="600" height="637" loading="lazy" decoding="async" alt="더 그레이스 센터의 건강 측정 도구가 놓인 트레이와 혈압계를 갖춘 간호 카트">
+            <img src="/assets/facilities/nursing-equipment.webp" width="600" height="637" loading="lazy" decoding="async" alt="더 그레이스 센터의 건강 측정 도구가 놓인 트레이와 혈압계를 갖춘 간호 카트">
             <span class="care-num-badge">01 · 간호·투약</span>
           </div>
           <div class="care-body">
@@ -2023,11 +2576,11 @@
           data-badge="02 · 맞춤 프로그램 &amp; 운동"
           data-title="활기찬 인지·문화 &amp; 재활운동 라운지"
           data-sub="단조로운 시간 보내기가 아닌, 어르신이 직접 참여하고 성취감을 느끼는 문화·신체 활동 공간입니다."
-          data-img="../assets/facilities/premium-20261110/common-wide-1440.webp"
+          data-img="/assets/facilities/premium-20261110/common-wide-1440.webp"
           data-effects="매주 수요일 다나음 물리치료사 센터장 초빙 맞춤 재활운동|실내 운동 사이클 3대·탄력밴드·실버 체조로 하체 근력 강화|요리·원예·성탄 장식·전통놀이 등 매월 새로운 테마 기획|수준별 소그룹 인지 워크북으로 두뇌 활력 유지"
           data-blog="https://blog.naver.com/the_grace_daycare/224459126858">
           <div class="care-card-img">
-            <img src="../assets/facilities/premium-20261110/common-wide-900.webp" width="900" height="675" loading="lazy" decoding="async" alt="실내 운동 사이클 3대와 넓은 프로그램 테이블이 갖춰진 공용생활실">
+            <img src="/assets/facilities/premium-20261110/common-wide-900.webp" width="900" height="675" loading="lazy" decoding="async" alt="실내 운동 사이클 3대와 넓은 프로그램 테이블이 갖춰진 공용생활실">
             <span class="care-num-badge">02 · 문화·재활</span>
           </div>
           <div class="care-body">
@@ -2042,11 +2595,11 @@
           data-badge="03 · 온돌·안마 힐링"
           data-title="남·여 분리 온돌 수면실 &amp; 안마 힐링존"
           data-sub="식사 후나 오후 시간 피로하실 때 언제든 내 집 안방처럼 따뜻하고 아늑하게 쉬실 수 있습니다."
-          data-img="../assets/facilities/premium-20261110/rest-women-1440.webp"
+          data-img="/assets/facilities/premium-20261110/rest-women-1440.webp"
           data-effects="남성·여성 공간이 완전히 분리된 따뜻한 온돌 마루 수면실|적외선 온열 조사기와 정갈하고 청결한 침구 상시 비치|코웨이 프리미엄 안마의자 3대로 전신 피로 회복|은은한 간접조명과 쾌적한 공기질 관리"
           data-blog="https://blog.naver.com/the_grace_daycare">
           <div class="care-card-img">
-            <img src="../assets/facilities/premium-20261110/rest-women-900.webp" width="900" height="675" loading="lazy" decoding="async" alt="따뜻한 온돌 마루와 침구, 온열기가 비치된 수면실">
+            <img src="/assets/facilities/premium-20261110/rest-women-900.webp" width="900" height="675" loading="lazy" decoding="async" alt="따뜻한 온돌 마루와 침구, 온열기가 비치된 수면실">
             <span class="care-num-badge">03 · 온돌·안마</span>
           </div>
           <div class="care-body">
@@ -2060,12 +2613,12 @@
           data-prog-modal
           data-badge="04 · 안전 제일 설비"
           data-title="안전을 먼저 생각하는 시설"
-          data-sub="어르신의 작은 걸음과 동선마다 낙상과 응급상광을 예방하는 세심한 안전 설비를 완비했습니다."
-          data-img="../assets/facilities/premium-20261110/safe-restroom-1440.webp"
+          data-sub="어르신의 이동과 생활을 고려한 안전 손잡이와 비상 호출벨 등 안전 설비를 갖추고 있습니다."
+          data-img="/assets/facilities/premium-20261110/safe-restroom-1440.webp"
           data-effects="화장실 양측 안전 손잡이와 편안한 변기 등받이 설치|바닥에서도 즉시 누를 수 있는 상·하단 이중 비상 호출벨|실내 전역 미끄럼 방지 및 안전 손잡이 설치|5층 비상 수직구조대 및 철저한 소방·안전 점검 완비"
           data-blog="https://blog.naver.com/the_grace_daycare">
           <div class="care-card-img">
-            <img src="../assets/facilities/premium-20261110/safe-restroom-900.webp" width="900" height="675" loading="lazy" decoding="async" alt="안전 손잡이와 상하단 비상 호출벨이 설치된 안전 화장실">
+            <img src="/assets/facilities/premium-20261110/safe-restroom-900.webp" width="900" height="675" loading="lazy" decoding="async" alt="안전 손잡이와 상하단 비상 호출벨이 설치된 안전 화장실">
             <span class="care-num-badge">04 · 안전 설비</span>
           </div>
           <div class="care-body">
@@ -2096,7 +2649,7 @@
             data-badge="월간 프로그램 일정표"
             data-title="이달의 전체 프로그램 일정표"
             data-sub="인지·미술·음악·신체·전통놀이·외부강사 초빙까지 매월 풍성하게 구성되는 더 그레이스 월간 일정표입니다."
-            data-img="../assets/programs/schedule-nov.webp"
+            data-img="/assets/programs/schedule-nov.webp"
             data-effects="매주 수요일 다나음 물리치료 센터장 초빙 재활운동|해운대365치과 원장 방문 구강검진 및 간호사 숨 건강교실|시 낭송 필사·칠교 맞추기·타악기 연주·요리 및 성탄 장식 만들기"
             data-blog="https://blog.naver.com/the_grace_daycare/224459126858">
             <span>📅 이달의 프로그램 일정표 팝업 보기</span>
@@ -2106,7 +2659,7 @@
             data-badge="월간 영양 식단표"
             data-title="이달의 어르신 맞춤 영양 식단표"
             data-sub="HACCP 인증 전문 위탁급식을 통해 치아와 소화를 배려한 균형 잡힌 한식 식단과 죽식·간식을 제공합니다."
-            data-img="../assets/programs/meal-nov.webp"
+            data-img="/assets/programs/meal-nov.webp"
             data-effects="식품안전관리인증(HACCP) 위탁급식 시스템으로 안전한 식재료 관리|어르신 저작·연하 상태를 고려한 일반식·다진식·죽식 맞춤 제공|식사·간식 비급여 별도 안내 (상담 시 투명하게 안내)"
             data-blog="https://blog.naver.com/the_grace_daycare/224459122425">
             <span>🍱 이달의 식단표 팝업 보기</span>
@@ -2122,11 +2675,11 @@
           data-badge="지역사회 외출 나들이"
           data-title="지역 맛집 탐방 외출"
           data-sub="함께여서 더 즐거운 외식 나들이! 전용 차량으로 안전하게 이동하여 따뜻한 식사와 계절의 정취를 함께 나눕니다."
-          data-img="../assets/programs/prog-outing.webp"
+          data-img="/assets/programs/prog-outing.webp"
           data-effects="균형 잡힌 맛있는 식사로 기분 전환과 활력 충전|야외 나들이 활동을 통한 스트레스 해소 및 인지 자극|함께 식사하고 담소를 나누며 유대감과 정서적 안정 향상|전용 차량을 이용한 안전한 이동과 든든한 동행"
           data-blog="https://blog.naver.com/the_grace_daycare/224466759865">
           <div class="poster-thumb">
-            <img src="../assets/programs/prog-outing.webp" width="720" height="900" loading="lazy" decoding="async" alt="지역 맛집 탐방 외출 프로그램 포스터">
+            <img src="/assets/programs/prog-outing.webp" width="720" height="900" loading="lazy" decoding="async" alt="지역 맛집 탐방 외출 프로그램 포스터">
             <span class="poster-badge coral">01 · 야외 나들이</span>
           </div>
           <div class="poster-body">
@@ -2145,11 +2698,11 @@
           data-badge="오감 자극 요리활동"
           data-title="오늘의 요리: 샌드위치 만들기"
           data-sub="신선한 재료로 직접 만드는 즐거움! 알록달록한 식재료를 탐색하고 내 손으로 직접 만들어 함께 나누어 먹습니다."
-          data-img="../assets/programs/prog-cooking.webp"
+          data-img="/assets/programs/prog-cooking.webp"
           data-effects="신선한 식재료 탐색을 통한 오감 자극과 식욕 증진|재료를 손질하고 쌓는 과정의 손가락 소근육 운동|순서를 기억하며 완성하는 집중력과 인지기능 자극|함께 만들고 나누어 먹는 즐거운 협동 활동"
           data-blog="https://blog.naver.com/the_grace_daycare/224466759865">
           <div class="poster-thumb">
-            <img src="../assets/programs/prog-cooking.webp" width="720" height="900" loading="lazy" decoding="async" alt="오늘의 요리 샌드위치 만들기 포스터">
+            <img src="/assets/programs/prog-cooking.webp" width="720" height="900" loading="lazy" decoding="async" alt="오늘의 요리 샌드위치 만들기 포스터">
             <span class="poster-badge gold">02 · 요리 교실</span>
           </div>
           <div class="poster-body">
@@ -2168,11 +2721,11 @@
           data-badge="협약 의료기관 방문케어"
           data-title="해운대365치과 원장 방문 구강검진·교육"
           data-sub="치과의사 원장님 직접 방문 구강케어! 어르신 한 분 한 분의 구강 상태를 살피고 올바른 관리법을 친절히 안내합니다."
-          data-img="../assets/programs/prog-dental.webp"
+          data-img="/assets/programs/prog-dental.webp"
           data-effects="해운대365치과 원장님 직접 방문 구강 상태 확인 및 상담|어르신 눈높이에 맞춘 올바른 칫솔질 교육|틀니 및 잇몸 건강 관리법 상세 안내|구강건조 예방과 건강한 식사를 위한 구강 습관 형성"
           data-blog="https://blog.naver.com/the_grace_daycare/224443479765">
           <div class="poster-thumb">
-            <img src="../assets/programs/prog-dental.webp" width="720" height="900" loading="lazy" decoding="async" alt="해운대365치과 원장 방문 구강검진 및 구강건강교육 포스터">
+            <img src="/assets/programs/prog-dental.webp" width="720" height="900" loading="lazy" decoding="async" alt="해운대365치과 원장 방문 구강검진 및 구강건강교육 포스터">
             <span class="poster-badge">03 · 전문 의료연계</span>
           </div>
           <div class="poster-body">
@@ -2191,11 +2744,11 @@
           data-badge="간호사 특화 건강교실"
           data-title="간호사와 함께하는 숨 건강교실"
           data-sub="바람개비 복식호흡으로 키우는 폐활량! 직접 만든 바람개비를 불며 즐겁게 호흡근과 심폐 건강을 단련합니다."
-          data-img="../assets/programs/prog-breath.webp"
+          data-img="/assets/programs/prog-breath.webp"
           data-effects="나만의 바람개비를 직접 만들고 불어보는 호흡 운동|배로 깊게 숨 쉬는 복식호흡과 팔 들기 가슴 확장 호흡|편안한 호흡 유도와 심장·폐 건강 증진에 도움|뇌 산소 공급 활성화를 통한 집중력·기분 개선"
           data-blog="https://blog.naver.com/the_grace_daycare/224466759865">
           <div class="poster-thumb">
-            <img src="../assets/programs/prog-breath.webp" width="720" height="900" loading="lazy" decoding="async" alt="간호사와 함께하는 숨 건강교실 포스터">
+            <img src="/assets/programs/prog-breath.webp" width="720" height="900" loading="lazy" decoding="async" alt="간호사와 함께하는 숨 건강교실 포스터">
             <span class="poster-badge">04 · 간호 건강교실</span>
           </div>
           <div class="poster-body">
@@ -2214,11 +2767,11 @@
           data-badge="계절 감성 인지미술"
           data-title="미리하는 성탄절 장식 &amp; 트리 만들기"
           data-sub="반짝이는 트리를 함께 꾸미는 인지미술! 반짝이 색지와 종이로 성탄 장식을 만들고 나뭇가지 트리를 함께 꾸밉니다."
-          data-img="../assets/programs/prog-christmas.webp"
+          data-img="/assets/programs/prog-christmas.webp"
           data-effects="다양한 색지와 재료를 살펴보며 기억력·집중력 향상|종이를 접고 오리는 정교한 손 소근육 자극|나뭇가지에 장식을 달며 창의력과 자기표현력 향상|다가오는 연말 계절감과 따뜻한 정서적 즐거움 공유"
           data-blog="https://blog.naver.com/the_grace_daycare/224466759865">
           <div class="poster-thumb">
-            <img src="../assets/programs/prog-christmas.webp" width="720" height="900" loading="lazy" decoding="async" alt="미리하는 성탄절 장식 만들기 인지프로그램 포스터">
+            <img src="/assets/programs/prog-christmas.webp" width="720" height="900" loading="lazy" decoding="async" alt="미리하는 성탄절 장식 만들기 인지프로그램 포스터">
             <span class="poster-badge coral">05 · 계절 인지미술</span>
           </div>
           <div class="poster-body">
@@ -2237,11 +2790,11 @@
           data-badge="매주 수요일 정기 초빙"
           data-title="매주 수요일 다나음 물리치료 센터장 초빙 운동"
           data-sub="허종빈 센터장님의 체계적인 맞춤 재활운동! 물리치료학 외래교수 출신 센터장님이 매주 수요일 직접 방문 지도합니다."
-          data-img="../assets/programs/prog-rehab.webp"
+          data-img="/assets/programs/prog-rehab.webp"
           data-effects="다나음재활운동센터 허종빈 센터장(물리치료사) 매주 수요일 초빙|어르신 개인별 신체 상태를 살피는 맞춤 재활운동|균형감각·보행 능력 및 하체 근력 집중 강화|낙상 예방과 일상 신체 기능 유지로 활기찬 생활 지원"
           data-blog="https://blog.naver.com/the_grace_daycare/224445629388">
           <div class="poster-thumb">
-            <img src="../assets/programs/prog-rehab.webp" width="720" height="900" loading="lazy" decoding="async" alt="매주 수요일 다나음 재활운동센터 허종빈 센터장 초빙 재활운동 프로그램 포스터">
+            <img src="/assets/programs/prog-rehab.webp" width="720" height="900" loading="lazy" decoding="async" alt="매주 수요일 다나음 재활운동센터 허종빈 센터장 초빙 재활운동 프로그램 포스터">
             <span class="poster-badge gold">06 · 전문 재활운동</span>
           </div>
           <div class="poster-body">
@@ -2310,16 +2863,16 @@
           </div>
         </div>
         <div class="sec-actions">
-          <button class="btn-secondary" type="button" data-lightbox data-full="../assets/programs/meal-nov.webp" data-caption="더 그레이스 이달의 영양 식단표" data-desc="HACCP 인증 위탁급식 및 오후 간식이 제공되는 이달의 영양 식단표입니다. (식사·간식 비급여 별도 안내)" data-blog="https://blog.naver.com/the_grace_daycare/224459122425">
+          <button class="btn-secondary" type="button" data-lightbox data-full="/assets/programs/meal-nov.webp" data-caption="더 그레이스 이달의 영양 식단표" data-desc="HACCP 인증 위탁급식 및 오후 간식이 제공되는 이달의 영양 식단표입니다. (식사·간식 비급여 별도 안내)" data-blog="https://blog.naver.com/the_grace_daycare/224459122425">
             <span>이달의 영양 식단표 크게 보기 ↗</span>
           </button>
         </div>
       </div>
 
       <div class="meal-showcase">
-        <button class="meal-photo-card" type="button" data-lightbox data-full="../assets/facilities/premium-20261110/meal-prep-1440.webp" data-caption="청결하게 관리되는 통유리 배식·위생 공간과 식사 테이블">
+        <button class="meal-photo-card" type="button" data-lightbox data-full="/assets/facilities/premium-20261110/meal-prep-1440.webp" data-caption="청결하게 관리되는 통유리 배식·위생 공간과 식사 테이블">
           <div class="meal-photo-wrap">
-            <img src="../assets/facilities/premium-20261110/meal-prep-900.webp" width="900" height="450" loading="lazy" decoding="async" alt="청결한 통유리 배식 공간과 정갈한 식탁">
+            <img src="/assets/facilities/premium-20261110/meal-prep-900.webp" width="900" height="450" loading="lazy" decoding="async" alt="청결한 통유리 배식 공간과 정갈한 식탁">
             <span class="photo-badge-top"><span class="dot"></span>통유리 위생 배식실</span>
           </div>
           <div class="meal-photo-desc">
@@ -2328,9 +2881,9 @@
           </div>
         </button>
 
-        <button class="meal-photo-card" type="button" data-lightbox data-full="../assets/facilities/premium-20261110/washbasins-1440.webp" data-caption="4인용 공용 세면 공간 — 아치형 거울 4개와 밝고 쾌적한 손 씻기·양치 공간">
+        <button class="meal-photo-card" type="button" data-lightbox data-full="/assets/facilities/premium-20261110/washbasins-1440.webp" data-caption="4인용 공용 세면 공간 — 아치형 거울 4개와 밝고 쾌적한 손 씻기·양치 공간">
           <div class="meal-photo-wrap">
-            <img src="../assets/facilities/premium-20261110/washbasins-900.webp" width="900" height="450" loading="lazy" decoding="async" alt="아치형 거울과 4대의 독립 세면대">
+            <img src="/assets/facilities/premium-20261110/washbasins-900.webp" width="900" height="450" loading="lazy" decoding="async" alt="아치형 거울과 4대의 독립 세면대">
             <span class="photo-badge-top"><span class="dot"></span>4인 독립 세면 공간</span>
           </div>
           <div class="meal-photo-desc">
@@ -2380,8 +2933,8 @@
       </div>
 
       <div class="bento-grid">
-        <button class="bento-card bento-1" type="button" data-lightbox data-full="../assets/facilities/premium-20261110/common-exercise-1440.webp" data-caption="공용생활실 — 월간 단체 프로그램 테이블, 실내 운동 사이클 3대, 안마의자 3대가 갖춰진 메인 생활·프로그램 공간">
-          <img src="../assets/facilities/premium-20261110/common-exercise-900.webp" width="900" height="675" loading="lazy" decoding="async" alt="메인 프로그램 테이블과 실내 운동 사이클">
+        <button class="bento-card bento-1" type="button" data-lightbox data-full="/assets/facilities/premium-20261110/common-exercise-1440.webp" data-caption="공용생활실 — 월간 단체 프로그램 테이블, 실내 운동 사이클 3대, 안마의자 3대가 갖춰진 메인 생활·프로그램 공간">
+          <img src="/assets/facilities/premium-20261110/common-exercise-900.webp" width="900" height="675" loading="lazy" decoding="async" alt="메인 프로그램 테이블과 실내 운동 사이클">
           <span class="bento-no">01</span>
           <div class="bento-overlay">
             <strong>공용생활실 &amp; 프로그램홀</strong>
@@ -2389,8 +2942,8 @@
           </div>
         </button>
 
-        <button class="bento-card bento-2" type="button" data-lightbox data-full="../assets/facilities/premium-20261110/love-classroom-01-1440.webp" data-caption="사랑반 교실 — 채광 좋은 창가, 원목 테이블, 이동식 스마트 모니터, 개인 사물함 및 비상 수직구조대">
-          <img src="../assets/facilities/premium-20261110/love-classroom-01-900.webp" width="900" height="675" loading="lazy" decoding="async" alt="밝은 창가 채광의 사랑반 교실">
+        <button class="bento-card bento-2" type="button" data-lightbox data-full="/assets/facilities/premium-20261110/love-classroom-01-1440.webp" data-caption="사랑반 교실 — 채광 좋은 창가, 원목 테이블, 이동식 스마트 모니터, 개인 사물함 및 비상 수직구조대">
+          <img src="/assets/facilities/premium-20261110/love-classroom-01-900.webp" width="900" height="675" loading="lazy" decoding="async" alt="밝은 창가 채광의 사랑반 교실">
           <span class="bento-no">02</span>
           <div class="bento-overlay">
             <strong>사랑반 교실 (집중케어실)</strong>
@@ -2398,8 +2951,8 @@
           </div>
         </button>
 
-        <button class="bento-card bento-3" type="button" data-lightbox data-full="../assets/facilities/happiness-classroom-02-20261110-1440.webp" data-caption="행복반 교실 — 테이블과 대형 모니터가 마련된 소그룹 인지·정서 프로그램 공간">
-          <img src="../assets/facilities/happiness-classroom-02-20261110-900.webp" width="900" height="675" loading="lazy" decoding="async" alt="활동 테이블을 배치한 행복반 교실">
+        <button class="bento-card bento-3" type="button" data-lightbox data-full="/assets/facilities/happiness-classroom-02-20261110-1440.webp" data-caption="행복반 교실 — 테이블과 대형 모니터가 마련된 소그룹 인지·정서 프로그램 공간">
+          <img src="/assets/facilities/happiness-classroom-02-20261110-900.webp" width="900" height="675" loading="lazy" decoding="async" alt="활동 테이블을 배치한 행복반 교실">
           <span class="bento-no">03</span>
           <div class="bento-overlay">
             <strong>행복반 교실 (소그룹 활동실)</strong>
@@ -2407,8 +2960,8 @@
           </div>
         </button>
 
-        <button class="bento-card bento-4" type="button" data-lightbox data-full="../assets/facilities/premium-20261110/rest-women-1440.webp" data-caption="여성수면실 — 은은한 간접조명과 따뜻한 온돌 평상 마루, 적외선 온열 조사기가 갖춰진 휴식 공간">
-          <img src="../assets/facilities/premium-20261110/rest-women-900.webp" width="900" height="675" loading="lazy" decoding="async" alt="따뜻한 온돌 평상 마루의 여성수면실">
+        <button class="bento-card bento-4" type="button" data-lightbox data-full="/assets/facilities/premium-20261110/rest-women-1440.webp" data-caption="여성수면실 — 은은한 간접조명과 따뜻한 온돌 평상 마루, 적외선 온열 조사기가 갖춰진 휴식 공간">
+          <img src="/assets/facilities/premium-20261110/rest-women-900.webp" width="900" height="675" loading="lazy" decoding="async" alt="따뜻한 온돌 평상 마루의 여성수면실">
           <span class="bento-no">04</span>
           <div class="bento-overlay">
             <strong>여성 온돌 수면실</strong>
@@ -2416,8 +2969,8 @@
           </div>
         </button>
 
-        <button class="bento-card bento-5" type="button" data-lightbox data-full="../assets/facilities/premium-20261110/rest-men-03-1440.webp" data-caption="남성수면실 — 남성 어르신들이 조용하고 편안하게 오침과 휴식을 취하시는 독립 온돌 공간">
-          <img src="../assets/facilities/premium-20261110/rest-men-03-900.webp" width="900" height="675" loading="lazy" decoding="async" alt="독립 휴식 공간의 남성수면실">
+        <button class="bento-card bento-5" type="button" data-lightbox data-full="/assets/facilities/premium-20261110/rest-men-03-1440.webp" data-caption="남성수면실 — 남성 어르신들이 조용하고 편안하게 오침과 휴식을 취하시는 독립 온돌 공간">
+          <img src="/assets/facilities/premium-20261110/rest-men-03-900.webp" width="900" height="675" loading="lazy" decoding="async" alt="독립 휴식 공간의 남성수면실">
           <span class="bento-no">05</span>
           <div class="bento-overlay">
             <strong>남성 온돌 수면실</strong>
@@ -2425,8 +2978,8 @@
           </div>
         </button>
 
-        <button class="bento-card bento-6" type="button" data-lightbox data-full="../assets/facilities/premium-20261110/safe-restroom-1440.webp" data-caption="안전을 먼저 생각하는 시설 — 양측 안전 손잡이, 등받이, 상·하단 이중 비상 호출벨 설치">
-          <img src="../assets/facilities/premium-20261110/safe-restroom-900.webp" width="900" height="675" loading="lazy" decoding="async" alt="양측 안전 지지대와 비상벨이 설치된 안전 화장실">
+        <button class="bento-card bento-6" type="button" data-lightbox data-full="/assets/facilities/premium-20261110/safe-restroom-1440.webp" data-caption="안전을 먼저 생각하는 시설 — 양측 안전 손잡이, 등받이, 상·하단 이중 비상 호출벨 설치">
+          <img src="/assets/facilities/premium-20261110/safe-restroom-900.webp" width="900" height="675" loading="lazy" decoding="async" alt="양측 안전 지지대와 비상벨이 설치된 안전 화장실">
           <span class="bento-no">06</span>
           <div class="bento-overlay">
             <strong>안전을 먼저 생각하는 시설</strong>
@@ -2434,8 +2987,8 @@
           </div>
         </button>
 
-        <button class="bento-card bento-7" type="button" data-lightbox data-full="../assets/facilities/premium-20261110/washbasins-1440.webp" data-caption="4인 공용 세면 공간 — 아치형 거울 4개와 깔끔한 화이트 세면대">
-          <img src="../assets/facilities/premium-20261110/washbasins-900.webp" width="900" height="675" loading="lazy" decoding="async" alt="아치형 거울 4개가 설치된 공용 세면대">
+        <button class="bento-card bento-7" type="button" data-lightbox data-full="/assets/facilities/premium-20261110/washbasins-1440.webp" data-caption="4인 공용 세면 공간 — 아치형 거울 4개와 깔끔한 화이트 세면대">
+          <img src="/assets/facilities/premium-20261110/washbasins-900.webp" width="900" height="675" loading="lazy" decoding="async" alt="아치형 거울 4개가 설치된 공용 세면대">
           <span class="bento-no">07</span>
           <div class="bento-overlay">
             <strong>4인 공용 세면 공간</strong>
@@ -2443,8 +2996,8 @@
           </div>
         </button>
 
-        <button class="bento-card bento-8" type="button" data-lightbox data-full="../assets/facilities/premium-20261110/meal-prep-1440.webp" data-caption="위생 배식 공간 — HACCP 인증 위탁급식 배식 및 식기 살균·위생 관리가 이루어지는 청결한 통유리 배식실">
-          <img src="../assets/facilities/premium-20261110/meal-prep-900.webp" width="900" height="675" loading="lazy" decoding="async" alt="통유리 배식 공간">
+        <button class="bento-card bento-8" type="button" data-lightbox data-full="/assets/facilities/premium-20261110/meal-prep-1440.webp" data-caption="위생 배식 공간 — HACCP 인증 위탁급식 배식 및 식기 살균·위생 관리가 이루어지는 청결한 통유리 배식실">
+          <img src="/assets/facilities/premium-20261110/meal-prep-900.webp" width="900" height="675" loading="lazy" decoding="async" alt="통유리 배식 공간">
           <span class="bento-no">08</span>
           <div class="bento-overlay">
             <strong>위생 배식 &amp; 식기 살균실</strong>
@@ -2629,7 +3182,7 @@
       <footer class="site-footer">
         <div class="foot-brand">
           <div class="foot-brand-row">
-            <img class="foot-logo" src="../assets/logo.png" width="38" height="38" alt="더 그레이스 시니어 주간보호센터 로고">
+            <img class="foot-logo" src="/assets/logo.png" width="38" height="38" alt="더 그레이스 시니어 주간보호센터 로고">
             <div>
               <strong>더 그레이스 시니어 주간보호센터</strong>
               <p>부산 해운대 노인장기요양보험 지정 주간보호기관</p>
