@@ -1913,14 +1913,18 @@
     flex-direction: column;
     gap: 20px;
   }
-  .dash-photo-box {
+  .dash-profile-intro {
     position: relative;
+  }
+  .dash-photo-box {
+    width: 100%;
+    aspect-ratio: 3 / 3.8;
     border-radius: var(--radius-sm);
     overflow: hidden;
-    aspect-ratio: 3 / 3.8;
     background: var(--bg-sand);
   }
   .dash-photo-box img {
+    display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -1928,27 +1932,40 @@
   }
   .dash-photo-badge {
     position: absolute;
-    bottom: 12px; left: 12px; right: 12px;
-    background: rgba(18, 46, 34, 0.9);
+    bottom: 12px;
+    left: 12px;
+    right: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    min-width: 0;
+    padding: 8px 12px;
+    border: 1px solid var(--line-gold);
+    border-radius: 10px;
+    background: color-mix(in srgb, var(--forest-deep) 90%, transparent);
     -webkit-backdrop-filter: blur(8px);
     backdrop-filter: blur(8px);
-    border: 1px solid rgba(182, 141, 64, 0.4);
-    padding: 8px 12px;
-    border-radius: 10px;
-    color: #FFFFFF;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
   }
   .dash-badge-name {
     font-family: var(--serif);
-    font-size: 15px;
+    font-size: 16px;
     font-weight: 700;
-    color: #F4E2BB;
+    line-height: 1.5;
+    color: var(--gold-soft);
   }
   .dash-badge-role {
-    font-size: 11.5px;
-    color: #DFECE4;
+    font-size: 12px;
+    line-height: 1.7;
+    color: var(--bg-mint-deep);
+  }
+  @media (max-width: 1024px) {
+    .dash-profile-intro { display: flex; align-items: center; gap: 18px; }
+    .dash-photo-box { flex: 0 0 140px; width: 140px; aspect-ratio: 654 / 892; }
+    .dash-photo-box img { object-fit: contain; }
+    .dash-photo-badge { position: static; flex-direction: column; align-items: flex-start; padding: 0; border: 0; background: transparent; -webkit-backdrop-filter: none; backdrop-filter: none; }
+    .dash-badge-name { font-size: 20px; color: var(--forest-deep); }
+    .dash-badge-role { font-size: 13px; color: var(--ink-muted); }
   }
 
   /* 전문성 타임라인 */
@@ -2168,38 +2185,6 @@
 
 
 
-  /* 대표 경험과 센터에서 전하는 인사말 */
-  .center-greeting-jump { display: inline-flex; align-items: center; gap: 24px; margin-top: 18px; padding: 7px 0; border-bottom: 1px solid var(--line-gold); color: var(--gold-soft); text-decoration: none; font-size: 14px; font-weight: 600; }
-  .center-greeting-jump:hover { color: var(--surface); }
-  .center-greeting { display: grid; grid-template-columns: minmax(0,1.22fr) minmax(0,1fr); align-items: center; gap: clamp(28px,4vw,54px); margin-top: 54px; padding-top: 42px; border-top: 1px solid var(--line-gold); scroll-margin-top: calc(var(--switcher-h) + var(--nav-h) + var(--quick-nav-h) + 25px); }
-  .center-greeting-figure { margin: 0; min-width: 0; }
-  .center-greeting-photo { display: block; width: 100%; padding: 0; border: 0; background: var(--bg-sand); border-radius: var(--radius-md); overflow: hidden; cursor: zoom-in; }
-  .center-greeting-photo img { width: 100%; height: auto; aspect-ratio: 4/3; object-fit: contain; }
-  .center-greeting-figure figcaption { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 12px; font-size: 13px; color: var(--ink-muted); }
-  .center-greeting-expand { appearance: none; padding: 0; border: 0; background: transparent; color: var(--forest); font: inherit; font-weight: 600; white-space: nowrap; cursor: zoom-in; }
-  .center-greeting-kicker { display: block; color: var(--coral-deep); font-weight: 700; font-size: 12px; letter-spacing: .07em; margin-bottom: 15px; }
-  .center-greeting-copy h3 { color: var(--forest-deep); font-family: var(--serif); font-size: clamp(25px,2.15vw,32px); font-weight: 700; line-height: 1.55; letter-spacing: -.045em; margin-bottom: 21px; }
-  .center-greeting-copy p { font-size: 17px; line-height: 1.9; color: var(--ink-body); }
-  .center-greeting-copy p + p { margin-top: 13px; }
-  .center-greeting-sign { margin-top: 25px; padding-top: 17px; border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 15px; }
-  .center-greeting-sign span { font-size: 13px; color: var(--ink-muted); }
-  .center-greeting-sign strong { font-family: var(--serif); color: var(--forest); font-size: 19px; letter-spacing: .01em; }
-  @media(max-width:900px) {
-    .center-greeting { grid-template-columns: minmax(0,1fr); gap: 29px; margin-top: 38px; padding: 30px var(--gutter) 0; }
-    .center-greeting-copy { max-width: 670px; }
-    .center-greeting-copy h3 { font-size: 28px; }
-  }
-  @media(max-width:640px) {
-    .center-greeting { gap: 25px; }
-    .center-greeting-figure figcaption { font-size: 11px; gap: 8px; }
-    .center-greeting-photo { border-radius: var(--radius-sm); }
-    .center-greeting-kicker { font-size: 11px; letter-spacing: .035em; margin-bottom: 12px; }
-    .center-greeting-copy h3 { font-size: clamp(23px,6.05vw,27px); margin-bottom: 17px; }
-    .center-greeting-copy p { font-size: 16px; line-height: 1.9; }
-    .center-greeting-sign { margin-top: 20px; gap: 7px; flex-direction: column; }
-    .center-greeting-sign strong { font-size: 19px; }
-  }
-
 </style>
 </head>
 <body>
@@ -2216,7 +2201,7 @@
     </div>
   </a>
   <nav class="menu" aria-label="주요 메뉴">
-    <a class="menu-link" href="#director">대표인사말</a>
+    <a class="menu-link" href="#director">대표소개</a>
     <a class="menu-link" href="#intro">4대케어</a>
     <a class="menu-link" href="#program">하루일과·프로그램</a>
     <a class="menu-link" href="#meal">식사·위생</a>
@@ -2379,7 +2364,6 @@
           약 20년간 의료기관에서 쌓은 간호 경험과 의료 IT 기업의 EMR 기획·설계팀을 이끈 경험을 바탕으로,
           건강을 세심하게 살피고 체계적으로 운영하는 센터를 만들어 갑니다.
         </p>
-        <a class="center-greeting-jump" href="#center-greeting">센터에서 전하는 인사말 <span aria-hidden="true">↓</span></a>
       </div>
 
       <!-- 메인 2컬럼 그리드 -->
@@ -2387,8 +2371,10 @@
 
         <!-- 좌측: 대표 프로필 & 전문성 여정 (Timeline) -->
         <div class="dash-profile-card">
-          <div class="dash-photo-box">
-            <img src="/assets/representative/profile-20261111.jpg" width="654" height="892" loading="eager" alt="더 그레이스 시니어 주간보호센터 정지안 대표">
+          <div class="dash-profile-intro">
+            <div class="dash-photo-box">
+              <img src="/assets/representative/profile-20261111.jpg" width="654" height="892" loading="eager" alt="더 그레이스 시니어 주간보호센터 정지안 대표">
+            </div>
             <div class="dash-photo-badge">
               <span class="dash-badge-name">정지안 대표</span>
               <span class="dash-badge-role">설립자 · 간호사 출신</span>
@@ -2513,24 +2499,6 @@
 
       </div>
 
-      <div class="center-greeting" id="center-greeting" aria-labelledby="center-greeting-title">
-        <figure class="center-greeting-figure">
-          <button class="center-greeting-photo" type="button" data-lightbox
-            data-full="/assets/representative/center-20261111.jpg"
-            data-caption="더 그레이스 시니어 주간보호센터 · 정지안 대표"
-            aria-label="센터에서 인사하는 정지안 대표 사진 크게 보기">
-            <img src="/assets/representative/center-20261111.jpg" width="4000" height="3000" loading="lazy" decoding="async" alt="더 그레이스 시니어 주간보호센터 간판 앞에 서 있는 정지안 대표">
-          </button>
-          <figcaption><span>더 그레이스에서, 정지안 대표</span><button class="center-greeting-expand" type="button" title="센터 사진 크게 보기" data-lightbox data-full="/assets/representative/center-20261111.jpg" data-caption="더 그레이스 시니어 주간보호센터 · 정지안 대표" aria-label="센터에서 인사하는 정지안 대표 사진 크게 보기">사진 크게 보기 +</button></figcaption>
-        </figure>
-        <div class="center-greeting-copy">
-          <span class="center-greeting-kicker">FROM THE CENTER · 센터에서 전하는 인사말</span>
-          <h3 id="center-greeting-title">어르신께는 행복한 하루를,<br>보호자께는 믿음과 안심을.</h3>
-          <p>부모님을 센터에 모신다는 것이 보호자께 얼마나 큰 결정인지 잘 알고 있습니다.</p>
-          <p>한 분 한 분의 일상을 존중하고, 작은 변화에도 관심을 기울이겠습니다. 어르신이 건강하고 즐겁게 하루를 보내실 수 있도록 가족의 마음으로 함께하겠습니다.</p>
-          <div class="center-greeting-sign"><span>더 그레이스 시니어 주간보호센터</span><strong>대표 정지안 드림</strong></div>
-        </div>
-      </div>
 
     </div>
   </section>
