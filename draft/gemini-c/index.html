@@ -1,0 +1,3554 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Gemini 3 · 구조적 돌봄 카드 | 더 그레이스 디자인 초안</title>
+<link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon-180.png">
+<meta name="description" content="대표의 경험과 돌봄 철학을 타임라인과 카드로 정리한 디자인 초안입니다.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="더 그레이스 시니어 주간보호센터">
+<meta property="og:title" content="Gemini 3 · 구조적 돌봄 카드 | 더 그레이스 디자인 초안">
+<meta property="og:description" content="대표의 경험과 돌봄 철학을 타임라인과 카드로 정리한 디자인 초안입니다.">
+<meta property="og:url" content="https://gracedaycare.co.kr/draft/gemini-c/">
+<meta property="og:image" content="https://gracedaycare.co.kr/draft/assets/gemini-c.jpg">
+<meta property="og:image:width" content="1440">
+<meta property="og:image:height" content="900">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Noto+Serif+KR:wght@500;600;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-dynamic-subset.min.css">
+<link rel="preload" as="image" type="image/webp" fetchpriority="high" href="/assets/v4-hero.webp">
+<style>
+  :root {
+    /* V4-2 브라이트 보타니컬 클럽하우스 & 매거진 컬러 토큰 */
+    --bg-cream: #FDFCF8;
+    --bg-sand: #F4EFE6;
+    --bg-mint: #EBF3EE;
+    --bg-mint-deep: #DFECE4;
+    --surface: #FFFFFF;
+    --surface-warm: #FAF7F0;
+
+    --forest: #1B4332;
+    --forest-deep: #122E22;
+    --forest-mid: #2D6A4F;
+    --forest-soft: #E3F0E9;
+
+    --coral: #C86D51;
+    --coral-deep: #AD553A;
+    --coral-soft: #FCEEE9;
+
+    --gold: #B68D40;
+    --gold-deep: #8F6B26;
+    --gold-soft: #F7EFE0;
+
+    --ink: #162A21;
+    --ink-body: #2E4239;
+    --ink-muted: #5C7066;
+
+    --line: rgba(27, 67, 50, 0.10);
+    --line-strong: rgba(27, 67, 50, 0.18);
+    --line-gold: rgba(182, 141, 64, 0.32);
+
+    --shadow-sm: 0 10px 28px -12px rgba(27, 67, 50, 0.08);
+    --shadow-md: 0 22px 48px -16px rgba(27, 67, 50, 0.13);
+    --shadow-lg: 0 32px 72px -20px rgba(27, 67, 50, 0.18);
+
+    --radius-sm: 14px;
+    --radius-md: 22px;
+    --radius-lg: 32px;
+
+    --sans: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    --serif: "Noto Serif KR", Georgia, serif;
+    --num: "Cormorant Garamond", "Noto Serif KR", Georgia, serif;
+    --gutter: clamp(20px, 4.5vw, 72px);
+    --switcher-h: 0px;
+    --nav-h: 74px;
+    --quick-nav-h: 0px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body {
+    background-color: var(--bg-cream);
+    color: var(--ink-body);
+    font-family: var(--sans);
+    font-size: 16.5px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+    overflow-x: hidden;
+    background-image:
+      radial-gradient(60% 45% at 85% 6%, rgba(235, 243, 238, 0.85), transparent 70%),
+      radial-gradient(50% 40% at 10% 18%, rgba(244, 239, 230, 0.75), transparent 70%);
+  }
+  ::selection { background: var(--forest-soft); color: var(--forest-deep); }
+  a:focus-visible, button:focus-visible {
+    outline: 3px solid var(--coral);
+    outline-offset: 3px;
+  }
+  img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* ---------- 상단 고정 내비게이션 ---------- */
+  .nav {
+    position: fixed;
+    top: var(--switcher-h); left: 0; right: 0;
+    z-index: 45;
+    height: var(--nav-h);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 var(--gutter);
+    background: rgba(253, 252, 248, 0.92);
+    -webkit-backdrop-filter: blur(16px) saturate(140%);
+    backdrop-filter: blur(16px) saturate(140%);
+    border-bottom: 1px solid var(--line);
+    transition: box-shadow 0.3s ease, background 0.3s ease;
+  }
+  .nav.scrolled {
+    background: rgba(255, 255, 255, 0.97);
+    box-shadow: var(--shadow-sm);
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: var(--ink);
+  }
+  .brand-logo-wrap {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: #FFFFFF;
+    border: 1px solid var(--line-gold);
+    box-shadow: 0 4px 14px -4px rgba(27, 67, 50, 0.15);
+    padding: 4px;
+    display: grid;
+    place-items: center;
+    flex: none;
+  }
+  .brand-logo {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  .brand-text {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+  }
+  .brand-name {
+    font-family: var(--serif);
+    font-size: 19.5px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--forest-deep);
+    line-height: 1.15;
+  }
+  .brand-sub {
+    font-size: 11.8px;
+    font-weight: 700;
+    color: var(--coral-deep);
+    letter-spacing: 0.01em;
+  }
+
+  .menu {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+  .menu-link {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--ink-body);
+    text-decoration: none;
+    padding: 6px 2px;
+    border-bottom: 2px solid transparent;
+    transition: color 0.2s, border-color 0.2s;
+    white-space: nowrap;
+  }
+  .menu-link:hover,
+  .menu-link[aria-current="true"] {
+    color: var(--forest);
+    border-bottom-color: var(--coral);
+  }
+  .nav-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    height: 44px;
+    padding: 0 20px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, var(--forest) 0%, var(--forest-mid) 100%);
+    color: #FFFFFF;
+    font-size: 14.5px;
+    font-weight: 700;
+    text-decoration: none;
+    box-shadow: 0 10px 24px -10px rgba(27, 67, 50, 0.45);
+    transition: transform 0.2s, box-shadow 0.2s;
+    white-space: nowrap;
+  }
+  .nav-cta .icon-ring {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.18);
+    display: grid;
+    place-items: center;
+  }
+  .nav-cta svg {
+    width: 13px;
+    height: 13px;
+    fill: #FFFFFF;
+  }
+  .nav-cta:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 14px 28px -10px rgba(27, 67, 50, 0.6);
+  }
+  .quick-nav { display: none; }
+  /* ---------- 공통 섹션 & 에디토리얼 매거진 헤더 ---------- */
+  .scene {
+    position: relative;
+    padding: clamp(52px, 6.5vh, 84px) var(--gutter);
+    border-bottom: 1px solid var(--line);
+  }
+  .scene[id] {
+    scroll-margin-top: calc(var(--nav-h) + var(--quick-nav-h) + 12px);
+  }
+  .container {
+    max-width: 1340px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+  }
+
+  .sec-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 28px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid var(--line-strong);
+  }
+  .sec-head-left {
+    display: flex;
+    align-items: flex-start;
+    gap: 18px;
+    max-width: 840px;
+  }
+  .sec-num {
+    font-family: var(--num);
+    font-size: clamp(42px, 4.2vw, 56px);
+    font-weight: 700;
+    font-style: italic;
+    line-height: 0.88;
+    color: var(--coral);
+    opacity: 0.9;
+    padding-top: 4px;
+    flex: none;
+    user-select: none;
+  }
+  .sec-title-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  .sec-kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    color: var(--forest);
+  }
+  .sec-kicker::before {
+    content: "";
+    width: 22px;
+    height: 2px;
+    background: var(--coral);
+  }
+  .sec-title {
+    font-family: var(--serif);
+    font-size: clamp(24px, 2.5vw, 33px);
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.3;
+    letter-spacing: -0.025em;
+  }
+  .sec-title em {
+    font-style: normal;
+    color: var(--forest);
+    background: linear-gradient(180deg, transparent 62%, rgba(200, 109, 81, 0.22) 62%);
+    padding: 0 3px;
+  }
+  .sec-desc {
+    font-size: 15.5px;
+    color: var(--ink-muted);
+    line-height: 1.55;
+    margin-top: 2px;
+  }
+  .sec-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  /* 공통 프리미엄 버튼 */
+  .btn-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 11px;
+  }
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    height: 52px;
+    padding: 0 26px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, var(--coral) 0%, var(--coral-deep) 100%);
+    color: #FFFFFF;
+    font-size: 16px;
+    font-weight: 800;
+    text-decoration: none;
+    border: 0;
+    cursor: pointer;
+    box-shadow: 0 14px 30px -10px rgba(200, 109, 81, 0.55);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .btn-primary svg { width: 18px; height: 18px; fill: currentColor; }
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 18px 34px -10px rgba(200, 109, 81, 0.7);
+  }
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    height: 48px;
+    padding: 0 20px;
+    border-radius: 999px;
+    background: var(--surface);
+    color: var(--forest);
+    border: 1.5px solid rgba(27, 67, 50, 0.24);
+    font-size: 14.5px;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+    box-shadow: var(--shadow-sm);
+    transition: all 0.2s;
+  }
+  .btn-secondary svg {
+    width: 16px; height: 16px;
+    stroke: currentColor; stroke-width: 2.2; fill: none;
+  }
+  .btn-secondary:hover {
+    background: var(--forest);
+    color: #FFFFFF;
+    border-color: var(--forest);
+    transform: translateY(-1px);
+  }
+  .btn-gold-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    height: 46px;
+    padding: 0 20px;
+    border-radius: 999px;
+    background: var(--gold-soft);
+    color: var(--forest-deep);
+    border: 1.5px solid var(--gold);
+    font-size: 14.5px;
+    font-weight: 800;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .btn-gold-pill:hover {
+    background: var(--gold);
+    color: #FFFFFF;
+    transform: translateY(-1px);
+  }
+
+  /* ---------- 1. HERO: 브라이트 매거진 스플릿 프레임 ---------- */
+  .scene.hero {
+    padding-top: calc(var(--switcher-h) + var(--nav-h) + var(--quick-nav-h) + 28px);
+    padding-bottom: 48px;
+    background:
+      radial-gradient(50% 60% at 78% 28%, rgba(235, 243, 238, 0.95), transparent 70%),
+      radial-gradient(45% 50% at 15% 80%, rgba(252, 238, 233, 0.65), transparent 70%),
+      linear-gradient(180deg, var(--bg-cream) 0%, var(--bg-sand) 100%);
+  }
+  .hero-split {
+    display: grid;
+    grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
+    gap: clamp(28px, 3.8vw, 52px);
+    align-items: center;
+  }
+  .hero-copy {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 15px 6px 8px;
+    border-radius: 999px;
+    background: var(--surface);
+    border: 1px solid rgba(27, 67, 50, 0.18);
+    box-shadow: var(--shadow-sm);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--forest);
+    margin-bottom: 18px;
+  }
+  .hero-eyebrow .tag-pill {
+    background: var(--forest);
+    color: #FFFFFF;
+    font-weight: 800;
+    font-size: 11.5px;
+    padding: 3px 10px;
+    border-radius: 999px;
+  }
+  .hero h1 {
+    font-family: var(--serif);
+    font-size: clamp(30px, 3.35vw, 46px);
+    font-weight: 700;
+    line-height: 1.24;
+    letter-spacing: -0.03em;
+    color: var(--ink);
+    margin-bottom: 14px;
+  }
+  .hero h1 .hl-spring {
+    color: var(--forest);
+    position: relative;
+    display: inline-block;
+  }
+  .hero h1 .hl-spring::after {
+    content: "";
+    position: absolute;
+    left: 0; right: 0; bottom: 3px;
+    height: 11px;
+    background: rgba(200, 109, 81, 0.22);
+    z-index: -1;
+    border-radius: 4px;
+  }
+  .hero-lead {
+    font-size: clamp(15.5px, 1.2vw, 17px);
+    line-height: 1.65;
+    color: var(--ink-body);
+    max-width: 600px;
+    margin-bottom: 20px;
+  }
+  .hero-lead-compact { display: none; }
+
+  /* 히어로 좌측 4대 포인트 카드 칩 (2x2) */
+  .hero-chips {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    width: 100%;
+    margin-bottom: 24px;
+  }
+  .hero-chip {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    padding: 11px 14px;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.88);
+    border: 1px solid rgba(27, 67, 50, 0.14);
+    box-shadow: var(--shadow-sm);
+  }
+  .hero-chip-num {
+    width: 32px;
+    height: 32px;
+    border-radius: 10px;
+    background: var(--bg-mint);
+    border: 1px solid rgba(27, 67, 50, 0.2);
+    color: var(--forest);
+    font-family: var(--num);
+    font-size: 15px;
+    font-weight: 700;
+    display: grid;
+    place-items: center;
+    flex: none;
+  }
+  .hero-chip-text strong {
+    display: block;
+    font-size: 14.5px;
+    font-weight: 800;
+    color: var(--ink);
+    line-height: 1.25;
+  }
+  .hero-chip-text span {
+    display: block;
+    font-size: 12.5px;
+    color: var(--ink-muted);
+    margin-top: 2px;
+  }
+
+  /* 히어로 우측: 아치/라운디드 에디토리얼 매거진 프레임 */
+  .hero-editorial-frame {
+    background: var(--surface);
+    border: 1.5px solid rgba(182, 141, 64, 0.38);
+    border-radius: 32px;
+    padding: 14px;
+    box-shadow: var(--shadow-lg);
+    position: relative;
+  }
+  .hero-frame-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 4px 10px 10px;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    color: var(--forest);
+  }
+  .hero-stage-viewport {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    border-radius: 24px;
+    overflow: hidden;
+    background: var(--bg-sand);
+  }
+  .hero-bg-slide {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 25%;
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    pointer-events: none;
+  }
+  .hero-bg-slide.active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .hero-stage-caption {
+    position: absolute;
+    left: 12px; right: 12px; bottom: 12px;
+    padding: 10px 14px;
+    border-radius: 14px;
+    background: rgba(253, 252, 248, 0.92);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(27, 67, 50, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+  }
+  .hero-stage-caption strong {
+    font-size: 13.5px;
+    font-weight: 800;
+    color: var(--ink);
+  }
+  .dock-zoom-btn {
+    appearance: none;
+    border: 1px solid var(--forest);
+    background: var(--forest);
+    color: #FFFFFF;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 5px 12px;
+    border-radius: 999px;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .dock-zoom-btn:hover { background: var(--coral); border-color: var(--coral); }
+
+  .stage-tabs {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 8px;
+    margin-top: 12px;
+  }
+  .stage-tab {
+    appearance: none;
+    border: 1.5px solid var(--line);
+    background: var(--surface-warm);
+    border-radius: 14px;
+    padding: 6px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    transition: all 0.2s;
+  }
+  .stage-tab img {
+    width: 100%;
+    height: 46px;
+    object-fit: cover;
+    border-radius: 9px;
+  }
+  .stage-tab .t-label {
+    font-size: 12px;
+    font-weight: 800;
+    color: var(--ink-body);
+    white-space: nowrap;
+  }
+  .stage-tab.active {
+    background: var(--bg-mint);
+    border-color: var(--forest);
+    box-shadow: 0 4px 12px rgba(27, 67, 50, 0.12);
+  }
+  .stage-tab.active .t-label { color: var(--forest-deep); }
+
+  /* 히어로 하단 브라이트 보타니컬 4단 운영 요약 바 */
+  .hero-info-bar {
+    margin-top: 28px;
+    background: var(--surface);
+    border: 1.5px solid rgba(27, 67, 50, 0.16);
+    border-radius: 22px;
+    box-shadow: var(--shadow-md);
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    overflow: hidden;
+  }
+  .info-cell {
+    padding: 16px 20px;
+    border-right: 1px solid var(--line);
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+  .info-cell:last-child { border-right: 0; }
+  .info-kicker {
+    font-size: 12px;
+    font-weight: 800;
+    color: var(--coral-deep);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .info-kicker em {
+    font-family: var(--num);
+    font-style: italic;
+    font-size: 15px;
+    color: var(--forest);
+  }
+  .info-val {
+    font-family: var(--serif);
+    font-size: 16.5px;
+    font-weight: 700;
+    color: var(--ink);
+  }
+  .info-sub {
+    font-size: 12.5px;
+    color: var(--ink-muted);
+  }
+  /* ---------- 2. MONTHLY SPECIAL PROGRAMS: 이달의 특별한 프로그램 6선 쇼케이스 ---------- */
+  .scene.section-programs {
+    background: linear-gradient(180deg, var(--bg-mint) 0%, var(--bg-cream) 100%);
+  }
+  .poster-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+    margin-bottom: 24px;
+  }
+  .poster-card {
+    appearance: none;
+    text-align: left;
+    background: var(--surface);
+    border: 1.5px solid rgba(27, 67, 50, 0.14);
+    border-radius: 22px;
+    padding: 12px;
+    cursor: pointer;
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  }
+  .poster-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--coral);
+    box-shadow: var(--shadow-md);
+  }
+  .poster-thumb {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    border-radius: 16px;
+    overflow: hidden;
+    background: var(--bg-sand);
+    border: 1px solid rgba(27, 67, 50, 0.08);
+  }
+  .poster-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    transition: transform 0.45s ease;
+  }
+  .poster-card:hover .poster-thumb img {
+    transform: scale(1.03);
+  }
+  .poster-badge {
+    position: absolute;
+    top: 10px; left: 10px;
+    padding: 4px 11px;
+    border-radius: 999px;
+    font-size: 11.5px;
+    font-weight: 800;
+    background: rgba(27, 67, 50, 0.92);
+    color: #FFFFFF;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+  .poster-badge.coral { background: var(--coral); }
+  .poster-badge.gold { background: var(--gold-deep); }
+
+  .poster-body {
+    padding: 14px 8px 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    flex: 1;
+  }
+  .poster-body h3 {
+    font-family: var(--serif);
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.3;
+  }
+  .poster-body p {
+    font-size: 14px;
+    color: var(--ink-muted);
+    line-height: 1.45;
+  }
+  .poster-cta-row {
+    margin-top: auto;
+    padding-top: 10px;
+    border-top: 1px dashed var(--line-strong);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 13px;
+    font-weight: 800;
+    color: var(--forest);
+  }
+  .poster-card:hover .poster-cta-row { color: var(--coral-deep); }
+
+  /* 이달의 일정표 & 식단표 퀵 배너 바 */
+  .monthly-quick-bar {
+    background: var(--surface);
+    border: 1.5px solid var(--line-gold);
+    border-radius: 20px;
+    padding: 16px 22px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    box-shadow: var(--shadow-sm);
+    margin-bottom: 22px;
+  }
+  .mq-text strong {
+    display: block;
+    font-family: var(--serif);
+    font-size: 18px;
+    color: var(--ink);
+  }
+  .mq-text span {
+    font-size: 14px;
+    color: var(--ink-muted);
+  }
+  .mq-btns {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  /* 하루 일과 6단계 슬림 리본 */
+  .daily-ribbon {
+    background: var(--bg-sand);
+    border: 1px solid rgba(27, 67, 50, 0.14);
+    border-radius: 20px;
+    padding: 18px 20px;
+  }
+  .daily-ribbon-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+  }
+  .daily-ribbon-head h3 {
+    font-family: var(--serif);
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--forest-deep);
+  }
+  .daily-ribbon-head span {
+    font-size: 12.5px;
+    font-weight: 700;
+    color: var(--coral-deep);
+    background: var(--surface);
+    padding: 3px 11px;
+    border-radius: 999px;
+  }
+  .daily-steps {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 10px;
+  }
+  .daily-step {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 11px 12px;
+  }
+  .daily-step time {
+    display: block;
+    font-family: var(--num);
+    font-size: 13.5px;
+    font-weight: 700;
+    color: var(--coral-deep);
+    margin-bottom: 2px;
+  }
+  .daily-step strong {
+    display: block;
+    font-size: 14px;
+    font-weight: 800;
+    color: var(--ink);
+    margin-bottom: 2px;
+  }
+  .daily-step span {
+    display: block;
+    font-size: 12.2px;
+    color: var(--ink-muted);
+    line-height: 1.35;
+  }
+
+  /* ---------- 3. CARE & WELLNESS: 4대 핵심 케어 카드 (간결·팝업형) ---------- */
+  .scene.section-intro {
+    background: var(--bg-cream);
+  }
+  .care-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+  }
+  .care-card {
+    appearance: none;
+    text-align: left;
+    background: var(--surface);
+    border: 1.5px solid var(--line-strong);
+    border-radius: 20px;
+    overflow: hidden;
+    padding: 0;
+    cursor: pointer;
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  }
+  .care-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--forest);
+    box-shadow: var(--shadow-md);
+  }
+  .care-card-img {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 10.5;
+    overflow: hidden;
+    background: var(--bg-sand);
+  }
+  .care-card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.45s ease;
+  }
+  .care-card-nursing .care-card-img img { object-position: center bottom; }
+  .care-card:hover .care-card-img img { transform: scale(1.05); }
+  .care-num-badge {
+    position: absolute;
+    top: 10px; left: 10px;
+    background: rgba(253, 252, 248, 0.94);
+    border: 1px solid rgba(27, 67, 50, 0.22);
+    color: var(--forest-deep);
+    font-size: 11.5px;
+    font-weight: 800;
+    padding: 3px 10px;
+    border-radius: 999px;
+  }
+  .care-body {
+    padding: 15px 16px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    flex: 1;
+  }
+  .care-body h3 {
+    font-family: var(--serif);
+    font-size: 17.5px;
+    font-weight: 700;
+    color: var(--ink);
+  }
+  .care-body p {
+    font-size: 13.8px;
+    color: var(--ink-muted);
+    line-height: 1.48;
+  }
+  .care-tag {
+    margin-top: auto;
+    padding-top: 8px;
+    font-size: 12.5px;
+    font-weight: 800;
+    color: var(--coral-deep);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  /* ---------- 4. MEAL & HYGIENE: 브라이트 세이지 & 샌드 다이닝 라운지 ---------- */
+  .scene.section-meal {
+    background: linear-gradient(180deg, var(--bg-sand) 0%, var(--bg-mint) 100%);
+  }
+  .meal-showcase {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+    margin-bottom: 16px;
+  }
+  .meal-photo-card {
+    appearance: none;
+    text-align: left;
+    padding: 0;
+    background: var(--surface);
+    border: 1.5px solid rgba(27, 67, 50, 0.16);
+    border-radius: 22px;
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .meal-photo-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+  }
+  .meal-photo-wrap {
+    width: 100%;
+    aspect-ratio: 16 / 8;
+    overflow: hidden;
+    position: relative;
+    background: var(--bg-sand);
+  }
+  .meal-photo-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  .meal-photo-card:hover .meal-photo-wrap img { transform: scale(1.03); }
+  .photo-badge-top {
+    position: absolute;
+    top: 12px; left: 12px;
+    background: rgba(253, 252, 248, 0.94);
+    border: 1px solid rgba(27, 67, 50, 0.25);
+    color: var(--forest-deep);
+    font-size: 12px;
+    font-weight: 800;
+    padding: 4px 12px;
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .photo-badge-top .dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--coral);
+  }
+  .meal-photo-desc {
+    padding: 15px 20px 17px;
+  }
+  .meal-photo-desc h3 {
+    font-family: var(--serif);
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+  .meal-photo-desc p {
+    font-size: 14px;
+    color: var(--ink-muted);
+    line-height: 1.5;
+  }
+
+  .meal-points {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+  }
+  .meal-point-card {
+    background: var(--surface);
+    border: 1px solid rgba(27, 67, 50, 0.16);
+    border-top: 3px solid var(--forest);
+    border-radius: 16px;
+    padding: 15px 18px;
+    box-shadow: var(--shadow-sm);
+  }
+  .meal-point-card .kicker {
+    font-size: 12px;
+    font-weight: 800;
+    color: var(--coral-deep);
+    margin-bottom: 3px;
+  }
+  .meal-point-card h4 {
+    font-family: var(--serif);
+    font-size: 16.5px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 3px;
+  }
+  .meal-point-card p {
+    font-size: 13.5px;
+    color: var(--ink-muted);
+    line-height: 1.48;
+  }
+  /* ---------- 5. FACILITIES: 12컬럼 매거진 벤토 그리드 ---------- */
+  .scene.section-bento {
+    background: var(--bg-cream);
+  }
+  .bento-grid {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    grid-auto-rows: 244px;
+    gap: 14px;
+  }
+  .bento-card {
+    appearance: none;
+    border: 1.5px solid rgba(27, 67, 50, 0.16);
+    border-radius: 20px;
+    padding: 0;
+    overflow: hidden;
+    position: relative;
+    cursor: zoom-in;
+    text-align: left;
+    background: var(--bg-sand);
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  }
+  .bento-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--coral);
+    box-shadow: var(--shadow-md);
+  }
+  .bento-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.55s ease;
+  }
+  .bento-card:hover img { transform: scale(1.04); }
+  .bento-1 { grid-column: span 4; }
+  .bento-2 { grid-column: span 3; }
+  .bento-3 { grid-column: span 3; }
+  .bento-4 { grid-column: span 2; }
+  .bento-5 { grid-column: span 2; }
+  .bento-6 { grid-column: span 3; }
+  .bento-7 { grid-column: span 3; }
+  .bento-8 { grid-column: span 4; }
+
+  .bento-no {
+    position: absolute;
+    top: 11px; left: 11px;
+    background: rgba(253, 252, 248, 0.94);
+    border: 1px solid rgba(27, 67, 50, 0.25);
+    color: var(--forest-deep);
+    font-family: var(--num);
+    font-size: 13.5px;
+    font-weight: 700;
+    padding: 2px 10px;
+    border-radius: 999px;
+    z-index: 2;
+  }
+  .bento-overlay {
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    padding: 34px 14px 12px;
+    background: linear-gradient(180deg, rgba(18, 46, 34, 0) 0%, rgba(18, 46, 34, 0.88) 100%);
+    color: #FFFFFF;
+    z-index: 2;
+  }
+  .bento-overlay strong {
+    display: block;
+    font-family: var(--serif);
+    font-size: 15.5px;
+    font-weight: 700;
+    color: #FFFFFF;
+  }
+  .bento-overlay span {
+    display: block;
+    font-size: 12.2px;
+    color: rgba(255, 255, 255, 0.86);
+    margin-top: 2px;
+  }
+
+  /* ---------- 6. GUIDE: 빅 넘버 인포그래픽 + 프로세스 스텝 + FAQ ---------- */
+  .scene.section-guide {
+    background: var(--bg-sand);
+  }
+  .cost-infographic {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 14px;
+    margin-bottom: 16px;
+  }
+  .infocard {
+    background: var(--surface);
+    border: 1px solid rgba(27, 67, 50, 0.16);
+    border-radius: 18px;
+    padding: 16px 18px;
+    box-shadow: var(--shadow-sm);
+    position: relative;
+    overflow: hidden;
+  }
+  .infocard::after {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--forest), var(--coral));
+  }
+  .infocard-kicker {
+    font-size: 12px;
+    font-weight: 800;
+    color: var(--forest);
+    background: var(--bg-mint);
+    display: inline-block;
+    padding: 3px 9px;
+    border-radius: 999px;
+    margin-bottom: 7px;
+  }
+  .infocard-num-row {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin-bottom: 4px;
+  }
+  .infocard-big {
+    font-family: var(--serif);
+    font-size: 26px;
+    font-weight: 900;
+    color: var(--coral-deep);
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+  }
+  .infocard-label {
+    font-size: 14px;
+    font-weight: 800;
+    color: var(--ink);
+  }
+  .infocard p {
+    font-size: 13px;
+    color: var(--ink-muted);
+    line-height: 1.45;
+  }
+
+  /* 4단계 입소 상담 리본 바 */
+  .process-ribbon {
+    background: var(--forest);
+    color: #FFFFFF;
+    border-radius: 18px;
+    padding: 15px 20px;
+    margin-bottom: 16px;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 14px;
+    box-shadow: var(--shadow-sm);
+  }
+  .proc-step {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    padding-right: 10px;
+    border-right: 1px solid rgba(255, 255, 255, 0.16);
+  }
+  .proc-step:last-child { border-right: 0; padding-right: 0; }
+  .proc-circle {
+    width: 34px; height: 34px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.14);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    color: #FFFFFF;
+    font-family: var(--num);
+    font-size: 15px;
+    font-weight: 700;
+    display: grid;
+    place-items: center;
+    flex: none;
+  }
+  .proc-text strong {
+    display: block;
+    font-size: 14px;
+    font-weight: 800;
+    color: #FFFFFF;
+  }
+  .proc-text span {
+    display: block;
+    font-size: 12.2px;
+    color: rgba(255, 255, 255, 0.82);
+  }
+
+  .faq-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+  }
+  .faq-card {
+    background: var(--surface);
+    border: 1px solid var(--line-strong);
+    border-radius: 16px;
+    padding: 15px 17px;
+    box-shadow: var(--shadow-sm);
+  }
+  .faq-card h3 {
+    font-size: 15px;
+    font-weight: 800;
+    color: var(--ink);
+    margin-bottom: 5px;
+    line-height: 1.35;
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+  }
+  .faq-card h3::before {
+    content: "Q.";
+    font-family: var(--num);
+    font-size: 17px;
+    color: var(--coral-deep);
+    font-weight: 700;
+    line-height: 1.1;
+    flex: none;
+  }
+  .faq-card p {
+    font-size: 13.5px;
+    color: var(--ink-muted);
+    line-height: 1.48;
+  }
+
+  /* ---------- 7. CLOSING (상담 안내 · 제휴업체 · 푸터) ---------- */
+  .scene.closing {
+    background: var(--bg-cream);
+    padding-bottom: clamp(44px, 5vh, 64px);
+    border-bottom: 0;
+  }
+  .closing-banner {
+    background:
+      radial-gradient(60% 80% at 88% 20%, rgba(200, 109, 81, 0.16), transparent 65%),
+      linear-gradient(135deg, var(--bg-mint) 0%, var(--bg-sand) 100%);
+    color: var(--ink);
+    border: 1.5px solid rgba(27, 67, 50, 0.22);
+    border-radius: var(--radius-lg);
+    padding: clamp(26px, 3.2vw, 38px) clamp(24px, 3.8vw, 44px);
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) auto;
+    gap: 24px;
+    align-items: center;
+    box-shadow: var(--shadow-md);
+    margin-bottom: 26px;
+  }
+  .closing-banner .kicker {
+    display: inline-block;
+    font-size: 12.5px;
+    font-weight: 800;
+    color: var(--forest);
+    background: var(--surface);
+    border: 1px solid rgba(27, 67, 50, 0.2);
+    padding: 4px 12px;
+    border-radius: 999px;
+    margin-bottom: 8px;
+  }
+  .closing-banner h2 {
+    font-family: var(--serif);
+    font-size: clamp(23px, 2.5vw, 32px);
+    font-weight: 700;
+    line-height: 1.28;
+    color: var(--ink);
+  }
+  .closing-banner p {
+    margin-top: 8px;
+    font-size: 15px;
+    color: var(--ink-body);
+  }
+  .closing-meta {
+    margin-top: 12px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    font-size: 14px;
+    color: var(--forest-deep);
+  }
+  .closing-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    min-width: 260px;
+  }
+  .closing-call-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    height: 52px;
+    padding: 0 24px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, var(--coral) 0%, var(--coral-deep) 100%);
+    color: #FFFFFF;
+    font-size: 18px;
+    font-weight: 800;
+    text-decoration: none;
+    box-shadow: 0 12px 26px -10px rgba(200, 109, 81, 0.6);
+    transition: transform 0.2s;
+  }
+  .closing-call-btn svg { width: 19px; height: 19px; fill: currentColor; }
+  .closing-call-btn:hover { transform: translateY(-2px); }
+  .closing-map-row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+  .closing-map-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    height: 42px;
+    border-radius: 11px;
+    border: 1px solid rgba(27, 67, 50, 0.25);
+    background: var(--surface);
+    color: var(--forest-deep);
+    font-size: 13.5px;
+    font-weight: 800;
+    text-decoration: none;
+  }
+  .closing-map-btn svg { width: 14px; height: 14px; fill: none; stroke: var(--coral); stroke-width: 2.2; }
+
+  /* 제휴업체 (#partners) */
+  .partners {
+    background: var(--surface);
+    border: 1px solid rgba(27, 67, 50, 0.18);
+    border-radius: var(--radius-md);
+    padding: 20px 24px;
+    margin-bottom: 24px;
+    box-shadow: var(--shadow-sm);
+  }
+  .partners-head {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+  .partners-label {
+    font-size: 12.5px;
+    font-weight: 700;
+    color: var(--coral-deep);
+  }
+  .partners h2 {
+    font-family: var(--serif);
+    font-size: 19px;
+    font-weight: 700;
+    color: var(--ink);
+  }
+  .partner-list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+  }
+  .partner-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    min-height: 42px;
+    padding: 8px 14px;
+    border-radius: 10px;
+    background: var(--surface-warm);
+    border: 1px solid var(--line);
+    color: var(--ink);
+    text-decoration: none;
+    font-size: 14.5px;
+    font-weight: 700;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  a.partner-item:hover {
+    border-color: var(--forest);
+    background: var(--bg-mint);
+  }
+  .partner-link {
+    font-size: 12px;
+    font-weight: 800;
+    color: var(--forest);
+    white-space: nowrap;
+  }
+
+  /* 푸터 */
+  footer.site-footer {
+    border-top: 1px solid var(--line-strong);
+    padding-top: 20px;
+    display: grid;
+    grid-template-columns: 1.2fr 1.1fr 0.9fr 0.9fr;
+    gap: 22px;
+    color: var(--ink-muted);
+    font-size: 13.8px;
+  }
+  .foot-brand-row {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+  }
+  .foot-logo {
+    width: 38px; height: 38px;
+    border-radius: 9px;
+    background: #FFFFFF;
+    border: 1px solid var(--line-gold);
+    padding: 3px;
+    object-fit: contain;
+  }
+  .foot-brand strong {
+    font-family: var(--serif);
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--ink);
+  }
+  .site-footer h3 {
+    font-size: 13px;
+    font-weight: 800;
+    color: var(--ink);
+    margin-bottom: 5px;
+  }
+  .site-footer a {
+    color: var(--ink-body);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .foot-tel {
+    font-family: var(--serif);
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--coral-deep) !important;
+    text-decoration: none !important;
+  }
+  .foot-copy {
+    grid-column: 1 / -1;
+    padding-top: 12px;
+    border-top: 1px solid var(--line);
+    font-size: 12.5px;
+    color: var(--ink-muted);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  /* ---------- 프로그램 & 일정표 상세 팝업 모달 ---------- */
+  html.modal-open, html.modal-open body { overflow: hidden; }
+  .program-dialog {
+    position: fixed;
+    inset: 0;
+    width: min(94vw, 940px);
+    max-height: 90vh;
+    margin: auto;
+    padding: 0;
+    border: 1.5px solid rgba(27, 67, 50, 0.25);
+    border-radius: 26px;
+    background: var(--bg-cream);
+    color: var(--ink);
+    box-shadow: 0 32px 90px rgba(18, 46, 34, 0.38);
+    overflow-y: auto;
+  }
+  .program-dialog::backdrop {
+    background: rgba(18, 46, 34, 0.68);
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+  }
+  .pm-inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 24px;
+    padding: 24px;
+    align-items: center;
+  }
+  .pm-poster-wrap {
+    background: var(--bg-sand);
+    border-radius: 18px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .pm-poster-wrap img {
+    width: 100%;
+    max-height: 74vh;
+    object-fit: contain;
+  }
+  .pm-content {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .pm-badge {
+    align-self: flex-start;
+    background: var(--bg-mint);
+    color: var(--forest);
+    font-size: 12px;
+    font-weight: 800;
+    padding: 4px 12px;
+    border-radius: 999px;
+  }
+  .pm-title {
+    font-family: var(--serif);
+    font-size: clamp(22px, 2.2vw, 27px);
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.3;
+  }
+  .pm-sub {
+    font-size: 15px;
+    color: var(--ink-body);
+    line-height: 1.55;
+  }
+  .pm-effects-box {
+    background: var(--surface);
+    border: 1px solid var(--line-strong);
+    border-radius: 16px;
+    padding: 14px 16px;
+  }
+  .pm-effects-box h4 {
+    font-size: 13px;
+    font-weight: 800;
+    color: var(--coral-deep);
+    margin-bottom: 8px;
+  }
+  .pm-effects-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-size: 14px;
+    color: var(--ink-body);
+  }
+  .pm-effects-list li::before {
+    content: "✓ ";
+    color: var(--forest);
+    font-weight: 800;
+  }
+  .pm-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    margin-top: 6px;
+  }
+  .pm-blog-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    height: 48px;
+    padding: 0 20px;
+    border-radius: 12px;
+    background: #03C75A;
+    color: #FFFFFF;
+    font-size: 15px;
+    font-weight: 800;
+    text-decoration: none;
+    box-shadow: 0 10px 22px -8px rgba(3, 199, 90, 0.5);
+  }
+  .pm-call-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    height: 46px;
+    padding: 0 20px;
+    border-radius: 12px;
+    background: var(--forest);
+    color: #FFFFFF;
+    font-size: 14.5px;
+    font-weight: 800;
+    text-decoration: none;
+  }
+  .pm-close {
+    position: absolute;
+    top: 14px; right: 14px;
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    border: 1px solid var(--line-strong);
+    background: var(--surface);
+    color: var(--ink);
+    font-size: 22px;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    box-shadow: var(--shadow-sm);
+  }
+
+  /* ---------- 사진 라이트박스 모달 ---------- */
+  .photo-dialog {
+    position: fixed;
+    inset: 0;
+    width: min(92vw, 1140px);
+    max-height: 88vh;
+    margin: auto;
+    padding: 0;
+    border: 1.5px solid rgba(27, 67, 50, 0.25);
+    border-radius: 22px;
+    background: var(--bg-cream);
+    color: var(--ink);
+    box-shadow: 0 32px 90px rgba(18, 46, 34, 0.45);
+  }
+  .photo-dialog::backdrop {
+    background: rgba(18, 46, 34, 0.72);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+  }
+  .photo-dialog figure {
+    margin: 0;
+    padding: 16px 16px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .photo-dialog figure img {
+    max-width: 100%;
+    max-height: calc(88vh - 86px);
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: 12px;
+  }
+  .photo-dialog figcaption {
+    width: 100%;
+    padding: 14px 60px 16px 8px;
+    font-size: 15.5px;
+    font-weight: 800;
+    color: var(--forest-deep);
+  }
+  .photo-close {
+    position: absolute;
+    right: 14px;
+    bottom: 12px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid var(--line-strong);
+    background: var(--forest);
+    color: #FFFFFF;
+    font-size: 22px;
+    line-height: 1;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+  }
+
+  /* ---------- 모바일 하단 고정 콜바 ---------- */
+  .mobilecall { display: none; }
+
+  /* ---------- 반응형 미디어쿼리 ---------- */
+  @media (max-width: 1140px) {
+    :root { --quick-nav-h: 46px; }
+    .menu-link { display: none; }
+    .quick-nav {
+      position: fixed;
+      top: calc(var(--switcher-h) + var(--nav-h));
+      left: 0;
+      right: 0;
+      z-index: 44;
+      height: var(--quick-nav-h);
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      padding: 0 var(--gutter);
+      background: var(--bg-cream);
+      border-bottom: 1px solid var(--line-strong);
+    }
+    .quick-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 0;
+      color: var(--ink-body);
+      font-size: 14px;
+      font-weight: 700;
+      text-decoration: none;
+      border-bottom: 2px solid transparent;
+    }
+    .quick-link:hover,
+    .quick-link[aria-current="true"] {
+      color: var(--forest);
+      border-bottom-color: var(--coral);
+      background: var(--forest-soft);
+    }
+    .quick-link:focus-visible { outline-offset: -4px; }
+    .hero-split { grid-template-columns: minmax(0, 1fr); }
+    .poster-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .daily-steps { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .care-grid, .cost-infographic, .hero-info-bar, .process-ribbon {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .bento-1, .bento-2, .bento-3, .bento-4, .bento-5, .bento-6, .bento-7, .bento-8 {
+      grid-column: span 6;
+    }
+    .faq-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+
+  @media (max-width: 768px) {
+    :root {
+      --switcher-h: 0px;
+      --nav-h: 62px;
+      --gutter: 18px;
+    }
+    body { padding-bottom: 74px; font-size: 15.5px; }
+    .brand-logo-wrap { width: 38px; height: 38px; }
+    .brand-name { font-size: 17.5px; }
+    .brand-sub { font-size: 11.5px; }
+    .nav-cta-desk, .sec-num { display: none; }
+    .scene.hero { padding-top: calc(var(--nav-h) + var(--quick-nav-h) + 22px); }
+    .hero-split { gap: 0; }
+    .hero-copy { display: contents; }
+    .hero-eyebrow { order: 0; margin-bottom: 14px; font-size: 12px; gap: 8px; }
+    .hero-eyebrow .tag-pill { font-size: 10.5px; padding: 3px 8px; flex: none; }
+    .hero h1 { font-size: clamp(25px, 6.8vw, 32px); }
+    .hero h1 { order: 1; margin-bottom: 12px; }
+    .hero-lead { order: 2; margin-bottom: 0; }
+    .hero-lead-full { display: none; }
+    .hero-lead-compact { display: inline; }
+    .hero-editorial-frame { order: 3; margin: 20px 0; }
+    .hero-chips { order: 4; margin-bottom: 0; }
+    .hero-copy > .btn-row { display: none; }
+    .hero-chips,
+    .hero-info-bar,
+    .poster-grid,
+    .daily-steps,
+    .care-grid,
+    .meal-showcase,
+    .meal-points,
+    .cost-infographic,
+    .process-ribbon,
+    .faq-grid,
+    .closing-banner,
+    .partner-list,
+    footer.site-footer,
+    .pm-inner {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .stage-tabs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .info-cell {
+      border-right: 0;
+      border-bottom: 1px solid var(--line);
+      padding: 13px 16px;
+    }
+    .info-cell:last-child { border-bottom: 0; }
+    .proc-step {
+      border-right: 0;
+      padding-right: 0;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+    }
+    .proc-step:last-child { border-bottom: 0; padding-bottom: 0; }
+    .bento-grid {
+      grid-template-columns: minmax(0, 1fr);
+      grid-auto-rows: 220px;
+    }
+    .bento-1, .bento-2, .bento-3, .bento-4, .bento-5, .bento-6, .bento-7, .bento-8 {
+      grid-column: 1 / -1;
+    }
+    .closing-actions { min-width: 0; width: 100%; }
+    .btn-row .btn-primary, .btn-row .btn-secondary, .mq-btns > * { width: 100%; }
+    .mobilecall {
+      position: fixed;
+      left: 0; right: 0; bottom: 0;
+      z-index: 50;
+      display: grid;
+      grid-template-columns: 1.35fr 0.65fr;
+      gap: 8px;
+      padding: 10px 14px calc(10px + env(safe-area-inset-bottom));
+      background: rgba(253, 252, 248, 0.96);
+      border-top: 1px solid rgba(27, 67, 50, 0.2);
+      box-shadow: 0 -8px 24px rgba(27, 67, 50, 0.12);
+    }
+    .mc-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      height: 46px;
+      border-radius: 11px;
+      font-size: 15px;
+      font-weight: 800;
+      text-decoration: none;
+    }
+    .mc-btn svg { width: 17px; height: 17px; fill: currentColor; }
+    .mc-call { background: var(--coral); color: #FFFFFF; }
+    .mc-map { background: var(--forest); color: #FFFFFF; }
+  }
+
+
+
+  /* ========== PREVIEW SWITCHER BAR ========== */
+  :root {
+    --switcher-h: 50px;
+  }
+  .preview-switcher {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    height: var(--switcher-h);
+    background: #11261D;
+    border-bottom: 1px solid rgba(182, 141, 64, 0.45);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    font-family: var(--sans);
+  }
+  .ps-inner {
+    width: 100%;
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 var(--gutter);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  .ps-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .ps-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 3px 8px;
+    background: rgba(182, 141, 64, 0.25);
+    border: 1px solid rgba(182, 141, 64, 0.6);
+    border-radius: 6px;
+    color: #F4E2BB;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+  }
+  .ps-title {
+    color: #FFFFFF;
+    font-size: 13px;
+    font-weight: 600;
+  }
+  .ps-links {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+  }
+  .ps-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 13px;
+    border-radius: 999px;
+    font-size: 12.5px;
+    font-weight: 500;
+    color: #D3E0D8;
+    background: rgba(255, 255, 255, 0.08);
+    text-decoration: none;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+  }
+  .ps-btn:hover {
+    background: rgba(255, 255, 255, 0.16);
+    color: #FFFFFF;
+    border-color: rgba(182, 141, 64, 0.4);
+  }
+  .ps-btn.active {
+    background: #B68D40;
+    color: #11261D;
+    font-weight: 700;
+    border-color: #B68D40;
+    box-shadow: 0 2px 10px rgba(182, 141, 64, 0.4);
+  }
+  .ps-btn.ps-hub {
+    background: rgba(200, 109, 81, 0.22);
+    color: #FFC9B8;
+    border-color: rgba(200, 109, 81, 0.45);
+  }
+  .ps-btn.ps-hub:hover {
+    background: rgba(200, 109, 81, 0.4);
+    color: #FFFFFF;
+  }
+  .ps-btn .ps-num {
+    font-family: var(--num);
+    font-weight: 700;
+    font-size: 13px;
+  }
+  @media (max-width: 960px) {
+    .ps-title { display: none; }
+    .ps-badge { display: none; }
+  }
+  @media (max-width: 640px) {
+    :root {
+      --switcher-h: 46px;
+    }
+    .preview-switcher {
+      height: var(--switcher-h);
+    }
+    .ps-inner {
+      padding: 0 8px;
+      justify-content: center;
+    }
+    .ps-label { display: none !important; }
+    .ps-links {
+      width: 100%;
+      justify-content: center;
+      gap: 5px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .ps-links::-webkit-scrollbar { display: none; }
+    .ps-btn {
+      padding: 5px 8px;
+      font-size: 11px;
+      white-space: nowrap;
+      gap: 3px;
+    }
+    /* 샘플 3 모바일 헤더 보완 */
+    .dash-cards-head {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 4px;
+    }
+  }
+
+
+  /* ---------- SAMPLE 3: 모던 대시보드형 ---------- */
+  .section-director-dash {
+    padding: clamp(64px, 7vw, 96px) 0;
+    background:
+      radial-gradient(50% 60% at 20% 15%, rgba(223, 236, 228, 0.75), transparent 70%),
+      radial-gradient(40% 50% at 85% 75%, rgba(247, 239, 224, 0.65), transparent 70%),
+      var(--bg-cream);
+    border-bottom: 1px solid var(--line);
+    position: relative;
+  }
+
+  /* 상단 비전 배너 */
+  .dash-vision-banner {
+    background: linear-gradient(135deg, var(--forest-deep) 0%, #1A3E2F 100%);
+    border-radius: var(--radius-md);
+    padding: clamp(28px, 4vw, 40px) clamp(24px, 5vw, 48px);
+    color: #FFFFFF;
+    margin-bottom: 36px;
+    box-shadow: var(--shadow-md);
+    border: 1px solid rgba(182, 141, 64, 0.35);
+    position: relative;
+    overflow: hidden;
+  }
+  .dash-vision-banner::after {
+    content: "";
+    position: absolute;
+    top: -50%; right: -10%;
+    width: 320px; height: 320px;
+    background: radial-gradient(circle, rgba(182, 141, 64, 0.2), transparent 70%);
+    pointer-events: none;
+  }
+  .dash-vision-kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 4px 12px;
+    background: rgba(182, 141, 64, 0.25);
+    border: 1px solid rgba(182, 141, 64, 0.55);
+    border-radius: 999px;
+    color: #F4E2BB;
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .dash-vision-title {
+    font-family: var(--serif);
+    font-size: clamp(24px, 3vw, 34px);
+    line-height: 1.32;
+    color: #FFFFFF;
+    margin-bottom: 10px;
+  }
+  .dash-vision-title em {
+    font-style: normal;
+    color: #F4E2BB;
+  }
+  .dash-vision-desc {
+    font-size: 15.5px;
+    color: #D3E0D8;
+    line-height: 1.65;
+    max-width: 820px;
+  }
+
+  /* 메인 2컬럼 레이아웃 (좌: 프로필+타임라인, 우: 3대 시스템 대시보드) */
+  .dash-grid {
+    display: grid;
+    grid-template-columns: 380px 1fr;
+    gap: clamp(28px, 4vw, 44px);
+    align-items: start;
+  }
+
+  /* 좌측: 프로필 & 전문성 여정 (Timeline) */
+  .dash-profile-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .dash-photo-box {
+    position: relative;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    aspect-ratio: 3 / 3.8;
+    background: var(--bg-sand);
+  }
+  .dash-photo-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 20%;
+  }
+  .dash-photo-badge {
+    position: absolute;
+    bottom: 12px; left: 12px; right: 12px;
+    background: rgba(18, 46, 34, 0.9);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(182, 141, 64, 0.4);
+    padding: 8px 12px;
+    border-radius: 10px;
+    color: #FFFFFF;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .dash-badge-name {
+    font-family: var(--serif);
+    font-size: 15px;
+    font-weight: 700;
+    color: #F4E2BB;
+  }
+  .dash-badge-role {
+    font-size: 11.5px;
+    color: #DFECE4;
+  }
+
+  /* 전문성 타임라인 */
+  .dash-timeline-wrap {
+    padding-top: 6px;
+  }
+  .dash-timeline-head {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--forest-deep);
+    letter-spacing: 0.04em;
+    margin-bottom: 14px;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .timeline-list {
+    list-style: none;
+    position: relative;
+    padding-left: 20px;
+  }
+  .timeline-list::before {
+    content: "";
+    position: absolute;
+    top: 6px; bottom: 6px; left: 7px;
+    width: 2px;
+    background: var(--line-gold);
+  }
+  .timeline-item {
+    position: relative;
+    margin-bottom: 16px;
+  }
+  .timeline-item:last-child {
+    margin-bottom: 0;
+  }
+  .timeline-dot {
+    position: absolute;
+    left: -20px; top: 4px;
+    width: 16px; height: 16px;
+    border-radius: 50%;
+    background: var(--surface);
+    border: 3px solid var(--forest);
+    box-shadow: 0 0 0 2px var(--surface);
+  }
+  .timeline-item.active .timeline-dot {
+    border-color: var(--gold);
+    background: var(--gold);
+  }
+  .timeline-stage {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--coral-deep);
+    letter-spacing: 0.05em;
+    display: block;
+    margin-bottom: 2px;
+  }
+  .timeline-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--forest-deep);
+    margin-bottom: 3px;
+  }
+  .timeline-desc {
+    font-size: 12.5px;
+    line-height: 1.55;
+    color: var(--ink-body);
+  }
+
+  /* 우측: 3대 스마트 웰니스 케어 시스템 대시보드 카드 */
+  .dash-cards-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .dash-cards-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 4px;
+  }
+  .dash-cards-title {
+    font-family: var(--serif);
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--forest-deep);
+  }
+  .dash-cards-tag {
+    font-size: 12px;
+    color: var(--ink-muted);
+  }
+
+  .dash-card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-md);
+    padding: 22px 26px;
+    box-shadow: var(--shadow-sm);
+    transition: all 0.25s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    position: relative;
+    overflow: hidden;
+  }
+  .dash-card:hover {
+    box-shadow: var(--shadow-md);
+    border-color: var(--line-gold);
+    transform: translateY(-2px);
+  }
+  .dash-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .dash-card-kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11.5px;
+    font-weight: 700;
+    color: var(--forest-mid);
+    background: var(--forest-soft);
+    padding: 3px 10px;
+    border-radius: 6px;
+    text-transform: uppercase;
+  }
+  .dash-card-tagline {
+    font-size: 11.5px;
+    color: var(--gold-deep);
+    font-weight: 600;
+  }
+  .dash-card-title {
+    font-family: var(--serif);
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--forest-deep);
+    line-height: 1.4;
+  }
+  .dash-features {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .dash-feat-item {
+    display: grid;
+    grid-template-columns: 18px 1fr;
+    gap: 10px;
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--ink-body);
+  }
+  .dash-feat-icon {
+    color: var(--forest-mid);
+    font-size: 14px;
+    padding-top: 1px;
+  }
+  .dash-feat-item strong {
+    color: var(--forest-deep);
+    font-weight: 600;
+  }
+
+  /* 하단 슬로건 배너 */
+  .dash-bottom-bar {
+    margin-top: 24px;
+    background: linear-gradient(90deg, #FAF7F0 0%, #F5EFE4 100%);
+    border: 1px solid var(--line-gold);
+    border-radius: var(--radius-sm);
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .dash-bottom-slogan {
+    font-family: var(--serif);
+    font-size: 15.5px;
+    font-weight: 700;
+    color: var(--forest-deep);
+  }
+  .dash-bottom-slogan em {
+    font-style: normal;
+    color: var(--coral-deep);
+  }
+  .dash-bottom-sign {
+    font-size: 13px;
+    color: var(--ink-muted);
+    font-weight: 600;
+  }
+
+  @media (max-width: 1024px) {
+    .dash-grid {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+    .dash-profile-card {
+      max-width: 440px;
+      margin: 0 auto;
+    }
+  }
+
+
+  /* Public draft packaging: navigation remains separate from the operating homepage. */
+  .scene[id] { scroll-margin-top: calc(var(--switcher-h) + var(--nav-h) + var(--quick-nav-h) + 12px); }
+  .menu { gap: 17px; }
+  .menu-link { font-size: 14px; }
+  .preview-switcher { background: var(--forest-deep); }
+  .ps-badge { color: var(--gold-soft); }
+  .ps-btn.active { background: var(--gold); color: var(--forest-deep); border-color: var(--gold); }
+  @media (max-width: 1140px) { .quick-nav { grid-template-columns: repeat(5,minmax(0,1fr)); } }
+  @media (max-width: 768px) {
+    .scene.hero { padding-top: calc(var(--switcher-h) + var(--nav-h) + var(--quick-nav-h) + 22px); }
+    .quick-nav { padding-left: 8px; padding-right: 8px; }
+    .quick-link { font-size: 13px; }
+  }
+
+
+  .ps-name-short { display: none; }
+  .ps-name-full { display: inline; }
+  @media(max-width:640px) { .ps-name-full { display: none; } .ps-name-short { display: inline; } }
+</style>
+</head>
+<body>
+
+<!-- ========== PREVIEW SWITCHER BAR ========== -->
+<aside class="preview-switcher" aria-label="시안 전환 툴바">
+  <div class="ps-inner">
+    <div class="ps-label">
+      <span class="ps-badge">공개 디자인 초안</span>
+      <span class="ps-title">Gemini 3 · 대표 소개</span>
+    </div>
+    <div class="ps-links">
+      <a href="/draft/" class="ps-btn ps-hub" title="시안 비교 안내 허브">
+        <svg viewBox="0 0 20 20" fill="currentColor" width="12" height="12" aria-hidden="true"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"/></svg>
+        <span>6안 목록</span>
+      </a>
+      <a href="/draft/gemini-a/" class="ps-btn ">
+
+        <span class="ps-name-full">Gemini 1 · 에디토리얼 프로필</span>
+        <span class="ps-name-short">Gemini 1</span>
+      </a>
+      <a href="/draft/gemini-b/" class="ps-btn ">
+
+        <span class="ps-name-full">Gemini 2 · 따뜻한 편지</span>
+        <span class="ps-name-short">Gemini 2</span>
+      </a>
+      <a href="/draft/gemini-c/" class="ps-btn active" aria-current="page">
+
+        <span class="ps-name-full">Gemini 3 · 구조적 돌봄 카드</span>
+        <span class="ps-name-short">Gemini 3</span>
+      </a>
+    </div>
+  </div>
+</aside>
+
+<header class="nav" role="banner">
+  <a class="brand" href="#hero" aria-label="더 그레이스 시니어 주간보호센터 홈">
+    <span class="brand-logo-wrap">
+      <img class="brand-logo" src="/assets/logo.png" width="36" height="36" alt="더 그레이스 로고">
+    </span>
+    <div class="brand-text">
+      <strong class="brand-name">더 그레이스</strong>
+      <span class="brand-sub">시니어 주간보호센터 · 해운대</span>
+    </div>
+  </a>
+  <nav class="menu" aria-label="주요 메뉴">
+    <a class="menu-link" href="#director">대표인사말</a>
+    <a class="menu-link" href="#intro">4대케어</a>
+    <a class="menu-link" href="#program">하루일과·프로그램</a>
+    <a class="menu-link" href="#meal">식사·위생</a>
+    <a class="menu-link" href="#facilities">실제시설</a>
+    <a class="menu-link" href="#guide">비용·이용안내</a>
+    <a class="menu-link" href="#closing">오시는길</a>
+    <a class="nav-cta nav-cta-desk" href="tel:051-791-1797" aria-label="전화 상담 051-791-1797">
+      <span class="icon-ring"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.6 15.6 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24 11.4 11.4 0 0 0 3.6.58 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.46.58 3.6a1 1 0 0 1-.25 1z"/></svg></span>
+      <span>상담 051-791-1797</span>
+    </a>
+  </nav>
+</header>
+<nav class="quick-nav" aria-label="주요 정보 바로가기">
+  <a class="quick-link" href="#director">대표소개</a>
+  <a class="quick-link" href="#program">프로그램</a>
+  <a class="quick-link" href="#facilities">시설</a>
+  <a class="quick-link" href="#guide">비용·이용</a>
+  <a class="quick-link" href="#closing">오시는 길</a>
+</nav>
+
+<main>
+  <!-- 1. HERO: 매거진 스플릿 프레임 레이아웃 -->
+  <section class="scene hero" id="hero" aria-label="센터 핵심 소개">
+    <div class="container">
+      <div class="hero-split">
+        <!-- 좌측: 에디토리얼 헤드라인 & 4대 핵심 포인트 태그 -->
+        <div class="hero-copy">
+          <div class="hero-eyebrow">
+            <span class="tag-pill">노인장기요양보험 지정</span>
+            <span>부산 해운대 · 시니어 주간보호센터</span>
+          </div>
+          <h1>매일 아침, 설레는 마음으로 나서는<br><span class="hl-spring">어르신의 두 번째 봄날</span></h1>
+          <p class="hero-lead">
+            <span class="hero-lead-full">따스한 햇살이 가득한 공간에서 즐기는 다채로운 문화·요리·나들이와 전문 재활운동, 간호사 출신 대표의 경험을 담은 세심한 건강 돌봄까지. 어르신이 매일 기다리시는 활기찬 주간보호센터를 만나보세요.</span>
+            <span class="hero-lead-compact">다채로운 활동과 세심한 간호 돌봄으로,<br>어르신의 하루에 즐거움을 더합니다.</span>
+          </p>
+
+          <ul class="hero-chips" aria-label="더 그레이스 4대 핵심 포인트">
+            <li class="hero-chip">
+              <span class="hero-chip-num">01</span>
+              <div class="hero-chip-text">
+                <strong>매일 간호·투약 케어</strong>
+                <span>혈압·혈당 체크 및 진료일 기록 동봉</span>
+              </div>
+            </li>
+            <li class="hero-chip">
+              <span class="hero-chip-num">02</span>
+              <div class="hero-chip-text">
+                <strong>설레는 월간 특화 프로그램</strong>
+                <span>맛집 외출·요리·치과검진·물리치료 운동</span>
+              </div>
+            </li>
+            <li class="hero-chip">
+              <span class="hero-chip-num">03</span>
+              <div class="hero-chip-text">
+                <strong>HACCP 인증 위탁급식</strong>
+                <span>맞춤 영양 한식 · 식사·간식 비급여 별도 안내</span>
+              </div>
+            </li>
+            <li class="hero-chip">
+              <span class="hero-chip-num">04</span>
+              <div class="hero-chip-text">
+                <strong>안전한 송영 서비스</strong>
+                <span>전용 차량으로 댁 앞까지 안전 동행</span>
+              </div>
+            </li>
+          </ul>
+
+          <div class="btn-row">
+            <a class="btn-primary" href="tel:051-791-1797" aria-label="전화 상담 051-791-1797">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.6 15.6 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24 11.4 11.4 0 0 0 3.6.58 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.46.58 3.6a1 1 0 0 1-.25 1z"/></svg>
+              <span>방문 상담 예약 051-791-1797</span>
+            </a>
+            <a class="btn-secondary" href="#program">
+              <span>이달의 특별 프로그램 6선</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+            <a class="btn-secondary" href="#facilities">
+              <span>실제 시설 사진 보기</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- 우측: 라운디드 에디토리얼 매거진 프레임 (border-radius: 32px) -->
+        <div class="hero-editorial-frame" aria-label="더 그레이스 공간 화보 쇼케이스">
+          <div class="hero-frame-top">
+            <span>THE GRACE BOTANICAL LOUNGE</span>
+          </div>
+          <div class="hero-stage-viewport">
+            <img class="hero-bg-slide active" src="/assets/v4-hero.webp" width="1280" height="960" fetchpriority="high" alt="햇살이 스며드는 더 그레이스 센터 창가에서 어르신과 선생님이 함께 화분을 돌보며 미소 짓는 모습">
+            <img class="hero-bg-slide" src="/assets/facilities/premium-20261110/common-lounge-1440.webp" width="1440" height="1080" loading="eager" decoding="async" alt="넓고 쾌적한 공용생활실 및 프로그램홀">
+            <img class="hero-bg-slide" src="/assets/facilities/premium-20261110/massage-lounge-1440.webp" width="1440" height="1080" loading="eager" decoding="async" alt="코웨이 안마의자 3대와 휴식 공간">
+            <img class="hero-bg-slide" src="/assets/facilities/happiness-classroom-02-20261110-1440.webp" width="1440" height="1080" loading="eager" decoding="async" alt="소그룹 맞춤 프로그램이 진행되는 행복반 교실">
+
+            <div class="hero-stage-caption">
+              <strong id="stage-title">01 · 햇살 가득한 일상과 따뜻한 동행</strong>
+              <button class="dock-zoom-btn" id="hero-stage-trigger" type="button" data-lightbox data-full="/assets/v4-hero.webp" data-caption="더 그레이스 시니어 주간보호센터 — 햇살 가득한 일상과 따뜻한 동행" aria-label="현재 사진 크게 보기">사진 확대 +</button>
+            </div>
+          </div>
+
+          <div class="stage-tabs" role="tablist" aria-label="공간 화보 탭 선택">
+            <button class="stage-tab active" type="button" data-idx="0" data-full="/assets/v4-hero.webp" data-title="01 · 햇살 가득한 일상과 따뜻한 동행">
+              <img src="/assets/v4-hero.webp" width="120" height="80" alt="따뜻한 동행 화보">
+              <span class="t-label">따뜻한 동행</span>
+            </button>
+            <button class="stage-tab" type="button" data-idx="1" data-full="/assets/facilities/premium-20261110/common-lounge-1440.webp" data-title="02 · 넓고 쾌적한 메인 프로그램홀">
+              <img src="/assets/facilities/premium-20261110/common-lounge-900.webp" width="120" height="80" alt="프로그램홀">
+              <span class="t-label">프로그램홀</span>
+            </button>
+            <button class="stage-tab" type="button" data-idx="2" data-full="/assets/facilities/premium-20261110/massage-lounge-1440.webp" data-title="03 · 코웨이 안마의자 3대 &amp; 온돌 휴식존">
+              <img src="/assets/facilities/premium-20261110/massage-lounge-900.webp" width="120" height="80" alt="안마·휴식존">
+              <span class="t-label">안마·휴식존</span>
+            </button>
+            <button class="stage-tab" type="button" data-idx="3" data-full="/assets/facilities/happiness-classroom-02-20261110-1440.webp" data-title="04 · 함께 활동하는 행복반 교실">
+              <img src="/assets/facilities/happiness-classroom-02-20261110-900.webp" width="120" height="80" alt="행복반 교실">
+              <span class="t-label">행복반 교실</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 하단 브라이트 보타니컬 4단 핵심 요약 바 -->
+      <div class="hero-info-bar" aria-label="핵심 운영 정보">
+        <div class="info-cell">
+          <span class="info-kicker"><em>01</em> 운영 시간</span>
+          <strong class="info-val">월–토 08:30–17:30</strong>
+          <span class="info-sub">일요일·공휴일 제외 · 토요일 정상 운영</span>
+        </div>
+        <div class="info-cell">
+          <span class="info-kicker"><em>02</em> 이용 대상</span>
+          <strong class="info-val">장기요양 1~5등급 · 인지지원</strong>
+          <span class="info-sub">등급 신청 전 상담 및 일반 이용 안내</span>
+        </div>
+        <div class="info-cell">
+          <span class="info-kicker"><em>03</em> 안전한 송영 서비스</span>
+          <strong class="info-val">해운대 전역 · 송정 안전 송영</strong>
+          <span class="info-sub">전용 차량으로 댁 앞까지 안전 동행</span>
+        </div>
+        <div class="info-cell">
+          <span class="info-kicker"><em>04</em> 센터 위치 · 방문 상담</span>
+          <strong class="info-val">해운대구 좌동순환로 78, 5층</strong>
+          <span class="info-sub">건우빌딩 5층 · 사전 예약 상담 및 시설 확인</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ========== [SAMPLE 3] 체계적 비전 & 모던 대시보드형 ========== -->
+  <section class="scene section-director-dash" id="director" aria-labelledby="director-dash-title">
+    <div class="container">
+
+      <!-- 상단 비전 배너 -->
+      <div class="dash-vision-banner">
+        <span class="dash-vision-kicker">CARE PRINCIPLES · 경험에서 이어지는 돌봄</span>
+        <h2 class="dash-vision-title" id="director-dash-title">
+          “간호사 출신 대표가 <em>설립하고 운영</em>하는 주간보호센터”
+        </h2>
+        <p class="dash-vision-desc">
+          약 20년간 의료기관에서 쌓은 간호 경험과 의료 IT 기업의 EMR 기획·설계팀을 이끈 경험을 바탕으로,
+          건강을 세심하게 살피고 체계적으로 운영하는 센터를 만들어 갑니다.
+        </p>
+      </div>
+
+      <!-- 메인 2컬럼 그리드 -->
+      <div class="dash-grid">
+
+        <!-- 좌측: 대표 프로필 & 전문성 여정 (Timeline) -->
+        <div class="dash-profile-card">
+          <div class="dash-photo-box">
+            <img src="/draft/assets/representative.jpg" width="654" height="892" loading="eager" alt="더 그레이스 시니어 주간보호센터 정지안 대표">
+            <div class="dash-photo-badge">
+              <span class="dash-badge-name">정지안 대표</span>
+              <span class="dash-badge-role">설립자 · 간호사 출신</span>
+            </div>
+          </div>
+
+          <div class="dash-timeline-wrap">
+            <h3 class="dash-timeline-head">
+              <svg viewBox="0 0 20 20" fill="currentColor" width="14" height="14" aria-hidden="true" style="color:var(--forest-mid);"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/></svg>
+              <span>더 그레이스로 이어진 경험</span>
+            </h3>
+
+            <ol class="timeline-list">
+              <li class="timeline-item">
+                <div class="timeline-dot"></div>
+                <span class="timeline-stage">PHASE 01 · 약 20년 의료현장</span>
+                <h4 class="timeline-title">의료기관 간호사 경험</h4>
+                <p class="timeline-desc">약 20년간 의료기관에서 간호사로 근무하며 환자 간호와 건강관리를 경험했습니다.</p>
+              </li>
+
+              <li class="timeline-item">
+                <div class="timeline-dot"></div>
+                <span class="timeline-stage">PHASE 02 · 헬스케어 IT</span>
+                <h4 class="timeline-title">의료 IT 기업 EMR 기획·설계팀 리드</h4>
+                <p class="timeline-desc">의료정보시스템 기획·설계팀을 이끌며 의료서비스의 효율성과 체계적인 관리 방식을 고민했습니다.</p>
+              </li>
+
+              <li class="timeline-item active">
+                <div class="timeline-dot"></div>
+                <span class="timeline-stage">PHASE 03 · 현재</span>
+                <h4 class="timeline-title">더 그레이스 설립 &amp; 직접 운영</h4>
+                <p class="timeline-desc">의료현장과 시스템 기획 경험을 바탕으로 더 그레이스를 설립하고 운영합니다.</p>
+              </li>
+            </ol>
+          </div>
+        </div>
+
+        <!-- 우측: 세 가지 돌봄 원칙 카드 -->
+        <div class="dash-cards-wrap">
+          <div class="dash-cards-head">
+            <h3 class="dash-cards-title">더 그레이스의 세 가지 돌봄 원칙</h3>
+            <span class="dash-cards-tag">건강 · 개별 존중 · 체계적 운영</span>
+          </div>
+
+          <!-- 카드 1 -->
+          <article class="dash-card">
+            <div class="dash-card-header">
+              <span class="dash-card-kicker">PRINCIPLE 01 · 건강과 안전</span>
+              <span class="dash-card-tagline">건강과 안전 최우선 원칙</span>
+            </div>
+            <h4 class="dash-card-title">건강의 작은 변화에도 관심을</h4>
+            <ul class="dash-features">
+              <li class="dash-feat-item">
+                <span class="dash-feat-icon">✦</span>
+                <div><strong>건강 상태를 이해하는 돌봄:</strong> 간호 경험을 바탕으로 어르신의 건강 상태를 세심하게 살피겠습니다.</div>
+              </li>
+              <li class="dash-feat-item">
+                <span class="dash-feat-icon">✦</span>
+                <div><strong>작은 변화에 기울이는 관심:</strong> 어르신의 일상에서 달라지는 모습을 놓치지 않도록 관심을 기울이겠습니다.</div>
+              </li>
+              <li class="dash-feat-item">
+                <span class="dash-feat-icon">✦</span>
+                <div><strong>안전을 먼저 생각하는 환경:</strong> 보호자께서 안심하고 맡기실 수 있도록 건강과 안전을 우선하겠습니다.</div>
+              </li>
+            </ul>
+          </article>
+
+          <!-- 카드 2 -->
+          <article class="dash-card">
+            <div class="dash-card-header">
+              <span class="dash-card-kicker">PRINCIPLE 02 · 개별 돌봄</span>
+              <span class="dash-card-tagline">한 분 한 분의 특성을 존중</span>
+            </div>
+            <h4 class="dash-card-title">각자의 생활과 성향에 맞게</h4>
+            <ul class="dash-features">
+              <li class="dash-feat-item">
+                <span class="dash-feat-icon">✦</span>
+                <div><strong>건강과 인지 상태 이해:</strong> 어르신마다 다른 건강 상태와 인지기능을 고려한 돌봄을 지향합니다.</div>
+              </li>
+              <li class="dash-feat-item">
+                <span class="dash-feat-icon">✦</span>
+                <div><strong>생활 습관과 성향 존중:</strong> 익숙한 생활 방식과 개인의 선호를 이해하는 것부터 시작합니다.</div>
+              </li>
+              <li class="dash-feat-item">
+                <span class="dash-feat-icon">✦</span>
+                <div><strong>즐겁고 의미 있는 활동:</strong> 신체·인지 활동과 함께 어르신이 존중받는 일상을 지원하겠습니다.</div>
+              </li>
+            </ul>
+          </article>
+
+          <!-- 카드 3 -->
+          <article class="dash-card">
+            <div class="dash-card-header">
+              <span class="dash-card-kicker">PRINCIPLE 03 · 체계적인 운영</span>
+              <span class="dash-card-tagline">의료 IT 기획 경험을 바탕으로</span>
+            </div>
+            <h4 class="dash-card-title">돌봄의 과정과 보호자 소통을 함께</h4>
+            <ul class="dash-features">
+              <li class="dash-feat-item">
+                <span class="dash-feat-icon">✦</span>
+                <div><strong>서로 이어지는 돌봄:</strong> 건강관리와 프로그램, 일상생활 지원을 체계적으로 관리하고자 합니다.</div>
+              </li>
+              <li class="dash-feat-item">
+                <span class="dash-feat-icon">✦</span>
+                <div><strong>보호자와 정성껏 소통:</strong> 어르신의 일상과 건강 상태에 대해 가족의 마음으로 함께 이야기하겠습니다.</div>
+              </li>
+              <li class="dash-feat-item">
+                <span class="dash-feat-icon">✦</span>
+                <div><strong>살피고 배우는 센터:</strong> 의료현장과 시스템 기획 경험을 바탕으로 더 나은 운영을 고민하겠습니다.</div>
+              </li>
+            </ul>
+          </article>
+
+          <!-- 하단 슬로건 바 -->
+          <div class="dash-bottom-bar">
+            <span class="dash-bottom-slogan">
+              “어르신께는 <em>행복한 하루</em>를, 보호자께는 <em>믿음과 안심</em>을 약속합니다.”
+            </span>
+            <span class="dash-bottom-sign">간호사 출신 대표 정지안 설립·운영</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- 2. CARE & WELLNESS: 4대 핵심 웰니스 케어 (짧은 타이틀 + 1줄 요약 + 팝업 모달) -->
+  <section class="scene section-intro" id="intro" aria-labelledby="intro-title">
+    <div class="container">
+      <div class="sec-head">
+        <div class="sec-head-left">
+          <span class="sec-num">01</span>
+          <div class="sec-title-group">
+            <span class="sec-kicker">WELLNESS &amp; CLINICAL CARE · 4대 핵심 케어</span>
+            <h2 class="sec-title" id="intro-title">간호사 출신 대표의 경험을 담은<br><em>건강하고 품격 있는 4대 웰니스 케어</em></h2>
+            <p class="sec-desc">카드를 클릭하시면 실제 시설 사진과 함께 상세 돌봄 내용을 팝업으로 확인하실 수 있습니다.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="care-grid">
+        <button class="care-card care-card-nursing" type="button"
+          data-prog-modal
+          data-badge="01 · 간호·투약 케어"
+          data-title="매일 간호·건강 및 투약 세심 관리"
+          data-sub="간호 경험을 바탕으로 어르신의 건강 상태와 작은 변화를 세심하게 살피는 돌봄을 지향합니다."
+          data-img="/assets/facilities/nursing-equipment.webp"
+          data-img-alt="더 그레이스 센터의 건강 측정 도구가 놓인 트레이와 혈압계를 갖춘 간호 카트"
+          data-effects="매일 등원 시 혈압·맥박·체온·혈당 측정 및 기록 관리|어르신별 정확한 복약 시간 챙김 및 복약 지도|병원 진료 가시는 날 센터 누적 혈압·혈당 기록지 동봉|해운대 협약 병·의원(내과·치과·정형외과·안과) 긴밀 연계"
+          data-blog="https://blog.naver.com/PostView.naver?blogId=the_grace_daycare&amp;logNo=224448157313">
+          <div class="care-card-img">
+            <img src="/assets/facilities/nursing-equipment.webp" width="600" height="637" loading="lazy" decoding="async" alt="더 그레이스 센터의 건강 측정 도구가 놓인 트레이와 혈압계를 갖춘 간호 카트">
+            <span class="care-num-badge">01 · 간호·투약</span>
+          </div>
+          <div class="care-body">
+            <h3>간호·건강 및 투약 관리</h3>
+            <p>매일 혈압·혈당 측정 및 병원 진료일 기록 동봉</p>
+            <div class="care-tag"><span>상세 보기</span><span aria-hidden="true">+</span></div>
+          </div>
+        </button>
+
+        <button class="care-card" type="button"
+          data-prog-modal
+          data-badge="02 · 맞춤 프로그램 &amp; 운동"
+          data-title="활기찬 인지·문화 &amp; 재활운동 라운지"
+          data-sub="단조로운 시간 보내기가 아닌, 어르신이 직접 참여하고 성취감을 느끼는 문화·신체 활동 공간입니다."
+          data-img="/assets/facilities/premium-20261110/common-wide-1440.webp"
+          data-effects="매주 수요일 다나음 물리치료사 센터장 초빙 맞춤 재활운동|실내 운동 사이클 3대·탄력밴드·실버 체조로 하체 근력 강화|요리·원예·성탄 장식·전통놀이 등 매월 새로운 테마 기획|수준별 소그룹 인지 워크북으로 두뇌 활력 유지"
+          data-blog="https://blog.naver.com/the_grace_daycare/224459126858">
+          <div class="care-card-img">
+            <img src="/assets/facilities/premium-20261110/common-wide-900.webp" width="900" height="675" loading="lazy" decoding="async" alt="실내 운동 사이클 3대와 넓은 프로그램 테이블이 갖춰진 공용생활실">
+            <span class="care-num-badge">02 · 문화·재활</span>
+          </div>
+          <div class="care-body">
+            <h3>맞춤 문화·인지 &amp; 재활운동</h3>
+            <p>수요일 물리치료사 초빙 운동과 실내 사이클 완비</p>
+            <div class="care-tag"><span>상세 보기</span><span aria-hidden="true">+</span></div>
+          </div>
+        </button>
+
+        <button class="care-card" type="button"
+          data-prog-modal
+          data-badge="03 · 온돌·안마 힐링"
+          data-title="남·여 분리 온돌 수면실 &amp; 안마 힐링존"
+          data-sub="식사 후나 오후 시간 피로하실 때 언제든 내 집 안방처럼 따뜻하고 아늑하게 쉬실 수 있습니다."
+          data-img="/assets/facilities/premium-20261110/rest-women-1440.webp"
+          data-effects="남성·여성 공간이 완전히 분리된 따뜻한 온돌 마루 수면실|적외선 온열 조사기와 정갈하고 청결한 침구 상시 비치|코웨이 프리미엄 안마의자 3대로 전신 피로 회복|은은한 간접조명과 쾌적한 공기질 관리"
+          data-blog="https://blog.naver.com/the_grace_daycare">
+          <div class="care-card-img">
+            <img src="/assets/facilities/premium-20261110/rest-women-900.webp" width="900" height="675" loading="lazy" decoding="async" alt="따뜻한 온돌 마루와 침구, 온열기가 비치된 수면실">
+            <span class="care-num-badge">03 · 온돌·안마</span>
+          </div>
+          <div class="care-body">
+            <h3>온돌 수면실 &amp; 안마·온열 휴식</h3>
+            <p>남·여 분리 온돌방과 코웨이 안마의자 3대 힐링</p>
+            <div class="care-tag"><span>상세 보기</span><span aria-hidden="true">+</span></div>
+          </div>
+        </button>
+
+        <button class="care-card" type="button"
+          data-prog-modal
+          data-badge="04 · 안전 제일 설비"
+          data-title="안전을 먼저 생각하는 시설"
+          data-sub="어르신의 이동과 생활을 고려한 안전 손잡이와 비상 호출벨 등 안전 설비를 갖추고 있습니다."
+          data-img="/assets/facilities/premium-20261110/safe-restroom-1440.webp"
+          data-effects="화장실 양측 안전 손잡이와 편안한 변기 등받이 설치|바닥에서도 즉시 누를 수 있는 상·하단 이중 비상 호출벨|실내 전역 미끄럼 방지 및 안전 손잡이 설치|5층 비상 수직구조대 및 철저한 소방·안전 점검 완비"
+          data-blog="https://blog.naver.com/the_grace_daycare">
+          <div class="care-card-img">
+            <img src="/assets/facilities/premium-20261110/safe-restroom-900.webp" width="900" height="675" loading="lazy" decoding="async" alt="안전 손잡이와 상하단 비상 호출벨이 설치된 안전 화장실">
+            <span class="care-num-badge">04 · 안전 설비</span>
+          </div>
+          <div class="care-body">
+            <h3>안전을 먼저 생각하는 시설</h3>
+            <p>양측 안전 지지대 · 상·하단 이중 비상벨 완비</p>
+            <div class="care-tag"><span>상세 보기</span><span aria-hidden="true">+</span></div>
+          </div>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. MONTHLY SPECIAL PROGRAMS: 이달의 특별한 프로그램 6선 (팝업 & 블로그 직결) -->
+  <section class="scene section-programs" id="program" aria-labelledby="program-title">
+    <div class="container">
+      <div class="sec-head">
+        <div class="sec-head-left">
+          <span class="sec-num">02</span>
+          <div class="sec-title-group">
+            <span class="sec-kicker">MONTHLY SPECIAL CURATION · 이달의 프로그램</span>
+            <h2 class="sec-title" id="program-title">“내일은 또 어떤 즐거운 일이 있을까?”<br><em>이달의 특별한 프로그램 6선</em></h2>
+            <p class="sec-desc">각 프로그램 포스터를 클릭하시면 기대 효과 요약과 공식 네이버 블로그 상세 안내를 확인하실 수 있습니다.</p>
+          </div>
+        </div>
+        <div class="sec-actions">
+          <button class="btn-gold-pill" type="button"
+            data-prog-modal
+            data-badge="월간 프로그램 일정표"
+            data-title="이달의 전체 프로그램 일정표"
+            data-sub="인지·미술·음악·신체·전통놀이·외부강사 초빙까지 매월 풍성하게 구성되는 더 그레이스 월간 일정표입니다."
+            data-img="/assets/programs/schedule-nov.webp"
+            data-effects="매주 수요일 다나음 물리치료 센터장 초빙 재활운동|해운대365치과 원장 방문 구강검진 및 간호사 숨 건강교실|시 낭송 필사·칠교 맞추기·타악기 연주·요리 및 성탄 장식 만들기"
+            data-blog="https://blog.naver.com/the_grace_daycare/224459126858">
+            <span>📅 이달의 프로그램 일정표 팝업 보기</span>
+          </button>
+          <button class="btn-secondary" type="button"
+            data-prog-modal
+            data-badge="월간 영양 식단표"
+            data-title="이달의 어르신 맞춤 영양 식단표"
+            data-sub="HACCP 인증 전문 위탁급식을 통해 치아와 소화를 배려한 균형 잡힌 한식 식단과 죽식·간식을 제공합니다."
+            data-img="/assets/programs/meal-nov.webp"
+            data-effects="식품안전관리인증(HACCP) 위탁급식 시스템으로 안전한 식재료 관리|어르신 저작·연하 상태를 고려한 일반식·다진식·죽식 맞춤 제공|식사·간식 비급여 별도 안내 (상담 시 투명하게 안내)"
+            data-blog="https://blog.naver.com/the_grace_daycare/224459122425">
+            <span>🍱 이달의 식단표 팝업 보기</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- 매거진 포스터 쇼케이스 6선 그리드 -->
+      <div class="poster-grid" aria-label="이달의 특별한 프로그램 6선">
+        <!-- 1. 지역 맛집 탐방 외출 -->
+        <button class="poster-card" type="button"
+          data-prog-modal
+          data-badge="지역사회 외출 나들이"
+          data-title="지역 맛집 탐방 외출"
+          data-sub="함께여서 더 즐거운 외식 나들이! 전용 차량으로 안전하게 이동하여 따뜻한 식사와 계절의 정취를 함께 나눕니다."
+          data-img="/assets/programs/prog-outing.webp"
+          data-effects="균형 잡힌 맛있는 식사로 기분 전환과 활력 충전|야외 나들이 활동을 통한 스트레스 해소 및 인지 자극|함께 식사하고 담소를 나누며 유대감과 정서적 안정 향상|전용 차량을 이용한 안전한 이동과 든든한 동행"
+          data-blog="https://blog.naver.com/the_grace_daycare/224466759865">
+          <div class="poster-thumb">
+            <img src="/assets/programs/prog-outing.webp" width="720" height="900" loading="lazy" decoding="async" alt="지역 맛집 탐방 외출 프로그램 포스터">
+            <span class="poster-badge coral">01 · 야외 나들이</span>
+          </div>
+          <div class="poster-body">
+            <h3>지역 맛집 탐방 외출</h3>
+            <p>함께여서 더 즐거운 외식 나들이</p>
+            <div class="poster-cta-row">
+              <span>상세 효과 &amp; 블로그 보기</span>
+              <span aria-hidden="true">↗</span>
+            </div>
+          </div>
+        </button>
+
+        <!-- 2. 오늘의 요리: 샌드위치 만들기 -->
+        <button class="poster-card" type="button"
+          data-prog-modal
+          data-badge="오감 자극 요리활동"
+          data-title="오늘의 요리: 샌드위치 만들기"
+          data-sub="신선한 재료로 직접 만드는 즐거움! 알록달록한 식재료를 탐색하고 내 손으로 직접 만들어 함께 나누어 먹습니다."
+          data-img="/assets/programs/prog-cooking.webp"
+          data-effects="신선한 식재료 탐색을 통한 오감 자극과 식욕 증진|재료를 손질하고 쌓는 과정의 손가락 소근육 운동|순서를 기억하며 완성하는 집중력과 인지기능 자극|함께 만들고 나누어 먹는 즐거운 협동 활동"
+          data-blog="https://blog.naver.com/the_grace_daycare/224466759865">
+          <div class="poster-thumb">
+            <img src="/assets/programs/prog-cooking.webp" width="720" height="900" loading="lazy" decoding="async" alt="오늘의 요리 샌드위치 만들기 포스터">
+            <span class="poster-badge gold">02 · 요리 교실</span>
+          </div>
+          <div class="poster-body">
+            <h3>오늘의 요리: 샌드위치 만들기</h3>
+            <p>신선한 재료로 직접 만드는 즐거움</p>
+            <div class="poster-cta-row">
+              <span>상세 효과 &amp; 블로그 보기</span>
+              <span aria-hidden="true">↗</span>
+            </div>
+          </div>
+        </button>
+
+        <!-- 3. 해운대365치과 원장 방문 구강검진·교육 -->
+        <button class="poster-card" type="button"
+          data-prog-modal
+          data-badge="협약 의료기관 방문케어"
+          data-title="해운대365치과 원장 방문 구강검진·교육"
+          data-sub="치과의사 원장님 직접 방문 구강케어! 어르신 한 분 한 분의 구강 상태를 살피고 올바른 관리법을 친절히 안내합니다."
+          data-img="/assets/programs/prog-dental.webp"
+          data-effects="해운대365치과 원장님 직접 방문 구강 상태 확인 및 상담|어르신 눈높이에 맞춘 올바른 칫솔질 교육|틀니 및 잇몸 건강 관리법 상세 안내|구강건조 예방과 건강한 식사를 위한 구강 습관 형성"
+          data-blog="https://blog.naver.com/the_grace_daycare/224443479765">
+          <div class="poster-thumb">
+            <img src="/assets/programs/prog-dental.webp" width="720" height="900" loading="lazy" decoding="async" alt="해운대365치과 원장 방문 구강검진 및 구강건강교육 포스터">
+            <span class="poster-badge">03 · 전문 의료연계</span>
+          </div>
+          <div class="poster-body">
+            <h3>해운대365치과 원장 방문 구강검진·교육</h3>
+            <p>치과의사 원장님 직접 방문 구강케어</p>
+            <div class="poster-cta-row">
+              <span>상세 효과 &amp; 블로그 보기</span>
+              <span aria-hidden="true">↗</span>
+            </div>
+          </div>
+        </button>
+
+        <!-- 4. 간호사와 함께하는 숨 건강교실 -->
+        <button class="poster-card" type="button"
+          data-prog-modal
+          data-badge="간호사 특화 건강교실"
+          data-title="간호사와 함께하는 숨 건강교실"
+          data-sub="바람개비 복식호흡으로 키우는 폐활량! 직접 만든 바람개비를 불며 즐겁게 호흡근과 심폐 건강을 단련합니다."
+          data-img="/assets/programs/prog-breath.webp"
+          data-effects="나만의 바람개비를 직접 만들고 불어보는 호흡 운동|배로 깊게 숨 쉬는 복식호흡과 팔 들기 가슴 확장 호흡|편안한 호흡 유도와 심장·폐 건강 증진에 도움|뇌 산소 공급 활성화를 통한 집중력·기분 개선"
+          data-blog="https://blog.naver.com/the_grace_daycare/224466759865">
+          <div class="poster-thumb">
+            <img src="/assets/programs/prog-breath.webp" width="720" height="900" loading="lazy" decoding="async" alt="간호사와 함께하는 숨 건강교실 포스터">
+            <span class="poster-badge">04 · 간호 건강교실</span>
+          </div>
+          <div class="poster-body">
+            <h3>간호사와 함께하는 숨 건강교실</h3>
+            <p>바람개비 복식호흡으로 키우는 폐활량</p>
+            <div class="poster-cta-row">
+              <span>상세 효과 &amp; 블로그 보기</span>
+              <span aria-hidden="true">↗</span>
+            </div>
+          </div>
+        </button>
+
+        <!-- 5. 미리하는 성탄절 장식 & 트리 만들기 -->
+        <button class="poster-card" type="button"
+          data-prog-modal
+          data-badge="계절 감성 인지미술"
+          data-title="미리하는 성탄절 장식 &amp; 트리 만들기"
+          data-sub="반짝이는 트리를 함께 꾸미는 인지미술! 반짝이 색지와 종이로 성탄 장식을 만들고 나뭇가지 트리를 함께 꾸밉니다."
+          data-img="/assets/programs/prog-christmas.webp"
+          data-effects="다양한 색지와 재료를 살펴보며 기억력·집중력 향상|종이를 접고 오리는 정교한 손 소근육 자극|나뭇가지에 장식을 달며 창의력과 자기표현력 향상|다가오는 연말 계절감과 따뜻한 정서적 즐거움 공유"
+          data-blog="https://blog.naver.com/the_grace_daycare/224466759865">
+          <div class="poster-thumb">
+            <img src="/assets/programs/prog-christmas.webp" width="720" height="900" loading="lazy" decoding="async" alt="미리하는 성탄절 장식 만들기 인지프로그램 포스터">
+            <span class="poster-badge coral">05 · 계절 인지미술</span>
+          </div>
+          <div class="poster-body">
+            <h3>미리하는 성탄절 장식 &amp; 트리 만들기</h3>
+            <p>반짝이는 트리를 함께 꾸미는 인지미술</p>
+            <div class="poster-cta-row">
+              <span>상세 효과 &amp; 블로그 보기</span>
+              <span aria-hidden="true">↗</span>
+            </div>
+          </div>
+        </button>
+
+        <!-- 6. 매주 수요일 다나음 물리치료 센터장 초빙 운동 -->
+        <button class="poster-card" type="button"
+          data-prog-modal
+          data-badge="매주 수요일 정기 초빙"
+          data-title="매주 수요일 다나음 물리치료 센터장 초빙 운동"
+          data-sub="허종빈 센터장님의 체계적인 맞춤 재활운동! 물리치료학 외래교수 출신 센터장님이 매주 수요일 직접 방문 지도합니다."
+          data-img="/assets/programs/prog-rehab.webp"
+          data-effects="다나음재활운동센터 허종빈 센터장(물리치료사) 매주 수요일 초빙|어르신 개인별 신체 상태를 살피는 맞춤 재활운동|균형감각·보행 능력 및 하체 근력 집중 강화|낙상 예방과 일상 신체 기능 유지로 활기찬 생활 지원"
+          data-blog="https://blog.naver.com/the_grace_daycare/224445629388">
+          <div class="poster-thumb">
+            <img src="/assets/programs/prog-rehab.webp" width="720" height="900" loading="lazy" decoding="async" alt="매주 수요일 다나음 재활운동센터 허종빈 센터장 초빙 재활운동 프로그램 포스터">
+            <span class="poster-badge gold">06 · 전문 재활운동</span>
+          </div>
+          <div class="poster-body">
+            <h3>매주 수요일 다나음 물리치료 센터장 초빙 운동</h3>
+            <p>허종빈 센터장님의 체계적인 맞춤 재활운동</p>
+            <div class="poster-cta-row">
+              <span>상세 효과 &amp; 블로그 보기</span>
+              <span aria-hidden="true">↗</span>
+            </div>
+          </div>
+        </button>
+      </div>
+
+      <!-- 하단 하루 일과 6단계 리본 요약 -->
+      <div class="daily-ribbon" aria-label="더 그레이스 하루 일과 타임라인">
+        <div class="daily-ribbon-head">
+          <h3>설렘과 활력이 이어지는 하루 일과표</h3>
+          <span>월–토 08:30 – 17:30</span>
+        </div>
+        <ol class="daily-steps">
+          <li class="daily-step">
+            <time>08:30–09:30</time>
+            <strong>아침 안전 송영</strong>
+            <span>전용 차량으로 댁 앞까지 안전 동행</span>
+          </li>
+          <li class="daily-step">
+            <time>09:30–10:30</time>
+            <strong>건강 체크 · 차 나눔</strong>
+            <span>혈압·체온·혈당 측정 및 따뜻한 다과</span>
+          </li>
+          <li class="daily-step">
+            <time>10:30–11:50</time>
+            <strong>오전 인지 · 건강교실</strong>
+            <span>두뇌 워크북 · 구강·호흡 건강 수업</span>
+          </li>
+          <li class="daily-step">
+            <time>12:00–13:30</time>
+            <strong>영양 식사 · 온돌 휴식</strong>
+            <span>HACCP 맞춤 한식·복약·안마 휴식</span>
+          </li>
+          <li class="daily-step">
+            <time>13:30–15:30</time>
+            <strong>오후 특화 · 재활운동</strong>
+            <span>요리·미술·물리치료사 초빙 운동</span>
+          </li>
+          <li class="daily-step">
+            <time>15:30–17:30</time>
+            <strong>영양 간식 · 귀가 송영</strong>
+            <span>따뜻한 간식 나눔 후 댁 앞 안전 귀가</span>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. MEAL & HYGIENE: HACCP 인증 안전 위탁급식 및 청결한 위생 환경 -->
+  <section class="scene section-meal" id="meal" aria-labelledby="meal-title">
+    <div class="container">
+      <div class="sec-head">
+        <div class="sec-head-left">
+          <span class="sec-num">03</span>
+          <div class="sec-title-group">
+            <span class="sec-kicker">HACCP CERTIFIED DIET &amp; HYGIENE · 안전 위탁급식 &amp; 위생</span>
+            <h2 class="sec-title" id="meal-title"><em>HACCP 인증</em> 전문 위탁급식과<br>청결하게 관리되는 위생 환경</h2>
+            <p class="sec-desc">엄격한 위생 기준(HACCP) 인증 위탁급식으로 균형 잡힌 식사를 대접하고, 청결한 배식실과 독립 세면 공간으로 위생을 지킵니다.</p>
+          </div>
+        </div>
+        <div class="sec-actions">
+          <button class="btn-secondary" type="button" data-lightbox data-full="/assets/programs/meal-nov.webp" data-caption="더 그레이스 이달의 영양 식단표" data-desc="HACCP 인증 위탁급식 및 오후 간식이 제공되는 이달의 영양 식단표입니다. (식사·간식 비급여 별도 안내)" data-blog="https://blog.naver.com/the_grace_daycare/224459122425">
+            <span>이달의 영양 식단표 크게 보기 ↗</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="meal-showcase">
+        <button class="meal-photo-card" type="button" data-lightbox data-full="/assets/facilities/premium-20261110/meal-prep-1440.webp" data-caption="청결하게 관리되는 통유리 배식·위생 공간과 식사 테이블">
+          <div class="meal-photo-wrap">
+            <img src="/assets/facilities/premium-20261110/meal-prep-900.webp" width="900" height="450" loading="lazy" decoding="async" alt="청결한 통유리 배식 공간과 정갈한 식탁">
+            <span class="photo-badge-top"><span class="dot"></span>통유리 위생 배식실</span>
+          </div>
+          <div class="meal-photo-desc">
+            <h3>HACCP 인증 위탁급식 &amp; 청결한 배식 관리</h3>
+            <p>전문 위탁급식 시스템으로 안전한 식단을 제공받으며, 분리된 통유리 배식실에서 고온 살균 소독 관리를 진행합니다.</p>
+          </div>
+        </button>
+
+        <button class="meal-photo-card" type="button" data-lightbox data-full="/assets/facilities/premium-20261110/washbasins-1440.webp" data-caption="4인용 공용 세면 공간 — 아치형 거울 4개와 밝고 쾌적한 손 씻기·양치 공간">
+          <div class="meal-photo-wrap">
+            <img src="/assets/facilities/premium-20261110/washbasins-900.webp" width="900" height="450" loading="lazy" decoding="async" alt="아치형 거울과 4대의 독립 세면대">
+            <span class="photo-badge-top"><span class="dot"></span>4인 독립 세면 공간</span>
+          </div>
+          <div class="meal-photo-desc">
+            <h3>기다림 없이 쾌적한 4인용 공용 세면 공간</h3>
+            <p>식사 전후 손 씻기와 양치질을 줄 서지 않고 편안하게 하실 수 있도록 밝은 간접조명과 독립 세면대 4대를 마련했습니다.</p>
+          </div>
+        </button>
+      </div>
+
+      <div class="meal-points">
+        <div class="meal-point-card">
+          <div class="kicker">01 · HACCP 인증 안전 급식</div>
+          <h4>엄격하게 검증된 위탁급식</h4>
+          <p>식품안전관리인증기준(HACCP)을 통과한 전문 위탁급식으로 식재료 위생부터 영양 균형까지 안전하게 대접합니다.</p>
+        </div>
+        <div class="meal-point-card">
+          <div class="kicker">02 · 맞춤 영양 식단 · 식단표 공개</div>
+          <h4>치아·소화를 배려한 한식</h4>
+          <p>어르신의 치아·소화 상태에 맞춘 맞춤형 식사를 제공하며, 매월 식단표를 공식 블로그에 투명하게 공개합니다.</p>
+        </div>
+        <div class="meal-point-card">
+          <div class="kicker">03 · 비급여 안내 &amp; 식기 살균 위생</div>
+          <h4>식사·간식 비급여 별도 안내</h4>
+          <p>HACCP 위탁급식 및 오후 간식 제공(식사·간식 비급여 별도 안내) · 매 식사 후 식기와 수저를 고온 살균 소독합니다.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. FACILITIES: 12컬럼 매거진 벤토 그리드 실제 시설 갤러리 -->
+  <section class="scene section-bento" id="facilities" aria-labelledby="facilities-title">
+    <div class="container">
+      <div class="sec-head">
+        <div class="sec-head-left">
+          <span class="sec-num">04</span>
+          <div class="sec-title-group">
+            <span class="sec-kicker">ACTUAL FACILITY GALLERY · 100% 실제 공간</span>
+            <h2 class="sec-title" id="facilities-title">어르신이 머무시는<br><em>실제 공간</em>을 공개합니다</h2>
+            <p class="sec-desc">각 사진을 클릭하시면 크게 확대하여 보실 수 있습니다. 넓은 생활·프로그램실, 집중 활동실, 온돌 수면실, 안전 화장실까지 직접 확인해 보세요.</p>
+          </div>
+        </div>
+        <div class="sec-actions">
+          <a class="btn-secondary" href="/facilities.html">
+            <span>시설 사진 전체 보기 (고화질) ↗</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="bento-grid">
+        <button class="bento-card bento-1" type="button" data-lightbox data-full="/assets/facilities/premium-20261110/common-exercise-1440.webp" data-caption="공용생활실 — 월간 단체 프로그램 테이블, 실내 운동 사이클 3대, 안마의자 3대가 갖춰진 메인 생활·프로그램 공간">
+          <img src="/assets/facilities/premium-20261110/common-exercise-900.webp" width="900" height="675" loading="lazy" decoding="async" alt="메인 프로그램 테이블과 실내 운동 사이클">
+          <span class="bento-no">01</span>
+          <div class="bento-overlay">
+            <strong>공용생활실 &amp; 프로그램홀</strong>
+            <span>햇살 드는 넓은 공간 · 실내 운동 사이클 3대</span>
+          </div>
+        </button>
+
+        <button class="bento-card bento-2" type="button" data-lightbox data-full="/assets/facilities/premium-20261110/love-classroom-01-1440.webp" data-caption="사랑반 교실 — 채광 좋은 창가, 원목 테이블, 이동식 스마트 모니터, 개인 사물함 및 비상 수직구조대">
+          <img src="/assets/facilities/premium-20261110/love-classroom-01-900.webp" width="900" height="675" loading="lazy" decoding="async" alt="밝은 창가 채광의 사랑반 교실">
+          <span class="bento-no">02</span>
+          <div class="bento-overlay">
+            <strong>사랑반 교실 (집중케어실)</strong>
+            <span>원목 테이블 · 대형 모니터 · 비상 수직구조대</span>
+          </div>
+        </button>
+
+        <button class="bento-card bento-3" type="button" data-lightbox data-full="/assets/facilities/happiness-classroom-02-20261110-1440.webp" data-caption="행복반 교실 — 테이블과 대형 모니터가 마련된 소그룹 인지·정서 프로그램 공간">
+          <img src="/assets/facilities/happiness-classroom-02-20261110-900.webp" width="900" height="675" loading="lazy" decoding="async" alt="활동 테이블을 배치한 행복반 교실">
+          <span class="bento-no">03</span>
+          <div class="bento-overlay">
+            <strong>행복반 교실 (소그룹 활동실)</strong>
+            <span>인지 워크북 · 정서 미술 소그룹 특화 공간</span>
+          </div>
+        </button>
+
+        <button class="bento-card bento-4" type="button" data-lightbox data-full="/assets/facilities/premium-20261110/rest-women-1440.webp" data-caption="여성수면실 — 은은한 간접조명과 따뜻한 온돌 평상 마루, 적외선 온열 조사기가 갖춰진 휴식 공간">
+          <img src="/assets/facilities/premium-20261110/rest-women-900.webp" width="900" height="675" loading="lazy" decoding="async" alt="따뜻한 온돌 평상 마루의 여성수면실">
+          <span class="bento-no">04</span>
+          <div class="bento-overlay">
+            <strong>여성 온돌 수면실</strong>
+            <span>온돌 평상 마루 · 적외선 온열기</span>
+          </div>
+        </button>
+
+        <button class="bento-card bento-5" type="button" data-lightbox data-full="/assets/facilities/premium-20261110/rest-men-03-1440.webp" data-caption="남성수면실 — 남성 어르신들이 조용하고 편안하게 오침과 휴식을 취하시는 독립 온돌 공간">
+          <img src="/assets/facilities/premium-20261110/rest-men-03-900.webp" width="900" height="675" loading="lazy" decoding="async" alt="독립 휴식 공간의 남성수면실">
+          <span class="bento-no">05</span>
+          <div class="bento-overlay">
+            <strong>남성 온돌 수면실</strong>
+            <span>독립 휴식실 · 온돌 마루</span>
+          </div>
+        </button>
+
+        <button class="bento-card bento-6" type="button" data-lightbox data-full="/assets/facilities/premium-20261110/safe-restroom-1440.webp" data-caption="안전을 먼저 생각하는 시설 — 양측 안전 손잡이, 등받이, 상·하단 이중 비상 호출벨 설치">
+          <img src="/assets/facilities/premium-20261110/safe-restroom-900.webp" width="900" height="675" loading="lazy" decoding="async" alt="양측 안전 지지대와 비상벨이 설치된 안전 화장실">
+          <span class="bento-no">06</span>
+          <div class="bento-overlay">
+            <strong>안전을 먼저 생각하는 시설</strong>
+            <span>양측 지지대 · 등받이 · 상·하단 이중 비상벨</span>
+          </div>
+        </button>
+
+        <button class="bento-card bento-7" type="button" data-lightbox data-full="/assets/facilities/premium-20261110/washbasins-1440.webp" data-caption="4인 공용 세면 공간 — 아치형 거울 4개와 깔끔한 화이트 세면대">
+          <img src="/assets/facilities/premium-20261110/washbasins-900.webp" width="900" height="675" loading="lazy" decoding="async" alt="아치형 거울 4개가 설치된 공용 세면대">
+          <span class="bento-no">07</span>
+          <div class="bento-overlay">
+            <strong>4인 공용 세면 공간</strong>
+            <span>아치형 거울 4개 · 여유로운 위생 관리</span>
+          </div>
+        </button>
+
+        <button class="bento-card bento-8" type="button" data-lightbox data-full="/assets/facilities/premium-20261110/meal-prep-1440.webp" data-caption="위생 배식 공간 — HACCP 인증 위탁급식 배식 및 식기 살균·위생 관리가 이루어지는 청결한 통유리 배식실">
+          <img src="/assets/facilities/premium-20261110/meal-prep-900.webp" width="900" height="675" loading="lazy" decoding="async" alt="통유리 배식 공간">
+          <span class="bento-no">08</span>
+          <div class="bento-overlay">
+            <strong>위생 배식 &amp; 식기 살균실</strong>
+            <span>통유리 위생 배식 · 고온 식기 소독 관리</span>
+          </div>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. GUIDE: 비용 및 입소 상담 안내 + 자주 묻는 질문 FAQ -->
+  <section class="scene section-guide" id="guide" aria-labelledby="guide-title">
+    <div class="container">
+      <div class="sec-head">
+        <div class="sec-head-left">
+          <span class="sec-num">05</span>
+          <div class="sec-title-group">
+            <span class="sec-kicker">COST &amp; ADMISSION GUIDE · 이용 안내 &amp; FAQ</span>
+            <h2 class="sec-title" id="guide-title">국가지원 85~100%로 부담 없이<br><em>투명하고 정직한 이용 비용 안내</em></h2>
+            <p class="sec-desc">노인장기요양보험 지정기관으로 장기요양등급(1~5등급, 인지지원등급) 판정을 받으시면 국가지원으로 이용하실 수 있습니다.</p>
+          </div>
+        </div>
+        <div class="sec-actions">
+          <a class="btn-primary" href="tel:051-791-1797" aria-label="등급 신청 무료 상담 전화">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.6 15.6 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24 11.4 11.4 0 0 0 3.6.58 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.46.58 3.6a1 1 0 0 1-.25 1z"/></svg>
+            <span>등급 신청 무료 상담 051-791-1797</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- 4단 비용 인포그래픽 -->
+      <div class="cost-infographic" aria-label="주요 비용 안내">
+        <div class="infocard">
+          <span class="infocard-kicker">국가 지원 85%</span>
+          <div class="infocard-num-row">
+            <strong class="infocard-big">15%</strong>
+            <span class="infocard-label">일반 본인부담금</span>
+          </div>
+          <p>장기요양 급여 비용의 85%를 국가에서 지원하며 일반 대상자는 15%만 본인이 부담합니다.</p>
+        </div>
+
+        <div class="infocard">
+          <span class="infocard-kicker">감경 대상자 91~94% 지원</span>
+          <div class="infocard-num-row">
+            <strong class="infocard-big">6~9%</strong>
+            <span class="infocard-label">경감 대상 본인부담</span>
+          </div>
+          <p>본인부담 감경 대상 어르신은 적용 기준에 따라 본인부담이 6% 또는 9%로 낮아집니다.</p>
+        </div>
+
+        <div class="infocard">
+          <span class="infocard-kicker">법정 면제 대상 국가 100% 지원</span>
+          <div class="infocard-num-row">
+            <strong class="infocard-big">0원</strong>
+            <span class="infocard-label">급여 본인부담 면제</span>
+          </div>
+          <p>국민기초생활 보장법에 따른 의료급여 수급 어르신은 장기요양 급여 본인부담금이 전액 면제됩니다.</p>
+        </div>
+
+        <div class="infocard">
+          <span class="infocard-kicker">비급여 안내 · 안전 송영</span>
+          <div class="infocard-num-row">
+            <strong class="infocard-big" style="font-size:clamp(19px,2vw,24px)">별도 안내</strong>
+            <span class="infocard-label">식사·간식 비급여 실비</span>
+          </div>
+          <p>장기요양 급여 외 식사·간식 비급여 별도 안내드리며, 댁 앞까지 모시는 송영 서비스는 장기요양 급여 범위 내 안전하게 제공됩니다.</p>
+        </div>
+      </div>
+
+      <!-- 4단계 입소 상담 프로세스 바 -->
+      <div class="process-ribbon" aria-label="이용 시작 4단계 절차">
+        <div class="proc-step">
+          <span class="proc-circle">01</span>
+          <div class="proc-text">
+            <strong>1단계 · 전화 상담 (051-791-1797)</strong>
+            <span>어르신 건강 상태·거주지·등급 보유 여부 확인</span>
+          </div>
+        </div>
+        <div class="proc-step">
+          <span class="proc-circle">02</span>
+          <div class="proc-text">
+            <strong>2단계 · 시설 확인 및 사전 방문 상담</strong>
+            <span>사전 예약 후 실제 시설 확인 및 입소 상담 안내</span>
+          </div>
+        </div>
+        <div class="proc-step">
+          <span class="proc-circle">03</span>
+          <div class="proc-text">
+            <strong>3단계 · 맞춤 케어 설계 및 계약</strong>
+            <span>신체·인지 상태와 가족 요청을 반영한 일정 설계</span>
+          </div>
+        </div>
+        <div class="proc-step">
+          <span class="proc-circle">04</span>
+          <div class="proc-text">
+            <strong>4단계 · 편안한 적응 이용 시작</strong>
+            <span>전용 차량 댁 앞 송영 및 세심한 초기 적응 케어</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ 6선 대칭 그리드 -->
+      <div class="faq-grid" aria-label="자주 묻는 질문 6선">
+        <article class="faq-card">
+          <h3>부모님이 “나는 아직 그런 데 갈 때가 아니다”라며 거부하시면 어떡하죠?</h3>
+          <p>주간보호센터는 집을 떠나 입소하는 요양원이 아니라, ‘지금 살고 있는 내 집에서 더 오래 건강하게 살기 위해 낮 동안 운동하고 소통하러 다니는 시니어 건강·문화센터(노치원)’입니다. 어르신께서 마음의 문턱을 낮추실 수 있도록 눈높이 상담과 부담 없는 사전 방문 상담 및 시설 확인을 도와드립니다.</p>
+        </article>
+        <article class="faq-card">
+          <h3>아직 혼자 잘 걸어 다니시는데 장기요양등급 신청이 가능할까요?</h3>
+          <p>네, 가능합니다. 보행이 괜찮으셔도 약 복용 여부를 자주 헷갈리시거나 같은 말씀을 반복하시는 등 인지·일상 관리가 필요한 경우 신청 대상이 됩니다. 공단 인정 신청과 방문조사 준비까지 센터에서 상세히 안내해 드립니다.</p>
+        </article>
+        <article class="faq-card">
+          <h3>장기요양등급이 없어도 상담·이용할 수 있나요?</h3>
+          <p>네, 언제든 상담하실 수 있습니다. 국민건강보험공단 등급 신청 절차를 상세히 안내해 드리며, 등급 판정 전이라도 일반 이용이 가능합니다.</p>
+        </article>
+        <article class="faq-card">
+          <h3>식사비 등 추가 비용이 있나요?</h3>
+          <p>식사비와 간식비는 장기요양 급여에 포함되지 않는 별도 비용이며, 자세한 금액은 상담 시 안내해 드립니다. 송영 서비스는 장기요양 급여 범위 내에서 안전하게 제공됩니다.</p>
+        </article>
+        <article class="faq-card">
+          <h3>송영(차량 픽업)은 어디까지 오나요?</h3>
+          <p>해운대구 전 지역과 송정 일대까지 제공하며, 전용 차량으로 댁 앞까지 안전 동행하여 승·하차 부축과 안전벨트 확인까지 안전한 송영 서비스를 제공합니다.</p>
+        </article>
+        <article class="faq-card">
+          <h3>시설을 미리 둘러보거나 사전 방문 상담이 가능한가요?</h3>
+          <p>사전 예약 후 시설 확인 및 입소 상담이 가능하며, 어르신이 센터 분위기를 편안하게 살펴보실 수 있도록 사전 방문 상담을 상세히 안내해 드립니다.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. CLOSING: 방문·상담 안내 + 제휴업체 + 푸터 -->
+  <section class="scene closing" id="closing" aria-labelledby="closing-title">
+    <div class="container">
+      <div class="closing-banner">
+        <div>
+          <span class="kicker">사전 방문 상담 및 전화 상담 안내</span>
+          <h2 id="closing-title">사진보다 직접 오셔서 보시면<br>더 안심하실 수 있습니다</h2>
+          <p>사전 방문 상담만 오셔도 좋습니다. 어르신께 가장 잘 맞는 하루를 가족의 마음으로 함께 설계해 드리겠습니다.</p>
+          <div class="closing-meta">
+            <span><strong>주소</strong> 부산광역시 해운대구 좌동순환로 78 건우빌딩 5층</span>
+            <span><strong>운영시간</strong> 월–토 08:30–17:30 (일요일·공휴일 제외)</span>
+          </div>
+        </div>
+        <div class="closing-actions">
+          <a class="closing-call-btn" href="tel:051-791-1797" aria-label="입소 및 방문 상담 전화 051-791-1797">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.6 15.6 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24 11.4 11.4 0 0 0 3.6.58 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.46.58 3.6a1 1 0 0 1-.25 1z"/></svg>
+            <span>051-791-1797</span>
+          </a>
+          <div class="closing-map-row">
+            <a class="closing-map-btn" href="https://map.naver.com/p/entry/place/2028121432" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-6.3 7-11a7 7 0 1 0-14 0c0 4.7 7 11 7 11z"/><circle cx="12" cy="10" r="2.6"/></svg>
+              <span>네이버지도</span>
+            </a>
+            <a class="closing-map-btn" href="https://map.kakao.com/link/search/%EB%B6%80%EC%82%B0%EA%B4%91%EC%97%AD%EC%8B%9C%20%ED%95%B4%EC%9A%B4%EB%8C%80%EA%B5%AC%20%EC%A2%8C%EB%8F%99%EC%88%9C%ED%99%98%EB%A1%9C%2078%20%EA%B1%B4%EC%9A%B0%EB%B9%8C%EB%94%A9%205%EC%B8%B5" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-6.3 7-11a7 7 0 1 0-14 0c0 4.7 7 11 7 11z"/><circle cx="12" cy="10" r="2.6"/></svg>
+              <span>카카오맵</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 제휴업체 (#partners) -->
+      <section class="partners" id="partners" aria-labelledby="partners-title">
+        <div class="partners-head">
+          <h2 id="partners-title">함께하는 제휴업체</h2>
+          <p class="partners-label">지역 의료·복지 협력 네트워크</p>
+        </div>
+        <ul class="partner-list">
+          <li><a class="partner-item" href="https://danaumrehab.co.kr/" target="_blank" rel="noopener noreferrer" aria-label="다나음재활센터 홈페이지 (새 창)"><span class="partner-name">다나음재활센터</span><span class="partner-link">홈페이지 <span aria-hidden="true">↗</span></span></a></li>
+          <li><div class="partner-item"><span class="partner-name">해운대탑정형외과</span></div></li>
+          <li><div class="partner-item"><span class="partner-name">해운대 센트럴내과</span></div></li>
+          <li><a class="partner-item" href="http://www.ihyosung.org/" target="_blank" rel="noopener noreferrer" aria-label="효성노인건강센터 홈페이지 (새 창)"><span class="partner-name">효성노인건강센터</span><span class="partner-link">홈페이지 <span aria-hidden="true">↗</span></span></a></li>
+          <li><div class="partner-item"><span class="partner-name">사랑방재가복지센터</span></div></li>
+          <li><div class="partner-item"><span class="partner-name">해운대 리안성모안과</span></div></li>
+          <li><div class="partner-item"><span class="partner-name">해운대 365 치과</span></div></li>
+          <li><div class="partner-item"><span class="partner-name">특특복지용구</span></div></li>
+          <li><div class="partner-item"><span class="partner-name">e드림iT컴퓨터</span></div></li>
+        </ul>
+      </section>
+
+      <footer class="site-footer">
+        <div class="foot-brand">
+          <div class="foot-brand-row">
+            <img class="foot-logo" src="/assets/logo.png" width="38" height="38" alt="더 그레이스 시니어 주간보호센터 로고">
+            <div>
+              <strong>더 그레이스 시니어 주간보호센터</strong>
+              <p>부산 해운대 노인장기요양보험 지정 주간보호기관</p>
+            </div>
+          </div>
+        </div>
+        <div>
+          <h3>오시는 길</h3>
+          <p>부산광역시 해운대구 좌동순환로 78 건우빌딩 5층</p>
+          <p style="margin-top:4px">
+            <a href="https://map.naver.com/p/entry/place/2028121432" target="_blank" rel="noopener">네이버지도 길찾기</a> ·
+            <a href="https://map.kakao.com/link/search/%EB%B6%80%EC%82%B0%EA%B4%91%EC%97%AD%EC%8B%9C%20%ED%95%B4%EC%9A%B4%EB%8C%80%EA%B5%AC%20%EC%A2%8C%EB%8F%99%EC%88%9C%ED%99%98%EB%A1%9C%2078%20%EA%B1%B4%EC%9A%B0%EB%B9%8C%EB%94%A9%205%EC%B8%B5" target="_blank" rel="noopener">카카오맵 길찾기</a>
+          </p>
+        </div>
+        <div>
+          <h3>운영 안내</h3>
+          <p>월–토 08:30–17:30<br>일요일·공휴일 제외 · 등급 신청 상담</p>
+          <p style="margin-top:4px">
+            <a href="/guide.html">이용 안내</a> · <a href="/facilities.html">시설 사진 전체 보기</a>
+          </p>
+        </div>
+        <div>
+          <h3>상담 문의 · 채널</h3>
+          <p><a class="foot-tel" href="tel:051-791-1797">051-791-1797</a></p>
+          <p style="margin-top:4px">
+            <a href="https://www.instagram.com/thegrace_daycare/" target="_blank" rel="noopener">인스타그램 @thegrace_daycare</a> ·
+            <a href="https://blog.naver.com/the_grace_daycare" target="_blank" rel="noopener">네이버 블로그</a>
+          </p>
+        </div>
+        <div class="foot-copy">
+          <span>© 2026 더 그레이스 시니어 주간보호센터 · 부산 해운대</span>
+          <span>해운대구 전 지역 · 송정 일대 안전 송영</span>
+        </div>
+      </footer>
+    </div>
+  </section>
+</main>
+
+<!-- 프로그램 상세 팝업 모달 -->
+<dialog class="program-dialog" id="prog-modal" aria-modal="true" aria-labelledby="pm-title">
+  <div class="pm-inner">
+    <div class="pm-poster-wrap">
+      <img id="pm-img" src="" alt="">
+    </div>
+    <div class="pm-content">
+      <span class="pm-badge" id="pm-badge"></span>
+      <h3 class="pm-title" id="pm-title"></h3>
+      <p class="pm-sub" id="pm-sub"></p>
+      <div class="pm-effects-box">
+        <h4>기대 효과 및 주요 안내</h4>
+        <ul class="pm-effects-list" id="pm-effects-list"></ul>
+      </div>
+      <div class="pm-actions">
+        <a class="pm-blog-btn" id="pm-blog-btn" href="#" target="_blank" rel="noopener noreferrer">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.273 12.845 7.376 0H0v24h7.726V11.155L16.624 24H24V0h-7.727v12.845z"/></svg>
+          <span>네이버 블로그에서 현장 이야기 보기 ↗</span>
+        </a>
+        <a class="pm-call-btn" href="tel:051-791-1797">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8a15.6 15.6 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24 11.4 11.4 0 0 0 3.6.58 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.46.58 3.6a1 1 0 0 1-.25 1z"/></svg>
+          <span>프로그램 및 입소 문의 051-791-1797</span>
+        </a>
+      </div>
+    </div>
+  </div>
+  <button class="pm-close" type="button" aria-label="닫기">×</button>
+</dialog>
+
+<!-- 사진 확대 라이트박스 -->
+<dialog class="photo-dialog" id="photo-dialog" aria-modal="true" aria-labelledby="photo-caption">
+  <figure>
+    <img id="photo-dialog-image" src="" alt="">
+    <figcaption id="photo-caption"></figcaption>
+  </figure>
+  <button class="photo-close" type="button" aria-label="사진 닫기">×</button>
+</dialog>
+
+<!-- 모바일 하단 고정 콜바 (≤760px) -->
+<div class="mobilecall" role="group" aria-label="빠른 연락">
+  <a class="mc-btn mc-call" href="tel:051-791-1797" aria-label="전화 상담 051-791-1797">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.6 15.6 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24 11.4 11.4 0 0 0 3.6.58 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.46.58 3.6a1 1 0 0 1-.25 1z"/></svg>
+    <span>전화 상담 051-791-1797</span>
+  </a>
+  <a class="mc-btn mc-map" href="https://map.naver.com/p/entry/place/2028121432" target="_blank" rel="noopener" aria-label="네이버지도 길찾기">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-6.3 7-11a7 7 0 1 0-14 0c0 4.7 7 11 7 11z"/><circle cx="12" cy="10" r="2.6"/></svg>
+    <span>길찾기</span>
+  </a>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  /* 네비게이션 스크롤 헤더 */
+  var nav = document.querySelector('.nav');
+  var menuLinks = Array.prototype.slice.call(document.querySelectorAll('.menu-link, .quick-link'));
+  var scenes = Array.prototype.slice.call(document.querySelectorAll('.scene[id]'));
+
+  function onScroll(){
+    if (nav) nav.classList.toggle('scrolled', (window.pageYOffset || document.documentElement.scrollTop) > 24);
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  if ('IntersectionObserver' in window) {
+    var ratios = {};
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ ratios[e.target.id] = e.intersectionRatio; });
+      var bestId = null, best = 0;
+      scenes.forEach(function(s){
+        var r = ratios[s.id] || 0;
+        if (r > best) { best = r; bestId = s.id; }
+      });
+      if (bestId) {
+        menuLinks.forEach(function(a){
+          if (a.getAttribute('href') === '#' + bestId) a.setAttribute('aria-current', 'true');
+          else a.removeAttribute('aria-current');
+        });
+      }
+    }, { threshold: [0, 0.2, 0.4, 0.6] });
+    scenes.forEach(function(s){ io.observe(s); });
+  }
+
+  /* 히어로 우측 화보 스테이지 탭 전환 */
+  var heroSlides = Array.prototype.slice.call(document.querySelectorAll('.hero-stage-viewport .hero-bg-slide'));
+  var heroTabs = Array.prototype.slice.call(document.querySelectorAll('.stage-tab'));
+  var stageTrigger = document.getElementById('hero-stage-trigger');
+  var stageTitle = document.getElementById('stage-title');
+
+  heroTabs.forEach(function(tab, idx){
+    tab.addEventListener('click', function(){
+      heroSlides.forEach(function(s, i){ s.classList.toggle('active', i === idx); });
+      heroTabs.forEach(function(t, i){ t.classList.toggle('active', i === idx); });
+      var full = tab.getAttribute('data-full');
+      var title = tab.getAttribute('data-title');
+      if (stageTrigger) {
+        stageTrigger.setAttribute('data-full', full);
+        stageTrigger.setAttribute('data-caption', title);
+      }
+      if (stageTitle) stageTitle.textContent = title;
+    });
+  });
+
+  /* 프로그램 상세 팝업 모달 */
+  var progModal = document.getElementById('prog-modal');
+  var pmImg = document.getElementById('pm-img');
+  var pmBadge = document.getElementById('pm-badge');
+  var pmTitle = document.getElementById('pm-title');
+  var pmSub = document.getElementById('pm-sub');
+  var pmEffectsList = document.getElementById('pm-effects-list');
+  var pmBlogBtn = document.getElementById('pm-blog-btn');
+  var pmClose = progModal ? progModal.querySelector('.pm-close') : null;
+  var lastProgTrigger = null;
+
+  function openProgModal(btn) {
+    if (!progModal || !progModal.showModal) return;
+    lastProgTrigger = btn;
+
+    var badge = btn.getAttribute('data-badge') || '';
+    var title = btn.getAttribute('data-title') || '';
+    var sub = btn.getAttribute('data-sub') || '';
+    var img = btn.getAttribute('data-img') || '';
+    var effectsStr = btn.getAttribute('data-effects') || '';
+    var blog = btn.getAttribute('data-blog') || 'https://blog.naver.com/the_grace_daycare';
+
+    if (pmBadge) pmBadge.textContent = badge;
+    if (pmTitle) pmTitle.textContent = title;
+    if (pmSub) pmSub.textContent = sub;
+    if (pmImg) {
+      pmImg.src = img;
+      pmImg.alt = btn.getAttribute('data-img-alt') || title;
+    }
+    if (pmBlogBtn) {
+      pmBlogBtn.href = blog;
+    }
+
+    if (pmEffectsList) {
+      pmEffectsList.innerHTML = '';
+      if (effectsStr) {
+        var items = effectsStr.split('|');
+        items.forEach(function(item){
+          var trimmed = item.trim();
+          if (trimmed) {
+            var li = document.createElement('li');
+            li.textContent = trimmed;
+            pmEffectsList.appendChild(li);
+          }
+        });
+      }
+    }
+
+    document.documentElement.classList.add('modal-open');
+    progModal.showModal();
+    if (pmClose) pmClose.focus();
+  }
+
+  function closeProgModal() {
+    if (!progModal || !progModal.open) return;
+    progModal.close();
+  }
+
+  if (progModal) {
+    document.querySelectorAll('[data-prog-modal]').forEach(function(btn){
+      btn.addEventListener('click', function(){ openProgModal(btn); });
+    });
+    if (pmClose) pmClose.addEventListener('click', closeProgModal);
+    progModal.addEventListener('click', function(e){
+      var r = progModal.getBoundingClientRect();
+      if (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) {
+        closeProgModal();
+      }
+    });
+    progModal.addEventListener('close', function(){
+      document.documentElement.classList.remove('modal-open');
+      if (lastProgTrigger && lastProgTrigger.focus) lastProgTrigger.focus({ preventScroll: true });
+    });
+  }
+
+  /* 사진 라이트박스 */
+  var photoDialog = document.getElementById('photo-dialog');
+  var photoDialogImg = document.getElementById('photo-dialog-image');
+  var photoDialogCap = document.getElementById('photo-caption');
+  var photoClose = photoDialog ? photoDialog.querySelector('.photo-close') : null;
+  var lastPhotoTrigger = null;
+
+  function openPhoto(btn){
+    if (!photoDialog || !photoDialog.showModal) return;
+    lastPhotoTrigger = btn;
+    var img = btn.querySelector('img.active') || btn.querySelector('img');
+    photoDialogImg.src = btn.getAttribute('data-full') || (img ? img.src : '');
+    photoDialogImg.alt = img ? img.alt : '';
+    photoDialogCap.textContent = btn.getAttribute('data-caption') || '';
+    document.documentElement.classList.add('lightbox-open');
+    photoDialog.showModal();
+    if (photoClose) photoClose.focus();
+  }
+  function closePhoto(){
+    if (!photoDialog || !photoDialog.open) return;
+    photoDialog.close();
+  }
+  if (photoDialog) {
+    document.querySelectorAll('[data-lightbox]').forEach(function(btn){
+      btn.addEventListener('click', function(){ openPhoto(btn); });
+    });
+    if (photoClose) photoClose.addEventListener('click', closePhoto);
+    photoDialog.addEventListener('click', function(e){
+      var r = photoDialog.getBoundingClientRect();
+      if (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) {
+        closePhoto();
+      }
+    });
+    photoDialog.addEventListener('close', function(){
+      document.documentElement.classList.remove('lightbox-open');
+      photoDialogImg.removeAttribute('src');
+      if (lastPhotoTrigger && lastPhotoTrigger.focus) lastPhotoTrigger.focus({ preventScroll: true });
+    });
+  }
+})();
+</script>
+</body>
+</html>
