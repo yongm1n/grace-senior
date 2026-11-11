@@ -9,12 +9,12 @@
 <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicon-180.png">
-<meta name="description" content="정지안 대표의 간호 경험과 돌봄 철학, 센터에서 전하는 인사말을 담은 더 그레이스 시니어 주간보호센터 최종 검토안입니다.">
+<meta name="description" content="정지안 대표의 간호 경험과 돌봄 철학을 담은 더 그레이스 시니어 주간보호센터 최종 검토안입니다.">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="ko_KR">
 <meta property="og:site_name" content="더 그레이스 시니어 주간보호센터">
 <meta property="og:title" content="더 그레이스 시니어 주간보호센터 | 최종 검토안">
-<meta property="og:description" content="정지안 대표의 간호 경험과 돌봄 철학, 센터에서 전하는 인사말을 담은 더 그레이스 시니어 주간보호센터 최종 검토안입니다.">
+<meta property="og:description" content="정지안 대표의 간호 경험과 돌봄 철학을 담은 더 그레이스 시니어 주간보호센터 최종 검토안입니다.">
 <meta property="og:url" content="https://gracedaycare.co.kr/draft/final/">
 <meta property="og:image" content="https://gracedaycare.co.kr/draft/assets/representative.jpg">
 <meta property="og:image:width" content="654">
@@ -2041,14 +2041,11 @@
     gap: 20px;
   }
   .dash-profile-intro {
-    display: flex;
-    align-items: center;
-    gap: 18px;
+    position: relative;
   }
   .dash-photo-box {
-    flex: 0 0 160px;
-    width: 160px;
-    aspect-ratio: 654 / 892;
+    width: 100%;
+    aspect-ratio: 3 / 3.8;
     border-radius: var(--radius-sm);
     overflow: hidden;
     background: var(--bg-sand);
@@ -2057,31 +2054,45 @@
     display: block;
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: cover;
+    object-position: center 20%;
   }
   .dash-photo-badge {
+    position: absolute;
+    bottom: 12px;
+    left: 12px;
+    right: 12px;
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
+    justify-content: space-between;
     gap: 8px;
     min-width: 0;
+    padding: 8px 12px;
+    border: 1px solid var(--line-gold);
+    border-radius: 10px;
+    background: color-mix(in srgb, var(--forest-deep) 90%, transparent);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
   }
   .dash-badge-name {
     font-family: var(--serif);
-    font-size: 21px;
+    font-size: 16px;
     font-weight: 700;
     line-height: 1.5;
-    color: var(--forest-deep);
+    color: var(--gold-soft);
   }
   .dash-badge-role {
-    font-size: 13px;
+    font-size: 12px;
     line-height: 1.7;
-    color: var(--ink-muted);
+    color: var(--bg-mint-deep);
   }
-  @media (max-width: 640px) {
-    .dash-profile-intro { gap: 18px; }
-    .dash-photo-box { flex-basis: 140px; width: 140px; }
-    .dash-badge-name { font-size: 20px; }
+  @media (max-width: 1024px) {
+    .dash-profile-intro { display: flex; align-items: center; gap: 18px; }
+    .dash-photo-box { flex: 0 0 140px; width: 140px; aspect-ratio: 654 / 892; }
+    .dash-photo-box img { object-fit: contain; }
+    .dash-photo-badge { position: static; flex-direction: column; align-items: flex-start; padding: 0; border: 0; background: transparent; -webkit-backdrop-filter: none; backdrop-filter: none; }
+    .dash-badge-name { font-size: 20px; color: var(--forest-deep); }
+    .dash-badge-role { font-size: 13px; color: var(--ink-muted); }
   }
 
   /* 전문성 타임라인 */
@@ -2307,35 +2318,12 @@
   .ps-name-full { display: inline; }
   @media(max-width:640px) { .ps-name-full { display: none; } .ps-name-short { display: inline; } }
 
-  /* Final review: retain the selected profile and care layout, then meet the center. */
+  /* Final review navigation */
   .final-review-bar { max-width: 1470px; justify-content: space-between; color: var(--bg-cream); font-size: 13px; font-weight: 600; }
   .final-review-bar a { color: var(--bg-cream); text-decoration: none; padding: 6px 0; border-bottom: 1px solid var(--line-gold); }
   .final-review-bar a span { margin-left: 12px; }
   .final-review-bar a:hover { color: var(--gold-soft); }
-  .center-greeting-jump { display: inline-flex; align-items: center; gap: 24px; margin-top: 18px; padding: 7px 0; border-bottom: 1px solid var(--line-gold); color: var(--gold-soft); text-decoration: none; font-size: 14px; font-weight: 600; }
-  .center-greeting-jump:hover { color: var(--surface); }
-  .center-greeting { margin-top: 42px; padding-top: 32px; border-top: 1px solid var(--line-gold); scroll-margin-top: calc(var(--switcher-h) + var(--nav-h) + var(--quick-nav-h) + 25px); }
-  .center-greeting-copy { max-width: 820px; margin: 0 auto; }
-  .center-greeting-kicker { display: block; color: var(--coral-deep); font-weight: 700; font-size: 12px; letter-spacing: .07em; margin-bottom: 15px; }
-  .center-greeting-copy h3 { color: var(--forest-deep); font-family: var(--serif); font-size: clamp(25px,2.15vw,32px); font-weight: 700; line-height: 1.55; letter-spacing: -.045em; margin-bottom: 21px; }
-  .center-greeting-copy p { font-size: 17px; line-height: 1.9; color: var(--ink-body); }
-  .center-greeting-copy p + p { margin-top: 13px; }
-  .center-greeting-sign { margin-top: 25px; padding-top: 17px; border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 15px; }
-  .center-greeting-sign span { font-size: 13px; color: var(--ink-muted); }
-  .center-greeting-sign strong { font-family: var(--serif); color: var(--forest); font-size: 19px; letter-spacing: .01em; }
-  @media(max-width:900px) {
-    .center-greeting { margin-top: 32px; padding: 26px var(--gutter) 0; }
-    .center-greeting-copy { max-width: 670px; }
-    .center-greeting-copy h3 { font-size: 28px; }
-  }
-  @media(max-width:640px) {
-    .final-review-bar { padding: 0 18px; font-size: 12px; }
-    .center-greeting-kicker { font-size: 11px; letter-spacing: .035em; margin-bottom: 12px; }
-    .center-greeting-copy h3 { font-size: clamp(23px,6.05vw,27px); margin-bottom: 17px; }
-    .center-greeting-copy p { font-size: 16px; line-height: 1.9; }
-    .center-greeting-sign { margin-top: 20px; gap: 7px; flex-direction: column; }
-    .center-greeting-sign strong { font-size: 19px; }
-  }
+  @media(max-width:640px) { .final-review-bar { padding: 0 18px; font-size: 12px; } }
 
 </style>
 </head>
@@ -2357,7 +2345,7 @@
     </div>
   </a>
   <nav class="menu" aria-label="주요 메뉴">
-    <a class="menu-link" href="#director">대표인사말</a>
+    <a class="menu-link" href="#director">대표소개</a>
     <a class="menu-link" href="#intro">4대케어</a>
     <a class="menu-link" href="#program">하루일과·프로그램</a>
     <a class="menu-link" href="#meal">식사·위생</a>
@@ -2520,7 +2508,6 @@
           약 20년간 의료기관에서 쌓은 간호 경험과 의료 IT 기업의 EMR 기획·설계팀을 이끈 경험을 바탕으로,
           건강을 세심하게 살피고 체계적으로 운영하는 센터를 만들어 갑니다.
         </p>
-        <a class="center-greeting-jump" href="#center-greeting">센터에서 전하는 인사말 <span aria-hidden="true">↓</span></a>
       </div>
 
       <!-- 메인 2컬럼 그리드 -->
@@ -2656,15 +2643,6 @@
 
       </div>
 
-      <div class="center-greeting" id="center-greeting" aria-labelledby="center-greeting-title">
-        <div class="center-greeting-copy">
-          <span class="center-greeting-kicker">FROM THE CENTER · 센터에서 전하는 인사말</span>
-          <h3 id="center-greeting-title">어르신께는 행복한 하루를,<br>보호자께는 믿음과 안심을.</h3>
-          <p>부모님을 센터에 모신다는 것이 보호자께 얼마나 큰 결정인지 잘 알고 있습니다.</p>
-          <p>한 분 한 분의 일상을 존중하고, 작은 변화에도 관심을 기울이겠습니다. 어르신이 건강하고 즐겁게 하루를 보내실 수 있도록 가족의 마음으로 함께하겠습니다.</p>
-          <div class="center-greeting-sign"><span>더 그레이스 시니어 주간보호센터</span><strong>대표 정지안 드림</strong></div>
-        </div>
-      </div>
 
     </div>
   </section>
